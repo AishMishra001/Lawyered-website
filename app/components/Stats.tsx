@@ -31,9 +31,9 @@ export function Stats() {
         <p className="text-gray-300 text-lg">Join the Largest Challan Resolution Platform in India</p>
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center p-6 border border-gray-800 rounded-lg bg-black/20">
+            <div key={stat.label} className="flex flex-col items-center p-6 border border-gray-800 rounded-lg">
               {stat.icon}
-              <p className="text-4xl font-bold mt-4 text-white">{stat.value}</p>
+              <p className="text-3xl mt-4 text-white">{stat.value}</p>
               <p className="text-gray-400 mt-2">{stat.label}</p>
             </div>
           ))}

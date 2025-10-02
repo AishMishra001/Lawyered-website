@@ -6,7 +6,7 @@ import Link from "next/link";
 export function Navbar() {
   const navLinksLeft = [
     { href: "/ceo-message", label: "CEO'S MESSAGE" },
-    { href: "#", label: "LOTS247" },
+    { href: "/lots-247", label: "LOTS247" },
     { href: "#", label: "CHALLANPAY" },
   ];
   const navLinksRight = [

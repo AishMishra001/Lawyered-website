@@ -47,7 +47,7 @@ export function News() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {newsData.map((article, index) => (
-            <div key={index} className="border border-gray-800 rounded-lg p-6 flex flex-col bg-black/20">
+            <div key={index} className="border border-gray-800 rounded-lg p-6 flex flex-col">
               <p className="font-bold text-gray-400 tracking-widest text-sm uppercase mb-4">{article.source}</p>
               <h3 className="text-lg font-semibold text-brand-cyan mb-3">
                 <Link href={article.link} className="hover:underline">
