@@ -20,15 +20,15 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="#" className="hover:text-white">HOME</Link></li>
-              <li><Link href="#" className="hover:text-white">CEO&apos;S MESSAGE</Link></li>
-              <li><Link href="#" className="hover:text-white">LOTS 247</Link></li>
-              <li><Link href="#" className="hover:text-white">CHALLANPAY</Link></li>
+              <li><Link href="/ceo-message" className="hover:text-white">CEO&apos;S MESSAGE</Link></li>
+              <li><Link href="/lots-247" className="hover:text-white">LOTS 247</Link></li>
+              <li><Link href="/challan-pay" className="hover:text-white">CHALLANPAY</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="font-semibold text-white mb-4">Company</h3>
              <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white">ABOUT US</Link></li>
+              <li><Link href="/about-us" className="hover:text-white">ABOUT US</Link></li>
               <li><Link href="#" className="hover:text-white">BLOGS</Link></li>
               <li><Link href="#" className="hover:text-white">CONTACT US</Link></li>
             </ul>

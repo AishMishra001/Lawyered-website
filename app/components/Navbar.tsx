@@ -10,7 +10,7 @@ export function Navbar() {
     { href: "/challan-pay", label: "CHALLANPAY" },
   ];
   const navLinksRight = [
-    { href: "#", label: "ABOUT US" },
+    { href: "/about-us", label: "ABOUT US" },
     { href: "#", label: "BLOGS" },
     { href: "#", label: "CONTACT US" },
   ];
