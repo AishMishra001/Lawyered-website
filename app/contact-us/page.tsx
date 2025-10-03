@@ -76,7 +76,7 @@ function ContactFormSection() {
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]"/>
               <label htmlFor="auth" className="text-xl text-white">
-                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="#" className="text-[#0891B2] underline">Terms of Services</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
+                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms of Services</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
               </label>
             </div>
 
