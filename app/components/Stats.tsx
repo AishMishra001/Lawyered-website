@@ -1,8 +1,8 @@
-import { Car, Truck, Landmark, CheckCircle } from "lucide-react";
+import { Truck, Landmark, CheckCircle, CarTaxiFront } from "lucide-react";
 
 const stats = [
   {
-    icon: <Car size={48} className="text-gray-400" />,
+    icon: <CarTaxiFront size={48} className="text-gray-400" />,
     value: "5.5 Lakhs+",
     label: "Vehicles Protected",
   },
@@ -25,16 +25,15 @@ const stats = [
 
 export function Stats() {
   return (
-    <div className="py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-semibold text-[#22D2EE] mb-4">Trusted By Millions</h2>
-        <p className="text-gray-300 text-lg">Join the Largest Challan Resolution Platform in India</p>
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div className="py-24 px-4 md:px-26">
+              <div className="max-w-8xl mx-auto">
+                <h2 className="text-5xl font-semibold text-[#22D2EE] mb-4">Trusted By Millions</h2>
+                <p className="text-gray-300 text-2xl mb-8">Join the Largest Challan Resolution Platform in India</p>        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center p-6 border border-gray-800 rounded-lg">
+            <div key={stat.label} className="flex flex-col gap-8 items-center p-6 border border-gray-400">
               {stat.icon}
-              <p className="text-3xl mt-4 text-white">{stat.value}</p>
-              <p className="text-gray-400 mt-2">{stat.label}</p>
+              <p className="text-3xl font-bold mt-4 text-white">{stat.value}</p>
+              <p className="text-gray-400 text-2xl mt-2">{stat.label}</p>
             </div>
           ))}
         </div>

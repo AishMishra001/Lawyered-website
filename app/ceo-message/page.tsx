@@ -19,7 +19,7 @@ function CeoHero() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto py-24 grid md:grid-cols-5 gap-32 items-center">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-24 grid md:grid-cols-5 gap-32 items-center">
         {/* Left Column: Text Content */}
         <div className="md:col-span-3 flex flex-col gap-10">
           <h1 className="text-5xl lg:text-5xl font-bold leading-tight text-white">
@@ -29,7 +29,7 @@ function CeoHero() {
             <h2 className="text-3xl lg:text-4xl text-gray-200">
               From Reactive to <span className="text-[#22D2EE]">Predictive</span> to <span className="text-[#22D2EE]">Preventive</span> Advantage
             </h2>
-            <p className="mt-4 text-gray-400">
+            <p className="mt-4 text-gray-400 text-lg">
               Gen AI-driven Legal Risk Management (LRM) for the mobility sector—monitor, predict, and resolve legal issues before they disrupt operations.
             </p>
           </div>
@@ -67,8 +67,8 @@ function CeoContent() {
   ];
 
   return (
-    <div className="bg-brand-dark py-24 px-6">
-      <div className="max-w-7xl mx-auto space-y-8 text-gray-300 leading-relaxed">
+    <div className="bg-brand-dark py-12 px-4 md:px-26">
+      <div className="max-w-8xl  mx-auto space-y-8 text-gray-300 text-lg leading-relaxed">
         {messageParagraphs.map((text, index) => (
           <p key={index}>{text}</p>
         ))}

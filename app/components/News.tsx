@@ -29,10 +29,10 @@ const newsData = [
 
 export function News() {
   return (
-    <div className="py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-4 md:px-26">
+      <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl font-semibold text-[#22D2EE]">
+          <h2 className="text-5xl font-semibold text-[#22D2EE]">
             Latest News and Media
           </h2>
           <div className="flex items-center gap-4">
@@ -45,21 +45,21 @@ export function News() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-14 max-w-8xl">
           {newsData.map((article, index) => (
-            <div key={index} className="border border-gray-800 rounded-lg p-6 flex flex-col">
-              <p className="font-bold text-gray-400 tracking-widest text-sm uppercase mb-4">{article.source}</p>
-              <h3 className="text-lg font-semibold text-brand-cyan mb-3">
-                <Link href={article.link} className="hover:underline">
+            <div key={index} className="border border-gray-500 p-6 flex flex-col gap-8">
+              <p className="font-bold text-gray-400 tracking-widest text-sm uppercase  mb-4">{article.source}</p>
+              <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg">
+                <Link href={article.link} className="hover:underline text-2xl text-[#22D2EE]">
                   {article.headline}
                 </Link>
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="text-white text-xl leading-relaxed mb-6 max-w-lg">
                 {article.description}
               </p>
               <div className="mt-auto flex justify-between items-center text-sm">
                 <span className="text-gray-500">{article.date}</span>
-                <Link href={article.link} className="text-brand-cyan hover:underline font-semibold">
+                <Link href={article.link} className="text-[#22D2EE] text-lg hover:underline font-semibold">
                   Read More
                 </Link>
               </div>

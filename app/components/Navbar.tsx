@@ -7,7 +7,7 @@ export function Navbar() {
   const navLinksLeft = [
     { href: "/ceo-message", label: "CEO'S MESSAGE" },
     { href: "/lots-247", label: "LOTS247" },
-    { href: "#", label: "CHALLANPAY" },
+    { href: "/challan-pay", label: "CHALLANPAY" },
   ];
   const navLinksRight = [
     { href: "#", label: "ABOUT US" },
@@ -25,7 +25,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-gray-300 text-md font-normal uppercase tracking-wider hover:text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300" // Increased font size and adjusted weight
+              className="text-gray-300 text-lg font-normal uppercase tracking-wider hover:text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300" // Increased font size and adjusted weight
             >
               {link.label}
             </Link>
@@ -37,8 +37,8 @@ export function Navbar() {
               <Image 
                 src="/lawyered-logo.png" 
                 alt="Lawyered Logo" 
-                width={360} // Increased logo width
-                height={66} // Adjusted height for proportion
+                width={450} // Increased logo width
+                height={75} // Adjusted height for proportion
                 priority 
               />
             </Link>
@@ -49,7 +49,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-gray-300 text-sm font-normal uppercase tracking-wider hover:text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300" // Increased font size and adjusted weight
+              className="text-gray-300 text-lg font-normal uppercase tracking-wider hover:text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300" // Increased font size and adjusted weight
             >
               {link.label}
             </Link>

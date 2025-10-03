@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Check, Truck, Scale, MapPin, X } from "lucide-react";
+import { News } from "../components/News";
 
 // Section 1: Hero
 function LotsHero() {
@@ -18,7 +19,7 @@ function LotsHero() {
             />
         </div>
       </div>
-      <div className="relative z-10 flex flex-col items-center px-4">
+      <div className="relative max-w-8xl z-10 flex flex-col items-center px-4 md:px-26">
         <Image
           src="/lots-247-logo.png"
           alt="LOTS 247 Logo"
@@ -29,7 +30,7 @@ function LotsHero() {
         <h1 className="text-5xl font-bold mt-6 text-white">
           Seamless Mobility, Zero Legal Hassles.
         </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-6xl">
+        <p className="mt-4 text-xl text-white max-w-6xl">
           From compliance tracking to challan closure, accident support, and regulatory safeguards — everything your fleet and mobility needs to move forward.
         </p>
         <div className="flex gap-2 mt-8">
@@ -38,7 +39,7 @@ function LotsHero() {
           <div className="w-2 h-2 rounded-full bg-gray-600"></div>
         </div>
       </div>
-      <p className="relative z-10 text-gray-400 w-full mx-auto mt-24 px-4">
+      <p className="relative z-10 text-white w-full mx-auto mt-24 px-26 text-xl">
         LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS is a painkiller solution—an indispensable safety net for every vehicle on Indian roads.
       </p>
     </div>
@@ -48,32 +49,32 @@ function LotsHero() {
 // Section 2: The Only Scalable & Dependable Legal-Tech Infrastructure
 function LotsInfrastructure() {
   return (
-    <div className="py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-4 md:px-26">
+      <div className="max-w-8xl mx-auto">
         <h2 className="text-4xl font-semibold text-center mb-16">
           The Only Scalable & Dependable Legal-Tech Infrastructure
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-12">
           {/* Card 1 */}
           <div className="border border-gray-800 rounded-lg p-6 bg-transparent">
-            <p className="text-sm text-gray-400">Layer 1</p>
-            <h3 className="text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
-            <Image src="/sticker1.png" alt="On-Call Resolution" width={200} height={200} className="mx-auto my-6"/>
-            <p className="text-gray-300">Talk to a lawyer instantly: A tech-driven, <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside issues before they spiral, backed by in-house Lawyers.</p>
+            <p className="text-lg text-gray-400">Layer 1</p>
+            <h3 className="text-4xl font-bold mt-1">24×7 On-Call Resolution</h3>
+            <Image src="/sticker1.png" alt="On-Call Resolution" width={300} height={300} className="mx-auto my-6"/>
+            <p className="text-gray-300 text-xl">Talk to a lawyer instantly: A tech-driven, <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside issues before they spiral, backed by in-house Lawyers.</p>
           </div>
           {/* Card 2 */}
           <div className="border border-gray-800 rounded-lg p-6 bg-transparent">
-            <p className="text-sm text-gray-400">Layer 2</p>
-            <h3 className="text-2xl font-bold mt-1">On-Site Deployment</h3>
-            <Image src="/sticker2.png" alt="On-Site Deployment" width={200} height={200} className="mx-auto my-6"/>
-            <p className="text-gray-300">A lawyer at your location in 2 hours: Nationwide Network of <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site deployment anytime, anywhere.</p>
+            <p className="text-lg text-gray-400">Layer 2</p>
+            <h3 className="text-4xl font-bold mt-1">On-Site Deployment</h3>
+            <Image src="/sticker2.png" alt="On-Site Deployment" width={300} height={300} className="mx-auto my-6"/>
+            <p className="text-gray-300 text-xl">A lawyer at your location in 2 hours: Nationwide Network of <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site deployment anytime, anywhere.</p>
           </div>
           {/* Card 3 */}
           <div className="border border-gray-800 rounded-lg p-6 bg-transparent">
-            <p className="text-sm text-gray-400">Layer 3</p>
-            <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
-            <Image src="/sticker3.png" alt="Challans & RTO Service" width={200} height={200} className="mx-auto my-6"/>
-            <ul className="text-gray-300 space-y-4">
+            <p className="text-lg text-gray-400">Layer 3</p>
+            <h3 className="text-4xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
+            <Image src="/sticker3.png" alt="Challans & RTO Service" width={400} height={400} className="mx-auto my-6"/>
+            <ul className="text-gray-300 space-y-4 text-xl">
               <li><span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized dashboard for tracking traffic violations across multiple vehicles.</li>
               <li><span className="text-[#22D2EE]">RC & Vehicle Insight API Access –</span> Ownership, hypothecation, blacklist, fitness, and pollution check in real-time.</li>
             </ul>
@@ -96,11 +97,11 @@ function LotsPricing() {
     ];
 
   return (
-    <div className="py-24 px-4 md:px-8 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
+    <div className="py-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
         <div className="absolute inset-0 bg-brand-dark/95"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-            <h2 className="text-4xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
-            <p className="text-gray-300 text-center mt-2">Choose the right package to keep your fleet running smoothly</p>
+        <div className="max-w-8xl mx-auto relative z-10">
+            <h2 className="text-5xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
+            <p className="text-gray-300 text-center text-lg mt-2">Choose the right package to keep your fleet running smoothly</p>
             
             <div className="mt-16 flex gap-4">
                 {/* Features Column */}
@@ -110,8 +111,8 @@ function LotsPricing() {
                         <div className="h-24 flex items-end justify-center relative z-10">
                             <Image src="/sticker4.png" alt="Sticker" width={250} height={250}/>
                         </div>
-                        <div className="p-4 space-y-4 bg-white rounded-lg">
-                            {features.map(f => <p key={f} className="h-12 flex items-center text-sm text-black border-b border-black/10 last:border-b-0">{f}</p>)}
+                        <div className="p-4 space-y-4 bg-white rounded-lg flex flex-col">
+                            {features.map(f => <p key={f} className="h-12 flex items-center text-lg text-black border-b border-black/10 last:border-b-0">{f}</p>)}
                         </div>
                     </div>
                 </div>
@@ -131,7 +132,7 @@ function LotsPricing() {
                             {/* Content with dividers */}
                             <div className="p-4 space-y-4 bg-white rounded-t-lg">
                                 {plan.values.map((val, idx) => (
-                                    <div key={idx} className="h-12 flex items-center justify-center text-sm text-center border-b border-black/10 last:border-b-0">
+                                    <div key={idx} className="h-12 flex items-center justify-center text-lg text-center border-b border-black/10 last:border-b-0">
                                         {val === true ? <Check className="text-green-400"/> : val === false ? <X className="text-red-400"/> : <p className="text-black">{val}</p>}
                                     </div>
                                 ))}
@@ -150,19 +151,21 @@ function LotsPricing() {
 // Section 4: Submit Card
 function LotsForm() {
   return (
-    <div className="py-24 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto border border-gray-800 rounded-lg p-8 grid md:grid-cols-2 gap-8 items-start">
-        <p className="text-gray-200 text-lg">
-          To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form and our executive will contact you.
-        </p>
-        <form className="grid grid-cols-2 gap-4">
-          <input type="text" placeholder="Company Name" className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
-          <input type="text" placeholder="Mobile No." className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
-          <select className="col-span-2 bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
-            <option>No. of Vehicles</option>
-          </select>
-          <button type="submit" className="col-span-2 mt-2 bg-[#0891B2] text-white py-3 rounded-md">Submit</button>
-        </form>
+    <div className="py-24 max-w-8xl px-26">
+      <div className=" mx-auto border border-gray-800 rounded-lg p-8 flex justify-center">
+        <div className="w-full max-w-8xl grid md:grid-cols-2 gap-46 items-start">
+          <p className="text-gray-200 text-lg">
+            To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form and our executive will contact you.
+          </p>
+          <form className="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Company Name" className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
+            <input type="text" placeholder="Mobile No." className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
+            <select className="col-span-2 bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
+              <option>No. of Vehicles</option>
+            </select>
+            <button type="submit" className="col-span-2 mt-2 bg-[#0891B2] text-white py-3 rounded-md">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   );
@@ -178,25 +181,25 @@ function LotsCoverage() {
         { icon: <Check />, text: <><span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and legal fees.</> }
     ];
   return (
-    <div className="py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-4 md:px-26 max-w-8xl">
+      <div className="mx-auto">
         <h2 className="text-4xl font-semibold text-center mb-16">
           Comprehensive Legal Coverage for Fleets
         </h2>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-18">
             {stats.map((stat, i) => (
-                <div key={i} className="border border-gray-800 rounded-lg p-6 ">
+                <div key={i} className="border border-gray-600 p-6 flex flex-col">
                     <div className="text-gray-400 mb-4">{stat.icon}</div>
-                    <p className="text-gray-300">{stat.text}</p>
+                    <p className="text-gray-300 text-xl pb-32">{stat.text}</p>
                 </div>
             ))}
         </div>
         <div className="mt-24 relative rounded-lg overflow-hidden text-center p-16 flex flex-col items-center justify-center">
-            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0"/>
+            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-30"/>
             <div className="absolute inset-0 bg-black/60 z-10"></div>
             <div className="relative z-20">
                 <h3 className="text-3xl text-white">Connect with us to know more at</h3>
-                <a href="mailto:Sales@lawyered.in" className="inline-block mt-6 bg-[#0891B2] text-white font-bold text-2xl px-12 py-4 rounded-lg">Sales@lawyered.in</a>
+                <a href="mailto:Sales@lawyered.in" className="inline-block mt-6 bg-[#0891B2] text-white font-bold text-2xl px-12 py-4">Sales@lawyered.in</a>
             </div>
         </div>
       </div>
@@ -205,9 +208,9 @@ function LotsCoverage() {
 }
 
 // A helper Link component for reusable styling
-const Link = ({ href, children }: { href: string, children: React.ReactNode }) => (
-    <a href={href} className="text-brand-cyan hover:underline">{children}</a>
-);
+// const Link = ({ href, children }: { href: string, children: React.ReactNode }) => (
+//     <a href={href} className="text-brand-cyan hover:underline">{children}</a>
+// );
 
 
 // Assembling the page
@@ -219,6 +222,7 @@ export default function Lots247Page() {
       <LotsPricing />
       <LotsForm />
       <LotsCoverage />
+      <News/>
     </>
   );
 }

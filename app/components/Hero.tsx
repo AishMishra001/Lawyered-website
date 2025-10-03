@@ -7,7 +7,7 @@ export function Hero() {
     <div className="relative h-screen">
       <Navbar />
       <div className="absolute inset-0 z-10 flex justify-start items-center">
-        <div className="relative w-1/2 h-full rotate-180">
+        <div className="relative w-7/12 h-full rotate-180">
           <Image
             src="/Frame.png"
             alt="Background Frame"
@@ -18,26 +18,26 @@ export function Hero() {
       </div>
       
       {/* Main content container */}
-      <div className="relative z-20 flex h-full flex-col items-center justify-center text-center px-4">
+      <div className="relative z-20 flex h-full flex-col items-center justify-center text-center px-4 gap-4">
         {/* --- CHANGE #1: Added a <br /> tag for a two-line heading --- */}
-        <h1 className="text-4xl md:text-7xl font-semibold text-white leading-tight max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-8xl font-semibold text-white leading-tight max-w-8xl mx-auto">
           Identifying & Resolving Recurring <br /> Legal Risk For Mobility
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-gray-300">
+        <p className="mt-6 text-lg md:text-3xl text-gray-300">
           Innovating & Building Scalable Technology Platforms
         </p>
 
         {/* --- CHANGE #2: Repositioned and resized the founder's note --- */}
         {/* This container aligns the note to the right, below the main text */}
-        <div className="w-full max-w-4xl mt-16">
+        <div className="w-full max-w-7xl mt-16">
           <div className="flex justify-end items-center gap-5">
             {/* Increased image size from 60x60 to 80x80 */}
             <Image
               src="/founder-photo.png"
               alt="Himanshu Gupta, Founder & CEO"
-              width={120}
-              height={120}
-              className="rounded-lg border-2 border-gray-600"
+              width={150}
+              height={150}
+              className=""
             />
             {/* Increased font sizes for better visibility */}
             <div>

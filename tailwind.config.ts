@@ -26,6 +26,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        '8xl': '88rem',
+      },
       colors: {
         'brand-dark': '#14141A',
         'brand-cyan': '#22D2EE',
