@@ -4,7 +4,7 @@ import React from 'react';
 export function VisionMission() {
   return (
     <div className="py-24 px-4 md:px-26 bg-brand-dark">
-      <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center">
         <div className="order-2 md:order-1">
           <h2 className="text-6xl font-semibold text-[#22D2EE] mb-6 ">Vission & Mission</h2>
           <p className="text-gray-300 leading-relaxed text-2xl">

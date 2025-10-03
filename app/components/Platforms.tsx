@@ -1,5 +1,3 @@
-// app/components/Platforms.tsx
-
 import Image from "next/image";
 import Link from "next/link";
  
@@ -36,7 +34,7 @@ export function Platforms() {
                 />
               </div>
               {/* NOTE: I am removing the mb-6 from the paragraph, as gap-6 already handles the spacing */}
-              <p className="text-gray-300 text-xl max-w-lg">
+              <p className="text-gray-300 text-xl max-w-sm flex-grow">
                 LOTS247 is not just a legal solution; it is a mission-critical,
                 technology-driven new SaaS (Service-as-a-Software) designed to
                 eliminate roadside legal issues in real time- India&apos;s first
@@ -61,7 +59,7 @@ export function Platforms() {
                 />
               </div>
               {/* NOTE: I am removing the mb-6 from the paragraph, as gap-6 already handles the spacing */}
-              <p className="text-gray-300 text-xl max-w-lg">
+              <p className="text-gray-300 text-xl max-w-sm flex-grow">
                 ChallanPay is India&apos;s first unified platform for discovering,
                 resolving, and tracking traffic challans across all states and
                 enforcement authorities.

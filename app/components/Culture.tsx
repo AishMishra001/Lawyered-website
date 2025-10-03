@@ -3,7 +3,7 @@ import Image from "next/image";
 export function Culture() {
   return (
     <div className="py-24 px-4 md:px-26 bg-brand-dark">
-      <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center">
         <div className="order-2 md:order-1">
           <Image src="/culture-img.png" alt="Team collaborating" width={550} height={420} className="rounded-lg" />
         </div>
