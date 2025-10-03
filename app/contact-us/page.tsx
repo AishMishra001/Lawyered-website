@@ -88,7 +88,7 @@ function ContactFormSection() {
         
         {/* Right Column: Email Info */}
         <div className="relative rounded-lg overflow-hidden p-8 flex flex-col justify-center items-center h-48">
-            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-80"/>
+            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-80 grayscale"/>
             <div className="absolute inset-0 bg-black/70 z-10"></div>
             <div className="relative z-20 flex items-center gap-22">
 

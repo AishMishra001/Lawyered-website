@@ -195,7 +195,7 @@ function LotsCoverage() {
             ))}
         </div>
         <div className="mt-24 relative rounded-lg overflow-hidden text-center p-16 flex flex-col items-center justify-center">
-            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-30"/>
+            <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-40 grayscale"/>
             <div className="absolute inset-0 bg-black/60 z-10"></div>
             <div className="relative z-20">
                 <h3 className="text-3xl text-white">Connect with us to know more at</h3>

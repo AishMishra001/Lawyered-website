@@ -19,7 +19,7 @@ export function Hero() {
       
       {/* Main content container */}
       <div className="relative z-20 flex min-h-screen flex-col items-center justify-center text-center px-4 gap-4 pt-28">
-        <h1 className="text-4xl md:text-8xl font-semibold text-white leading-tight max-w-8xl mx-auto">
+        <h1 className="text-3xl md:text-8xl font-semibold text-white leading-tight max-w-8xl mx-auto">
           Identifying & Resolving Recurring <br /> Legal Risk For Mobility
         </h1>
         <p className="mt-6 text-lg md:text-3xl text-gray-300">
