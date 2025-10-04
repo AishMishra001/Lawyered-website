@@ -21,7 +21,7 @@ export function TrustedPartners() {
             const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-220" : ""}`;
 
             return (
-              <div key={logo.name} className="h-26 w-56 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden">
+              <div key={logo.name} className="h-10 lg:h-18 w-40 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden">
                 <Image
                   src={logo.src}
                   alt={logo.name}

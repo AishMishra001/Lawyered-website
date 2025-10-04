@@ -6,11 +6,25 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export function AdvisorsSlider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
-  const advisors = Array.from({ length: 17 }, (_, i) => ({
-    name: `Advisor Name ${i + 1}`,
-    title: i % 2 === 0 ? "Advisor" : "Technology Advisor",
-    img: `/about${10 + i}.png`,
-  }));
+  const advisors = [
+    { name: "Pramod kumar singh", title: "Advisor", img: "/about10.png" },
+    { name: "Sandeep Dinodiya", title: "Technology Advisor", img: "/about11.png" },
+    { name: "Mahavir Pratap Sharma", title: "Advisor", img: "/about12.png" },
+    { name: "Hon'ble Justice K. Kannan ( Rtd.)", title: "Advisor", img: "/about13.png" },
+    { name: "Anil Gupta", title: "Advisor", img: "/about14.png" },
+    { name: "Amandeep Singh", title: "Advisors", img: "/about15.png" },
+    { name: "Mahendra Arya", title: "Advisor", img: "/about16.png" },
+    { name: "Abhishek Gupta", title: "Advisor", img: "/about17.png" },
+    { name: "Manish Raj Singhania", title: "Advisor", img: "/about18.png" },
+    { name: "Saharsh Damani", title: "Mentor", img: "/about19.png" },
+    { name: "KK Agarwal", title: "Advisor", img: "/about20.png" },
+    { name: "Sarabjeet Singh Waraich", title: "Advisor", img: "/about21.png" },
+    { name: "Munish Bhatia", title: "Acceleration Partner", img: "/about22.png" },
+    { name: "Mona Singh", title: "Acceleration Partner", img: "/about23.png" },
+    { name: "Deepak Nagpal", title: "Acceleration Partner", img: "/about24.png" },
+    { name: "Arindam Mukhopadyay", title: "Advisor", img: "/about25.png" },
+    { name: "John Thomas", title: "Strategic Partner", img: "/about26.png" },
+  ];
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
