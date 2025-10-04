@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Navbar() {
   const navLinksLeft = [
@@ -17,13 +17,24 @@ export function Navbar() {
 
   const allLinks = [...navLinksLeft, ...navLinksRight];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [hasMouseMoved, setHasMouseMoved] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = () => {
+      setHasMouseMoved(true);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <header
       className="fixed top-0 left-0 w-full z-50 bg-[#14141A]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <nav className="w-full py-5 px-4 md:px-8">
         {/* Desktop Menu */}
@@ -33,7 +44,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               className={`text-gray-300 text-lg font-normal uppercase tracking-wider hover:text-white whitespace-nowrap transition-opacity duration-300 ${
-                isHovered ? "opacity-100 visible" : "opacity-0 invisible"
+                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               {link.label}
@@ -55,7 +66,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               className={`text-gray-300 text-lg font-normal uppercase tracking-wider hover:text-white whitespace-nowrap transition-opacity duration-300 ${
-                isHovered ? "opacity-100 visible" : "opacity-0 invisible"
+                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               {link.label}

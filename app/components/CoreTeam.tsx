@@ -11,6 +11,7 @@ export function CoreTeam() {
     { name: "Mahendra Singh", title: "Chief Delivery Officer", img: "/about7.png" },
     { name: "Amit Katyal", title: "Chief Financial Officer", img: "/about8.png" },
     { name: "Maninder Singh Bawa", title: "Chief Technical Officer", img: "/about9.png" },
+    { name: "Ranjoy Dey", title: "Chief Marketing Officer", img: "/about27.png" },
   ];
   return (
     <div className="py-24 px-4 md:px-26">
