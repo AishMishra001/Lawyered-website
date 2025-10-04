@@ -56,15 +56,14 @@ function TermsContent() {
         {/* User Agreement */}
         <h2 className=" text-white mt-12 mb-6">USER AGREEMENT</h2>
         <p>
-          This User Agreement (this “Agreement”) is being entered into between
-          You (herein referred to as "Customer," "User," "Client," or "Visitor"
+          This User Agreement (this &quot;Agreement&quot;) is being entered into between
+          You (herein referred to as &quot;Customer,&quot; &quot;User,&quot; &quot;Client,&quot; or &quot;Visitor&quot;
           of the website and mobile application) and Sproutech Solutions Private
-          Limited (herein referred to as “Company”, “Lawyered”, “We”, “Us” or
-          “Our”) and its affiliate.
+          Limited (herein referred to as &quot;Company&quot;, &quot;Lawyered&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot;) and its affiliate.
         </p>
         <p>
           The Company operates and owns the website https://www.lawyered.in (The
-          “website”), its content, services provided thereunder, and the mobile
+          &quot;website&quot;), its content, services provided thereunder, and the mobile
           application on Android and iOS through which it provides on-road legal
           assistance, including but not limited to on-call legal guidance, legal
           representation, and challan resolution. The terms and conditions shall
@@ -75,7 +74,7 @@ function TermsContent() {
           between the User and the Company. No information provided on the
           website shall be considered a substitute for your independent
           investigation. These terms and conditions shall be governed by the
-          Information Technology Act, 2000 (“IT Act”) and applicable rules made
+          Information Technology Act, 2000 (&quot;IT Act&quot;) and applicable rules made
           thereunder. Once You have entered the website/application or used the
           services of the company as stipulated on the website, shall be deemed
           to be accepting the terms and conditions hereunder, and no digital
@@ -87,7 +86,7 @@ function TermsContent() {
           access to legal information, resolution tools, and a network of
           independent, qualified lawyers. All legal advice and services are
           rendered solely by these third-party professionals, who are not
-          employees of Lawyered. The platform’s role is limited to facilitating
+          employees of Lawyered. The platform&apos;s role is limited to facilitating
           connections and supporting the resolution process through technology.
         </p>
         <h2 className="  text-white mt-12 mb-6">I. WHAT TO DO ?</h2>
@@ -95,7 +94,7 @@ function TermsContent() {
           Sproutech Solutions Private Limited, commonly known as Lawyered, is on
           a mission to make law accessible and affordable to every individual,
           entity, and business by working towards minimizing the trust barriers
-          through knowledge and awareness. Lawyered’s main objective is to
+          through knowledge and awareness. Lawyered&apos;s main objective is to
           legally empower and cater to the needs of the individuals, entities
           and businesses. Lawyered is constantly evolving and developing various
           products to fulfill its purpose.{" "}
@@ -103,8 +102,8 @@ function TermsContent() {
         <p>
           One of its online products is focused on solving 24x7 on-road legal
           issues pan India in real-time for the Indian Mobility Market
-          (commercial and non-commercial vehicles) through its product “Lawyer
-          on the Spot” (LOTS). Additionally, Highway hero caters to the needs of
+          (commercial and non-commercial vehicles) through its product &quot;Lawyer
+          on the Spot&quot; (LOTS). Additionally, Highway hero caters to the needs of
           the drivers of truck drivers. The SCOPE OF SERVICES offered by
           Lawyered includes: <br />
           24x7 on-call legal support/representation on all days. <br />
@@ -144,9 +143,9 @@ function TermsContent() {
         </p>
 
         <p>
-          The User acknowledges and warrants that upon clicking “I Agree” and
-          upon entering into Lawyered's website or mobile application, or by
-          using Lawyered’s services, You accept the terms and conditions
+          The User acknowledges and warrants that upon clicking &quot;I Agree&quot; and
+          upon entering into Lawyered&apos;s website or mobile application, or by
+          using Lawyered&apos;s services, You accept the terms and conditions
           mentioned in this Agreement.
         </p>
 
@@ -171,7 +170,7 @@ function TermsContent() {
         {/* Terms */}
         <h2 className="  text-white mt-12 mb-6">IV. PAYMENT TERMS</h2>
         <p>
-          To avail the service(s) through Lawyered’s local legal professional
+          To avail the service(s) through Lawyered&apos;s local legal professional
           network PAN India, You shall pay the professional fee of the legal
           professional alongwith the service fee to Lawyered. The said fee shall
           vary on a case-to-case basis. For each service request, there may be
@@ -244,7 +243,7 @@ function TermsContent() {
           Tribunal, or Court when legally required.
         </p>
         <p>
-          The User acknowledges that Lawyered’s challan resolution service
+          The User acknowledges that Lawyered&apos;s challan resolution service
           includes legal representation and guidance but does not guarantee
           waiver or reduction of fines, as final decisions rest with the
           relevant Authority, Tribunal, or Court. Lawyered shall not be liable
@@ -257,17 +256,17 @@ function TermsContent() {
           real-time availability of such data. While Lawyered shall take
           reasonable steps to maintain accurate data retrieval, it shall not be
           liable for delays, errors, or technical issues arising from
-          third-party systems.”
+          third-party systems.
         </p>
         <p>
-          Lawyered’s on-call legal support is available 24x7. Physical
+          Lawyered&apos;s on-call legal support is available 24x7. Physical
           representation by a legal professional is available upon request,
           subject to availability and the working hours of the relevant
           Authorities, Tribunals, or Courts. Representation is not available on
           court holidays, when courts are vacant, or due to circumstances beyond
-          Lawyered’s control, including lawyer unavailability in specific
+          Lawyered&apos;s control, including lawyer unavailability in specific
           locations. Lawyered does not guarantee immediate representation in all
-          cases.”
+          cases.
         </p>
         <p>
           You agree and acknowledge that any arrangement between You and
@@ -279,10 +278,10 @@ function TermsContent() {
         </p>
         <p>
           All of Your communications on the Lawyered platform (Website, Mobile
-          Application) are protected by our privacy policy (“Privacy Policy”)
+          Application) are protected by our privacy policy (&quot;Privacy Policy&quot;)
           Making Justice Accessible and Affordable for All Lawyered is committed
           to protecting User data in accordance with the Digital Personal Data
-          Protection Act, 2023. By using Lawyered’s services, the User consents
+          Protection Act, 2023. By using Lawyered&apos;s services, the User consents
           to the collection, processing, and use of their personal data as
           outlined in the Privacy Policy The User acknowledges that Lawyered
           provides legal assistance services without any guarantee of
@@ -293,20 +292,20 @@ function TermsContent() {
           engaged via Lawyered operate independently and are not employees or
           agents of Lawyered. Lawyered does not interfere with their
           professional judgment or the legal strategy they employ. The User
-          acknowledges that Lawyered’s delivery services may be dependent on
-          third-party sources and API’s. Lawyered shall not be held liable for
+          acknowledges that Lawyered&apos;s delivery services may be dependent on
+          third-party sources and API&apos;s. Lawyered shall not be held liable for
           any delays, technical issues, glitches that may arise from the use of
           such services.
         </p>
         <p>
           The terms and conditions of this Agreement may be amended/updated from
           time to time and the same shall be updated upon the website. Any kind
-          of “solicitation” or “advertising” of legal professionals is not done
+          of &quot;solicitation&quot; or &quot;advertising&quot; of legal professionals is not done
           by Lawyered for any purpose. It is solely and exclusively a legal tech
           discovery platform (Website, Mobile application) providing on-road
           legal assistance and its mission is to make people legally empowered.
           The User may report any grievances related to the use of services to
-          Lawyered’s designated Grievance Officer. Contact details are available
+          Lawyered&apos;s designated Grievance Officer. Contact details are available
           on the website under the ‘Contact Us’ section. All grievances shall be
           acknowledged within 48 hours and resolved within 30 days, in
           accordance with the applicable laws of the land
@@ -336,15 +335,15 @@ function TermsContent() {
         </h2>
         <p>
           Acceptance of Terms : You are advised to carefully read the terms and
-          conditions of this Agreement before using Lawyered’s services. By
-          tapping on the “I Agree” button or using the platform, You acknowledge
+          conditions of this Agreement before using Lawyered&apos;s services. By
+          tapping on the &quot;I Agree&quot; button or using the platform, You acknowledge
           and agree that:
         </p>
         <p>
           You are legally bound by these Terms & Conditions. You have reviewed
           and understood the policies attached to this Agreement. If You have
           any queries, You may contact Lawyered via the details provided under
-          the “Contact Us” tab. Liability Disclaimer for Third-Party Errors:
+          the &quot;Contact Us&quot; tab. Liability Disclaimer for Third-Party Errors:
           Lawyered shall not be liable for any errors, delays, or failures
           arising from: Third-party payment gateways (e.g., failed transactions,
           double payments). Third party vendors, Government systems (e.g.,
@@ -356,10 +355,10 @@ function TermsContent() {
           offered by us, it shall not lead to the formation of an
           attorney-client relationship or be deemed to be formed between us. You
           acknowledge and agree to provide true, legally, and factually correct
-          information to “Lawyered' to effectively execute the submitted service
+          information to &quot;Lawyered&apos; to effectively execute the submitted service
           request and enable us to proceed further. You agree to provide
           accurate information about yourself and the vehicle and keep the said
-          information updated from time to time. You agree to avail Lawyered’s
+          information updated from time to time. You agree to avail Lawyered&apos;s
           services, the User must submit valid KYC documents, including a
           government-issued ID, vehicle registration certificate, and any other
           required documentation. Lawyered reserves the right to verify and
@@ -439,6 +438,7 @@ function TermsContent() {
           such information, using it solely for the purposes specified in this
           Agreement, and refraining from disclosing it to third parties without
           prior written consent, except to individuals who need to know the
+
           information to fulfill their duties and are legally or contractually
           obligated to maintain its confidentiality. This obligation to maintain
           confidentiality commences upon the effective date of this Agreement
@@ -462,6 +462,7 @@ function TermsContent() {
           action would be taken. Confidential Information may be disclosed to
           the extent required by Law provided a prior written notice is given to
           the other Party and prior to any such disclosure, allow the other
+
           Party an opportunity to intervene or where possible obtain from such
           third parties duly binding agreements to maintain in confidence the
           information to be disclosed
@@ -497,7 +498,7 @@ function TermsContent() {
         </p>
 
         <p>
-          Nothing in this Agreement shall affect a transfer of Lawyered’s
+          Nothing in this Agreement shall affect a transfer of Lawyered&apos;s
           intellectual property rights from to You, or otherwise be construed to
           confer any license to You under such intellectual property rights,
           except as expressly set forth in this Agreement. All the new
@@ -514,11 +515,11 @@ function TermsContent() {
           Lawyered shall not be liable for any indirect, incidental, special,
           consequential, or punitive damages, including but not limited to loss
           of profits, data, or goodwill, arising out of or in connection with
-          the use of its services. Lawyered's total liability to the User for
+          the use of its services. Lawyered&apos;s total liability to the User for
           any claim arising out of or related to these Terms & Conditions shall
           not exceed the total service fees paid by the User preceding one
           month. The User agrees to indemnify and hold Lawyered harmless from
-          any claims, damages, liabilities, and expenses arising from the User's
+          any claims, damages, liabilities, and expenses arising from the User&apos;s
           misuse of the services or violation of these Terms & Conditions.
           Lawyered does not guarantee a specific legal resolution or outcome, as
           all judgments and decisions are solely at the discretion of the
@@ -531,7 +532,7 @@ function TermsContent() {
           platform (Website and/or LOTS relating Application(s)) becomes
           unavailable due to bugs or defaults, technical issues, periodic
           maintenance, technical glitch faced by source or any unforeseen
-          circumstances beyond Lawyered’s control, including but not limited to
+          circumstances beyond Lawyered&apos;s control, including but not limited to
           cyberattacks, server failures, power outages, regulatory changes, or
           any other force majeure events.Therefore, Lawyered cannot be held
           liable for any claims of losses or damages whatsoever arising or
@@ -557,7 +558,7 @@ function TermsContent() {
           this Agreement shall be effective unless in writing and signed by the
           waiving Party to be bound, and even then, it will only be applicable
           to the specific purpose, extent, and instance provided Notwithstanding
-          anything contained herein, Lawyered’s total liability in relation to
+          anything contained herein, Lawyered&apos;s total liability in relation to
           any matter arising from these terms, the services offered, or indirect
           or unforeseeable losses to the User due to service failures or
           inaccuracies is limited to the total amount received from the You for
@@ -582,16 +583,16 @@ function TermsContent() {
           Any unlawful, unauthorized, or negligent acts or omissions by the
           User, including but not limited to violations of applicable laws,
           regulations, or third-party rights. Any claims, demands, or actions
-          brought by third parties arising out of or incidental b to the User’s
-          use of Lawyered’s website, mobile application, or services. Any loss,
-          damage, or liability arising from the User’s reliance on the
-          functionality, accuracy, or availability of Lawyered’s website or
+          brought by third parties arising out of or incidental b to the User&apos;s
+          use of Lawyered&apos;s website, mobile application, or services. Any loss,
+          damage, or liability arising from the User&apos;s reliance on the
+          functionality, accuracy, or availability of Lawyered&apos;s website or
           mobile application, including but not limited to technical
           difficulties such as bugs, glitches, or downtime. Lawyered shall not
           be liable for any direct, indirect, incidental, special, or
           consequential damages, including but not limited to loss of profits,
-          data, or business opportunities, arising out of or related to the
-          User’s use of or inability to use the website, mobile application, or
+          data, or business opportunities, arising out of or related to the User&apos;s
+          use of or inability to use the website, mobile application, or
           services, even if Lawyered has been advised of the possibility of such
           damages. The User acknowledges and agrees that they shall be solely
           responsible for any damages, claims, or liabilities arising out of or
@@ -637,14 +638,14 @@ function TermsContent() {
           Any dispute, difference, question, issue or claim arising out of or
           relating to this Agreement or its interpretation, or the breach or
           alleged breach thereof, or affecting this Agreement in any way or of
-          any nature whatsoever (“Dispute”), shall be tried and settled amicably
+          any nature whatsoever (&quot;Dispute&quot;), shall be tried and settled amicably
           among the parties through mutual discussion. If the parties are not
           able to settle the matter within 30 days, they shall refer the matter
           to arbitration to be conducted by a sole arbitrator appointed in
           accordance with the Arbitration and Conciliation Act, 1996. Either
           Party shall be entitled to give 30 (thirty) days clear notice in
           writing to the others of its intention to refer the Dispute to
-          Arbitration (“Arbitration Notice”).
+          Arbitration (&quot;Arbitration Notice&quot;).
         </p>
         <p>
           Subject to the procedure laid down therein, the arbitration shall be
@@ -703,10 +704,10 @@ function TermsContent() {
         <h2 className="  text-white mt-12 mb-6">XV. TERMINATION</h2>
         <p>
           Termination by User: Users may terminate their account and discontinue
-          the use of Lawyered’s services at any time by: a) Deleting their
+          the use of Lawyered&apos;s services at any time by: a) Deleting their
           account via the website or mobile application, where applicable, b)
-          Submitting a written request to Lawyered’s support team for account
-          deactivation, c) Ceasing to use Lawyered’s services, subject to any
+          Submitting a written request to Lawyered&apos;s support team for account
+          deactivation, c) Ceasing to use Lawyered&apos;s services, subject to any
           ongoing obligations under these Terms. Termination by Lawyered: We may
           terminate or suspend your account and access to our services
           immediately, without prior notice or liability, for any reason,
@@ -719,6 +720,7 @@ function TermsContent() {
           account. You shall fulfill all outstanding dues owed to us or platform
           lawyers, if any immediately upon termination. We shall not be liable
           to You or any third party for any termination of your account or
+
           access to the services
         </p>
         <p>
