@@ -30,7 +30,7 @@ export function AboutHero() {
       </div>
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-56 grid md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col gap-4 pl-20">
-          <h1 className="text-5xl md:text-7xl font-semibold text-white">About Us</h1>
+          <h1 className="text-2xl md:text-5xl font-semibold text-white">About Us</h1>
           
           <div className="relative h-12">
             <AnimatePresence mode="wait">
@@ -40,7 +40,7 @@ export function AboutHero() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="absolute text-2xl md:text-3xl text-gray-300 whitespace-nowrap"
+                className="absolute text-xl md:text-2xl text-gray-300 whitespace-nowrap"
               >
                 {stats[index]}
               </motion.p>
@@ -49,7 +49,7 @@ export function AboutHero() {
 
         </div>
         <div className="flex justify-center">
-          <Image src="/aboutus.png" alt="About Us Sticker" width={500} height={300} className="object-contain"/>
+          <Image src="/aboutus.png" alt="About Us Sticker" width={400} height={200} className="object-contain"/>
         </div>
         <div className="md:col-span-2 flex justify-center">
           <div className="flex gap-2 mt-4">

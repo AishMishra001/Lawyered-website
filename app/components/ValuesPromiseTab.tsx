@@ -55,7 +55,7 @@ export function ValuesPromiseTabs() {
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
-        <div className="flex border border-white text-xl md:text-2xl">
+        <div className="flex border border-white text-md md:text-xl">
           <button onClick={() => setActiveTab("value")} className={`px-16 py-6 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
           <button onClick={() => setActiveTab("promise")} className={`px-16 py-6 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white border-l border-gray-700'}`}>What We Promise</button>
         </div>
@@ -66,8 +66,8 @@ export function ValuesPromiseTabs() {
                 {values.map(v => (
                   <div key={v.title} className="border border-gray-700 p-6 space-y-10">
                     <div className="text-gray-400 mb-4">{v.icon}</div>
-                    <h3 className="text-2xl md:text-2xl font-bold text-white">{v.title}</h3>
-                    <p className="mt-2 text-gray-300 text-lg md:text-xl leading-relaxed pb-12">{v.description}</p>
+                    <h3 className="text-lg md:text-xl font-bold text-white">{v.title}</h3>
+                    <p className="mt-2 text-gray-300 text-base leading-relaxed pb-12">{v.description}</p>
                   </div>
                 ))}
               </motion.div>
