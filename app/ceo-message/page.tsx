@@ -22,14 +22,14 @@ function CeoHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-24 grid md:grid-cols-5 gap-32 items-center">
         {/* Left Column: Text Content */}
         <div className="md:col-span-3 flex flex-col gap-10">
-          <h1 className="text-5xl lg:text-5xl font-bold leading-tight text-white">
+          <h1 className="text-2xl lg:text-4xl font-bold leading-tight text-white">
             A Note from our Founder,<br />Himanshu Gupta
           </h1>
           <div>
-            <h2 className="text-3xl lg:text-4xl text-gray-200">
+            <h2 className="text-xl lg:text-3xl text-gray-200">
               From Reactive to <span className="text-[#22D2EE]">Predictive</span> to <span className="text-[#22D2EE]">Preventive</span> Advantage
             </h2>
-            <p className="mt-4 text-gray-400 text-lg">
+            <p className="mt-4 text-white text-base">
               Gen AI-driven Legal Risk Management (LRM) for the mobility sector—monitor, predict, and resolve legal issues before they disrupt operations.
             </p>
           </div>
@@ -68,16 +68,16 @@ function CeoContent() {
 
   return (
     <div className="bg-brand-dark py-12 px-4 md:px-26">
-      <div className="max-w-8xl  mx-auto space-y-8 text-gray-300 text-lg leading-relaxed">
+      <div className="max-w-8xl  mx-auto space-y-8 text-gray-300 text-base leading-relaxed">
         {messageParagraphs.map((text, index) => (
           <p key={index}>{text}</p>
         ))}
         
         {/* Signature */}
         <div className="pt-8">
-          <p>Regards,</p>
-          <p className="text-4xl font-bold text-[#22D2EE] mt-4">Himanshu Gupta</p>
-          <p className="text-gray-400">Founder & CEO</p>
+          <p className="text-base">Regards,</p>
+          <p className="text-3xl font-bold text-[#22D2EE] mt-4">Himanshu Gupta</p>
+          <p className="text-white">Founder & CEO</p>
         </div>
       </div>
     </div>

@@ -15,10 +15,10 @@ export function Platforms() {
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center text-center md:text-left">
         <div className="max-w-8xl">
-          <h2 className="text-4xl md:text-6xl font-semibold mb-4 text-[#22D2EE]">
+          <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#22D2EE]">
             Platforms
           </h2>
-          <p className="text-gray-300 max-w-8xl text-lg md:text-xl leading-relaxed mx-auto md:mx-0">
+          <p className="text-gray-300 max-w-8xl text-base leading-relaxed mx-auto md:mx-0">
          India’s mobility sector is a key industry comprising commercial fleet operators, logistics providers, ride-hailing services, and private vehicle owners, the public VAHAN dashboard displaying roughly 40.24 crore total vehicle registrations (and growing). The legal complexities in this sector are vast and often result in operational disruptions, financial losses, and compliance risks. A combination of stringent regulations, fragmented enforcement policies, and a growing number of vehicles on the road has intensified the legal challenges faced by stakeholders in this space.
           </p>
 
@@ -34,7 +34,7 @@ export function Platforms() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-gray-300 text-lg md:text-xl max-w-md flex-grow">
+              <p className="text-gray-300 text-base max-w-sm flex-grow">
                 LOTS247 is not just a legal solution; it is a mission-critical,
                 technology-driven new SaaS (Service-as-a-Software) designed to
                 eliminate roadside legal issues in real time- India&apos;s first
@@ -58,7 +58,7 @@ export function Platforms() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-gray-300 text-lg md:text-xl max-w-md flex-grow">
+              <p className="text-gray-300 text-base max-w-sm flex-grow">
                 ChallanPay is India&apos;s first unified platform for discovering,
                 resolving, and tracking traffic challans across all states and
                 enforcement authorities.

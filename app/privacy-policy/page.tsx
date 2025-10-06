@@ -23,8 +23,8 @@ function PrivacyHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6 pl-10">
-          <h1 className="text-7xl font-bold text-white">Privacy Policy</h1>
-          <p className="text-3xl text-white leading-relaxed">
+          <h1 className="text-4xl font-bold text-white">Privacy Policy</h1>
+          <p className="text-xl text-white leading-relaxed">
             If you have any questions about this privacy policy, please contact us.
           </p>
         </div>
@@ -34,8 +34,8 @@ function PrivacyHero() {
           <Image
             src="/privacy-policy.png"
             alt="Privacy Policy Document Icon"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             className="object-contain"
           />
         </div>
@@ -50,7 +50,7 @@ function PrivacyContent() {
     <div className="pb-16 px-4 md:px-26">
       <div className="max-w-8xl mx-auto text-white leading-relaxed space-y-14">
         {/* Intro Section */}
-        <div className="space-y-6 text-xl">
+        <div className="space-y-6 text-base">
             <p className="text-white">LAST UPDATED - 25th February 2025</p>
             <p className="mt-8">Thank you for visiting our website.</p>
             <p>Disclaimer: - At Sproutech Solutions Private Limited (Regd Name), we take your privacy and data security seriously. While we implement robust measures to protect your personal information, including encryption and regular security audits, it’s essential to recognize that no system can guarantee absolute immunity from cyber threats or malicious activities. We continuously strive to mitigate these risks, and by using our services, you agree to accept any residual risk. Sproutech Solutions Private Limited disclaims all liability for any unauthorized access, disclosure, or alteration of your information that may occur despite our best efforts.</p>
@@ -61,7 +61,7 @@ function PrivacyContent() {
 
         {/* 1. DEFINITION */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">1. DEFINITION.</div>
+            <div className="text-lg  text-white mt-12 mb-6">1. DEFINITION.</div>
             <div className="space-y-4">
                 <p>a) Personal Data refers to any information that relates to an identified or identifiable individual, either directly or indirectly, including but not limited to name, contact details, address, email, date of birth, demographic details, and government-issued identification numbers such as Aadhaar, PAN, passport, or driver’s license.</p>
                 <p>b) Sensitive Personal Data refers to personal data that requires a higher level of protection due to its sensitive nature and potential impact on an individual’s privacy, security, or rights if disclosed. This includes financial information such as bank account details, credit/debit card numbers, and payment transaction data; Know Your Customer (KYC) information including identity verification documents and proof of address; vehicle registration details and ownership records; biometric data such as fingerprints, facial recognition, and retina scans (if applicable); authentication credentials including passwords, security codes, and OTPs; and any other data classified as sensitive under applicable data protection laws.</p>
@@ -71,13 +71,13 @@ function PrivacyContent() {
         
         {/* 2. CONSENT */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">2. CONSENT.</div>
+            <div className="text-lg   text-white mt-12 mb-6">2. CONSENT.</div>
             <p>By using our services or by clicking on ‘I Agree’ to accept the Terms and Conditions, you explicitly consent to the collection, processing, and storage of your personal data as described in this Privacy Policy. Your consent is obtained through various mechanisms, including account registration, where you agree to provide accurate and complete information; continued usage of our services, which constitutes implicit acceptance of our data handling practices; and opt-in mechanisms for specific data processing activities, such as marketing communications, where clear choices are provided. You have the right to withdraw your consent at any time by sending us an email through the ‘Contact Us’ tab on our website. However, please note that withdrawing consent may impact your ability to access certain features or functionalities of our services, subject to applicable legal and contractual obligations.</p>
         </div>
 
         {/* 3. WHAT PERSONAL INFORMATION IS COLLECTED? */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">3. WHAT PERSONAL INFORMATION IS COLLECTED?</div>
+            <div className="text-lg  text-white mt-12 mb-6">3. WHAT PERSONAL INFORMATION IS COLLECTED?</div>
             <p>We may collect the following types of information:</p>
             <div className="mt-6">
                 <h3 className=" text-gray-200">*Personal/Company Information:</h3>
@@ -114,7 +114,7 @@ function PrivacyContent() {
 
         {/* 4. WHAT IS THE PURPOSE FOR COLLECTION OF YOUR INFORMATION? */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">4. WHAT IS THE PURPOSE FOR COLLECTION OF YOUR INFORMATION?</div>
+            <div className="text-lg text-white mt-12 mb-6">4. WHAT IS THE PURPOSE FOR COLLECTION OF YOUR INFORMATION?</div>
             <p>The information we collect may be used for following purposes:</p>
             <div className="mt-6">
                 <h3 className=" text-gray-200">*Feedbacks & Surveys:</h3>
@@ -161,7 +161,7 @@ function PrivacyContent() {
 
         {/* 5. TO WHOM WE MAY SHARE YOUR INFORMATION? */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">5. TO WHOM WE MAY SHARE YOUR INFORMATION?</div>
+            <div className="text-lg  text-white mt-12 mb-6">5. TO WHOM WE MAY SHARE YOUR INFORMATION?</div>
             <p>We may share your information with the following entities to facilitate our services:</p>
             <ul className="list-disc list-inside space-y-2 mt-4">
                 <li>Lawyers and Professionals: Empanelled legal professionals who assist in providing legal and challan resolution services.</li>
@@ -200,7 +200,7 @@ function PrivacyContent() {
 
         {/* 6. USER RIGHTS. */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">6. USER RIGHTS.</div>
+            <div className="text-lg  text-white mt-12 mb-6">6. USER RIGHTS.</div>
             <p>Under the Digital Personal Data Protection Act (DPDPA), 2023, you have the following rights regarding your personal data:</p>
             <ul className="list-disc list-inside space-y-2 mt-4">
                 <li>Right to Access: You have the right to request access to the personal data we hold about you.</li>
@@ -216,7 +216,7 @@ function PrivacyContent() {
         
         {/* 7. DATA BREACH NOTIFICATION MECHANISM */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">7. DATA BREACH NOTIFICATION MECHANISM</div>
+            <div className="text-lg  text-white mt-12 mb-6">7. DATA BREACH NOTIFICATION MECHANISM</div>
             <p>At Sproutech Solutions Private Limited (Lawyered), we prioritize data security and have a structured mechanism to address data breaches.</p>
             <ul className="list-disc list-inside space-y-2 mt-4">
                 <li>Identification & Containment: Upon detecting a breach, we will assess its impact, isolate affected systems, and deploy security measures to prevent further unauthorized access.</li>
@@ -230,7 +230,7 @@ function PrivacyContent() {
         
         {/* 8. DATA RETENTION AND DELETION. */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">8. DATA RETENTION AND DELETION.</div>
+            <div className="text-lg text-white mt-12 mb-6">8. DATA RETENTION AND DELETION.</div>
             <p>We retain the data shared with us for a period of two (2) years to comply with our legal obligations and ensure seamless service delivery. After this period, data will be securely deleted or anonymized unless a longer retention period is required by law.</p>
             <p>Users may request the deletion of their data by submitting a formal request through our designated contact channels. Upon receiving the request, we will verify the user’s identity to prevent unauthorized deletions. Once verified, we will proceed with the deletion process and issue a deletion certification confirming that the data has been permanently removed from our systems.</p>
             <p>Please note that certain legal or regulatory obligations may require us to retain specific data even after a deletion request is processed.</p>
@@ -238,7 +238,7 @@ function PrivacyContent() {
         
         {/* 9. SECURITY MEASURES. */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">9. SECURITY MEASURES.</div>
+            <div className="text-lg  text-white mt-12 mb-6">9. SECURITY MEASURES.</div>
             <p>Sproutech Solutions Private Limited employs a combination of administrative, technical, and physical safeguards to protect your personal data, including:</p>
             <ol className="list-decimal list-inside space-y-2 mt-4">
                 <li>Encryption: All sensitive data is encrypted both in transit and at rest using industry-standard encryption protocols.</li>
@@ -252,7 +252,7 @@ function PrivacyContent() {
 
         {/* 10. CHANGES TO THIS PRIVACY POLICY. */}
         <div>
-            <div className="text-2xl  text-white mt-12 mb-6">10. CHANGES TO THIS PRIVACY POLICY.</div>
+            <div className="text-lg  text-white mt-12 mb-6">10. CHANGES TO THIS PRIVACY POLICY.</div>
             <p>We may update this Privacy Policy from time to time. Any changes we make will be posted on this page. We encourage you to review this Privacy Policy periodically for any updates.</p>
             <p>Your continued use of our services following the implementation of changes to our Privacy Policy constitutes acceptance of the updated terms, reaffirming your commitment to our data handling practices.</p>
             <p>The Personal Information subject to this Privacy Policy will be collected and retained by the Company.</p>

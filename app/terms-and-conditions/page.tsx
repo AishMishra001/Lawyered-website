@@ -23,7 +23,7 @@ function TermsHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-64 grid md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-6xl font-bold text-white">
+          <h1 className="text-4xl font-bold text-white">
             Terms and Conditions
           </h1>
           <p className=" text-white">
@@ -37,8 +37,8 @@ function TermsHero() {
           <Image
             src="/terms.png"
             alt="Terms and Conditions Icon"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             className="object-contain"
           />
         </div>
@@ -51,7 +51,7 @@ function TermsHero() {
 function TermsContent() {
   return (
     <div className="py-28 px-4 md:px-26">
-      <div className="max-w-8xl text-xl mx-auto text-gray-300 leading-relaxed space-y-6">
+      <div className="max-w-8xl text-base mx-auto text-gray-300 leading-relaxed space-y-6">
         <p>LAST UPDATED: 25.02.2025</p>
         {/* User Agreement */}
         <h2 className=" text-white mt-12 mb-6">USER AGREEMENT</h2>

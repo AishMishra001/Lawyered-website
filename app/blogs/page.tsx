@@ -27,15 +27,15 @@ function BlogsHero() {
           <Image
             src="/sticker9.png"
             alt="Person excited at laptop"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             className="object-contain"
           />
         </div>
 
         {/* Right Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-5xl font-semibold text-white leading-tight">
+          <h1 className="text-3xl font-semibold text-white leading-tight">
             Read our blog for sharp legal insights that simplify the law
           </h1>
         </div>
@@ -55,14 +55,14 @@ function BlogCategories() {
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-5xl font-bold text-[#22D3EE] mb-8">
+        <h2 className="text-3xl font-bold text-[#22D3EE] mb-8">
           Blog Categories
         </h2>
         <div className="flex flex-wrap gap-4 items-center">
           {categories.map((category, index) => (
             <button
               key={category}
-              className={`px-10 py-4 rounded-lg text-2xl transition-colors
+              className={`px-10 py-4 rounded-lg text-xl transition-colors
                 ${index === 0
                   ? 'bg-[#22D3EE] text-black'
                   : 'bg-transparent border border-gray-700 text-gray-300 hover:bg-gray-800'
@@ -114,13 +114,13 @@ function BlogsGrid() {
             <div key={post.title} className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col">
               <Image src={post.image} alt={post.title} width={600} height={400} className="w-full object-cover" />
               <div className="p-6 flex flex-col flex-grow gap-6">
-                <h3 className="text-2xl font-semibold text-[#22D3EE] hover:underline">
+                <h3 className="text-xl font-semibold text-[#22D3EE] hover:underline">
                   <a href="/blogs/traffic-challan-app">{post.title}</a>
                 </h3>
-                <p className="mt-4 text-white text-xl leading-relaxed flex-grow">
+                <p className="mt-4 text-white text-base leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
-                <div className="mt-6 pt-4 border-t border-gray-800 text-lg text-white">
+                <div className="mt-6 pt-4 border-t border-gray-800 text-base text-white">
                   <span>{post.date}</span> | <span>{post.readTime}</span>
                 </div>
               </div>
@@ -128,7 +128,7 @@ function BlogsGrid() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <a href="#" className="flex text-xl items-center justify-center gap-1 text-[#22D3EE] hover:underline">
+          <a href="#" className="flex text-base items-center justify-center gap-1 text-[#22D3EE] hover:underline">
             See All <ChevronDown size={16} />
           </a>
         </div>

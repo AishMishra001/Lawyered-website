@@ -38,7 +38,7 @@ const newsData = [
     headline: "Delhi traffic challan: How to get them waived off or settled at Lok Adalat 2025",
     description: "In India today, technology touches almost every part of our lives — from how we pay bills to how we travel, shop, and even consult a doctor. Quietly, but powerfully, it’s also starting to reshape another cornerstone of our society: the legal system.",
     date: "Apr 02, 2025",
-    link: "https://news.abplive.com/technology/legal-tech-is-shaping-india-s-startup-future-here-s-how-1770572/amp",
+    link: "https://www.hindustantimes.com/business/delhi-traffic-challan-how-to-get-them-waived-off-or-settled-at-lok-adalat-2025-101740993817814.html",
   },
   {
     image: "/news6.png",
@@ -94,7 +94,7 @@ export function News() {
     <div className="py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-5xl font-semibold text-[#22D2EE]">
+          <h2 className="text-4xl font-semibold text-[#22D2EE]">
             Latest News and Media
           </h2>
           <div className="flex items-center gap-4">
@@ -123,11 +123,11 @@ export function News() {
                   <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="contain" className={article.image === '/news6.png' ? '' : 'filter brightness-0 invert'} />
                 </div>
                 <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg h-24 overflow-hidden">
-                  <Link href={article.link} className="hover:underline text-2xl text-[#22D2EE]">
+                  <Link href={article.link} className="hover:underline text-xl text-[#22D2EE]">
                     {article.headline}
                   </Link>
                 </h3>
-                <p className="text-white text-xl leading-relaxed mb-6 max-w-lg h-48 overflow-hidden">
+                <p className="text-white text-base leading-relaxed mb-6 max-w-lg h-64 overflow-hidden">
                   {article.description}
                 </p>
                 <div className="mt-auto flex justify-between items-center text-sm">

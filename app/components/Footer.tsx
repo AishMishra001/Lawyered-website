@@ -7,17 +7,17 @@ export function Footer() {
       <footer className="border-t border-gray-800 py-16 px-4 md:px-26">
         <div className="max-w-8xl mx-auto grid md:grid-cols-4 gap-8 text-white">
           {/* Column 1: Info */}
-          <div className="col-span-2 flex flex-col items-start">
+          <div className="col-span-2 flex flex-col text-base items-start">
             <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className="-ml-6" />
-            <p className="text-md">Sproutech Solutions Private Limited</p>
-            <p className="text-md">India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF <br />Metropolis Mall, MG Road, Gurugram, Haryana 122002</p>
-            <p className="text-md">T: 99-88-44-1033 E: info@lawyered.in</p>
+            <p >Sproutech Solutions Private Limited</p>
+            <p >India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF <br />Metropolis Mall, MG Road, Gurugram, Haryana 122002</p>
+            <p >T: 99-88-44-1033 E: info@lawyered.in</p>
           </div>
 
           {/* Column 2 & 3: Links */}
-          <div className="col-span-1 grid grid-cols-2 gap-8">
+          <div className="col-span-1 grid grid-cols-2 gap-8 text-base">
             <div>
-              <ul className="space-y-4 text-lg">
+              <ul className="space-y-4">
                 <li><Link href="#" className="text-white">HOME</Link></li>
                 <li><Link href="/ceo-message" className="text-white">CEO&apos;S MESSAGE</Link></li>
                 <li><Link href="/lots-247" className="text-white">LOTS 247</Link></li>
@@ -25,7 +25,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-               <ul className="space-y-4 text-lg">
+               <ul className="space-y-4">
                 <li><Link href="/about-us" className="text-white">ABOUT US</Link></li>
                 <li><Link href="/blogs" className="text-white">BLOGS</Link></li>
                 <li><Link href="/contact-us" className="text-white">CONTACT US</Link></li>
@@ -46,7 +46,7 @@ export function Footer() {
         </div>
       </footer>
       <div className="border-t border-gray-700 py-6 px-4 md:px-26">
-        <p className="text-center text-white text-lg">
+        <p className="text-center text-white text-base">
           © 2025 ChallanPay, All Rights Reserved.
         </p>
       </div>

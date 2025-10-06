@@ -54,8 +54,8 @@ function LotsHero() {
                 transition={{ duration: 0.5 }}
                 className="absolute w-full left-0 right-0"
               >
-                <h1 className="text-5xl font-bold text-white">{slides[index].h1}</h1>
-                <p className="mt-4 text-xl text-white max-w-6xl mx-auto">{slides[index].p}</p>
+                <h1 className="text-4xl font-bold text-white">{slides[index].h1}</h1>
+                <p className="mt-4 text-base text-white max-w-6xl mx-auto">{slides[index].p}</p>
               </motion.div>
             </AnimatePresence>
         </div>
@@ -73,7 +73,7 @@ function LotsHero() {
             ))}
         </div>
       </div>
-      <p className="relative z-10 text-white w-full mx-auto mt-24 px-26 text-xl">
+      <p className="relative z-10 text-white w-full mx-auto mt-24 px-26 text-base">
         LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
         (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
         and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
@@ -88,16 +88,16 @@ function LotsInfrastructure() {
   return (
     <div className="py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-4xl font-semibold text-center mb-16">
+        <h2 className="text-2xl font-semibold text-center mb-16">
           The Only Scalable & Dependable Legal-Tech Infrastructure
         </h2>
         <div className="grid md:grid-cols-3 gap-12">
           {/* Card 1 */}
           <div className="border border-gray-800 p-6 bg-transparent">
-            <p className="text-lg text-gray-400">Layer 1</p>
-            <h3 className="text-4xl font-bold mt-1">24×7 On-Call Resolution</h3>
-            <Image src="/sticker1.png" alt="On-Call Resolution" width={300} height={300} className="mx-auto my-6" />
-            <p className="text-gray-300 text-xl">
+            <p className="text-base text-gray-400">Layer 1</p>
+            <h3 className="text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
+            <Image src="/sticker1.png" alt="On-Call Resolution" width={200} height={200} className="mx-auto my-6" />
+            <p className="text-gray-300 text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
               <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
               issues before they spiral, backed by in-house Lawyers.
@@ -106,10 +106,10 @@ function LotsInfrastructure() {
 
           {/* Card 2 */}
           <div className="border border-gray-800 p-6 bg-transparent">
-            <p className="text-lg text-gray-400">Layer 2</p>
-            <h3 className="text-4xl font-bold mt-1">On-Site Deployment</h3>
-            <Image src="/sticker2.png" alt="On-Site Deployment" width={250} height={250} className="mx-auto my-6" />
-            <p className="text-gray-300 text-xl pt-10">
+            <p className="text-base text-gray-400">Layer 2</p>
+            <h3 className="text-2xl font-bold mt-1">On-Site Deployment</h3>
+            <Image src="/sticker2.png" alt="On-Site Deployment" width={150} height={150} className="mx-auto my-6" />
+            <p className="text-gray-300 text-base pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
               <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
               deployment anytime, anywhere.
@@ -118,10 +118,10 @@ function LotsInfrastructure() {
 
           {/* Card 3 */}
           <div className="border border-gray-800 p-6 bg-transparent">
-            <p className="text-lg text-gray-400">Layer 3</p>
-            <h3 className="text-4xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
+            <p className="text-base text-gray-400">Layer 3</p>
+            <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
             <Image src="/sticker3.png" alt="Challans & RTO Service" width={400} height={400} className="mx-auto my-6" />
-            <ul className="text-gray-300 space-y-4 text-xl">
+            <ul className="text-gray-300 space-y-4 text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
                 dashboard for tracking traffic violations across multiple vehicles.
@@ -166,8 +166,8 @@ function LotsPricing() {
     <div className="py-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
       <div className="absolute inset-0 bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
-        <h2 className="text-5xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
-        <p className="text-gray-300 text-center text-lg mt-2">
+        <h2 className="text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
+        <p className="text-gray-300 text-center text-base mt-2">
           Choose the right package to keep your fleet running smoothly
         </p>
 
@@ -245,7 +245,7 @@ function LotsForm() {
     <div className="py-24 max-w-8xl px-26">
       <div className=" mx-auto border border-gray-800 rounded-lg p-8 flex justify-center">
         <div className="w-full max-w-8xl grid md:grid-cols-2 gap-46 items-start">
-          <p className="text-gray-200 text-lg">
+          <p className="text-gray-200 text-base">
             To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form
             and our executive will contact you.
           </p>
@@ -315,12 +315,12 @@ function LotsCoverage() {
   return (
     <div className="py-24 px-4 md:px-26 max-w-8xl">
       <div className="mx-auto">
-        <h2 className="text-4xl font-semibold text-center mb-16">Comprehensive Legal Coverage for Fleets</h2>
+        <h2 className="text-3xl font-semibold text-center mb-16">Comprehensive Legal Coverage for Fleets</h2>
         <div className="grid md:grid-cols-4 gap-18">
           {stats.map((stat, i) => (
             <div key={i} className="border border-gray-600 p-6 flex flex-col">
               <div className="text-gray-400 mb-4">{stat.icon}</div>
-              <p className="text-gray-300 text-xl pb-32">{stat.text}</p>
+              <p className="text-gray-300 text-base pb-32">{stat.text}</p>
             </div>
           ))}
         </div>
@@ -333,10 +333,10 @@ function LotsCoverage() {
           />
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div className="relative z-20">
-            <h3 className="text-3xl text-white">Connect with us to know more at</h3>
+            <h3 className="text-2xl text-white">Connect with us to know more at</h3>
             <a
               href="mailto:Sales@lawyered.in"
-              className="inline-block mt-6 bg-[#0891B2] text-white font-bold text-2xl px-12 py-4"
+              className="inline-block mt-6 bg-[#0891B2] text-white font-bold text-lg px-12 py-4"
             >
               Sales@lawyered.in
             </a>

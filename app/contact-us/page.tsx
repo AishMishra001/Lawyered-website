@@ -23,8 +23,8 @@ function AboutHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-7xl font-bold text-white">Contact Us</h1>
-          <p className="text-2xl text-white leading-relaxed">
+          <h1 className="text-4xl font-bold text-white">Contact Us</h1>
+          <p className="text-base text-white leading-relaxed">
             Lawyered is redefining legal assistance for mobility in India. With a mission to make legal help as accessible as consumer products, we invite customers, partners, team members, investors and industry experts to be part of this transformational journey.
           </p>
         </div>
@@ -34,8 +34,8 @@ function AboutHero() {
           <Image
             src="/sticker8.png"
             alt="Customer support agent"
-            width={600}
-            height={500}
+            width={400}
+            height={300}
             className="object-contain"
           />
         </div>
@@ -51,7 +51,7 @@ function ContactFormSection() {
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Form */}
         <div className="border border-gray-800 rounded-lg p-8 space-y-10">
-          <h2 className="text-5xl text-white">
+          <h2 className="text-3xl text-white">
             Fill out the form and our executive will reach out to you
           </h2>
           <form className="space-y-8">
@@ -64,7 +64,7 @@ function ContactFormSection() {
             <textarea placeholder="Your Message" rows={3} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"></textarea>
             
             <div className="flex items-center gap-4">
-              <div className="font-[Times New Roman] text-2xl">
+              <div className="font-[Times New Roman] text-lg">
                 7Y6QQR
               </div>
               <button type="button" className="p-3 text-gray-400">
@@ -75,12 +75,12 @@ function ContactFormSection() {
             
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]"/>
-              <label htmlFor="auth" className="text-xl text-white">
+              <label htmlFor="auth" className="text-base text-white">
                 I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms of Services</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-[#0891B2] text-white py-3 text-xl rounded-lg mt-4">
+            <button type="submit" className="w-full bg-[#0891B2] text-white py-3 text-base rounded-lg mt-4">
               Submit
             </button>
           </form>
@@ -95,9 +95,9 @@ function ContactFormSection() {
               <div className="flex gap-4">
 
                 <Mail size={28} className="text-white"/>
-                <p className="text-xl text-white">Email</p>
+                <p className="text-lg text-white">Email</p>
               </div>
-                <a href="mailto:info@lawyered.in" className="bg-[#0891B2] text-white font-semibold px-6 py-2 text-xl">
+                <a href="mailto:info@lawyered.in" className="bg-[#0891B2] text-white font-semibold px-6 py-2 text-lg">
                     info@lawyered.in
                 </a>
             </div>

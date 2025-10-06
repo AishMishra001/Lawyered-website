@@ -14,24 +14,24 @@ function ChallanHero() {
       p: "ChallanPay brings you a fast, secure and hassle-free way to settle your traffic challans online.",
       image: "/sticker6.png",
       alt: "Man checking challan on phone",
-      width: 600,
-      height: 500,
+      width: 500,
+      height: 400,
     },
     {
       h1: "Pay Traffic Challans Instantly",
       p: "Few clicks, that's it. Discover & resolve your traffic challans.",
       image: "/sticker10.png",
       alt: "Pay challan instantly",
-      width: 550,
-      height: 450,
+      width: 450,
+      height: 350,
     },
     {
       h1: "No queues. No stress. with ChallanPay",
       p: "No spam, no scam. Only authorized payments with ChallanPay",
       image: "/sticker11.png",
       alt: "No stress with ChallanPay",
-      width: 500,
-      height: 400,
+      width: 400,
+      height: 300,
     },
   ];
 
@@ -62,7 +62,7 @@ function ChallanHero() {
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Sticker */}
-        <div className="flex justify-center pt-16 relative h-[600px] w-[700px]">
+        <div className="flex justify-center pt-26 relative h-[600px] w-[700px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -88,8 +88,8 @@ function ChallanHero() {
           <Image
             src="/challanpay-logo2.png" // Please ensure this logo file exists
             alt="ChallanPay Logo"
-            width={400}
-            height={80}
+            width={350}
+            height={70}
           />
           <div className="relative h-48 w-full">
             <AnimatePresence mode="wait">
@@ -101,10 +101,10 @@ function ChallanHero() {
                 transition={{ duration: 0.5 }}
                 className="absolute"
               >
-                <h1 className="text-4xl font-bold text-white pb-4">
+                <h1 className="text-3xl font-bold text-white pb-4">
                   {slides[index].h1}
                 </h1>
-                <p className="text-xl text-white">
+                <p className="text-base text-white">
                   {slides[index].p}
                 </p>
               </motion.div>
@@ -132,7 +132,7 @@ function ChallanHero() {
 function ChallanContent() {
   return (
     <div className="pb-24 px-4 md:px-26">
-      <div className="max-w-8xl mx-auto text-xl text-white leading-relaxed space-y-8">
+      <div className="max-w-8xl mx-auto text-base text-white leading-relaxed space-y-8">
         <p>
           India’s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
@@ -186,7 +186,7 @@ function ChallanVehicleSelector() {
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-center px-22">
         {/* Left Column: Vehicle Type Buttons */}
         <div>
-          <h2 className="text-3xl font-bold mb-8">Select Vehicle Type*</h2>
+          <h2 className="text-2xl font-bold mb-8">Select Vehicle Type*</h2>
           <div className="flex flex-col items-start gap-y-14">
             <div className="flex justify-start gap-x-6">
                 <VehicleCircle 
@@ -222,12 +222,12 @@ function ChallanVehicleSelector() {
             defaultValue="UP32MM1f13"
             className="w-full bg-white text-black text-2xl font-mono tracking-widest p-8 rounded-lg border-none outline-none"
           />
-          <button className="w-[40%] bg-[#0b9eb4] text-white text-lg p-6 rounded-lg">
+          <button className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
             Check Challan Status
           </button>
           <div className="flex items-start gap-4 pt-4">
             <input type="checkbox" id="terms" className="h-8 w-8 rounded bg-gray-700 border-gray-600 accent-brand-cyan"/>
-            <label htmlFor="terms" className="text-white text-xl">
+            <label htmlFor="terms" className="text-white text-base">
               I agree to the terms, conditions and the privacy policy, and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
             </label>
           </div>
@@ -288,11 +288,11 @@ function ChallanWhatsapp() {
             />
           </div>
           <div className="flex flex-col items-start gap-6">
-            <p className="text-4xl font-semibold text-white">
+            <p className="text-2xl font-semibold text-white">
               Want to check challans for multiple vehicles together? Do not worry.
             </p>
             {/* This button now opens the modal */}
-            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-8 py-4 rounded-lg text-lg">
+            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-8 py-4 rounded-lg text-base">
               <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
               Chat with us on WhatsApp
             </button>

@@ -14,7 +14,7 @@ export function TrustedPartners() {
   return (
     <div className="pt-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-5xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
+        <h2 className="text-4xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
         <div className="flex flex-wrap justify-center gap-6">
           {logos.map(logo => {
             const isEnlarged = logo.name === "91Trucks" || logo.name === "OLX Autos";
