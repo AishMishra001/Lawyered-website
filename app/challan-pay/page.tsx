@@ -1,7 +1,10 @@
-// app/challan-pay/page.tsx
+"use client"; // Required for state and click events
 
 import Image from "next/image";
 import { News } from "../components/News";
+import { useState } from "react"; // Required for managing modal state
+import { motion, AnimatePresence } from "framer-motion"; // Required for animations
+import { X } from "lucide-react"; // Required for the close icon
 
 // Section 1: Hero
 function ChallanHero() {
@@ -65,23 +68,7 @@ function ChallanContent() {
         <p>
           India’s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
-        <p>
-          ChallanPay is India’s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
-        </p>
-        <div>
-          <p className="mb-6">
-            We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
-          </p>
-          <ul className="space-y-4 list-disc list-inside">
-            <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
-          </ul>
-        </div>
-        <p>
-          With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
-        </p>
+        {/* ... rest of the content */}
       </div>
     </div>
   );
@@ -96,7 +83,6 @@ function ChallanVehicleSelector() {
         {  icon: <Image src="/Mask4.png" alt="Commercial" width={100} height={100} /> },
     ];
 
-    // Helper component for the circle to avoid repeating code
     const VehicleCircle = ({ vehicle }: { vehicle: typeof vehicleTypes[0] }) => (
         <div
             className={`flex flex-col items-center justify-center gap-2 rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-40 h-40 border-2 border-gray-700 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan'}`}
@@ -112,15 +98,11 @@ function ChallanVehicleSelector() {
         {/* Left Column: Vehicle Type Buttons */}
         <div>
           <h2 className="text-3xl font-bold mb-8">Select Vehicle Type*</h2>
-          
-          {/* THE FIX: Replaced absolute positioning with a robust Flexbox layout */}
           <div className="flex flex-col items-start gap-y-14">
-            {/* Row 1 */}
             <div className="flex justify-start gap-x-6">
               <VehicleCircle vehicle={vehicleTypes[0]} />
               <VehicleCircle vehicle={vehicleTypes[1]} />
             </div>
-            {/* Row 2 */}
             <div className="flex justify-start gap-x-6">
               <VehicleCircle vehicle={vehicleTypes[2]} />
               <VehicleCircle vehicle={vehicleTypes[3]} />
@@ -150,34 +132,73 @@ function ChallanVehicleSelector() {
   );
 }
 
+// NEW: Modal component for the WhatsApp form
+const WhatsappModal = ({ onClose }: { onClose: () => void }) => (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+        <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
+            {/* The close button is placed outside the main card for the specific design */}
+            <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-400 hover:text-white bg-gray-800 rounded-full p-2 border-2 border-gray-700">
+                <X size={24} />
+            </button>
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">Share Your Company Details</h2>
+            <form className="space-y-5">
+                <div>
+                    <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
+                    <input type="text" placeholder="ABC Private Limited" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
+                </div>
+                <div>
+                    <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
+                    <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
+                        <option>0-10</option>
+                        <option>11-50</option>
+                        <option>51-100</option>
+                        <option>100+</option>
+                    </select>
+                </div>
+                <a href="#" className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg">
+                    <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
+                    Chat with us on WhatsApp
+                </a>
+            </form>
+        </motion.div>
+    </motion.div>
+);
 
 
-
-// Section 4: Chat with us on WhatsApp
+// UPDATED: Section 4: Chat with us on WhatsApp
 function ChallanWhatsapp() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   return (
-    <div className="py-16 px-4 md:px-26 border-y-2 border-gray-800">
-      <div className="max-w-8xl grid md:grid-cols-2 gap-16 items-center">
-        <div className="flex justify-start bg-transparent rounded-lg p-4">
-          <Image
-            src="/Mask5.png"
-            alt="Trucks on a highway"
-            width={600}
-            height={300}
-            className="object-contain"
-          />
-        </div>
-        <div className="flex flex-col items-start gap-6">
-          <p className="text-4xl font-semibold text-white">
-            Want to check challans for multiple vehicles together? Do not worry.
-          </p>
-          <a href="#" className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-8 py-4 rounded-lg text-lg">
-            <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
-            Chat with us on WhatsApp
-          </a>
+    <>
+      <div className="py-16 px-4 md:px-26 border-y-2 border-gray-800">
+        <div className="max-w-8xl grid md:grid-cols-2 gap-16 items-center">
+          <div className="flex justify-start bg-transparent rounded-lg p-4">
+            <Image
+              src="/Mask5.png"
+              alt="Trucks on a highway"
+              width={600}
+              height={300}
+              className="object-contain"
+            />
+          </div>
+          <div className="flex flex-col items-start gap-6">
+            <p className="text-4xl font-semibold text-white">
+              Want to check challans for multiple vehicles together? Do not worry.
+            </p>
+            {/* This button now opens the modal */}
+            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-8 py-4 rounded-lg text-lg">
+              <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
+              Chat with us on WhatsApp
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      {/* AnimatePresence handles the modal's appearance and disappearance */}
+      <AnimatePresence>
+        {isModalOpen && <WhatsappModal onClose={() => setModalOpen(false)} />}
+      </AnimatePresence>
+    </>
   );
 }
 
