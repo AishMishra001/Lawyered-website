@@ -23,7 +23,7 @@ function PrivacyHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6 pl-10">
-          <h1 className="text-7xl  text-white">Privacy Policy</h1>
+          <h1 className="text-7xl font-bold text-white">Privacy Policy</h1>
           <p className="text-3xl text-white leading-relaxed">
             If you have any questions about this privacy policy, please contact us.
           </p>

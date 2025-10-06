@@ -2,12 +2,49 @@
 
 import Image from "next/image";
 import { News } from "../components/News";
-import { useState } from "react"; // Required for managing modal state
+import { useState, useEffect } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
 import { X } from "lucide-react"; // Required for the close icon
 
 // Section 1: Hero
 function ChallanHero() {
+  const slides = [
+    {
+      h1: "ChallanPay, Anytime Anywhere",
+      p: "ChallanPay brings you a fast, secure and hassle-free way to settle your traffic challans online.",
+      image: "/sticker6.png",
+      alt: "Man checking challan on phone",
+      width: 600,
+      height: 500,
+    },
+    {
+      h1: "Pay Traffic Challans Instantly",
+      p: "Few clicks, that's it. Discover & resolve your traffic challans.",
+      image: "/sticker10.png",
+      alt: "Pay challan instantly",
+      width: 550,
+      height: 450,
+    },
+    {
+      h1: "No queues. No stress. with ChallanPay",
+      p: "No spam, no scam. Only authorized payments with ChallanPay",
+      image: "/sticker11.png",
+      alt: "No stress with ChallanPay",
+      width: 500,
+      height: 400,
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 3000); // scrolls every 3 seconds
+
+    return () => clearInterval(intervalId);
+  }, [slides.length]);
+
   return (
     <div className="relative w-full overflow-hidden">
       {/* Background elements */}
@@ -25,14 +62,25 @@ function ChallanHero() {
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Sticker */}
-        <div className="flex justify-center">
-          <Image
-            src="/sticker6.png"
-            alt="Man checking challan on phone"
-            width={700}
-            height={600}
-            className="object-contain"
-          />
+        <div className="flex justify-center pt-16 relative h-[600px] w-[700px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+              className="absolute"
+            >
+              <Image
+                src={slides[index].image}
+                alt={slides[index].alt}
+                width={slides[index].width}
+                height={slides[index].height}
+                className="object-contain"
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Right Column: Text Content */}
@@ -40,19 +88,39 @@ function ChallanHero() {
           <Image
             src="/challanpay-logo2.png" // Please ensure this logo file exists
             alt="ChallanPay Logo"
-            width={500}
-            height={120}
+            width={400}
+            height={80}
           />
-          <h1 className="text-5xl font-bold text-white">
-            ChallanPay, Anytime Anywhere
-          </h1>
-          <p className="text-xl text-white">
-            ChallanPay brings you a fast, secure and hassle-free way to settle your traffic challans online.
-          </p>
+          <div className="relative h-48 w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute"
+              >
+                <h1 className="text-4xl font-bold text-white pb-4">
+                  {slides[index].h1}
+                </h1>
+                <p className="text-xl text-white">
+                  {slides[index].p}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
           <div className="flex gap-2 mt-4">
-            <div className="w-2.5 h-2.5 rounded-full bg-brand-cyan"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-gray-600"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-gray-600"></div>
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                  index === i ? 'bg-[#22D2EE]' : 'bg-gray-600'
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -63,12 +131,28 @@ function ChallanHero() {
 // Section 2: Content
 function ChallanContent() {
   return (
-    <div className="py-24 px-4 md:px-26">
+    <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto text-xl text-white leading-relaxed space-y-8">
         <p>
           India’s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
-        {/* ... rest of the content */}
+                <p>
+          ChallanPay is India’s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
+        </p>
+        <div>
+          <p className="mb-6">
+            We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
+          </p>
+          <ul className="space-y-4 list-disc list-inside">
+            <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
+            <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
+            <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
+            <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
+          </ul>
+        </div>
+        <p>
+          With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
+        </p>
       </div>
     </div>
   );
@@ -76,21 +160,26 @@ function ChallanContent() {
 
 // Section 3: Select Vehicle Type
 function ChallanVehicleSelector() {
-    const vehicleTypes = [
-        {icon: <Image src="/Mask1.png" alt="Private" width={100} height={100} />},
-        { icon: <Image src="/Mask2.png" alt="Two-Wheeler" width={100} height={100} />},
-        { icon: <Image src="/Mask3.png" alt="Electric" width={100} height={100} />},
-        {  icon: <Image src="/Mask4.png" alt="Commercial" width={100} height={100} /> },
+    const vehicleData = [
+        { id: 'private', label: 'Private', unselectedIcon: '/Mask1.png', selectedIcon: '/Mask8.png' },
+        { id: 'electric', label: 'Electric', unselectedIcon: '/Mask2.png', selectedIcon: '/Mask9.png' },
+        { id: 'commercial', label: 'Commercial', unselectedIcon: '/Mask3.png', selectedIcon: '/Mask7.png' },
+        { id: 'two-wheeler', label: 'Two-Wheeler', unselectedIcon: '/Mask4.png', selectedIcon: '/Mask6.png' },
     ];
 
-    const VehicleCircle = ({ vehicle }: { vehicle: typeof vehicleTypes[0] }) => (
-        <div
-            className={`flex flex-col items-center justify-center gap-2 rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-40 h-40 border-2 border-gray-700 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan'}`}
-        >
-            {vehicle.icon}
-            <p className={`font-semibold text-white`}></p>
-        </div>
-    );
+    const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
+
+    const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
+        const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
+        return (
+            <div
+                onClick={onClick}
+                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-40 h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
+            >
+                <Image src={iconSrc} alt={vehicle.label} width={100} height={100} />
+            </div>
+        );
+    };
 
   return (
     <div className="py-24 px-4 md:px-26">
@@ -100,12 +189,28 @@ function ChallanVehicleSelector() {
           <h2 className="text-3xl font-bold mb-8">Select Vehicle Type*</h2>
           <div className="flex flex-col items-start gap-y-14">
             <div className="flex justify-start gap-x-6">
-              <VehicleCircle vehicle={vehicleTypes[0]} />
-              <VehicleCircle vehicle={vehicleTypes[1]} />
+                <VehicleCircle 
+                    vehicle={vehicleData[0]}
+                    isSelected={selectedVehicleId === vehicleData[0].id}
+                    onClick={() => setSelectedVehicleId(vehicleData[0].id)}
+                />
+                <VehicleCircle 
+                    vehicle={vehicleData[1]}
+                    isSelected={selectedVehicleId === vehicleData[1].id}
+                    onClick={() => setSelectedVehicleId(vehicleData[1].id)}
+                />
             </div>
             <div className="flex justify-start gap-x-6">
-              <VehicleCircle vehicle={vehicleTypes[2]} />
-              <VehicleCircle vehicle={vehicleTypes[3]} />
+                <VehicleCircle 
+                    vehicle={vehicleData[2]}
+                    isSelected={selectedVehicleId === vehicleData[2].id}
+                    onClick={() => setSelectedVehicleId(vehicleData[2].id)}
+                />
+                <VehicleCircle 
+                    vehicle={vehicleData[3]}
+                    isSelected={selectedVehicleId === vehicleData[3].id}
+                    onClick={() => setSelectedVehicleId(vehicleData[3].id)}
+                />
             </div>
           </div>
         </div>
@@ -117,7 +222,7 @@ function ChallanVehicleSelector() {
             defaultValue="UP32MM1f13"
             className="w-full bg-white text-black text-2xl font-mono tracking-widest p-8 rounded-lg border-none outline-none"
           />
-          <button className="w-[40%] bg-[#0b9eb4] text-white text-2xl p-6 rounded-lg">
+          <button className="w-[40%] bg-[#0b9eb4] text-white text-lg p-6 rounded-lg">
             Check Challan Status
           </button>
           <div className="flex items-start gap-4 pt-4">

@@ -1,12 +1,40 @@
+"use client";
 // app/lots-247/page.tsx
 import Image from "next/image"
 import { Check, Truck, Scale, MapPin, X } from "lucide-react"
 import { News } from "../components/News"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Section 1: Hero
 function LotsHero() {
+  const slides = [
+    {
+      h1: "Seamless Mobility, Zero Legal Hassles.",
+      p: "From compliance tracking to challan closure, accident support, and regulatory safeguards — everything your fleet and mobility needs to move forward."
+    },
+    {
+      h1: "Eliminate Legal Roadblocks. Ensure Seamless Mobility.",
+      p: "Real-time legal compliance, challan resolution, accident support, and regulatory risk management for fleets, logistics, and private mobility."
+    },
+    {
+      h1: "Clear the Legal Path. Drive Without Disruption.",
+      p: "Stay ahead with real-time compliance, instant challan resolution, accident assistance, and end-to-end regulatory risk management."
+    }
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 3000); // scrolls every 3 seconds
+
+    return () => clearInterval(intervalId);
+  }, [slides.length]);
+
   return (
-    <div className="relative w-full text-center py-32">
+    <div className="relative w-full text-center py-38 h-screen">
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
       <div className="absolute inset-0 z-0 flex justify-center items-center">
         <div className="relative w-1/2 h-1/2">
@@ -15,15 +43,34 @@ function LotsHero() {
       </div>
       <div className="relative max-w-8xl z-10 flex flex-col items-center px-4 md:px-26">
         <Image src="/lots-247-logo.png" alt="LOTS 247 Logo" width={400} height={100} priority />
-        <h1 className="text-5xl font-bold mt-6 text-white">Seamless Mobility, Zero Legal Hassles.</h1>
-        <p className="mt-4 text-xl text-white max-w-6xl">
-          From compliance tracking to challan closure, accident support, and regulatory safeguards — everything your
-          fleet and mobility needs to move forward.
-        </p>
+        
+        <div className="relative h-48 mt-6 w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute w-full left-0 right-0"
+              >
+                <h1 className="text-5xl font-bold text-white">{slides[index].h1}</h1>
+                <p className="mt-4 text-xl text-white max-w-6xl mx-auto">{slides[index].p}</p>
+              </motion.div>
+            </AnimatePresence>
+        </div>
+
         <div className="flex gap-2 mt-8">
-          <div className="w-2 h-2 rounded-full bg-brand-cyan"></div>
-          <div className="w-2 h-2 rounded-full bg-gray-600"></div>
-          <div className="w-2 h-2 rounded-full bg-gray-600"></div>
+          {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                  index === i ? 'bg-[#22D2EE]' : 'bg-gray-600'
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
         </div>
       </div>
       <p className="relative z-10 text-white w-full mx-auto mt-24 px-26 text-xl">
@@ -94,96 +141,26 @@ function LotsInfrastructure() {
 // Section 3: Drive Ahead Without Legal Worries! (Pricing)
 function LotsPricing() {
   const features = [
-    "Number of Vehicles",
-    "24/7 On-Call Resolution",
-    "On-Site Legal Resolution",
-    "Challan-as-a-Serivce",
-    "Online Lok Adalat Court",
-    "RTO-as-a-Serivce",
-    "Dashboard Access",
-    "No.of Users",
-    "Automated Report",
-    "Persoanlized Reports",
-    "Incident Update via WhatsApp",
-    "Add-Ons",
-    "Value-Added Services",
-    "Dedicated Account Manager",
-    "Bulk Challan Resolution",
-    "API Integration",
-  ]
+    "Number of Vehicles", "24/7 On-Call Resolution", "On-Site Legal Resolution", "Challan-as-a-Serivce",
+    "Online Lok Adalat Court", "RTO-as-a-Serivce", "Dashboard Access", "No.of Users", "Automated Report",
+    "Persoanlized Reports", "Incident Update via WhatsApp", "Add-Ons", "Value-Added Services",
+    "Dedicated Account Manager", "Bulk Challan Resolution", "API Integration",
+  ];
 
   const plans = [
     {
-      name: "U Drive",
-      logo: "/Udrive.png",
-      bgColor: "bg-[#06B6D4]",
-      values: [
-        "1",
-        true ,
-        "Pay Per Use",
-        true ,
-         "INR 79 , 1000 , 2000" ,
-        "Pay Per Use",
-        false,
-        false,
-        false,
-        false,
-        false,
-        "Pay Per Use",
-        "Pay Per Use",
-        false,
-        false,
-        false,
-      ],
+      name: "U Drive", logo: "/Udrive.png", bgColor: "bg-[#06B6D4]",
+      values: ["1", true, "Pay Per Use", true, "INR 79 , 1000 , 2000", "Pay Per Use", false, false, false, false, false, "Pay Per Use", "Pay Per Use", false, false, false],
     },
     {
-      name: "B Safe",
-      logo: "/Bsafe.png",
-      bgColor: "bg-[#00B876]",
-      values: [
-        "Unlimited",
-        true,
-        "Pay Per Use",
-         true ,
-        "INR 49 , 1000 , 2000",
-        "Pay Per Use",
-        true,
-        "3",
-        true,
-        false,
-        true,
-        "Pay Per Use",
-        "Pay Per Use",
-        false,
-        false,
-        false,
-      ],
+      name: "B Safe", logo: "/Bsafe.png", bgColor: "bg-[#00B876]",
+      values: ["Unlimited", true, "Pay Per Use", true, "INR 49 , 1000 , 2000", "Pay Per Use", true, "3", true, false, true, "Pay Per Use", "Pay Per Use", false, false, false],
     },
     {
-      name: "V Care",
-      logo: "/Vcare.png",
-      topSeller: true,
-      bgColor: "bg-[#FF9100]",
-      values: [
-        "Unlimited",
-        true,
-        "Pay Per Use",
-        true,
-        "INR 39 , As per Add-on B2",
-        "Pay Per Use",
-        true,
-        "10",
-        true,
-        true,
-        true,
-        "B1,B2,B3#",
-        "Worth 20K",
-        true,
-        true,
-        true,
-      ],
+      name: "V Care", logo: "/Vcare.png", topSeller: true, bgColor: "bg-[#FF9100]",
+      values: ["Unlimited", true, "Pay Per Use", true, "INR 39 , As per Add-on B2", "Pay Per Use", true, "10", true, true, true, "B1,B2,B3#", "Worth 20K", true, true, true],
     },
-  ]
+  ];
 
   return (
     <div className="py-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
@@ -194,46 +171,49 @@ function LotsPricing() {
           Choose the right package to keep your fleet running smoothly
         </p>
 
-        <div className="mt-16 grid grid-cols-[300px_1fr] gap-8 pt-64">
+        {/* THE FIX: Adjusted grid columns and gap */}
+        <div className="mt-44 grid grid-cols-[1.5fr_3fr] gap-12 items-end">
+          
           {/* Left side: Character illustration + Features Column */}
+          {/* THE FIX: Restructured to place sticker cleanly above the box */}
           <div className="flex flex-col">
-            {/* Character illustration positioned at top */}
-            <div className="h-[280px] flex items-center justify-center mb-6">
-              <Image src="/sticker4.png" alt="Sticker" width={320} height={320} className="object-contain" />
+            <div className="flex items-center justify-center">
+              <Image src="/sticker4.png" alt="Sticker" width={350} height={350} className="object-contain" />
             </div>
-            {/* Features list */}
-            <div className="bg-white rounded-lg p-6 space-y-4">
+            <div className="bg-white rounded-lg p-6 space-y-4 mt-4">
               {features.map((f) => (
-                <p
-                  key={f}
-                  className="h-12 flex items-center text-lg text-black border-b border-black/10 last:border-b-0"
-                >
+                <p key={f} className="h-12 flex items-center text-lg text-black border-b border-black/10 last:border-b-0">
                   {f}
                 </p>
               ))}
             </div>
           </div>
 
-          {/* Right side: Plans Columns */}
+          {/* Right side: Plans Columns (remains the same) */}
           <div className="grid grid-cols-3 gap-6">
             {plans.map((plan) => (
-              <div key={plan.name} className="rounded-xl relative overflow-hidden flex flex-col">
+              <div key={plan.name} className="relative flex flex-col gap-4">
+                
                 {plan.topSeller && (
-                  <div className="absolute top-0 right-4 bg-white text-black text-xs font-bold px-3 py-1 rounded-b-md z-10">
-                    TOP SELLER
-                  </div>
+                  <Image 
+                    src="/TopSeller.png" 
+                    alt="Top Seller"
+                    width={150}
+                    height={150}
+                    className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10"
+                  />
                 )}
-                {/* Header with background color and logo */}
-                <div className={`h-[280px] flex items-center justify-center ${plan.bgColor} mb-6`}>
+                
+                <div className={`rounded-xl p-6 flex items-center justify-center ${plan.bgColor}`}>
                   <Image
                     src={plan.logo || "/placeholder.svg"}
                     alt={`${plan.name} logo`}
-                    width={200}
-                    height={80}
+                    width={150}
+                    height={50}
                     className="object-contain"
                   />
                 </div>
-                {/* Content with values */}
+                
                 <div className="bg-white rounded-lg p-6 space-y-4">
                   {plan.values.map((val, idx) => (
                     <div
@@ -241,9 +221,9 @@ function LotsPricing() {
                       className="h-12 flex items-center justify-center text-lg text-center border-b border-black/10 last:border-b-0"
                     >
                       {val === true ? (
-                        <Check className="text-green-500 w-10 h-10" />
+                        <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain" />
                       ) : val === false ? (
-                        <X className="text-red-500 w-10 h-10" />
+                        <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain" />
                       ) : (
                         <p className="text-black">{val}</p>
                       )}
@@ -254,10 +234,9 @@ function LotsPricing() {
             ))}
           </div>
         </div>
-        {/* </CHANGE> */}
       </div>
     </div>
-  )
+  );
 }
 
 // Section 4: Submit Card
