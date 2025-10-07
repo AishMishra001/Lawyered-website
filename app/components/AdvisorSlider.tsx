@@ -55,22 +55,22 @@ export function AdvisorsSlider() {
   
   const advisors: Advisor[] = [
     { name: "Pramod kumar singh", title: "Advisor", img: "/about10.png", linkedin: "#", description: "Dummy description for Pramod kumar singh." },
-    { name: "Sandeep Dinodiya", title: "Technology Advisor", img: "/about11.png", linkedin: "#", description: "Dummy description for Sandeep Dinodiya." },
-    { name: "Mahavir Pratap Sharma", title: "Advisor", img: "/about12.png", linkedin: "#", description: "Dummy description for Mahavir Pratap Sharma." },
+    // { name: "Sandeep Dinodiya", title: "Technology Advisor", img: "/about11.png", linkedin: "#", description: "Dummy description for Sandeep Dinodiya." },
+    // { name: "Mahavir Pratap Sharma", title: "Advisor", img: "/about12.png", linkedin: "#", description: "Dummy description for Mahavir Pratap Sharma." },
     { name: "Hon'ble Justice K. Kannan ( Rtd.)", title: "Advisor", img: "/about13.png", linkedin: "#", description: "Dummy description for Hon'ble Justice K. Kannan ( Rtd.)." },
     { name: "Anil Gupta", title: "Advisor", img: "/about14.png", linkedin: "#", description: "Dummy description for Anil Gupta." },
-    { name: "Amandeep Singh", title: "Advisors", img: "/about15.png", linkedin: "#", description: "Dummy description for Amandeep Singh." },
+    // { name: "Amandeep Singh", title: "Advisors", img: "/about15.png", linkedin: "#", description: "Dummy description for Amandeep Singh." },
     { name: "Mahendra Arya", title: "Advisor", img: "/about16.png", linkedin: "#", description: "Dummy description for Mahendra Arya." },
     { name: "Abhishek Gupta", title: "Advisor", img: "/about17.png", linkedin: "#", description: "Dummy description for Abhishek Gupta." },
     { name: "Manish Raj Singhania", title: "Advisor", img: "/about18.png", linkedin: "#", description: "Dummy description for Manish Raj Singhania." },
     { name: "Saharsh Damani", title: "Mentor", img: "/about19.png", linkedin: "#", description: "Dummy description for Saharsh Damani." },
     { name: "KK Agarwal", title: "Advisor", img: "/about20.png", linkedin: "#", description: "Dummy description for KK Agarwal." },
-    { name: "Sarabjeet Singh Waraich", title: "Advisor", img: "/about21.png", linkedin: "#", description: "Dummy description for Sarabjeet Singh Waraich." },
-    { name: "Munish Bhatia", title: "Acceleration Partner", img: "/about22.png", linkedin: "#", description: "Dummy description for Munish Bhatia." },
-    { name: "Mona Singh", title: "Acceleration Partner", img: "/about23.png", linkedin: "#", description: "Dummy description for Mona Singh." },
-    { name: "Deepak Nagpal", title: "Acceleration Partner", img: "/about24.png", linkedin: "#", description: "Dummy description for Deepak Nagpal." },
-    { name: "Arindam Mukhopadyay", title: "Advisor", img: "/about25.png", linkedin: "#", description: "Dummy description for Arindam Mukhopadyay." },
-    { name: "John Thomas", title: "Strategic Partner", img: "/about26.png", linkedin: "#", description: "Dummy description for John Thomas." },
+    // { name: "Sarabjeet Singh Waraich", title: "Advisor", img: "/about21.png", linkedin: "#", description: "Dummy description for Sarabjeet Singh Waraich." },
+    { name: "Munish Bhatia", title: "Advisor", img: "/about22.png", linkedin: "#", description: "Dummy description for Munish Bhatia." },
+    { name: "Mona Singh", title: "Advisor", img: "/about23.png", linkedin: "#", description: "Dummy description for Mona Singh." },
+    // { name: "Deepak Nagpal", title: "Acceleration Partner", img: "/about24.png", linkedin: "#", description: "Dummy description for Deepak Nagpal." },
+    // { name: "Arindam Mukhopadyay", title: "Advisor", img: "/about25.png", linkedin: "#", description: "Dummy description for Arindam Mukhopadyay." },
+    // { name: "John Thomas", title: "Strategic Partner", img: "/about26.png", linkedin: "#", description: "Dummy description for John Thomas." },
   ];
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
@@ -89,7 +89,7 @@ export function AdvisorsSlider() {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {advisors.map((advisor, i) => (
-              <div key={i} className="flex-shrink-0 flex-grow-0 basis-1/2 md:basis-1/3 lg:basis-1/5 text-center px-4 cursor-pointer" onClick={() => setSelectedAdvisor(advisor)}>
+              <div key={i} className="flex-shrink-0 flex-grow-0 basis-1/2 md:basis-1/3 lg:basis-1/5 text-center px-4 cursor-pointer">
                 <Image src={advisor.img} alt={advisor.name} width={200} height={200} className="rounded-full mx-auto"/>
                 <h3 className="text-base md:text-lg font-bold text-white mt-4">{advisor.name}</h3>
                 <p className="text-xs md:text-sm text-gray-400">{advisor.title}</p>
