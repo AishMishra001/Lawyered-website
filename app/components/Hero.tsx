@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "./Navbar";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -18,11 +19,25 @@ export function Hero() {
     setIsHovering(false);
   };
 
+  useEffect(() => {
+    const animationFrame = requestAnimationFrame(() => {
+      const dx = mousePosition.x - delayedMousePosition.x;
+      const dy = mousePosition.y - delayedMousePosition.y;
+      
+      setDelayedMousePosition({
+        x: delayedMousePosition.x + dx * 0.1,
+        y: delayedMousePosition.y + dy * 0.1,
+      });
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [mousePosition, delayedMousePosition]);
+
   const spotlightStyle: React.CSSProperties = {
     opacity: isHovering ? 1 : 0,
     transition: 'opacity 0.3s ease-in-out',
-    maskImage: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
-    WebkitMaskImage: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
   };
 
   return (
@@ -33,7 +48,7 @@ export function Hero() {
     >
       <Navbar />
       <div className="absolute inset-0 z-10" style={spotlightStyle}>
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full opacity-60">
           <Image
             src="/MainFrame.png"
             alt="Background Frame"
