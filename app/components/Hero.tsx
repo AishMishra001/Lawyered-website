@@ -1,29 +1,55 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "./Navbar";
+import { useState, MouseEvent } from "react";
 
 export function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isHovering) setIsHovering(true);
+    setMousePosition({ x: event.clientX, y: event.clientY });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  const spotlightStyle: React.CSSProperties = {
+    opacity: isHovering ? 1 : 0,
+    transition: 'opacity 0.3s ease-in-out',
+    maskImage: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+  };
+
   return (
-    <div className="relative min-h-screen flex items-center justify-center">
+    <div
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <Navbar />
-      <div className="absolute inset-0 z-10 hidden md:flex justify-start items-center">
-        <div className="relative w-7/12 h-full rotate-180">
+      <div className="absolute inset-0 z-10" style={spotlightStyle}>
+        <div className="relative w-full h-full">
           <Image
-            src="/Frame.png"
+            src="/MainFrame.png"
             alt="Background Frame"
             fill
-            className="object-contain"
+            className="object-cover"
           />
         </div>
       </div>
       
       {/* Main content container */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 gap-4 pt-20 md:pt-0">
-        <h1 className="text-4xl md:text-7xl font-semibold text-white leading-tight max-w-7xl mx-auto">
+        <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight max-w-7xl mx-auto">
           Identifying & Resolving Recurring <br />
           Legal Risk For Mobility
         </h1>
-        <p className="mt-4 text-lg md:text-3xl text-gray-300 max-w-3xl mx-auto">
+        <p className="mt-4 text-base  text-gray-300 max-w-3xl mx-auto">
           Innovating & Building Scalable Technology Platforms
         </p>
 
@@ -32,24 +58,24 @@ export function Hero() {
             <Image
               src="/founder-photo.png"
               alt="Himanshu Gupta, Founder & CEO"
-              width={150}
-              height={150}
-              className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
+              width={100}
+              height={100}
+              className="w-[100px] h-[100px] md:w-[100px] md:h-[100px]"
             />
             <div className="text-center md:text-left flex flex-col justify-between">
 
               <div>
 
-              <p className="text-white text-base md:text-lg">
+              <p className="text-white text-base">
                 A note from our founder & CEO,
               </p>
-              <p className="text-white font-bold text-base md:text-lg">
+              <p className="text-white font-bold text-base">
                 Himanshu Gupta
               </p>
               </div>
               <Link
                 href="/ceo-message"
-                className="text-white underline block text-sm md:text-lg hover:underline pt-14 font-semibold"
+                className="text-white underline block text-base hover:underline pt-6 font-semibold"
               >
                 Read More
               </Link>
