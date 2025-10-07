@@ -120,7 +120,7 @@ function ChallanHero() {
         {/* Right Column: Text Content */}
         <div className="flex flex-col items-start gap-6">
           <Image
-            src="/challanpay-logo2.png" // Please ensure this logo file exists
+            src="/challanPay-logo3.png" // Please ensure this logo file exists
             alt="ChallanPay Logo"
             width={350}
             height={70}
