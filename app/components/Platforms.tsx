@@ -105,7 +105,7 @@ export function Platforms() {
             <div className="flex flex-col items-center gap-6 text-center">
               <div className="h-20 flex items-center">
                 <Image
-                  src="/challanpay-logo2.png"
+                  src="/challanPay-logo2.png"
                   alt="ChallanPay Logo"
                   width={250}
                   height={70}
