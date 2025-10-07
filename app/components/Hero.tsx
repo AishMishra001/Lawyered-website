@@ -48,7 +48,7 @@ export function Hero() {
     >
       <Navbar />
       <div className="absolute inset-0 z-10" style={spotlightStyle}>
-        <div className="relative w-full h-full opacity-50">
+        <div className="relative w-full h-full opacity-40">
           <Image
             src="/MainFrame.png"
             alt="Background Frame"

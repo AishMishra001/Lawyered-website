@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { News } from "../components/News";
-import { useState, useEffect } from "react"; // Required for state and click events
+import { useState, useEffect, MouseEvent, CSSProperties } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
 import { X } from "lucide-react"; // Required for the close icon
 
@@ -45,17 +45,51 @@ function ChallanHero() {
     return () => clearInterval(intervalId);
   }, [slides.length]);
 
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isHovering) setIsHovering(true);
+    setMousePosition({ x: event.clientX, y: event.clientY });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  useEffect(() => {
+    const animationFrame = requestAnimationFrame(() => {
+      const dx = mousePosition.x - delayedMousePosition.x;
+      const dy = mousePosition.y - delayedMousePosition.y;
+      
+      setDelayedMousePosition({
+        x: delayedMousePosition.x + dx * 0.05,
+        y: delayedMousePosition.y + dy * 0.05,
+      });
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [mousePosition, delayedMousePosition]);
+
+  const spotlightStyle: CSSProperties = {
+    opacity: isHovering ? 1 : 0,
+    transition: 'opacity 0.3s ease-in-out',
+    maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+  };
+
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
-      <div className="absolute inset-0 z-0 flex justify-center items-center">
-        <div className="relative w-1/2 h-1/2">
+      <div className="absolute inset-0 z-0" style={spotlightStyle}>
+        <div className="relative w-full h-full opacity-40">
           <Image
-            src="/Frame.png"
-            alt="background frame"
+            src="/MainFrame.png"
+            alt="Background Frame"
             fill
-            className="object-contain opacity-110 scale-120"
+            className="object-cover"
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const stats = [
@@ -20,12 +20,46 @@ export function AboutHero() {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isHovering) setIsHovering(true);
+    setMousePosition({ x: event.clientX, y: event.clientY });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  useEffect(() => {
+    const animationFrame = requestAnimationFrame(() => {
+      const dx = mousePosition.x - delayedMousePosition.x;
+      const dy = mousePosition.y - delayedMousePosition.y;
+      
+      setDelayedMousePosition({
+        x: delayedMousePosition.x + dx * 0.05,
+        y: delayedMousePosition.y + dy * 0.05,
+      });
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [mousePosition, delayedMousePosition]);
+
+  const spotlightStyle: CSSProperties = {
+    opacity: isHovering ? 1 : 0,
+    transition: 'opacity 0.3s ease-in-out',
+    maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+  };
+
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
-      <div className="absolute inset-0 z-0 flex justify-center items-center">
-        <div className="relative w-1/2 h-1/2">
-          <Image src="/Frame.png" alt="background frame" fill className="object-contain opacity-100 scale-135"/>
+      <div className="absolute inset-0 z-0" style={spotlightStyle}>
+        <div className="relative w-full h-full opacity-40">
+          <Image src="/MainFrame.png" alt="background frame" fill className="object-cover"/>
         </div>
       </div>
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-56 grid md:grid-cols-2 gap-16 items-center">
