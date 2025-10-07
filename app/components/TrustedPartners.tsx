@@ -1,4 +1,5 @@
-// app/components/TrustedPartners.tsx
+"use client";
+
 import Image from "next/image";
 
 export function TrustedPartners() {
@@ -9,29 +10,59 @@ export function TrustedPartners() {
     { name: "Park+", src: "/Park-logo.png" },
     { name: "91Trucks", src: "/Trucks.png" },
     { name: "CARS24", src: "/Cars24-logo.png" },
+    { name: "ALD Automotives", src: "/aldAutomotive.png" },
+    { name: "Car Dekho", src: "/carDekho.png" },
+    { name: "Renew Buy", src: "/renewBuy.png" },
+    { name: "Car Info", src: "/carInfo.png" },
   ];
-  
+
   return (
     <div className="pt-24 px-4 md:px-26">
+      <style jsx>{`
+        .scroller {
+          max-width: 100%;
+        }
+        .scroller__inner {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        }
+        .scroller[data-animated="true"] {
+          overflow: hidden;
+          -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+          mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        }
+        .scroller[data-animated="true"] .scroller__inner {
+          width: max-content;
+          flex-wrap: nowrap;
+          animation: scroll 40s linear infinite;
+        }
+        @keyframes scroll {
+          to {
+            transform: translate(calc(-50% - 0.75rem));
+          }
+        }
+      `}</style>
       <div className="max-w-8xl mx-auto">
         <h2 className="text-4xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {logos.map(logo => {
-            const isEnlarged = logo.name === "91Trucks" || logo.name === "OLX Autos";
-            const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-220" : ""}`;
-
-            return (
-              <div key={logo.name} className="h-10 lg:h-18 w-40 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={190}
-                  height={80}
-                  className={imageClasses}
-                />
-              </div>
-            );
-          })}
+        <div className="scroller" data-animated="true">
+          <div className="scroller__inner">
+            {[...logos, ...logos].map((logo, index) => {
+              const isEnlarged = logo.name === "91Trucks" || logo.name === "OLX Autos" || logo.name === "Car Info" || logo.name === "Car Dekho";
+              const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-180" : ""}`;
+              return (
+                <div key={`${logo.name}-${index}`} className="h-10 lg:h-18 w-40 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden flex-shrink-0">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={190}
+                    height={80}
+                    className={imageClasses}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
