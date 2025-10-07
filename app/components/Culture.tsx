@@ -1,11 +1,27 @@
+"use client";
 import Image from "next/image";
+import React, { useState } from "react";
 
 export function Culture() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="py-16 md:py-24 px-4 md:px-24 bg-brand-dark">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
-        <div className="order-2 md:order-1 justify-self-center md:justify-self-start">
-          <Image src="/culture-img.png" alt="Team collaborating" width={450} height={350} className="rounded-lg" />
+        <div
+          className="order-2 md:order-1 justify-self-center md:justify-self-start overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Image
+            src={isHovered ? "/culture2.png" : "/culture1.png"}
+            alt="Team collaborating"
+            width={400}
+            height={300}
+            className={`transition-transform duration-300 ease-in-out ${
+              isHovered ? "scale-100" : "scale-110"
+            }`}
+          />
         </div>
         <div className="order-1 md:order-2 text-center md:text-left">
           <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE] mb-6">Culture</h2>

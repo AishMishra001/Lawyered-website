@@ -195,10 +195,10 @@ function ChallanContent() {
 // Section 3: Select Vehicle Type
 function ChallanVehicleSelector() {
     const vehicleData = [
-        { id: 'private', label: 'Private', unselectedIcon: '/Mask1.png', selectedIcon: '/Mask8.png' },
-        { id: 'electric', label: 'Electric', unselectedIcon: '/Mask2.png', selectedIcon: '/Mask9.png' },
-        { id: 'commercial', label: 'Commercial', unselectedIcon: '/Mask3.png', selectedIcon: '/Mask7.png' },
-        { id: 'two-wheeler', label: 'Two-Wheeler', unselectedIcon: '/Mask4.png', selectedIcon: '/Mask6.png' },
+        { id: 'private', label: 'Private', unselectedIcon: '/Mask8.png', selectedIcon: '/Mask1.png' },
+        { id: 'electric', label: 'Electric', unselectedIcon: '/Mask9.png', selectedIcon: '/Mask2.png' },
+        { id: 'commercial', label: 'Commercial', unselectedIcon: '/Mask7.png', selectedIcon: '/Mask3.png' },
+        { id: 'two-wheeler', label: 'Two-Wheeler', unselectedIcon: '/Mask6.png', selectedIcon: '/Mask4.png' },
     ];
 
     const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
@@ -289,9 +289,11 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => (
                     <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
                     <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
                         <option>0-10</option>
-                        <option>11-50</option>
-                        <option>51-100</option>
-                        <option>100+</option>
+                        <option>11-20</option>
+                        <option>21-30</option>
+                        <option>31-40</option>
+                        <option>31-40</option>
+                        <option></option>
                     </select>
                 </div>
                 <a href="#" className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg">

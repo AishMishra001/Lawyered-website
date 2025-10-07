@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
-import React from 'react';
+import React, { useState } from 'react';
 
 export function VisionMission() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="py-16 md:py-24 px-4 md:px-24 bg-brand-dark">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
@@ -12,8 +15,18 @@ export function VisionMission() {
 Our vision is to extend this framework beyond mobility into every sector where recurring legal risks hold people and businesses back. From finance and real estate to healthcare and e-commerce, we aim to embed legal infrastructure directly into everyday operations. Lawyered is not just making legal help more accessible—we are redefining how law is practiced and experienced in India. Affordable, preventive, and always-on legal solutions will become the default, setting a new benchmark for trust, efficiency, and ease of use.
           </p>
         </div>
-        <div className="order-1 md:order-2 justify-self-center md:justify-self-end">
-          <Image src="/vision-mission-img.png" alt="Cityscape" width={500} height={400} className="rounded-lg" />
+        <div
+          className="order-1 md:order-2 justify-self-center md:justify-self-end overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Image
+            src={isHovered ? "/vision2.png" : "/vision1.png"}
+            alt="Cityscape"
+            width={450}
+            height={350}
+            className={`transition-transform duration-300 ease-in-out ${isHovered ? 'scale-100' : 'scale-110'}`}
+          />
         </div>
       </div>
     </div>
