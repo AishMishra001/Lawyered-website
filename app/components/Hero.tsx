@@ -25,8 +25,8 @@ export function Hero() {
       const dy = mousePosition.y - delayedMousePosition.y;
       
       setDelayedMousePosition({
-        x: delayedMousePosition.x + dx * 0.1,
-        y: delayedMousePosition.y + dy * 0.1,
+        x: delayedMousePosition.x + dx * 0.05,
+        y: delayedMousePosition.y + dy * 0.05,
       });
     });
 
@@ -48,7 +48,7 @@ export function Hero() {
     >
       <Navbar />
       <div className="absolute inset-0 z-10" style={spotlightStyle}>
-        <div className="relative w-full h-full opacity-60">
+        <div className="relative w-full h-full opacity-50">
           <Image
             src="/MainFrame.png"
             alt="Background Frame"

@@ -47,7 +47,7 @@ export function Footer() {
       </footer>
       <div className="border-t border-gray-700 py-6 px-4 md:px-26">
         <p className="text-center text-white text-base">
-          © 2025 ChallanPay, All Rights Reserved.
+          © 2025 Lawyered, All Rights Reserved | Privacy Policy | Terms 
         </p>
       </div>
     </>
