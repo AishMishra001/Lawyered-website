@@ -62,7 +62,7 @@ export function AboutHero() {
           <Image src="/MainFrame.png" alt="background frame" fill className="object-cover"/>
         </div>
       </div>
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-56 grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-56 pb-22 grid md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col gap-4 pl-20">
           <h1 className="text-2xl md:text-5xl font-semibold text-white">About Us</h1>
           

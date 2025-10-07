@@ -75,7 +75,7 @@ function LotsHero() {
           <Image src="/MainFrame.png" alt="background frame" fill className="object-cover" />
         </div>
       </div>
-      <div className="relative max-w-8xl z-10 flex flex-col items-center px-4 md:px-26">
+      <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
         <Image src="/lots247-logo2.png" alt="LOTS 247 Logo" width={400} height={100} priority />
         
         <div className="relative h-48 mt-6 w-full">
@@ -154,7 +154,7 @@ function LotsInfrastructure() {
           <div className="border border-gray-800 p-6 bg-transparent">
             <p className="text-base text-gray-400">Layer 3</p>
             <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
-            <Image src="/sticker3.png" alt="Challans & RTO Service" width={400} height={400} className="mx-auto my-6" />
+            <Image src="/sticker3.png" alt="Challans & RTO Service" width={240} height={240} className="mx-auto my-6" />
             <ul className="text-gray-300 space-y-4 text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized

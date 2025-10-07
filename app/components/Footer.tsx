@@ -15,7 +15,7 @@ export function Footer() {
           </div>
 
           {/* Column 2 & 3: Links */}
-          <div className="col-span-1 grid grid-cols-2 gap-8 text-base">
+          <div className="col-span-1 grid grid-cols-2 gap-8 text-sm">
             <div>
               <ul className="space-y-4">
                 <li><Link href="#" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
@@ -47,7 +47,7 @@ export function Footer() {
       </footer>
       <div className="border-t border-gray-700 py-6 px-4 md:px-26">
         <p className="text-center text-white text-base">
-          © 2025 Lawyered, All Rights Reserved |{' '}
+          © 2025 Lawyered. All Rights Reserved |{' '}
           <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">
             Privacy Policy
           </Link>{' '}

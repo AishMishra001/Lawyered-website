@@ -71,7 +71,7 @@ export function RevolutionSection() {
   const [isJoinTeamModalOpen, setJoinTeamModalOpen] = useState(false);
 
   return (
-    <div className="py-24 px-4 md:px-26">
+    <div className="pt-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto text-center flex flex-col items-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#22D2EE] self-start">Be a Part of the Revolution</h2>
         <p className="max-w-8xl text-gray-300 mt-4 text-base text-left">Lawyered is a hub for those who value knowledge, seek empathetic support, and believe in the power of expert guidance. Our team members, clients, partners, and stakeholders value wisdom and appreciate our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. We are a team of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.</p>
@@ -81,21 +81,9 @@ export function RevolutionSection() {
           Join Our Team
         </button>
 
-        <div onClick={() => setFounderModalOpen(true)} className="mt-24 cursor-pointer flex items-center gap-8">
-          <Image src="/about1.png" alt="Himanshu Gupta" width={180} height={180} className="rounded-full"/>
-          <div>
-            <div className="flex flex-col">
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-transparent" style={{ WebkitTextStroke: "2px white" }}>
-                HIMANSHU
-              </span>
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-[#22D2EE]">
-                GUPTA
-              </span>
-            </div>
-            <p className="text-xl md:text-2xl text-gray-300 mt-2">Founder & CEO</p>
-          </div>
-        </div>
-      </div>
+       
+        
+      </div> 
 
       <AnimatePresence>
         {isFounderModalOpen && <FounderModal onClose={() => setFounderModalOpen(false)} />}
