@@ -18,17 +18,17 @@ export function Footer() {
           <div className="col-span-1 grid grid-cols-2 gap-8 text-base">
             <div>
               <ul className="space-y-4">
-                <li><Link href="#" className="text-white">HOME</Link></li>
-                <li><Link href="/ceo-message" className="text-white">CEO&apos;S MESSAGE</Link></li>
-                <li><Link href="/lots-247" className="text-white">LOTS 247</Link></li>
-                <li><Link href="/challan-pay" className="text-white">CHALLANPAY</Link></li>
+                <li><Link href="#" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
+                <li><Link href="/ceo-message" className="text-white hover:text-[#22D2EE] hover:font-bold">CEO&apos;S MESSAGE</Link></li>
+                <li><Link href="/lots-247" className="text-white hover:text-[#22D2EE] hover:font-bold">LOTS247</Link></li>
+                <li><Link href="/challan-pay" className="text-white hover:text-[#22D2EE] hover:font-bold">CHALLANPAY</Link></li>
               </ul>
             </div>
             <div>
                <ul className="space-y-4">
-                <li><Link href="/about-us" className="text-white">ABOUT US</Link></li>
-                <li><Link href="/blogs" className="text-white">BLOGS</Link></li>
-                <li><Link href="/contact-us" className="text-white">CONTACT US</Link></li>
+                <li><Link href="/about-us" className="text-white hover:text-[#22D2EE] hover:font-bold">ABOUT US</Link></li>
+                <li><Link href="/blogs" className="text-white hover:text-[#22D2EE] hover:font-bold">BLOGS</Link></li>
+                <li><Link href="/contact-us" className="text-white hover:text-[#22D2EE] hover:font-bold">CONTACT US</Link></li>
               </ul>
             </div>
           </div>
@@ -36,7 +36,7 @@ export function Footer() {
           {/* Column 4: Social */}
           <div className="col-span-1">
             <div className="flex space-x-4">
-              <Link href="https://www.facebook.com/share/1FE5v6q9Vz/"><Image src="/facebook.png" alt="Facebook" width={25} height={25} /></Link>
+              <Link href="https://www.facebook.com/share/1FE5v6q9Vz/"><Image src="/facebook.png" alt="Facebook" width={25} height={25} className="hover:text-white"/></Link>
               <Link href="https://www.instagram.com/lawyered.in"><Image src="/Instagram.png" alt="Instagram" width={25} height={25} /></Link>
               <Link href="https://www.linkedin.com/company/lawyered/"><Image src="/Linkedin.png" alt="LinkedIn" width={25} height={25} /></Link>
               <Link href="https://x.com/LawyeredIN"><Image src="/twitter.png" alt="Twitter" width={25} height={25} /></Link>
@@ -47,7 +47,14 @@ export function Footer() {
       </footer>
       <div className="border-t border-gray-700 py-6 px-4 md:px-26">
         <p className="text-center text-white text-base">
-          © 2025 Lawyered, All Rights Reserved | Privacy Policy | Terms 
+          © 2025 Lawyered, All Rights Reserved |{' '}
+          <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">
+            Privacy Policy
+          </Link>{' '}
+          |{' '}
+          <Link href="/terms-and-conditions" className="hover:text-[#22D2EE] hover:font-bold">
+            Terms
+          </Link>
         </p>
       </div>
     </>

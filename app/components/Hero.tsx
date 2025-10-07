@@ -90,7 +90,7 @@ export function Hero() {
               </div>
               <Link
                 href="/ceo-message"
-                className="text-white underline block text-base hover:underline pt-6 font-semibold"
+                className="text-white underline block text-base hover:underline pt-6 font-semibold hover:text-[#22D2EE] hover:font-bold"
               >
                 Read More
               </Link>

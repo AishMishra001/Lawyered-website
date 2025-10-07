@@ -43,7 +43,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] whitespace-nowrap transition-opacity duration-300 ${
+              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
                 hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
@@ -65,7 +65,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] whitespace-nowrap transition-opacity duration-300 ${
+              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
                 hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >

@@ -76,7 +76,7 @@ function LotsHero() {
         </div>
       </div>
       <div className="relative max-w-8xl z-10 flex flex-col items-center px-4 md:px-26">
-        <Image src="/lots-247-logo.png" alt="LOTS 247 Logo" width={400} height={100} priority />
+        <Image src="/lots247-logo.png" alt="LOTS 247 Logo" width={400} height={100} priority />
         
         <div className="relative h-48 mt-6 w-full">
             <AnimatePresence mode="wait">
