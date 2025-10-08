@@ -1,7 +1,7 @@
 "use client";
 // app/lots-247/page.tsx
 import Image from "next/image"
-import { Check, Truck, Scale, MapPin, X } from "lucide-react"
+import { Check, Truck, Scale, MapPin, X, ChevronDown } from "lucide-react"
 import { News } from "../components/News"
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -130,7 +130,7 @@ function LotsInfrastructure() {
           <div className="border border-gray-800 p-6 bg-transparent">
             <p className="text-base text-gray-400">Layer 1</p>
             <h3 className="text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
-            <Image src="/sticker1.png" alt="On-Call Resolution" width={200} height={200} className="mx-auto my-6" />
+            <Image src="/sticker23.png" alt="On-Call Resolution" width={200} height={200} className="mx-auto my-8" />
             <p className="text-gray-300 text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
               <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
@@ -142,7 +142,7 @@ function LotsInfrastructure() {
           <div className="border border-gray-800 p-6 bg-transparent">
             <p className="text-base text-gray-400">Layer 2</p>
             <h3 className="text-2xl font-bold mt-1">On-Site Deployment</h3>
-            <Image src="/sticker2.png" alt="On-Site Deployment" width={150} height={150} className="mx-auto my-6" />
+            <Image src="/sticker22.png" alt="On-Site Deployment" width={200} height={200} className="mx-auto my-6" />
             <p className="text-gray-300 text-base pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
               <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
@@ -154,7 +154,7 @@ function LotsInfrastructure() {
           <div className="border border-gray-800 p-6 bg-transparent">
             <p className="text-base text-gray-400">Layer 3</p>
             <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
-            <Image src="/sticker3.png" alt="Challans & RTO Service" width={240} height={240} className="mx-auto my-6" />
+            <Image src="/sticker24.png" alt="Challans & RTO Service" width={240} height={240} className="mx-auto my-6" />
             <ul className="text-gray-300 space-y-4 text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
@@ -212,13 +212,13 @@ function LotsPricing() {
           {/* THE FIX: Restructured to place sticker cleanly above the box */}
           <div className="flex flex-col">
             <div className="flex items-center justify-center">
-              <Image src="/sticker4.png" alt="Sticker" width={350} height={350} className="object-contain" />
+              <Image src="/sticker44.png" alt="Sticker" width={350} height={350} className="object-contain" />
             </div>
-            <div className="bg-white rounded-lg p-6 space-y-4 mt-4">
-              {features.map((f) => (
-                <p key={f} className="h-12 flex items-center text-lg text-black border-b border-black/10 last:border-b-0">
-                  {f}
-                </p>
+            <div className="bg-white rounded-lg py-6 space-y-4">
+              {features.map((f, idx) => (
+                <div key={idx} className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center text-black border-b border-black/10 last:border-b-0">
+                  {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
+                </div>
               ))}
             </div>
           </div>
@@ -248,16 +248,24 @@ function LotsPricing() {
                   />
                 </div>
                 
-                <div className="bg-white rounded-lg p-6 space-y-4">
+                <div className="bg-white rounded-lg py-6 space-y-4">
                   {plan.values.map((val, idx) => (
                     <div
                       key={idx}
-                      className="h-12 flex items-center justify-center text-lg text-center border-b border-black/10 last:border-b-0"
+                      className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center border-b border-black/10 last:border-b-0"
                     >
                       {val === true ? (
                         <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain" />
                       ) : val === false ? (
                         <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain" />
+                      ) : (typeof val === 'string' && val.startsWith("INR")) ? (
+                        <div>
+                            {val.split(' , ').map((line, i) => {
+                                if (i === 0) return <p key={i} className="text-black">{line}</p>;
+                                if (!isNaN(Number(line.replace(/,/g, '')))) return <p key={i} className="text-black">INR {line}</p>;
+                                return <p key={i} className="text-black">{line}</p>;
+                            })}
+                        </div>
                       ) : (
                         <p className="text-black">{val}</p>
                       )}
@@ -275,37 +283,151 @@ function LotsPricing() {
 
 // Section 4: Submit Card
 function LotsForm() {
+  // State for controlling the visibility of the pop-ups
+  const [showOtpPopup, setShowOtpPopup] = useState(false);
+  const [showThankYouPopup, setShowThankYouPopup] = useState(false);
+
+  // State for the form inputs to make them controlled components
+  const [companyName, setCompanyName] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [employeeCount, setEmployeeCount] = useState("1-10");
+
+  // Handler for the main form submission
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real application, you would send the form data to your backend here
+    // to trigger an OTP service. For this example, we'll just open the OTP popup.
+    setShowOtpPopup(true);
+  };
+
+  // Handler for the OTP form submission
+  const handleOtpSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real application, you would verify the OTP here.
+    // After successful verification, close the OTP popup and show the "Thank You" message.
+    setShowOtpPopup(false);
+    setShowThankYouPopup(true);
+  };
+
+  // This effect will automatically close the "Thank You" popup after 3 seconds
+  useEffect(() => {
+    if (showThankYouPopup) {
+      const timer = setTimeout(() => {
+        setShowThankYouPopup(false);
+        // Reset form fields after the process is complete
+        setCompanyName("");
+        setMobileNo("");
+        setEmployeeCount("1-10");
+      }, 3000); // Popup will disappear after 3000 milliseconds (3 seconds)
+
+      // Cleanup the timer if the component unmounts or the popup is closed manually
+      return () => clearTimeout(timer);
+    }
+  }, [showThankYouPopup]);
+
   return (
-    <div className="py-24 max-w-8xl px-26">
-      <div className=" mx-auto border border-gray-800 rounded-lg p-8 flex justify-center">
-        <div className="w-full max-w-8xl grid md:grid-cols-2 gap-46 items-start">
-          <p className="text-gray-200 text-base">
-            To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form
-            and our executive will contact you.
-          </p>
-          <form className="grid grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="Company Name"
-              className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
-            />
-            <input
-              type="text"
-              placeholder="Mobile No."
-              className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
-            />
-            <select className="col-span-2 bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
-              <option>No. of Vehicles</option>
-            </select>
-            <button type="submit" className="col-span-1 items-end mt-2 bg-[#0891B2] text-white py-3 rounded-md">
-              Submit
-            </button>
-          </form>
+    <>
+      {/* The main form section */}
+      <div className="py-24 max-w-8xl px-26">
+        <div className=" mx-auto border border-gray-800 rounded-lg p-8 flex justify-center">
+          <div className="w-full max-w-8xl grid md:grid-cols-2 gap-46 items-start">
+            <p className="text-gray-200 text-base">
+              To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form
+              and our executive will contact you.
+            </p>
+            <form className="grid grid-cols-2 gap-4" onSubmit={handleFormSubmit}>
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                required
+              />
+              <input
+                type="tel"
+                placeholder="Mobile No."
+                value={mobileNo}
+                onChange={(e) => setMobileNo(e.target.value)}
+                className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                required
+              />
+              <div className="relative col-span-2">
+                <select 
+                  className="w-full appearance-none bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 pr-8"
+                  value={employeeCount}
+                  onChange={(e) => setEmployeeCount(e.target.value)}
+                  required
+                >
+                  <option>1-10</option>
+                  <option>11-20</option>
+                  <option>21-30</option>
+                  <option>31-40</option>
+                  <option>41-50</option>
+                  <option>50+</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                  <ChevronDown size={20} />
+                </div>
+              </div>
+              <div className="col-span-2 flex justify-end">
+                <button type="submit" className="mt-2 bg-[#0891B2] text-white py-3 px-14 rounded-md">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* OTP Verification Popup (Photo 2) */}
+      {showOtpPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-[#20242A] p-8 rounded-2xl shadow-xl w-full max-w-sm relative text-white">
+            <button 
+              onClick={() => setShowOtpPopup(false)} 
+              className="absolute top-3 right-3 bg-gray-600 rounded-full p-1 text-gray-300 hover:text-white"
+            >
+              <X size={20} />
+            </button>
+            <h2 className="text-2xl font-semibold mb-6">Submit Verification Code</h2>
+            <form onSubmit={handleOtpSubmit}>
+              <label htmlFor="otp" className="text-gray-400 text-sm">Enter OTP</label>
+              <input
+                id="otp"
+                type="text"
+                placeholder="1234"
+                className="w-full bg-[#2d3138] border border-gray-600 rounded-lg p-3 mt-1 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0891B2]"
+                required
+                autoFocus
+              />
+              <button 
+                type="submit" 
+                className="w-full mt-6 bg-[#0891B2] text-white py-3 px-14 rounded-lg font-semibold"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Thank You Popup (Photo 3) */}
+      {showThankYouPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-[#20242A] p-12 rounded-2xl shadow-xl w-full max-w-md text-center flex flex-col items-center">
+            <div className="bg-green-500 rounded-full h-20 w-20 flex items-center justify-center mb-6">
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-2">Thank you for Submitting!</h2>
+            <p className="text-xl text-white">Our team will reach out to you!</p>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
+
 
 // Section 5: Comprehensive Legal Coverage for Fleets
 function LotsCoverage() {

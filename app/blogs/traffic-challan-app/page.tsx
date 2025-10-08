@@ -18,7 +18,7 @@ export default function SingleBlogPage() {
           <p className="text-xl text-gray-500 mt-6 flex gap-6">
             <span> Home</span>
             <span> &gt;</span>
-            <Link href="/blogs" className="hover:underline text-[#22D3EE]">Blog details</Link>
+            <span>Blog details</span>
           </p>
         </div>
 

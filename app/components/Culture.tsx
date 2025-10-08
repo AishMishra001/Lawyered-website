@@ -9,7 +9,7 @@ export function Culture() {
     <div className="py-16 md:py-24 px-4 md:px-24 bg-brand-dark">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
         <div
-          className="order-2 md:order-1 justify-self-center md:justify-self-start overflow-hidden"
+          className="order-2 md:order-1 justify-self-center md:justify-self-start"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -18,9 +18,7 @@ export function Culture() {
             alt="Team collaborating"
             width={400}
             height={300}
-            className={`transition-transform duration-300 ease-in-out ${
-              isHovered ? "scale-100" : "scale-110"
-            }`}
+            className=""
           />
         </div>
         <div className="order-1 md:order-2 text-center md:text-left">

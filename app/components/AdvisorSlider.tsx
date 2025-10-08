@@ -68,6 +68,7 @@ export function AdvisorsSlider() {
     // { name: "Sarabjeet Singh Waraich", title: "Advisor", img: "/about21.png", linkedin: "#", description: "Dummy description for Sarabjeet Singh Waraich." },
     { name: "Munish Bhatia", title: "Advisor", img: "/about22.png", linkedin: "#", description: "Dummy description for Munish Bhatia." },
     { name: "Mona Singh", title: "Advisor", img: "/about23.png", linkedin: "#", description: "Dummy description for Mona Singh." },
+    { name: "Deepak Sharma", title: "Chief Agility Officer", img: "/about3.png", linkedin: "https://www.linkedin.com/in/deepak-sharma-21617622/", description: "Deepak's passion for technology and innovation has led him to work with Fortune 500 companies, venture-backed startups, and many others across the globe. Deepak has a global perspective on Agile and Lean practices, product discovery techniques, design thinking, DevOps processes and more. Deepak's goal is to help organizations become more efficient and able to quickly adapt to change in order to survive in today's fast-paced world." },
     // { name: "Deepak Nagpal", title: "Acceleration Partner", img: "/about24.png", linkedin: "#", description: "Dummy description for Deepak Nagpal." },
     // { name: "Arindam Mukhopadyay", title: "Advisor", img: "/about25.png", linkedin: "#", description: "Dummy description for Arindam Mukhopadyay." },
     // { name: "John Thomas", title: "Strategic Partner", img: "/about26.png", linkedin: "#", description: "Dummy description for John Thomas." },

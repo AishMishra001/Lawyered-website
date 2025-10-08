@@ -67,7 +67,7 @@ function AboutHero() {
         {/* Right Column: Sticker */}
         <div className="flex justify-center">
           <Image
-            src="/sticker8.png"
+            src="/contact.png"
             alt="Customer support agent"
             width={400}
             height={300}

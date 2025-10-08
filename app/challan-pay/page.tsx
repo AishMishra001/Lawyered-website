@@ -10,25 +10,25 @@ import { X } from "lucide-react"; // Required for the close icon
 function ChallanHero() {
   const slides = [
     {
-      h1: "ChallanPay, Anytime Anywhere",
+      h1: "ChallanPay, Anytime, Anywhere",
       p: "ChallanPay brings you a fast, secure and hassle-free way to settle your traffic challans online.",
-      image: "/sticker6.png",
+      image: "/challan1.png",
       alt: "Man checking challan on phone",
-      width: 500,
-      height: 400,
+      width: 400,
+      height: 300,
     },
     {
       h1: "Pay Traffic Challans Instantly",
       p: "Few clicks, that's it. Discover & resolve your traffic challans.",
-      image: "/sticker10.png",
+      image: "/challan2.png",
       alt: "Pay challan instantly",
-      width: 450,
-      height: 350,
+      width: 400,
+      height: 300,
     },
     {
       h1: "No queues. No stress. with ChallanPay",
       p: "No spam, no scam. Only authorized payments with ChallanPay",
-      image: "/sticker11.png",
+      image: "/challan3.png",
       alt: "No stress with ChallanPay",
       width: 400,
       height: 300,
@@ -292,8 +292,8 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => (
                         <option>11-20</option>
                         <option>21-30</option>
                         <option>31-40</option>
-                        <option>31-40</option>
-                        <option></option>
+                        <option>41-50</option>
+                        <option>50+</option>
                     </select>
                 </div>
                 <a href="#" className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg">
@@ -318,8 +318,8 @@ function ChallanWhatsapp() {
             <Image
               src="/Mask5.png"
               alt="Trucks on a highway"
-              width={600}
-              height={300}
+              width={500}
+              height={200}
               className="object-contain"
             />
           </div>

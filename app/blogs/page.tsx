@@ -59,10 +59,10 @@ function BlogsHero() {
         {/* Left Column: Sticker */}
         <div className="flex justify-center">
           <Image
-            src="/sticker9.png"
+            src="/bloghero.png"
             alt="Person excited at laptop"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             className="object-contain"
           />
         </div>

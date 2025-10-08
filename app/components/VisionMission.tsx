@@ -16,16 +16,16 @@ Our vision is to extend this framework beyond mobility into every sector where r
           </p>
         </div>
         <div
-          className="order-1 md:order-2 justify-self-center md:justify-self-end overflow-hidden"
+          className="order-1 md:order-2 justify-self-center md:justify-self-end"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <Image
-            src={isHovered ? "/vision2.png" : "/vision1.png"}
+            src={isHovered ? "/vision9.png" : "/vision8.png"}
             alt="Cityscape"
             width={450}
             height={350}
-            className={`transition-transform duration-300 ease-in-out ${isHovered ? 'scale-100' : 'scale-110'}`}
+            className=""
           />
         </div>
       </div>
