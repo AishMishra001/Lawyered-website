@@ -27,7 +27,7 @@ const FounderModal = ({ onClose }: { onClose: () => void }) => (
   </motion.div>
 );
 
-import { uploadCV } from "@/lib/supabaseService";
+// import { uploadCV } from "@/lib/supabaseService";
 
 // NEW: Modal for "Join Our Team" Form
 const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
@@ -45,24 +45,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        if (!name || !department || !file) {
-            setMessage('All fields are required.');
-            return;
-        }
-        setLoading(true);
-        setMessage('');
-        try {
-            await uploadCV(name, department, file);
-            setMessage('Application submitted successfully!');
-            setTimeout(() => {
-                onClose();
-            }, 2000);
-        } catch (error) {
-            setMessage('Failed to submit application. Please try again.');
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
+        alert('This feature is temporarily disabled.');
     };
 
     return (
