@@ -73,7 +73,7 @@ function AboutHero() {
           onMouseLeave={() => setIsImageHovered(false)}
         >
           <Image
-            src={isImageHovered ? "/contact.png" : "/contact3.png"}
+            src={isImageHovered ? "/contact11.png" : "/contact10.png"}
             alt="Customer support agent"
             width={400}
             height={300}

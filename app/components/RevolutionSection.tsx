@@ -27,45 +27,84 @@ const FounderModal = ({ onClose }: { onClose: () => void }) => (
   </motion.div>
 );
 
+import { uploadCV } from "@/lib/supabaseService";
+
 // NEW: Modal for "Join Our Team" Form
-const JoinTeamModal = ({ onClose }: { onClose: () => void }) => (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-        <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
-            <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
-            <form className="space-y-5">
-                <div>
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
-                    <input type="text" placeholder="Enter name" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
-                </div>
-                <div>
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
-                    <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
-                        <option className="bg-gray-900 border border-gray-700">Choose</option>
-                        <option className="bg-gray-800">Technology</option>
-                        <option className="bg-gray-800">Marketing</option>
-                        <option className="bg-gray-800">Operations</option>
-                        <option className="bg-gray-800">Product</option>
-                        <option className="bg-gray-800">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
-                    <div className="relative border border-gray-700 rounded-md">
-                        <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                        <div className="flex justify-between items-center p-3">
-                            <span className="text-gray-300">Choose file</span>
-                            <span className="text-gray-500">No file chosen</span>
+const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
+    const [name, setName] = useState('');
+    const [department, setDepartment] = useState('');
+    const [file, setFile] = useState<File | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            setFile(event.target.files[0]);
+        }
+    };
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        if (!name || !department || !file) {
+            setMessage('All fields are required.');
+            return;
+        }
+        setLoading(true);
+        setMessage('');
+        try {
+            await uploadCV(name, department, file);
+            setMessage('Application submitted successfully!');
+            setTimeout(() => {
+                onClose();
+            }, 2000);
+        } catch (error) {
+            setMessage('Failed to submit application. Please try again.');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                    <div>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
+                        <input type="text" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
+                    </div>
+                    <div>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
+                        <select value={department} onChange={(e) => setDepartment(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
+                            <option value="" className="bg-gray-900 border border-gray-700">Choose</option>
+                            <option value="Technology" className="bg-gray-800">Technology</option>
+                            <option value="Marketing" className="bg-gray-800">Marketing</option>
+                            <option value="Operations" className="bg-gray-800">Operations</option>
+                            <option value="Product" className="bg-gray-800">Product</option>
+                            <option value="Other" className="bg-gray-800">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
+                        <div className="relative border border-gray-700 rounded-md">
+                            <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                            <div className="flex justify-between items-center p-3">
+                                <span className="text-gray-300">{file ? file.name : 'Choose file'}</span>
+                                <span className="text-gray-500">{file ? `${(file.size / 1024).toFixed(2)} KB` : 'No file chosen'}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" className="w-full bg-[#0891B2] text-white font-bold py-3 rounded-lg mt-4">
-                    Submit
-                </button>
-            </form>
+                    <button type="submit" className="w-full bg-[#0891B2] text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
+                        {loading ? 'Submitting...' : 'Submit'}
+                    </button>
+                    {message && <p className="text-center text-sm mt-4">{message}</p>}
+                </form>
+            </motion.div>
         </motion.div>
-    </motion.div>
-);
+    );
+};
 
 export function RevolutionSection() {
   const [isFounderModalOpen, setFounderModalOpen] = useState(false);
