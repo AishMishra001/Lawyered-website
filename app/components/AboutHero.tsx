@@ -63,7 +63,7 @@ export function AboutHero() {
           <Image src="/MainFrame.png" alt="background frame" fill className="object-cover"/>
         </div>
       </div>
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-56 pb-22 grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-38 pb-22 grid md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col gap-4 pl-20">
           <h1 className="text-2xl md:text-5xl font-semibold text-white">About Us</h1>
           
@@ -88,7 +88,7 @@ export function AboutHero() {
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
-          <Image src={isImageHovered ? "/culture2.png" : "/culture1.png"} alt="About Us Sticker" width={300} height={170} className="object-contain"/>
+          <Image src={isImageHovered ? "/culture4.png" : "/culture3.png"} alt="About Us Sticker" width={440} height={270} className="object-contain"/>
         </div>
         <div className="md:col-span-2 flex justify-center">
           <div className="flex gap-2 mt-4">

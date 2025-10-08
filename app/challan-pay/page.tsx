@@ -236,6 +236,19 @@ function ChallanVehicleSelector() {
         }
     };
 
+    const handleCheckChallan = () => {
+        if (isValid && vehicleNumber && selectedVehicleId) {
+            let vehicleType = selectedVehicleId;
+            if (vehicleType === 'two-wheeler') {
+                vehicleType = 'private-two-wheeler';
+            }
+            const url = `https://www.challanpay.in/verification/${vehicleNumber}?type=${vehicleType}`;
+            window.location.href = url;
+        } else {
+            alert("Please select a vehicle type and enter a valid vehicle number.");
+        }
+    };
+
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
         const iconSize = isSelected ? 120 : 100;
@@ -295,7 +308,7 @@ function ChallanVehicleSelector() {
             />
             {!isValid && <p className="text-red-500 mt-2">Please enter a valid vehicle number.</p>}
           </div>
-          <button onClick={() => window.location.href = 'https://www.challanpay.in/'} className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
+          <button onClick={handleCheckChallan} className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
             Check Challan Status
           </button>
           <div className="flex items-start gap-4">
@@ -383,14 +396,19 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
 // UPDATED: Section 4: Chat with us on WhatsApp
 function ChallanWhatsapp() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <>
       <div className="py-16 px-4 md:px-26 border-y-2 border-gray-800">
         <div className="max-w-8xl grid md:grid-cols-2 gap-16 items-center">
-          <div className="flex justify-start bg-transparent rounded-lg p-4">
+          <div 
+            className="flex justify-start bg-transparent rounded-lg p-4"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Image
-              src="/Mask5.png"
+              src={isHovered ? "/whatsapp96.png" : "/whatsapp69.png"}
               alt="Trucks on a highway"
               width={500}
               height={200}
