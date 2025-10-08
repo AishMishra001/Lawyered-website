@@ -25,9 +25,7 @@ export default function SingleBlogPage() {
         {/* Article Header */}
         <header className="space-y-4">
           <p className="text-lg text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
-          <h1 className="text-4xl lg:text-3xl font-bold text-[#22D3EE] leading-tight">
-            Stay Compliant with Himachal's New E-Challan System: How LOTS Can Keep You Covered on the Road
-          </h1>
+          Stay Compliant with Himachal&apos;s New E-Challan System: How LOTS Can Keep You Covered on the Road
         </header>
 
         {/* Featured Image */}
@@ -43,15 +41,15 @@ export default function SingleBlogPage() {
         {/* Article Body */}
         <article className="prose prose-invert text-base prose-lg max-w-none text-gray-300 space-y-12">
           <h1 className="text-white font-bold text-2xl">
-            Stay Compliant with Himachal's New E-Challan System: How LOTS Can Keep You Covered on the Road
+            Stay Compliant with Himachal&apos;s New E-Challan System: How LOTS Can Keep You Covered on the Road
           </h1>
 
           <p>Himachal’s new e-challan system is revolutionising road compliance. Discover how LOTS can help you stay updated on vehicle documentation, avoid fines, and access legal support as needed. Learn more with our guide.</p>
 
           {/* Content from Photo 2 */}
-          <h2 className="text-white font-bold text-2xl">Himachal’s New E-Challan System: What It Means for Drivers and How LOTS Can Help You Stay Covered</h2>
+          <h2 className="text-white font-bold text-2xl">Himachal&apos;s New E-Challan System: What It Means for Drivers and How LOTS Can Help You Stay Covered</h2>
           <p>
-            In a significant shift towards enhanced road compliance, Himachal Pradesh’s Department of Transport has recently announced the rollout of an e-challan system to monitor vehicles traversing four-lane highways under the National Highways Authority of India (NHAI) across the state. This digital system relies on data gathered at NHAI toll plazas, automatically detecting and penalising vehicles that fail to meet required compliance standards. Developed by the National Informatics Centre (NIC), the system is designed to streamline compliance enforcement and make it easier to identify non-compliant vehicles, reminding all drivers of the importance of keeping documentation current and regulations met.
+            In a significant shift towards enhanced road compliance, Himachal Pradesh&apos;s Department of Transport has recently announced the rollout of an e-challan system to monitor vehicles traversing four-lane highways under the National Highways Authority of India (NHAI) across the state. This digital system relies on data gathered at NHAI toll plazas, automatically detecting and penalising vehicles that fail to meet required compliance standards. Developed by the National Informatics Centre (NIC), the system is designed to streamline compliance enforcement and make it easier to identify non-compliant vehicles, reminding all drivers of the importance of keeping documentation current and regulations met.
 
 For drivers who want to stay compliant, avoid fines, and drive with peace of mind, LOTS is here to help. LOTS provides crucial tools and resources to help drivers navigate the new regulations and remain road-ready.
 
@@ -61,7 +59,7 @@ Link to official NHAI information
           
           <h2 className="text-white font-bold text-2xl">Why This E-Challan System Matters for Drivers</h2>
           <p>
-            The new e-challan system represents a proactive approach by Himachal Pradesh’s Department of Transport. With toll plazas now serving as data points for vehicle documentation, the system automates the monitoring process and ensures that road safety standards are being upheld. Each time a vehicle crosses an NHAI toll plaza, data about the vehicle is transmitted to the transport department. Daily uploads of this data allow authorities to analyze which vehicles are missing required documentation or otherwise in violation of compliance regulations. This analysis will lead to the automatic issuance of e-challans to offending vehicles, adding accountability to every road journey.
+            The new e-challan system represents a proactive approach by Himachal Pradesh&apos;s Department of Transport. With toll plazas now serving as data points for vehicle documentation, the system automates the monitoring process and ensures that road safety standards are being upheld. Each time a vehicle crosses an NHAI toll plaza, data about the vehicle is transmitted to the transport department. Daily uploads of this data allow authorities to analyze which vehicles are missing required documentation or otherwise in violation of compliance regulations. This analysis will lead to the automatic issuance of e-challans to offending vehicles, adding accountability to every road journey.
           </p>
           <p>
             As e-challans become more frequent and the risk of penalties for non-compliance increases, LOTS stands ready to support drivers in staying compliant and aware of their obligations.
@@ -86,7 +84,7 @@ Pollution and Insurance Certificates: The law requires all vehicles to have vali
 
           <h2 className="text-white font-bold text-2xl">Document Expiration Alerts</h2>
           <p>
-LOTS provides real-time notifications for renewing important documents, such as your PUC and insurance certificates. This alert system ensures you’re proactive in maintaining compliance, so you don’t have to worry about accidentally overlooking an expiration date. By keeping all your vehicle documentation up to date, you can avoid penalties that may arise from missed renewals.
+LOTS provides real-time notifications for renewing important documents, such as your PUC and insurance certificates. This alert system ensures you’re proactive in maintaining compliance, so you don&apos;t have to worry about accidentally overlooking an expiration date. By keeping all your vehicle documentation up to date, you can avoid penalties that may arise from missed renewals.
 
           </p>
           

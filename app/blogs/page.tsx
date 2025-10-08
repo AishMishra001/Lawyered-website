@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
 import React, { useState, useEffect, MouseEvent, CSSProperties } from "react";
 
 // Section 1: Hero
@@ -86,12 +85,6 @@ function BlogsHero() {
 
 // Section 2: Blog Categories
 function BlogCategories() {
-  const categories = [
-    "Motor Vehicle Act", "Hookah Bar License", "Legal Notice", "Civil Law",
-    "Trade Laws", "Consumer Protection Law", "Constitutional Law", "Criminal Law",
-    "Property Law", "Insolvency and Bankruptcy Law"
-  ];
-
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
@@ -121,9 +114,18 @@ function BlogCategories() {
   );
 }
 
+interface BlogPost {
+  image: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  href: string;
+}
+
 // Section 3: Blogs Grid
 function BlogsGrid() {
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       image: "/blog3.png",
       title: "Can we pay traffic challan through an app? Explore app that offers seamless on road legal solutions",
@@ -160,7 +162,7 @@ function BlogsGrid() {
               <Image src={post.image} alt={post.title} width={600} height={400} className="w-full object-cover" />
               <div className="p-6 flex flex-col flex-grow gap-6">
                 <h3 className="text-xl font-semibold text-[#22D3EE] hover:underline">
-                  <a href={(post as any).href}>{post.title}</a>
+                  <a href={post.href}>{post.title}</a>
                 </h3>
                 <p className="mt-4 text-white text-base leading-relaxed flex-grow">
                   {post.excerpt}

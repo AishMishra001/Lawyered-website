@@ -298,8 +298,8 @@ function ChallanVehicleSelector() {
           <button onClick={() => window.location.href = 'https://www.challanpay.in/'} className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
             Check Challan Status
           </button>
-          <div className="flex items-center gap-4 pt-4">
-            <input type="checkbox" id="terms" className="h-8 w-8 rounded bg-gray-700 border-gray-600 accent-brand-cyan"/>
+          <div className="flex items-start gap-4">
+            <input type="checkbox" id="terms" className="h-10 w-10 rounded bg-gray-700 border-gray-600 accent-brand-cyan"/>
             <label htmlFor="terms" className="text-white text-base">
               I agree to the{' '}
               <Link href="/terms-and-conditions" className="hover:font-bold hover:text-[#22D2EE]">
