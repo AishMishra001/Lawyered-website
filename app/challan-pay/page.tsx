@@ -319,38 +319,65 @@ function ChallanVehicleSelector() {
 }
 
 // NEW: Modal component for the WhatsApp form
-const WhatsappModal = ({ onClose }: { onClose: () => void }) => (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-        <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
-            {/* The close button is placed outside the main card for the specific design */}
-            <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-400 hover:text-white bg-gray-800 rounded-full p-2 border-2 border-gray-700">
-                <X size={24} />
-            </button>
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Share Your Company Details</h2>
-            <form className="space-y-5">
-                <div>
-                    <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
-                    <input type="text" placeholder="ABC Private Limited" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
-                </div>
-                <div>
-                    <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
-                    <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
-                        <option>0-10</option>
-                        <option>11-20</option>
-                        <option>21-30</option>
-                        <option>31-40</option>
-                        <option>41-50</option>
-                        <option>50+</option>
-                    </select>
-                </div>
-                <a href="#" className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg">
-                    <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
-                    Chat with us on WhatsApp
-                </a>
-            </form>
+const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
+    const [companyName, setCompanyName] = useState('');
+    const [numVehicles, setNumVehicles] = useState('0-10');
+
+    const handleChat = () => {
+        const phone = '919289928628';
+        const message = `Company Name: ${companyName}\nNumber of Vehicles: ${numVehicles}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    return (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
+                {/* The close button is placed outside the main card for the specific design */}
+                <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-400 hover:text-white bg-gray-800 rounded-full p-2 border-2 border-gray-700">
+                    <X size={24} />
+                </button>
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">Share Your Company Details</h2>
+                <form className="space-y-5">
+                    <div>
+                        <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
+                        <input 
+                            type="text" 
+                            placeholder="ABC Private Limited" 
+                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                            value={companyName}
+                            onChange={(e) => setCompanyName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
+                        <select 
+                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300"
+                            value={numVehicles}
+                            onChange={(e) => setNumVehicles(e.target.value)}
+                        >
+                            <option>0-10</option>
+                            <option>11-20</option>
+                            <option>21-30</option>
+                            <option>31-40</option>
+                            <option>41-50</option>
+                            <option>50+</option>
+                        </select>
+                    </div>
+                    <button 
+                        type="button" // To prevent form submission
+                        onClick={handleChat}
+                        className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg"
+                    >
+                        <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
+                        Chat with us on WhatsApp
+                    </button>
+                </form>
+            </motion.div>
         </motion.div>
-    </motion.div>
-);
+    );
+};
 
 
 // UPDATED: Section 4: Chat with us on WhatsApp
