@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Image from "next/image";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,7 @@ const stats = [
 
 export function AboutHero() {
   const [index, setIndex] = useState(0);
+  const [isImageHovered, setIsImageHovered] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -82,8 +83,12 @@ export function AboutHero() {
           </div>
 
         </div>
-        <div className="flex justify-center">
-          <Image src="/aboutus.png" alt="About Us Sticker" width={400} height={200} className="object-contain"/>
+        <div 
+          className="flex justify-center"
+          onMouseEnter={() => setIsImageHovered(true)}
+          onMouseLeave={() => setIsImageHovered(false)}
+        >
+          <Image src={isImageHovered ? "/culture2.png" : "/culture1.png"} alt="About Us Sticker" width={300} height={170} className="object-contain"/>
         </div>
         <div className="md:col-span-2 flex justify-center">
           <div className="flex gap-2 mt-4">

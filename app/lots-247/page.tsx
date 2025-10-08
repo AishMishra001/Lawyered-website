@@ -119,6 +119,7 @@ function LotsHero() {
 
 // Section 2: The Only Scalable & Dependable Legal-Tech Infrastructure
 function LotsInfrastructure() {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   return (
     <div className="py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
@@ -127,10 +128,20 @@ function LotsInfrastructure() {
         </h2>
         <div className="grid md:grid-cols-3 gap-12">
           {/* Card 1 */}
-          <div className="border border-gray-800 p-6 bg-transparent">
+          <div
+            className="border border-gray-800 p-6 bg-transparent"
+            onMouseEnter={() => setHoveredCard(1)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <p className="text-base text-gray-400">Layer 1</p>
             <h3 className="text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
-            <Image src="/sticker23.png" alt="On-Call Resolution" width={200} height={200} className="mx-auto my-8" />
+            <Image
+              src={hoveredCard === 1 ? "/sticker23.png" : "/sticker32.png"}
+              alt="On-Call Resolution"
+              width={200}
+              height={200}
+              className="mx-auto my-8"
+            />
             <p className="text-gray-300 text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
               <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
@@ -139,10 +150,20 @@ function LotsInfrastructure() {
           </div>
 
           {/* Card 2 */}
-          <div className="border border-gray-800 p-6 bg-transparent">
+          <div
+            className="border border-gray-800 p-6 bg-transparent"
+            onMouseEnter={() => setHoveredCard(2)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <p className="text-base text-gray-400">Layer 2</p>
             <h3 className="text-2xl font-bold mt-1">On-Site Deployment</h3>
-            <Image src="/sticker22.png" alt="On-Site Deployment" width={200} height={200} className="mx-auto my-6" />
+            <Image
+              src={hoveredCard === 2 ? "/sticker22.png" : "/sticker88.png"}
+              alt="On-Site Deployment"
+              width={200}
+              height={200}
+              className="mx-auto my-6"
+            />
             <p className="text-gray-300 text-base pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
               <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
@@ -151,10 +172,20 @@ function LotsInfrastructure() {
           </div>
 
           {/* Card 3 */}
-          <div className="border border-gray-800 p-6 bg-transparent">
+          <div
+            className="border border-gray-800 p-6 bg-transparent"
+            onMouseEnter={() => setHoveredCard(3)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <p className="text-base text-gray-400">Layer 3</p>
             <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
-            <Image src="/sticker24.png" alt="Challans & RTO Service" width={240} height={240} className="mx-auto my-6" />
+            <Image
+              src={hoveredCard === 3 ? "/sticker24.png" : "/sticker42.png"}
+              alt="Challans & RTO Service"
+              width={240}
+              height={240}
+              className="mx-auto my-6"
+            />
             <ul className="text-gray-300 space-y-4 text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
@@ -169,7 +200,7 @@ function LotsInfrastructure() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // Section 3: Drive Ahead Without Legal Worries! (Pricing)
@@ -184,20 +215,20 @@ function LotsPricing() {
   const plans = [
     {
       name: "U Drive", logo: "/Udrive.png", bgColor: "bg-[#06B6D4]",
-      values: ["1", true, "Pay Per Use", true, "INR 79 , 1000 , 2000", "Pay Per Use", false, false, false, false, false, "Pay Per Use", "Pay Per Use", false, false, false],
+      values: ["1", true, "Pay Per Use", true, "79 , 1000 , 2000", "Pay Per Use", false, false, false, false, false, "Pay Per Use", "Pay Per Use", false, false, false],
     },
     {
       name: "B Safe", logo: "/Bsafe.png", bgColor: "bg-[#00B876]",
-      values: ["Unlimited", true, "Pay Per Use", true, "INR 49 , 1000 , 2000", "Pay Per Use", true, "3", true, false, true, "Pay Per Use", "Pay Per Use", false, false, false],
+      values: ["Unlimited", true, "Pay Per Use", true, "49 , 1000 , 2000", "Pay Per Use", true, "3", true, false, true, "Pay Per Use", "Pay Per Use", false, false, false],
     },
     {
       name: "V Care", logo: "/Vcare.png", topSeller: true, bgColor: "bg-[#FF9100]",
-      values: ["Unlimited", true, "Pay Per Use", true, "INR 39 , As per Add-on B2", "Pay Per Use", true, "10", true, true, true, "B1,B2,B3#", "Worth 20K", true, true, true],
+      values: ["Unlimited", true, "Pay Per Use", true, "39 , As per Add-on B2 , ", "Pay Per Use", true, "10", true, true, true, "B1,B2,B3#", "Worth 20K", true, true, true],
     },
   ];
 
   return (
-    <div className="py-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
+    <div className="pb-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
       <div className="absolute inset-0 bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
         <h2 className="text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
@@ -206,7 +237,7 @@ function LotsPricing() {
         </p>
 
         {/* THE FIX: Adjusted grid columns and gap */}
-        <div className="mt-44 grid grid-cols-[1.5fr_3fr] gap-12 items-end">
+        <div className="mt-22 grid grid-cols-[1.5fr_3fr] gap-12 items-end">
           
           {/* Left side: Character illustration + Features Column */}
           {/* THE FIX: Restructured to place sticker cleanly above the box */}
@@ -258,11 +289,15 @@ function LotsPricing() {
                         <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain" />
                       ) : val === false ? (
                         <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain" />
-                      ) : (typeof val === 'string' && val.startsWith("INR")) ? (
+                      ) : (typeof val === 'string' && val.includes(' , ')) ? (
                         <div>
                             {val.split(' , ').map((line, i) => {
-                                if (i === 0) return <p key={i} className="text-black">{line}</p>;
-                                if (!isNaN(Number(line.replace(/,/g, '')))) return <p key={i} className="text-black">INR {line}</p>;
+                                if (!isNaN(Number(line.replace(/,/g, '')))) {
+                                    if (plan.name === 'V Care' && idx === 4) {
+                                        return <p key={i} className="text-black">{line}</p>;
+                                    }
+                                    return <p key={i} className="text-black">INR {line}</p>;
+                                }
                                 return <p key={i} className="text-black">{line}</p>;
                             })}
                         </div>
@@ -433,7 +468,7 @@ function LotsForm() {
 function LotsCoverage() {
   const stats = [
     {
-      icon: <Truck />,
+      icon: <Truck width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Over 800+ logistics partners onboarded,</span> expanding reach across the
@@ -442,7 +477,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Scale />,
+      icon: <Scale width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Providing legal assistance</span> to 600K+ private and commercial vehicles.
@@ -450,7 +485,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <MapPin />,
+      icon: <MapPin width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Over 200K+ Roadside Legal Cases</span> successfully handled.
@@ -458,7 +493,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Check />,
+      icon: <Check width={ 40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
@@ -475,7 +510,7 @@ function LotsCoverage() {
         <div className="grid md:grid-cols-4 gap-18">
           {stats.map((stat, i) => (
             <div key={i} className="border border-gray-600 p-6 flex flex-col">
-              <div className="text-gray-400 mb-4">{stat.icon}</div>
+              <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
               <p className="text-gray-300 text-base pb-32">{stat.text}</p>
             </div>
           ))}
@@ -492,7 +527,7 @@ function LotsCoverage() {
             <h3 className="text-2xl text-white">Connect with us to know more at</h3>
             <a
               href="mailto:Sales@lawyered.in"
-              className="inline-block mt-6 bg-[#0891B2] text-white font-bold text-lg px-12 py-4"
+              className="inline-block mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-lg px-12 py-4"
             >
               Sales@lawyered.in
             </a>

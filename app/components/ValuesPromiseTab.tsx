@@ -18,10 +18,12 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => (
                 <div>
                     <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
                     <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
-                        <option>Choose</option>
-                        <option>Legal</option>
-                        <option>Technology</option>
-                        <option>Marketing</option>
+                        <option className="bg-gray-900 border border-gray-700">Choose</option>
+                        <option className="bg-gray-800">Technology</option>
+                        <option className="bg-gray-800">Marketing</option>
+                        <option className="bg-gray-800">Operations</option>
+                        <option className="bg-gray-800">Product</option>
+                        <option className="bg-gray-800">Other</option>
                     </select>
                 </div>
                 <div>
@@ -47,7 +49,7 @@ export function ValuesPromiseTabs() {
   const [isJoinTeamModalOpen, setJoinTeamModalOpen] = useState(false);
 
   const values = [
-    { icon: <Image src="/promise1.png" alt="Wisdom and Empathy" width={50} height={50} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
+    { icon: <Image src="/promise1.png" alt="Wisdom and Empathy" width={45} height={45} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
     { icon: <Image src="/promise2.png" alt="Innovation and Inspiration" width={50} height={50} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
     { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other’s expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people’s lives." },
   ];
@@ -76,9 +78,9 @@ export function ValuesPromiseTabs() {
               <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600  p-8 bg-black/20 flex items-center justify-between">
                 <div className="flex items-center gap-6">
                   <HeartHandshake size={70} className="text-white font-light"/>
-                  <p className="text-gray-300 w-full text-lg md:text-xl">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
+                  <p className="text-gray-300 w-full text-lg md:text-base">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
                 </div>
-                <button onClick={() => setJoinTeamModalOpen(true)} className=" bg-[#0891B2] text-lg md:text-2xl px-16 py-5 rounded-lg whitespace-nowrap">Join Our Team</button>
+                <button onClick={() => setJoinTeamModalOpen(true)} className=" bg-[#0891B2] text-base md:text-base px-16 py-5 rounded-lg whitespace-nowrap">Join Our Team</button>
               </motion.div>
             )}
           </AnimatePresence>

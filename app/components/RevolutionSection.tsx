@@ -41,10 +41,12 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => (
                 <div>
                     <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
                     <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
-                        <option>Choose</option>
-                        <option>Legal</option>
-                        <option>Technology</option>
-                        <option>Marketing</option>
+                        <option className="bg-gray-900 border border-gray-700">Choose</option>
+                        <option className="bg-gray-800">Technology</option>
+                        <option className="bg-gray-800">Marketing</option>
+                        <option className="bg-gray-800">Operations</option>
+                        <option className="bg-gray-800">Product</option>
+                        <option className="bg-gray-800">Other</option>
                     </select>
                 </div>
                 <div>

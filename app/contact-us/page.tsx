@@ -9,6 +9,8 @@ function AboutHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
+
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -65,9 +67,13 @@ function AboutHero() {
         </div>
 
         {/* Right Column: Sticker */}
-        <div className="flex justify-center">
+        <div 
+          className="flex justify-center"
+          onMouseEnter={() => setIsImageHovered(true)}
+          onMouseLeave={() => setIsImageHovered(false)}
+        >
           <Image
-            src="/contact.png"
+            src={isImageHovered ? "/contact.png" : "/contact2.png"}
             alt="Customer support agent"
             width={400}
             height={300}
@@ -93,7 +99,10 @@ function ContactFormSection() {
             <input type="text" placeholder="Name" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
             <input type="email" placeholder="E-mail" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
             <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
-              <option>Select Category</option>
+              <option className="bg-gray-900 border border-gray-700">Partnership</option>
+              <option className="bg-gray-900 border border-gray-700">Vendor</option>
+              <option className="bg-gray-900 border border-gray-700">Carrer</option>
+              <option className="bg-gray-900 border border-gray-700">Other</option>
             </select>
             <input type="tel" placeholder="Phone Number" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
             <textarea placeholder="Your Message" rows={3} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"></textarea>
@@ -132,7 +141,7 @@ function ContactFormSection() {
                 <Mail size={28} className="text-white"/>
                 <p className="text-lg text-white">Email</p>
               </div>
-                <a href="mailto:info@lawyered.in" className="bg-[#0891B2] text-white font-semibold px-6 py-2 text-lg">
+                <a href="mailto:info@lawyered.in" className=" hover:bg-white text-white hover:text-[#0891B2] bg-[#0891B2]  font-semibold px-6 py-2 text-lg">
                     info@lawyered.in
                 </a>
             </div>

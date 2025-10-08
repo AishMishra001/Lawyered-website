@@ -9,6 +9,7 @@ function BlogsHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -57,9 +58,13 @@ function BlogsHero() {
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 items-center h-screen">
         {/* Left Column: Sticker */}
-        <div className="flex justify-center">
+        <div
+          className="flex justify-center"
+          onMouseEnter={() => setIsImageHovered(true)}
+          onMouseLeave={() => setIsImageHovered(false)}
+        >
           <Image
-            src="/bloghero.png"
+            src={isImageHovered ? "/bloghero2.png" : "/bloghero1.png"}
             alt="Person excited at laptop"
             width={400}
             height={400}
@@ -78,6 +83,7 @@ function BlogsHero() {
   );
 }
 
+
 // Section 2: Blog Categories
 function BlogCategories() {
   const categories = [
@@ -89,10 +95,10 @@ function BlogCategories() {
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#22D3EE] mb-8">
-          Blog Categories
+        <h2 className="text-3xl font-bold text-[#22D3EE]">
+          Blogs
         </h2>
-        <div className="flex flex-wrap gap-4 items-center">
+        {/* <div className="flex flex-wrap gap-4 items-center">
           {categories.map((category, index) => (
             <button
               key={category}
@@ -109,7 +115,7 @@ function BlogCategories() {
           <a href="#" className="flex items-center gap-1 text-[#22D3EE] hover:underline">
             View More <ChevronDown size={16} />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -124,6 +130,8 @@ function BlogsGrid() {
       excerpt: "Can we pay a Traffic Challan through a n app? Explore App That Offers seamless on road legal Solutions. It is a busy Monday morning in Mumbai, and you are rushing to work when you notice the familiar blue and red lights flashing behind you.",
       date: "Dec 3, 2024",
       readTime: "5 min read",
+      href: "/blogs/traffic-challan-app",
+      
     },
     {
       image: "/blog2.png",
@@ -131,13 +139,15 @@ function BlogsGrid() {
       excerpt: "Can we pay a Traffic Challan through a n app? Explore App That Offers seamless on road legal Solutions. It is a busy Monday morning in Mumbai, and you are rushing to work when you notice the familiar blue and red lights flashing behind you.",
       date: "Dec 3, 2024",
       readTime: "5 min read",
+      href: "/blogs/future-of-ai",
     },
     {
       image: "/blog1.png",
-      title: "AI’s Impact on Legal Tech: A Comparison of Global Strategies",
-      excerpt: "Streamlining Traffic Challan Payments: Discover the convenience of mobile app solutions for on-the-go legal compliance. Imagine a typical Monday morning in Mumbai when.",
+      title: "Stay Compliant with Himachal's New E-Challan System: How LOTS Can Keep You Covered on the Road",
+      excerpt: "Himachal’s new e-challan system is revolutionising road compliance. Discover how LOTS can help you stay updated on vehicle documentation, avoid fines, and access legal support as needed. Learn more with our guide.",
       date: "Dec 3, 2024",
       readTime: "5 min read",
+      href: "/blogs/E-challan-system",
     },
   ];
 
@@ -150,7 +160,7 @@ function BlogsGrid() {
               <Image src={post.image} alt={post.title} width={600} height={400} className="w-full object-cover" />
               <div className="p-6 flex flex-col flex-grow gap-6">
                 <h3 className="text-xl font-semibold text-[#22D3EE] hover:underline">
-                  <a href="/blogs/traffic-challan-app">{post.title}</a>
+                  <a href={(post as any).href}>{post.title}</a>
                 </h3>
                 <p className="mt-4 text-white text-base leading-relaxed flex-grow">
                   {post.excerpt}
@@ -162,11 +172,11 @@ function BlogsGrid() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <a href="#" className="flex text-base items-center justify-center gap-1 text-[#22D3EE] hover:underline">
             See All <ChevronDown size={16} />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

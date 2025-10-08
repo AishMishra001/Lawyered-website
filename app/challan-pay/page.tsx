@@ -1,6 +1,7 @@
 "use client"; // Required for state and click events
 
 import Image from "next/image";
+import Link from "next/link";
 import { News } from "../components/News";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
@@ -13,6 +14,7 @@ function ChallanHero() {
       h1: "ChallanPay, Anytime, Anywhere",
       p: "ChallanPay brings you a fast, secure and hassle-free way to settle your traffic challans online.",
       image: "/challan1.png",
+      imageBefore: "/challan4.png",
       alt: "Man checking challan on phone",
       width: 400,
       height: 300,
@@ -21,6 +23,7 @@ function ChallanHero() {
       h1: "Pay Traffic Challans Instantly",
       p: "Few clicks, that's it. Discover & resolve your traffic challans.",
       image: "/challan2.png",
+      imageBefore: "/challan5.png",
       alt: "Pay challan instantly",
       width: 400,
       height: 300,
@@ -29,6 +32,7 @@ function ChallanHero() {
       h1: "No queues. No stress. with ChallanPay",
       p: "No spam, no scam. Only authorized payments with ChallanPay",
       image: "/challan3.png",
+      imageBefore: "/challan6.png",
       alt: "No stress with ChallanPay",
       width: 400,
       height: 300,
@@ -36,6 +40,7 @@ function ChallanHero() {
   ];
 
   const [index, setIndex] = useState(0);
+  const [isImageHovered, setIsImageHovered] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -96,7 +101,11 @@ function ChallanHero() {
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Sticker */}
-        <div className="flex justify-center pt-26 relative h-[600px] w-[700px]">
+        <div
+          className="flex justify-center pt-26 relative h-[600px] w-[700px]"
+          onMouseEnter={() => setIsImageHovered(true)}
+          onMouseLeave={() => setIsImageHovered(false)}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -107,7 +116,7 @@ function ChallanHero() {
               className="absolute"
             >
               <Image
-                src={slides[index].image}
+                src={isImageHovered ? slides[index].image : slides[index].imageBefore}
                 alt={slides[index].alt}
                 width={slides[index].width}
                 height={slides[index].height}
@@ -202,15 +211,40 @@ function ChallanVehicleSelector() {
     ];
 
     const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
+    const [vehicleNumber, setVehicleNumber] = useState('');
+    const [isValid, setIsValid] = useState(true);
+
+    const handleVehicleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.toUpperCase();
+        setVehicleNumber(value);
+
+        // Regex to validate Indian vehicle number format, allowing for optional spaces
+        const regex = /^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{0,3}[ -]?[0-9]{1,4}$/;
+        
+        if (value === '' || regex.test(value)) {
+            setIsValid(true);
+        } else {
+            setIsValid(false);
+        }
+    };
+
+    const handleVehicleSelect = (vehicleId: string) => {
+        if (selectedVehicleId === vehicleId) {
+            setSelectedVehicleId(null);
+        } else {
+            setSelectedVehicleId(vehicleId);
+        }
+    };
 
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
+        const iconSize = isSelected ? 120 : 100;
         return (
             <div
                 onClick={onClick}
                 className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-40 h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
             >
-                <Image src={iconSrc} alt={vehicle.label} width={100} height={100} />
+                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="transition-all duration-300" />
             </div>
         );
     };
@@ -226,24 +260,24 @@ function ChallanVehicleSelector() {
                 <VehicleCircle 
                     vehicle={vehicleData[0]}
                     isSelected={selectedVehicleId === vehicleData[0].id}
-                    onClick={() => setSelectedVehicleId(vehicleData[0].id)}
+                    onClick={() => handleVehicleSelect(vehicleData[0].id)}
                 />
                 <VehicleCircle 
                     vehicle={vehicleData[1]}
                     isSelected={selectedVehicleId === vehicleData[1].id}
-                    onClick={() => setSelectedVehicleId(vehicleData[1].id)}
+                    onClick={() => handleVehicleSelect(vehicleData[1].id)}
                 />
             </div>
             <div className="flex justify-start gap-x-6">
                 <VehicleCircle 
                     vehicle={vehicleData[2]}
                     isSelected={selectedVehicleId === vehicleData[2].id}
-                    onClick={() => setSelectedVehicleId(vehicleData[2].id)}
+                    onClick={() => handleVehicleSelect(vehicleData[2].id)}
                 />
                 <VehicleCircle 
                     vehicle={vehicleData[3]}
                     isSelected={selectedVehicleId === vehicleData[3].id}
-                    onClick={() => setSelectedVehicleId(vehicleData[3].id)}
+                    onClick={() => handleVehicleSelect(vehicleData[3].id)}
                 />
             </div>
           </div>
@@ -251,18 +285,31 @@ function ChallanVehicleSelector() {
 
         {/* Right Column: Input and Checkbox */}
         <div className="space-y-12">
-          <input
-            type="text"
-            defaultValue="UP32MM1f13"
-            className="w-full bg-white text-black text-2xl font-mono tracking-widest p-8 rounded-lg border-none outline-none"
-          />
-          <button className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
+          <div>
+            <input
+              type="text"
+              value={vehicleNumber}
+              onChange={handleVehicleNumberChange}
+              placeholder="e.g. UP32MM1313"
+              className={`w-full bg-white text-black text-2xl font-mono tracking-widest p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
+            />
+            {!isValid && <p className="text-red-500 mt-2">Please enter a valid vehicle number.</p>}
+          </div>
+          <button onClick={() => window.location.href = 'https://www.challanpay.in/'} className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
             Check Challan Status
           </button>
-          <div className="flex items-start gap-4 pt-4">
+          <div className="flex items-center gap-4 pt-4">
             <input type="checkbox" id="terms" className="h-8 w-8 rounded bg-gray-700 border-gray-600 accent-brand-cyan"/>
             <label htmlFor="terms" className="text-white text-base">
-              I agree to the terms, conditions and the privacy policy, and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
+              I agree to the{' '}
+              <Link href="/terms-and-conditions" className="hover:font-bold hover:text-[#22D2EE]">
+                terms, conditions
+              </Link>
+              {' '}and the{' '}
+              <Link href="/privacy-policy" className="hover:font-bold hover:text-[#22D2EE]">
+                privacy policy
+              </Link>
+              , and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
             </label>
           </div>
         </div>
