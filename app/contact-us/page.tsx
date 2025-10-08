@@ -87,6 +87,56 @@ function AboutHero() {
 
 // Section 2: Forms
 function ContactFormSection() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [inquiryType, setInquiryType] = useState('Partnership');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [captcha, setCaptcha] = useState('');
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [formStatus, setFormStatus] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setFormStatus('Submitting...');
+
+      const formData = {
+          name,
+          email,
+          inquiryType,
+          phone,
+          message,
+          captcha,
+          isAuthorized,
+      };
+
+      try {
+          const response = await fetch('/api/webhook', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+          });
+
+          if (response.ok) {
+              setFormStatus('Your message has been sent successfully!');
+              // Reset form
+              setName('');
+              setEmail('');
+              setInquiryType('Partnership');
+              setPhone('');
+              setMessage('');
+              setCaptcha('');
+              setIsAuthorized(false);
+          } else {
+              setFormStatus('An error occurred. Please try again.');
+          }
+      } catch {
+          setFormStatus('An error occurred. Please try again.');
+      }
+  };
+
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-start">
@@ -95,17 +145,17 @@ function ContactFormSection() {
           <h2 className="text-3xl text-white">
             Fill out the form and our executive will reach out to you
           </h2>
-          <form className="space-y-8">
-            <input type="text" placeholder="Name" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
-            <input type="email" placeholder="E-mail" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
-            <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
+          <form className="space-y-8" onSubmit={handleSubmit}>
+            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
+            <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
+            <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
               <option className="bg-gray-900 border border-gray-700">Partnership</option>
               <option className="bg-gray-900 border border-gray-700">Vendor</option>
               <option className="bg-gray-900 border border-gray-700">Carrer</option>
               <option className="bg-gray-900 border border-gray-700">Other</option>
             </select>
-            <input type="tel" placeholder="Phone Number" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
-            <textarea placeholder="Your Message" rows={3} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"></textarea>
+            <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
+            <textarea placeholder="Your Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required></textarea>
             
             <div className="flex items-center gap-4">
               <div className="font-[Times New Roman] text-lg">
@@ -115,10 +165,10 @@ function ContactFormSection() {
                 <RefreshCw size={20} />
               </button>
             </div>
-            <input type="text" placeholder="Enter Captcha" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"/>
+            <input type="text" placeholder="Enter Captcha" value={captcha} onChange={(e) => setCaptcha(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
             
             <div className="flex items-start gap-3 pt-2">
-              <input type="checkbox" id="auth" className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]"/>
+              <input type="checkbox" id="auth" checked={isAuthorized} onChange={(e) => setIsAuthorized(e.target.checked)} className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]" required />
               <label htmlFor="auth" className="text-base text-white">
                 I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms of Services</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
               </label>
@@ -127,6 +177,7 @@ function ContactFormSection() {
             <button type="submit" className="w-full bg-[#0891B2] text-white py-3 text-base rounded-lg mt-4">
               Submit
             </button>
+            {formStatus && <p className="text-center text-white">{formStatus}</p>}
           </form>
         </div>
         

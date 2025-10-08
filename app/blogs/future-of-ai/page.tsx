@@ -43,14 +43,14 @@ export default function SingleBlogPage() {
         {/* Article Body */}
         <article className="prose prose-invert text-base prose-lg max-w-none text-gray-300 space-y-12">
           <p>
-The integration of artificial intelligence (AI) into legal technology is rapidly transforming the landscape of legal services worldwide. This technological revolution is particularly noteworthy in two of the world's largest legal markets: India and the United States. This article examines the current state, challenges, and future prospects of AI in legal technology within these two distinct jurisdictions.          </p>
+The integration of artificial intelligence (AI) into legal technology is rapidly transforming the landscape of legal services worldwide. This technological revolution is particularly noteworthy in two of the world&apos;s largest legal markets: India and the United States. This article examines the current state, challenges, and future prospects of AI in legal technology within these two distinct jurisdictions.          </p>
 
           {/* Content from Photo 2 */}
           <h2 className="text-white font-bold text-2xl">Current State of AI in Legal Technology</h2>
           <p>
-The United States has established itself as a global leader in the adoption and development of AI-driven legal technologies. This leadership position is attributed to the country's robust legal market, significant investment in technology, and a culture of innovation.          </p>
+The United States has established itself as a global leader in the adoption and development of AI-driven legal technologies. This leadership position is attributed to the country&apos;s robust legal market, significant investment in technology, and a culture of innovation.          </p>
           
-          <h2 className="text-white font-bold text-2xl">AI's Impact on Key Legal Processes</h2>
+          <h2 className="text-white font-bold text-2xl">AI&apos;s Impact on Key Legal Processes</h2>
           <p>
  
 
