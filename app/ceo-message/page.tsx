@@ -75,7 +75,7 @@ function CeoHero() {
           {/* Apply gradient fade to the image */}
           <div className="relative">
             <Image
-              src="/founder.png" // Assuming you renamed the image to this
+              src="/founder2.png" // Assuming you renamed the image to this
               alt="Himanshu Gupta, Founder & CEO"
               width={500}
               height={500}
@@ -109,11 +109,13 @@ function CeoContent() {
         ))}
         
         {/* Signature */}
-        <div className="pt-8">
-          <p className="text-base">Regards,</p>
-          <p className="text-3xl font-bold text-[#22D2EE] mt-4">Himanshu Gupta</p>
-          <p className="text-white">Founder & CEO</p>
-        </div>
+        <a href="https://www.linkedin.com/in/gupta-himanshu/" target="_blank" rel="noopener noreferrer">
+          <div className="pt-8">
+            <p className="text-base">Regards,</p>
+            <p className="text-3xl font-bold text-[#22D2EE] mt-4">Himanshu Gupta</p>
+            <p className="text-white">Founder & CEO</p>
+          </div>
+        </a>
       </div>
     </div>
   );
