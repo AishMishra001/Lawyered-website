@@ -62,7 +62,7 @@ export function Hero() {
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 gap-4 pt-20 md:pt-0">
         <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight max-w-7xl mx-auto">
           Identifying & Resolving Recurring <br />
-          Legal Risk For Mobility
+          Legal Risks For Mobility
         </h1>
         <p className="mt-4 text-base  text-gray-300 max-w-3xl mx-auto">
           Innovating & Building Scalable Technology Platforms

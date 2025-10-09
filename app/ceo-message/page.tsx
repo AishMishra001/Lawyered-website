@@ -65,7 +65,7 @@ function CeoHero() {
               From Reactive to <span className="text-[#22D2EE]">Predictive</span> to <span className="text-[#22D2EE]">Preventive</span> Advantage
             </h2>
             <p className="mt-4 text-white text-base">
-              Gen AI-driven Legal Risk Management (LRM) for the mobility sector—monitor, predict, and resolve legal issues before they disrupt operations.
+              Gen AI-driven Legal Risks Management (LRM) for the mobility sector—monitor, predict, and resolve legal issues before they disrupt operations.
             </p>
           </div>
         </div>

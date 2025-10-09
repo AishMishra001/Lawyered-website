@@ -9,7 +9,7 @@ import { Footer } from "@/app/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lawyered - Resolving Legal Risk For Mobility",
+  title: "Lawyered - Resolving Legal Risks For Mobility",
   description: "Innovating & Building Scalable Technology Platforms",
 };
 

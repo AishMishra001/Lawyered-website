@@ -111,15 +111,21 @@ function ContactFormSection() {
       };
 
       try {
-          const response = await fetch('/api/webhook', {
+          // Submit directly to the webhook service from the browser
+          // This bypasses server-side origin restrictions
+          const response = await fetch('https://automate.indiaaccelerator.co/webhook/b688bd42-a402-45ed-874a-a816601bcad3', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
+                  'Referer': window.location.origin,
+                  'Origin': window.location.origin,
               },
               body: JSON.stringify(formData),
           });
 
-          if (response.ok) {
+          const responseData = await response.json();
+
+          if (response.ok && responseData.message === "Workflow was started") {
               setFormStatus('Your message has been sent successfully!');
               // Reset form
               setName('');
@@ -130,9 +136,11 @@ function ContactFormSection() {
               setCaptcha('');
               setIsAuthorized(false);
           } else {
+              console.log('Webhook response:', responseData);
               setFormStatus('An error occurred. Please try again.');
           }
-      } catch {
+      } catch (error) {
+          console.error('Form submission error:', error);
           setFormStatus('An error occurred. Please try again.');
       }
   };
