@@ -99,7 +99,7 @@ function ChallanHero() {
         </div>
       </div>
 
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-20 pb-8 md:py-32 flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[80vh] md:min-h-screen">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-32 md:py-32 flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[80vh] md:min-h-screen">
         {/* Left Column: Sticker */}
         <div
           className="flex justify-center pt-4 md:pt-26 relative h-[250px] md:h-[600px] w-full md:w-[700px] order-2 md:order-1"
@@ -135,7 +135,7 @@ function ChallanHero() {
             height={70}
             className="w-64 md:w-80 h-auto"
           />
-          <div className="relative h-24 md:h-48 w-full">
+          <div className="relative h-32 md:h-48 w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}

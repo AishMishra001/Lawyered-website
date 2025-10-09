@@ -55,13 +55,13 @@ export function ValuesPromiseTabs() {
   ];
 
   return (
-    <div className="pb-24 px-4 md:px-26">
+    <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
-        <div className="flex border border-white text-md md:text-xl">
-          <button onClick={() => setActiveTab("value")} className={`px-16 py-6 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
-          <button onClick={() => setActiveTab("promise")} className={`px-16 py-6 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white border-l border-gray-700'}`}>What We Promise</button>
+        <div className="flex flex-col sm:flex-row border border-white text-sm md:text-xl w-full sm:w-auto">
+          <button onClick={() => setActiveTab("value")} className={`w-full sm:w-auto px-8 py-4 sm:px-12 md:px-16 sm:py-6 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
+          <button onClick={() => setActiveTab("promise")} className={`w-full sm:w-auto px-8 py-4 sm:px-12 md:px-16 sm:py-6 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white sm:border-l border-gray-700'}`}>What We Promise</button>
         </div>
-        <div className="mt-12 w-full px-22">
+        <div className="mt-12 w-full px-4 sm:px-8 md:px-12 lg:px-22">
           <AnimatePresence mode="wait">
             {activeTab === 'value' && (
               <motion.div key="value" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="grid md:grid-cols-3 gap-8">
@@ -75,12 +75,12 @@ export function ValuesPromiseTabs() {
               </motion.div>
             )}
             {activeTab === 'promise' && (
-              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600  p-8 bg-black/20 flex items-center justify-between">
-                <div className="flex items-center gap-6">
-                  <HeartHandshake size={70} className="text-white font-light"/>
-                  <p className="text-gray-300 w-full text-lg md:text-base">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
+              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-black/20 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
+                  <HeartHandshake size={50} className="text-white font-light flex-shrink-0"/>
+                  <p className="text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
                 </div>
-                <button onClick={() => setJoinTeamModalOpen(true)} className=" bg-[#0891B2] text-base md:text-base px-16 py-5 rounded-lg whitespace-nowrap">Join Our Team</button>
+                <button onClick={() => setJoinTeamModalOpen(true)} className="w-full lg:w-auto bg-[#0891B2] text-base md:text-base px-8 py-4 md:px-16 md:py-5 rounded-lg whitespace-nowrap mt-6 lg:mt-0">Join Our Team</button>
               </motion.div>
             )}
           </AnimatePresence>

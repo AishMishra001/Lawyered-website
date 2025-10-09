@@ -133,7 +133,8 @@ function LotsInfrastructure() {
             onMouseEnter={() => setHoveredCard(1)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <p className="text-base text-gray-400">Layer 1</p>
+            {/* <p className="text-base text-gray-400">Layer 1</p>
+             */}
             <h3 className="text-lg md:text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
             <Image
               src={hoveredCard === 1 ? "/sticker23.png" : "/sticker32.png"}
@@ -155,7 +156,7 @@ function LotsInfrastructure() {
             onMouseEnter={() => setHoveredCard(2)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <p className="text-base text-gray-400">Layer 2</p>
+            {/* <p className="text-base text-gray-400">Layer 2</p> */}
             <h3 className="text-lg md:text-2xl font-bold mt-1">On-Site Deployment</h3>
             <Image
               src={hoveredCard === 2 ? "/sticker22.png" : "/sticker88.png"}
@@ -177,7 +178,7 @@ function LotsInfrastructure() {
             onMouseEnter={() => setHoveredCard(3)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <p className="text-base text-gray-400">Layer 3</p>
+            {/* <p className="text-base text-gray-400">Layer 3</p> */}
             <h3 className="text-lg md:text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
             <Image
               src={hoveredCard === 3 ? "/sticker24.png" : "/sticker42.png"}
