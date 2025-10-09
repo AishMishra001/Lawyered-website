@@ -99,10 +99,10 @@ function ChallanHero() {
         </div>
       </div>
 
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-20 pb-8 md:py-32 flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[80vh] md:min-h-screen">
         {/* Left Column: Sticker */}
         <div
-          className="flex justify-center pt-26 relative h-[600px] w-[700px]"
+          className="flex justify-center pt-4 md:pt-26 relative h-[250px] md:h-[600px] w-full md:w-[700px] order-2 md:order-1"
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
@@ -120,21 +120,22 @@ function ChallanHero() {
                 alt={slides[index].alt}
                 width={slides[index].width}
                 height={slides[index].height}
-                className="object-contain"
+                className="object-contain w-64 md:w-full h-auto"
               />
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Right Column: Text Content */}
-        <div className="flex flex-col items-start gap-6">
+        <div className="flex flex-col items-center md:items-start gap-3 md:gap-6 order-1 md:order-2 text-center md:text-left">
           <Image
-            src="/challanPay-logo3.png" // Please ensure this logo file exists
+            src="/challanPay-logo3.png"
             alt="ChallanPay Logo"
             width={350}
             height={70}
+            className="w-64 md:w-80 h-auto"
           />
-          <div className="relative h-48 w-full">
+          <div className="relative h-24 md:h-48 w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -142,18 +143,18 @@ function ChallanHero() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="absolute"
+                className="absolute w-full"
               >
-                <h1 className="text-3xl font-bold text-white pb-4">
+                <h1 className="text-xl md:text-3xl font-bold text-white pb-2 md:pb-4 px-4 md:px-0">
                   {slides[index].h1}
                 </h1>
-                <p className="text-base text-white">
+                <p className="text-sm md:text-base text-white px-4 md:px-0">
                   {slides[index].p}
                 </p>
               </motion.div>
             </AnimatePresence>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-1 md:mt-4">
             {slides.map((_, i) => (
               <button
                 key={i}
@@ -174,26 +175,26 @@ function ChallanHero() {
 // Section 2: Content
 function ChallanContent() {
   return (
-    <div className="pb-24 px-4 md:px-26">
-      <div className="max-w-8xl mx-auto text-base text-white leading-relaxed space-y-8">
-        <p>
-          India’s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
+    <div className="pb-12 md:pb-24 px-4 md:px-26">
+      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-6 md:space-y-8">
+        <p className="px-4 md:px-0">
+          India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
-                <p>
-          ChallanPay is India’s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
+        <p className="px-4 md:px-0">
+          ChallanPay is India&apos;s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
         </p>
-        <div>
-          <p className="mb-6">
+        <div className="px-4 md:px-0">
+          <p className="mb-4 md:mb-6">
             We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
           </p>
-          <ul className="space-y-4 list-disc list-inside">
+          <ul className="space-y-3 md:space-y-4 list-disc list-inside">
             <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
             <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
             <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
             <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
           </ul>
         </div>
-        <p>
+        <p className="px-4 md:px-0">
           With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
         </p>
       </div>
@@ -255,21 +256,21 @@ function ChallanVehicleSelector() {
         return (
             <div
                 onClick={onClick}
-                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-40 h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
+                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
             >
-                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="transition-all duration-300" />
+                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="transition-all duration-300 w-16 md:w-24 h-auto" />
             </div>
         );
     };
 
   return (
-    <div className="py-24 px-4 md:px-26">
-      <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-center px-22">
+    <div className="py-12 md:py-24 px-4 md:px-26">
+      <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4 md:px-22">
         {/* Left Column: Vehicle Type Buttons */}
-        <div>
-          <h2 className="text-2xl font-bold mb-8">Select Vehicle Type*</h2>
-          <div className="flex flex-col items-start gap-y-14">
-            <div className="flex justify-start gap-x-6">
+        <div className="w-full">
+          <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center md:text-left">Select Vehicle Type*</h2>
+          <div className="flex flex-col items-center md:items-start gap-y-8 md:gap-y-14">
+            <div className="flex justify-center md:justify-start gap-x-4 md:gap-x-6">
                 <VehicleCircle 
                     vehicle={vehicleData[0]}
                     isSelected={selectedVehicleId === vehicleData[0].id}
@@ -281,7 +282,7 @@ function ChallanVehicleSelector() {
                     onClick={() => handleVehicleSelect(vehicleData[1].id)}
                 />
             </div>
-            <div className="flex justify-start gap-x-6">
+            <div className="flex justify-center md:justify-start gap-x-4 md:gap-x-6">
                 <VehicleCircle 
                     vehicle={vehicleData[2]}
                     isSelected={selectedVehicleId === vehicleData[2].id}
@@ -297,23 +298,23 @@ function ChallanVehicleSelector() {
         </div>
 
         {/* Right Column: Input and Checkbox */}
-        <div className="space-y-12">
+        <div className="w-full space-y-8 md:space-y-12">
           <div>
             <input
               type="text"
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
               placeholder="e.g. UP32MM1313"
-              className={`w-full bg-white text-black text-2xl font-mono tracking-widest p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
+              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
             />
-            {!isValid && <p className="text-red-500 mt-2">Please enter a valid vehicle number.</p>}
+            {!isValid && <p className="text-red-500 mt-2 text-sm md:text-base">Please enter a valid vehicle number.</p>}
           </div>
-          <button onClick={handleCheckChallan} className="w-[50%] bg-[#0b9eb4] text-white text-base py-4 px-10 rounded-lg">
+          <button onClick={handleCheckChallan} className="w-full md:w-[50%] bg-[#0b9eb4] text-white text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-lg">
             Check Challan Status
           </button>
-          <div className="flex items-start gap-4">
-            <input type="checkbox" id="terms" className="h-10 w-10 rounded bg-gray-700 border-gray-600 accent-brand-cyan"/>
-            <label htmlFor="terms" className="text-white text-base">
+          <div className="flex items-start gap-3 md:gap-4">
+            <input type="checkbox" id="terms" className="h-6 w-6 md:h-10 md:w-10 rounded bg-gray-700 border-gray-600 accent-brand-cyan flex-shrink-0 mt-1"/>
+            <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
               <Link href="/terms-and-conditions" className="hover:font-bold hover:text-[#22D2EE]">
                 terms, conditions
@@ -400,10 +401,10 @@ function ChallanWhatsapp() {
 
   return (
     <>
-      <div className="py-16 px-4 md:px-26 border-y-2 border-gray-800">
-        <div className="max-w-8xl grid md:grid-cols-2 gap-16 items-center">
+      <div className="py-12 md:py-16 px-4 md:px-26 border-y-2 border-gray-800">
+        <div className="max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div 
-            className="flex justify-start bg-transparent rounded-lg p-4"
+            className="flex justify-center md:justify-start bg-transparent rounded-lg p-4 order-2 md:order-1"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -412,15 +413,15 @@ function ChallanWhatsapp() {
               alt="Trucks on a highway"
               width={500}
               height={200}
-              className="object-contain"
+              className="object-contain w-64 md:w-full h-auto"
             />
           </div>
-          <div className="flex flex-col items-start gap-6">
-            <p className="text-2xl font-semibold text-white">
+          <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 order-1 md:order-2 text-center md:text-left">
+            <p className="text-lg md:text-2xl font-semibold text-white px-4 md:px-0">
               Want to check challans for multiple vehicles together? Do not worry.
             </p>
             {/* This button now opens the modal */}
-            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-8 py-4 rounded-lg text-base">
+            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-sm md:text-base">
               <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
               Chat with us on WhatsApp
             </button>

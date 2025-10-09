@@ -76,7 +76,7 @@ function LotsHero() {
         </div>
       </div>
       <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
-        <Image src="/lots247-logo2.png" alt="LOTS 247 Logo" width={400} height={100} priority />
+        <Image src="/lots247-logo2.png" alt="LOTS 247 Logo" width={400} height={100} priority className="w-64 md:w-96 h-auto" />
         
         <div className="relative h-48 mt-6 w-full">
             <AnimatePresence mode="wait">
@@ -88,8 +88,8 @@ function LotsHero() {
                 transition={{ duration: 0.5 }}
                 className="absolute w-full left-0 right-0"
               >
-                <h1 className="text-4xl font-bold text-white">{slides[index].h1}</h1>
-                <p className="mt-4 text-base text-white max-w-6xl mx-auto">{slides[index].p}</p>
+                <h1 className="text-2xl md:text-4xl font-bold text-white px-4">{slides[index].h1}</h1>
+                <p className="mt-4 text-sm md:text-base text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
               </motion.div>
             </AnimatePresence>
         </div>
@@ -107,7 +107,7 @@ function LotsHero() {
             ))}
         </div>
       </div>
-      <p className="relative z-10 text-white w-full mx-auto mt-24 px-26 text-base">
+      <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 text-sm md:text-base max-w-4xl">
         LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
         (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
         and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
@@ -121,12 +121,12 @@ function LotsHero() {
 function LotsInfrastructure() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   return (
-    <div className="py-24 px-4 md:px-26">
+    <div className="py-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-2xl font-semibold text-center mb-16">
+        <h2 className="text-xl md:text-2xl font-semibold text-center mb-8 md:mb-16 px-4">
           The Only Scalable & Dependable Legal-Tech Infrastructure
         </h2>
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Card 1 */}
           <div
             className="border border-gray-800 p-6 bg-transparent"
@@ -134,15 +134,15 @@ function LotsInfrastructure() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <p className="text-base text-gray-400">Layer 1</p>
-            <h3 className="text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
+            <h3 className="text-lg md:text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
             <Image
               src={hoveredCard === 1 ? "/sticker23.png" : "/sticker32.png"}
               alt="On-Call Resolution"
               width={200}
               height={200}
-              className="mx-auto my-8"
+              className="mx-auto my-6 md:my-8 w-32 md:w-48"
             />
-            <p className="text-gray-300 text-base">
+            <p className="text-gray-300 text-sm md:text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
               <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
               issues before they spiral, backed by in-house Lawyers.
@@ -156,15 +156,15 @@ function LotsInfrastructure() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <p className="text-base text-gray-400">Layer 2</p>
-            <h3 className="text-2xl font-bold mt-1">On-Site Deployment</h3>
+            <h3 className="text-lg md:text-2xl font-bold mt-1">On-Site Deployment</h3>
             <Image
               src={hoveredCard === 2 ? "/sticker22.png" : "/sticker88.png"}
               alt="On-Site Deployment"
               width={200}
               height={200}
-              className="mx-auto my-6"
+              className="mx-auto my-4 md:my-6 w-32 md:w-48"
             />
-            <p className="text-gray-300 text-base pt-10">
+            <p className="text-gray-300 text-sm md:text-base pt-6 md:pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
               <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
               deployment anytime, anywhere.
@@ -178,15 +178,15 @@ function LotsInfrastructure() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <p className="text-base text-gray-400">Layer 3</p>
-            <h3 className="text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
+            <h3 className="text-lg md:text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
             <Image
               src={hoveredCard === 3 ? "/sticker24.png" : "/sticker42.png"}
               alt="Challans & RTO Service"
               width={240}
               height={240}
-              className="mx-auto my-6"
+              className="mx-auto my-4 md:my-6 w-36 md:w-56"
             />
-            <ul className="text-gray-300 space-y-4 text-base">
+            <ul className="text-gray-300 space-y-3 md:space-y-4 text-sm md:text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
                 dashboard for tracking traffic violations across multiple vehicles.
@@ -231,84 +231,93 @@ function LotsPricing() {
     <div className="pb-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
       <div className="absolute inset-0 bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
-        <h2 className="text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
-        <p className="text-gray-300 text-center text-base mt-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-center px-4">Drive Ahead Without Legal Worries!</h2>
+        <p className="text-gray-300 text-center text-sm md:text-base mt-2 px-4">
           Choose the right package to keep your fleet running smoothly
         </p>
 
-        {/* THE FIX: Adjusted grid columns and gap */}
-        <div className="mt-22 grid grid-cols-[1.5fr_3fr] gap-12 items-end">
+        {/* Mobile-first responsive pricing table */}
+        <div className="mt-12 md:mt-22">
           
-          {/* Left side: Character illustration + Features Column */}
-          {/* THE FIX: Restructured to place sticker cleanly above the box */}
-          <div className="flex flex-col">
-            <div className="flex items-center justify-center">
-              <Image src="/sticker44.png" alt="Sticker" width={350} height={350} className="object-contain" />
-            </div>
-            <div className="bg-white rounded-lg py-6 space-y-4">
-              {features.map((f, idx) => (
-                <div key={idx} className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center text-black border-b border-black/10 last:border-b-0">
-                  {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right side: Plans Columns (remains the same) */}
-          <div className="grid grid-cols-3 gap-6">
-            {plans.map((plan) => (
-              <div key={plan.name} className="relative flex flex-col gap-4">
-                
-                {plan.topSeller && (
-                  <Image 
-                    src="/TopSeller.png" 
-                    alt="Top Seller"
-                    width={150}
-                    height={150}
-                    className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10"
-                  />
-                )}
-                
-                <div className={`rounded-xl p-6 flex items-center justify-center ${plan.bgColor}`}>
-                  <Image
-                    src={plan.logo || "/placeholder.svg"}
-                    alt={`${plan.name} logo`}
-                    width={150}
-                    height={50}
-                    className="object-contain"
-                  />
-                </div>
-                
-                <div className="bg-white rounded-lg py-6 space-y-4">
-                  {plan.values.map((val, idx) => (
-                    <div
-                      key={idx}
-                      className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center border-b border-black/10 last:border-b-0"
-                    >
-                      {val === true ? (
-                        <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain" />
-                      ) : val === false ? (
-                        <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain" />
-                      ) : (typeof val === 'string' && val.includes(' , ')) ? (
-                        <div>
-                            {val.split(' , ').map((line, i) => {
-                                if (!isNaN(Number(line.replace(/,/g, '')))) {
-                                    if (plan.name === 'V Care' && idx === 4) {
-                                        return <p key={i} className="text-black">{line}</p>;
-                                    }
-                                    return <p key={i} className="text-black">INR {line}</p>;
-                                }
-                                return <p key={i} className="text-black">{line}</p>;
-                            })}
-                        </div>
-                      ) : (
-                        <p className="text-black">{val}</p>
-                      )}
+          {/* Mobile: Stack vertically, Desktop: Side by side */}
+          <div className="flex flex-col lg:flex-row lg:gap-12 lg:items-end">
+            
+            {/* Left side: Character illustration + Features Column */}
+            <div className="flex flex-col mb-8 lg:mb-0">
+              <div className="flex items-center justify-center mb-6">
+                <Image src="/sticker44.png" alt="Sticker" width={350} height={350} className="object-contain w-48 md:w-64 lg:w-80" />
+              </div>
+              <div className="bg-white rounded-lg py-4 md:py-6 space-y-2 md:space-y-4 overflow-x-auto">
+                <div className="min-w-[200px]">
+                  {features.map((f, idx) => (
+                    <div key={idx} className="min-h-[2.5rem] md:min-h-[3rem] py-2 flex items-center justify-center text-sm md:text-lg text-center text-black border-b border-black/10 last:border-b-0 px-2">
+                      {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right side: Plans Columns - Horizontal scroll on mobile */}
+            <div className="flex-1">
+              <div className="overflow-x-auto">
+                <div className="flex gap-4 md:gap-6 min-w-[600px] md:min-w-0 md:grid md:grid-cols-3">
+                  {plans.map((plan) => (
+                    <div key={plan.name} className="relative flex flex-col gap-4 min-w-[180px] md:min-w-0">
+                      
+                      {plan.topSeller && (
+                        <Image 
+                          src="/TopSeller.png" 
+                          alt="Top Seller"
+                          width={150}
+                          height={150}
+                          className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10 w-20 md:w-24"
+                        />
+                      )}
+                      
+                      <div className={`rounded-xl p-4 md:p-6 flex items-center justify-center ${plan.bgColor}`}>
+                        <Image
+                          src={plan.logo || "/placeholder.svg"}
+                          alt={`${plan.name} logo`}
+                          width={150}
+                          height={50}
+                          className="object-contain w-24 md:w-32"
+                        />
+                      </div>
+                      
+                      <div className="bg-white rounded-lg py-4 md:py-6 space-y-2 md:space-y-4">
+                        {plan.values.map((val, idx) => (
+                          <div
+                            key={idx}
+                            className="min-h-[2.5rem] md:min-h-[3rem] py-2 flex items-center justify-center text-sm md:text-lg text-center border-b border-black/10 last:border-b-0 px-1"
+                          >
+                            {val === true ? (
+                              <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain w-6 md:w-8" />
+                            ) : val === false ? (
+                              <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain w-6 md:w-8" />
+                            ) : (typeof val === 'string' && val.includes(' , ')) ? (
+                              <div className="text-xs md:text-sm">
+                                  {val.split(' , ').map((line, i) => {
+                                      if (!isNaN(Number(line.replace(/,/g, '')))) {
+                                          if (plan.name === 'V Care' && idx === 4) {
+                                              return <p key={i} className="text-black">{line}</p>;
+                                          }
+                                          return <p key={i} className="text-black">INR {line}</p>;
+                                      }
+                                      return <p key={i} className="text-black">{line}</p>;
+                                  })}
+                              </div>
+                            ) : (
+                              <p className="text-black text-xs md:text-sm">{val}</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -363,20 +372,20 @@ function LotsForm() {
   return (
     <>
       {/* The main form section */}
-      <div className="py-24 max-w-8xl px-26">
-        <div className=" mx-auto border border-gray-800 rounded-lg p-8 flex justify-center">
-          <div className="w-full max-w-8xl grid md:grid-cols-2 gap-46 items-start">
-            <p className="text-gray-200 text-base">
+      <div className="py-12 md:py-24 max-w-8xl px-4 md:px-26">
+        <div className="mx-auto border border-gray-800 rounded-lg p-4 md:p-8">
+          <div className="w-full max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <p className="text-gray-200 text-sm md:text-base text-center md:text-left">
               To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form
               and our executive will contact you.
             </p>
-            <form className="grid grid-cols-2 gap-4" onSubmit={handleFormSubmit}>
+            <form className="w-full grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleFormSubmit}>
               <input
                 type="text"
                 placeholder="Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
                 required
               />
               <input
@@ -384,12 +393,12 @@ function LotsForm() {
                 placeholder="Mobile No."
                 value={mobileNo}
                 onChange={(e) => setMobileNo(e.target.value)}
-                className="col-span-2 md:col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
                 required
               />
-              <div className="relative col-span-2">
+              <div className="relative col-span-1 md:col-span-2">
                 <select 
-                  className="w-full appearance-none bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 pr-8"
+                  className="w-full appearance-none bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 pr-8 text-sm md:text-base"
                   value={employeeCount}
                   onChange={(e) => setEmployeeCount(e.target.value)}
                   required
@@ -405,8 +414,8 @@ function LotsForm() {
                   <ChevronDown size={20} />
                 </div>
               </div>
-              <div className="col-span-2 flex justify-end">
-                <button type="submit" className="mt-2 bg-[#0891B2] text-white py-3 px-14 rounded-md">
+              <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
+                <button type="submit" className="mt-2 bg-[#0891B2] text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto">
                   Submit
                 </button>
               </div>
@@ -504,18 +513,18 @@ function LotsCoverage() {
   ]
 
   return (
-    <div className="py-24 px-4 md:px-26 max-w-8xl">
+    <div className="py-12 md:py-24 px-4 md:px-26 max-w-8xl">
       <div className="mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-16">Comprehensive Legal Coverage for Fleets</h2>
-        <div className="grid md:grid-cols-4 gap-18">
+        <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-16 px-4">Comprehensive Legal Coverage for Fleets</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <div key={i} className="border border-gray-600 p-6 flex flex-col">
               <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
-              <p className="text-gray-300 text-base pb-32">{stat.text}</p>
+              <p className="text-gray-300 text-sm md:text-base pb-8 md:pb-32">{stat.text}</p>
             </div>
           ))}
         </div>
-        <div className="mt-24 relative rounded-lg overflow-hidden text-center p-16 flex flex-col items-center justify-center">
+        <div className="mt-12 md:mt-24 relative rounded-lg overflow-hidden text-center p-8 md:p-16 flex flex-col items-center justify-center">
           <Image
             src="/road-forest.jpg"
             alt="Road in a forest"
@@ -524,10 +533,10 @@ function LotsCoverage() {
           />
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div className="relative z-20">
-            <h3 className="text-2xl text-white">Connect with us to know more at</h3>
+            <h3 className="text-lg md:text-2xl text-white px-4">Connect with us to know more at</h3>
             <a
               href="mailto:Sales@lawyered.in"
-              className="inline-block mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-lg px-12 py-4"
+              className="inline-block mt-4 md:mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4"
             >
               Sales@lawyered.in
             </a>

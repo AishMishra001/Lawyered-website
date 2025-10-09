@@ -52,7 +52,7 @@ export function Platforms() {
   };
 
   return (
-    <div ref={containerRef} className="relative md:pb-24 px-4 md:px-24">
+    <div ref={containerRef} className="relative pb-12 md:pb-24 px-4 md:px-24">
       <div className="absolute inset-0 z-0" style={spotlightStyle}>
         <div className="relative w-full h-full opacity-40">
           <Image
@@ -73,22 +73,22 @@ export function Platforms() {
           </p>
 
           <div 
-            className=" mt-12 md:mt-16 grid md:grid-cols-2"
+            className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
             {/* LOTS 247 Card */}
-            <div className="flex flex-col items-center gap-6 text-center">
+            <div className="flex flex-col items-center gap-6 text-center py-8 md:py-0">
               <div className="h-20 flex items-center"> 
                 <Image
                   src="/lots-247-logo.png"
                   alt="LOTS 247 Logo"
                   width={250}
                   height={70}
-                  className="object-contain"
+                  className="object-contain w-48 md:w-60 h-auto"
                 />
               </div>
-              <p className="text-gray-300 text-base max-w-sm flex-grow">
+              <p className="text-gray-300 text-sm md:text-base max-w-sm flex-grow px-4 md:px-0">
                 LOTS247 is not just a legal solution; it is a mission-critical,
                 technology-driven new SaaS (Service-as-a-Software) designed to
                 eliminate roadside legal issues in real time- India&apos;s first
@@ -102,17 +102,17 @@ export function Platforms() {
             </div>
 
             {/* ChallanPay Card */}
-            <div className="flex flex-col items-center gap-6 text-center">
+            <div className="flex flex-col items-center gap-6 text-center py-8 md:py-0">
               <div className="h-20 flex items-center">
                 <Image
                   src="/challanPay-logo2.png"
                   alt="ChallanPay Logo"
                   width={250}
                   height={70}
-                  className="object-contain"
+                  className="object-contain w-48 md:w-60 h-auto"
                 />
               </div>
-              <p className="text-gray-300 text-base max-w-sm flex-grow">
+              <p className="text-gray-300 text-sm md:text-base max-w-sm flex-grow px-4 md:px-0">
                 ChallanPay is India&apos;s first unified platform for discovering,
                 resolving, and tracking traffic challans across all states and
                 enforcement authorities.
