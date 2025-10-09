@@ -93,6 +93,7 @@ function CeoHero() {
 
 // Content Section Component
 function CeoContent() {
+  const [isLinkedInHovered, setIsLinkedInHovered] = useState(false);
   const messageParagraphs = [
     "Dear friends,",
     "When I think back about “why Lawyered”, it’s something very simple. For most people, law feels like a wall, not a safety net. The moment you need legal help, it’s usually because something has already gone wrong. That always felt unjust to me. Why should law only show up when you’re already stuck?",
@@ -113,8 +114,19 @@ function CeoContent() {
           <p className="text-base">Regards,</p>
           <div className="flex items-center gap-4 mt-4">
             <p className="text-3xl font-bold text-[#22D2EE]">Himanshu Gupta</p>
-            <a href="https://www.linkedin.com/in/gupta-himanshu/" target="_blank" rel="noopener noreferrer">
-              <Image src="/Linkedin2.png" alt="LinkedIn" width={32} height={32} />
+            <a
+              href="https://www.linkedin.com/in/gupta-himanshu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setIsLinkedInHovered(true)}
+              onMouseLeave={() => setIsLinkedInHovered(false)}
+            >
+              <Image
+                src={isLinkedInHovered ? "/Linkedin2.png" : "/Linkedin.png"}
+                alt="LinkedIn"
+                width={32}
+                height={32}
+              />
             </a>
           </div>
           <p className="text-white">Founder & CEO</p>

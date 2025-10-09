@@ -21,9 +21,9 @@ export function Footer() {
           </div>
           
           {/* Column 2 & 3: Links */}
-          <div className="col-span-1 grid grid-cols-2 gap-4 md:gap-8 text-sm">
+          <div className=" mt-4 col-span-1 grid grid-cols-2 gap-4 md:gap-8 text-sm">
             <div>
-              <ul className="space-y-3 md:space-y-6">
+              <ul className="space-y-3 md:space-y-5">
                 <li><Link href="#" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
                 <li><Link href="/ceo-message" className="text-white hover:text-[#22D2EE] hover:font-bold">CEO&apos;S MESSAGE</Link></li>
                 <li><Link href="/lots-247" className="text-white hover:text-[#22D2EE] hover:font-bold">LOTS247</Link></li>
@@ -31,7 +31,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-               <ul className="space-y-3 md:space-y-6">
+               <ul className="space-y-3 md:space-y-5">
                 <li><Link href="/about-us" className="text-white hover:text-[#22D2EE] hover:font-bold">ABOUT US</Link></li>
                 <li><Link href="/blogs" className="text-white hover:text-[#22D2EE] hover:font-bold">BLOGS</Link></li>
                 <li><Link href="/contact-us" className="text-white hover:text-[#22D2EE] hover:font-bold">CONTACT US</Link></li>
@@ -40,7 +40,7 @@ export function Footer() {
           </div>
           
           {/* Column 4: Social */}
-          <div className="col-span-1  flex justify-center md:justify-start">
+          <div className="col-span-1  flex justify-center md:justify-start mt-4">
             <div className="flex justify-start items-start space-x-3 md:space-x-4">
               <Link href="https://www.facebook.com/share/1FE5v6q9Vz/" onMouseEnter={() => setHovered('facebook')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'facebook' ? '/facebook2.png' : '/facebook.png'} alt="Facebook" width={25} height={25} className="w-6 md:w-7 h-auto" />
@@ -55,7 +55,7 @@ export function Footer() {
                 <Image src={hovered === 'twitter' ? '/twitter2.png' : '/twitter.png'} alt="Twitter" width={25} height={25} className="w-6 md:w-7 h-auto" />
               </Link>
               <Link className="mt-0.5" href="https://www.youtube.com/@LawyeredIN/videos" onMouseEnter={() => setHovered('youtube')} onMouseLeave={() => setHovered('')}>
-                <Image src={hovered === 'youtube' ? '/youtube2.png' : '/youtube.png'} alt="YouTube" width={25} height={25} className="w-6 md:w-7 h-auto" />
+                <Image src={hovered === 'youtube' ? '/youtube4.png' : '/youtube3.png'} alt="YouTube" width={25} height={25} className="w-6 md:w-7 h-auto" />
               </Link>
             </div>
           </div>
