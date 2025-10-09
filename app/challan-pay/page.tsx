@@ -313,7 +313,7 @@ function ChallanVehicleSelector() {
             Check Challan Status
           </button>
           <div className="flex items-start gap-3 md:gap-4">
-            <input type="checkbox" id="terms" className="h-6 w-6 md:h-10 md:w-10 rounded bg-gray-700 border-gray-600 accent-brand-cyan flex-shrink-0 mt-1"/>
+            <input type="checkbox" id="terms" className="md:h-5 md:w-5 rounded bg-gray-700 border-gray-600 accent-brand-cyan flex-shrink-0 mt-1"/>
             <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
               <Link href="/terms-and-conditions" className="hover:font-bold hover:text-[#22D2EE]">

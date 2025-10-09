@@ -336,6 +336,14 @@ function LotsForm() {
   const [mobileNo, setMobileNo] = useState("");
   const [employeeCount, setEmployeeCount] = useState("1-10");
 
+  const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const numericValue = value.replace(/[^0-9]/g, "");
+    if (numericValue.length <= 10) {
+      setMobileNo(numericValue);
+    }
+  };
+
   // Handler for the main form submission
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -392,7 +400,7 @@ function LotsForm() {
                 type="tel"
                 placeholder="Mobile No."
                 value={mobileNo}
-                onChange={(e) => setMobileNo(e.target.value)}
+                onChange={handleMobileNoChange}
                 className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
                 required
               />
