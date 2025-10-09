@@ -252,7 +252,7 @@ function ChallanVehicleSelector() {
 
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
-        const iconSize = isSelected ? 120 : 100;
+      const iconSize = isSelected ? 100 : 150;
         return (
             <div
                 onClick={onClick}

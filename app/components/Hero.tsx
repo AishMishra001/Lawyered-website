@@ -73,9 +73,9 @@ export function Hero() {
             <Image
               src="/founder-photo2.png"
               alt="Himanshu Gupta, Founder & CEO"
-              width={100}
-              height={100}
-              className="w-[100px] h-[100px] md:w-[100px] md:h-[100px]"
+              width={150}
+              height={150}
+              className="w-[100px] h-[100px] md:w-[120px] md:h-[120px]"
             />
             <div className="text-center md:text-left flex flex-col justify-between">
 

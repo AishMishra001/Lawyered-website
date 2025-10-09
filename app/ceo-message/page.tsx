@@ -109,13 +109,16 @@ function CeoContent() {
         ))}
         
         {/* Signature */}
-        <a href="https://www.linkedin.com/in/gupta-himanshu/" target="_blank" rel="noopener noreferrer">
-          <div className="pt-8">
-            <p className="text-base">Regards,</p>
-            <p className="text-3xl font-bold text-[#22D2EE] mt-4">Himanshu Gupta</p>
-            <p className="text-white">Founder & CEO</p>
+        <div className="pt-8">
+          <p className="text-base">Regards,</p>
+          <div className="flex items-center gap-4 mt-4">
+            <p className="text-3xl font-bold text-[#22D2EE]">Himanshu Gupta</p>
+            <a href="https://www.linkedin.com/in/gupta-himanshu/" target="_blank" rel="noopener noreferrer">
+              <Image src="/Linkedin2.png" alt="LinkedIn" width={32} height={32} />
+            </a>
           </div>
-        </a>
+          <p className="text-white">Founder & CEO</p>
+        </div>
       </div>
     </div>
   );

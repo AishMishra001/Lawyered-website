@@ -55,59 +55,68 @@ export function News() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
-  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePrev = () => {
     if (scrollContainerRef.current) {
       setIsInteracting(true);
-      scrollContainerRef.current.scrollBy({ left: -scrollContainerRef.current.offsetWidth, behavior: 'smooth' });
-      setTimeout(() => setIsInteracting(false), 2000);
+      const { scrollLeft, scrollWidth, offsetWidth } = scrollContainerRef.current;
+      const halfScrollWidth = scrollWidth / 2;
+
+      if (scrollLeft < offsetWidth) {
+        scrollContainerRef.current.scrollTo({ left: halfScrollWidth - offsetWidth, behavior: 'smooth' });
+      } else {
+        scrollContainerRef.current.scrollBy({ left: -offsetWidth, behavior: 'smooth' });
+      }
+      setTimeout(() => setIsInteracting(false), 5000);
     }
   };
 
   const handleNext = () => {
     if (scrollContainerRef.current) {
       setIsInteracting(true);
-      scrollContainerRef.current.scrollBy({ left: scrollContainerRef.current.offsetWidth, behavior: 'smooth' });
-      setTimeout(() => setIsInteracting(false), 2000);
-    }
-  };
+      const { scrollLeft, scrollWidth, offsetWidth } = scrollContainerRef.current;
+      const halfScrollWidth = scrollWidth / 2;
 
-  const startScrolling = () => {
-    if (scrollIntervalRef.current) {
-      clearInterval(scrollIntervalRef.current);
-    }
-    scrollIntervalRef.current = setInterval(() => {
-      if (scrollContainerRef.current) {
-        const { scrollLeft, scrollWidth } = scrollContainerRef.current;
-        const halfScrollWidth = scrollWidth / 2;
-
-        if (scrollLeft >= halfScrollWidth) {
-          scrollContainerRef.current.scrollLeft = 0;
-        } else {
-          scrollContainerRef.current.scrollLeft += 1;
-        }
+      if (scrollLeft + offsetWidth >= halfScrollWidth) {
+        scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollContainerRef.current.scrollBy({ left: offsetWidth, behavior: 'smooth' });
       }
-    }, 25);
-  };
-
-  const stopScrolling = () => {
-    if (scrollIntervalRef.current) {
-      clearInterval(scrollIntervalRef.current);
+      setTimeout(() => setIsInteracting(false), 5000);
     }
   };
 
   useEffect(() => {
+    const scroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, offsetWidth } = scrollContainerRef.current;
+        const halfScrollWidth = scrollWidth / 2;
+
+        if (scrollLeft + offsetWidth >= halfScrollWidth) {
+          scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollContainerRef.current.scrollBy({ left: offsetWidth, behavior: 'smooth' });
+        }
+      }
+    };
+
+    let interval: NodeJS.Timeout | null = null;
     if (!isHovering && !isInteracting) {
-      startScrolling();
-    } else {
-      stopScrolling();
+      interval = setInterval(scroll, 4000); // Scroll every 4 seconds
     }
 
     return () => {
-      stopScrolling();
+      if (interval) {
+        clearInterval(interval);
+      }
     };
   }, [isHovering, isInteracting]);
+
+  const chunkSize = 3;
+  const newsChunks = [];
+  for (let i = 0; i < extendedNewsData.length; i += chunkSize) {
+      newsChunks.push(extendedNewsData.slice(i, i + chunkSize));
+  }
 
   return (
     <div className="py-24 px-4 md:px-26">
@@ -137,26 +146,30 @@ export function News() {
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <div ref={scrollContainerRef} className="flex gap-8 overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {extendedNewsData.map((article, index) => (
-              <div key={index} className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full md:w-[calc((100%-64px)/3)]">
-                <div className="h-10 flex items-center">
-                  <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="contain" className={article.image === '/news6.png' ? '' : 'filter brightness-0 invert'} />
-                </div>
-                <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg overflow-hidden">
-                  <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]">
-                    {article.headline}
-                  </Link>
-                </h3>
-                <p className="text-white text-base leading-relaxed  max-w-lg overflow-hidden">
-                  {article.description}
-                </p>
-                <div className="mt-auto flex justify-between items-center text-sm">
-                  <span className="text-gray-500">{article.date}</span>
-                  <Link href={article.link} className="text-[#22D2EE] text-lg hover:underline font-semibold">
-                    Read More
-                  </Link>
-                </div>
+          <div ref={scrollContainerRef} className="flex overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {newsChunks.map((chunk, pageIndex) => (
+              <div key={pageIndex} className="flex gap-8 flex-shrink-0 w-full">
+                {chunk.map((article, articleIndex) => (
+                  <div key={`${pageIndex}-${articleIndex}`} className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full md:w-[calc((100%-64px)/3)]">
+                    <div className="h-10 flex items-center">
+                      <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="contain" className={article.image === '/news6.png' ? '' : 'filter brightness-0 invert'} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg overflow-hidden">
+                      <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]">
+                        {article.headline}
+                      </Link>
+                    </h3>
+                    <p className="text-white text-base leading-relaxed  max-w-lg overflow-hidden">
+                      {article.description}
+                    </p>
+                    <div className="mt-auto flex justify-between items-center text-sm">
+                      <span className="text-gray-500">{article.date}</span>
+                      <Link href={article.link} className="text-[#22D2EE] text-lg hover:underline font-semibold">
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
             ))}
           </div>

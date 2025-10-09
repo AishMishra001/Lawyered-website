@@ -206,13 +206,15 @@ function LotsInfrastructure() {
 
 // Section 3: Drive Ahead Without Legal Worries! (Pricing)
 function LotsPricing() {
+  const [isStickerHovered, setIsStickerHovered] = useState(false);
   const features = [
-    "Number of Vehicles", "24/7 On-Call Resolution", "On-Site Legal Resolution", "Challan-as-a-Serivce",
-    "Online Lok Adalat Court", "RTO-as-a-Serivce", "Dashboard Access", "No.of Users", "Automated Report",
-    "Persoanlized Reports", "Incident Update via WhatsApp", "Add-Ons", "Value-Added Services",
+    "Number of Vehicles", "24/7 On-Call Resolution", "On-Site Legal Resolution", "Challan-as-a-Service",
+    "Online Lok Adalat Court", "RTO-as-a-Service", "Dashboard Access", "No.of Users", "Automated Report",
+    "Personalized Reports", "Incident Update via WhatsApp", "Add-Ons", "Value-Added Services",
     "Dedicated Account Manager", "Bulk Challan Resolution", "API Integration",
   ];
 
+  
   const plans = [
     {
       name: "U Drive", logo: "/Udrive.png", bgColor: "bg-[#06B6D4]",
@@ -224,101 +226,98 @@ function LotsPricing() {
     },
     {
       name: "V Care", logo: "/Vcare.png", topSeller: true, bgColor: "bg-[#FF9100]",
-      values: ["Unlimited", true, "Pay Per Use", true, "39 , As per Add-on B2 , ", "Pay Per Use", true, "10", true, true, true, "B1,B2,B3#", "Worth 20K", true, true, true],
+      values: ["Unlimited", true, "Pay Per Use", true, "39 , As per Add-on B2 , \u00A0", "Pay Per Use", true, "10", true, true, true, "B1,B2,B3#", "Worth 20K", true, true, true],
     },
   ];
 
   return (
-    <div className="pb-24 px-4 md:px-26 relative bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
-      <div className="absolute inset-0 bg-brand-dark/95"></div>
+    <div className="pb-24 px-4 md:px-8 lg:px-26 relative bg-transparent lg:bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] bg-[center_top_10rem]">
+      <div className="absolute inset-0 bg-brand-dark/95 lg:bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-center px-4">Drive Ahead Without Legal Worries!</h2>
-        <p className="text-gray-300 text-center text-sm md:text-base mt-2 px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
+        <p className="text-gray-300 text-center text-base mt-2">
           Choose the right package to keep your fleet running smoothly
         </p>
 
-        {/* Mobile-first responsive pricing table */}
-        <div className="mt-12 md:mt-22">
+        <div className="mt-12 lg:mt-22 grid grid-cols-1 lg:grid-cols-[1.5fr_3fr] gap-8 lg:gap-12 items-start lg:items-end">
           
-          {/* Mobile: Stack vertically, Desktop: Side by side */}
-          <div className="flex flex-col lg:flex-row lg:gap-12 lg:items-end">
-            
-            {/* Left side: Character illustration + Features Column */}
-            <div className="flex flex-col mb-8 lg:mb-0">
-              <div className="flex items-center justify-center mb-6">
-                <Image src="/sticker44.png" alt="Sticker" width={350} height={350} className="object-contain w-48 md:w-64 lg:w-80" />
-              </div>
-              <div className="bg-white rounded-lg py-4 md:py-6 space-y-2 md:space-y-4 overflow-x-auto">
-                <div className="min-w-[200px]">
-                  {features.map((f, idx) => (
-                    <div key={idx} className="min-h-[2.5rem] md:min-h-[3rem] py-2 flex items-center justify-center text-sm md:text-lg text-center text-black border-b border-black/10 last:border-b-0 px-2">
-                      {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <div className="hidden lg:flex flex-col">
+            <div 
+              className="flex items-center justify-center"
+              onMouseEnter={() => setIsStickerHovered(true)}
+              onMouseLeave={() => setIsStickerHovered(false)}
+            >
+              <Image src={isStickerHovered ? "/sticker44.png" : "/sticker111.png"} alt="Sticker" width={350} height={350} className="object-contain" />
             </div>
+            <div className="bg-white rounded-lg py-6 space-y-4">
+              {features.map((f, idx) => (
+                <div key={idx} className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center text-black border-b border-black/10 last:border-b-0">
+                  {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Right side: Plans Columns - Horizontal scroll on mobile */}
-            <div className="flex-1">
-              <div className="overflow-x-auto">
-                <div className="flex gap-4 md:gap-6 min-w-[600px] md:min-w-0 md:grid md:grid-cols-3">
-                  {plans.map((plan) => (
-                    <div key={plan.name} className="relative flex flex-col gap-4 min-w-[180px] md:min-w-0">
-                      
-                      {plan.topSeller && (
-                        <Image 
-                          src="/TopSeller.png" 
-                          alt="Top Seller"
-                          width={150}
-                          height={150}
-                          className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10 w-20 md:w-24"
-                        />
-                      )}
-                      
-                      <div className={`rounded-xl p-4 md:p-6 flex items-center justify-center ${plan.bgColor}`}>
-                        <Image
-                          src={plan.logo || "/placeholder.svg"}
-                          alt={`${plan.name} logo`}
-                          width={150}
-                          height={50}
-                          className="object-contain w-24 md:w-32"
-                        />
-                      </div>
-                      
-                      <div className="bg-white rounded-lg py-4 md:py-6 space-y-2 md:space-y-4">
-                        {plan.values.map((val, idx) => (
-                          <div
-                            key={idx}
-                            className="min-h-[2.5rem] md:min-h-[3rem] py-2 flex items-center justify-center text-sm md:text-lg text-center border-b border-black/10 last:border-b-0 px-1"
-                          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {plans.map((plan) => (
+              <div key={plan.name} className="relative flex flex-col gap-4">
+                
+                {plan.topSeller && (
+                  <Image 
+                    src="/TopSeller.png" 
+                    alt="Top Seller"
+                    width={150}
+                    height={150}
+                    className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10"
+                  />
+                )}
+                
+                <div className={`rounded-xl p-6 flex items-center justify-center ${plan.bgColor}`}>
+                  <Image
+                    src={plan.logo || "/placeholder.svg"}
+                    alt={`${plan.name} logo`}
+                    width={150}
+                    height={50}
+                    className="object-contain"
+                  />
+                </div>
+                
+                <div className="bg-white rounded-lg py-6 space-y-4">
+                  {plan.values.map((val, idx) => (
+                    <div
+                      key={idx}
+                      className="min-h-[3rem] py-2 px-4 lg:px-2 flex items-center justify-center text-base lg:text-lg text-center border-b border-black/10 last:border-b-0"
+                    >
+                      <div className="w-full flex items-center justify-between lg:justify-center">
+                        <span className="lg:hidden font-semibold text-sm text-gray-600 text-left pr-2">{features[idx] === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : features[idx]}</span>
+                        
+                        <div className="text-right lg:text-center">
                             {val === true ? (
-                              <Image src="/Tick.png" alt="Checkmark" width={30} height={30} className="object-contain w-6 md:w-8" />
+                                <Image src="/Tick.png" alt="Checkmark" width={24} height={24} className="object-contain inline-block" />
                             ) : val === false ? (
-                              <Image src="/CircleX.png" alt="Cross" width={30} height={30} className="object-contain w-6 md:w-8" />
+                                <Image src="/CircleX.png" alt="Cross" width={24} height={24} className="object-contain inline-block" />
                             ) : (typeof val === 'string' && val.includes(' , ')) ? (
-                              <div className="text-xs md:text-sm">
-                                  {val.split(' , ').map((line, i) => {
-                                      if (!isNaN(Number(line.replace(/,/g, '')))) {
-                                          if (plan.name === 'V Care' && idx === 4) {
-                                              return <p key={i} className="text-black">{line}</p>;
-                                          }
-                                          return <p key={i} className="text-black">INR {line}</p>;
-                                      }
-                                      return <p key={i} className="text-black">{line}</p>;
-                                  })}
-                              </div>
+                                <div>
+                                    {val.split(' , ').map((line, i) => {
+                                        if (!isNaN(Number(line.replace(/,/g, '')))) {
+                                            if (plan.name === 'V Care' && idx === 4) {
+                                                return <p key={i} className="text-black">{line}</p>;
+                                            }
+                                            return <p key={i} className="text-black">INR {line}</p>;
+                                        }
+                                        return <p key={i} className="text-black">{line}</p>;
+                                    })}
+                                </div>
                             ) : (
-                              <p className="text-black text-xs md:text-sm">{val}</p>
+                                <p className="text-black">{val}</p>
                             )}
-                          </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

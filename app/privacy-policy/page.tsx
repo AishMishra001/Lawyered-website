@@ -295,9 +295,9 @@ function PrivacyContent() {
         {/* Grievance Officer */}
         <div className="pt-8">
             <p className=" text-gray-200">Grievance Officer :</p>
-            <p className="mt-2">Name:- Ms Chandni Barak</p>
-            <p>Designation:- Senior Manager- Legal Operations</p>
-            <p>E-mail:- chandani.barak@lawyered.in</p>
+            <p className="mt-2">Name:- Ms Deeksha Varshney</p>
+            <p>Designation:- Manager - Legal Operations</p>
+            <p>E-mail:- deeksha.varshney@lawyered.in</p>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ export function AdvisorsSlider() {
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
   
   const advisors: Advisor[] = [
-    { name: "Mudit Kumar", title: "Advisor", img: "/about100.png", linkedin: "#", description: "Dummy description for Pramod kumar singh." },
+    { name: "Mudit Kumar", title: "Strategic Advisor", img: "/about100.png", linkedin: "#", description: "Dummy description for Pramod kumar singh." },
     { name: "Pramod kumar singh", title: "Advisor", img: "/about10.png", linkedin: "#", description: "Dummy description for Pramod kumar singh." },
     // { name: "Sandeep Dinodiya", title: "Technology Advisor", img: "/about11.png", linkedin: "#", description: "Dummy description for Sandeep Dinodiya." },
     // { name: "Mahavir Pratap Sharma", title: "Advisor", img: "/about12.png", linkedin: "#", description: "Dummy description for Mahavir Pratap Sharma." },
