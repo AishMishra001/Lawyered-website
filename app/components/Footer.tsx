@@ -42,21 +42,21 @@ export function Footer() {
           {/* Column 4: Social */}
           <div className="col-span-1  flex justify-center md:justify-start mt-5">
             <div className="flex justify-start items-start space-x-3 md:space-x-4">
-              <Link href="https://www.facebook.com/share/1FE5v6q9Vz/" onMouseEnter={() => setHovered('facebook')} onMouseLeave={() => setHovered('')}>
+              <a href="https://www.facebook.com/share/1FE5v6q9Vz/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHovered('facebook')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'facebook' ? '/facebook4.png' : '/facebook3.png'} alt="Facebook" width={25} height={25} className="w-6 md:w-7 h-auto" />
-              </Link>
-              <Link href="https://www.instagram.com/lawyered.in" onMouseEnter={() => setHovered('instagram')} onMouseLeave={() => setHovered('')}>
+              </a>
+              <a href="https://www.instagram.com/lawyered.in" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHovered('instagram')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'instagram' ? '/instagram4.png' : '/instagram3.png'} alt="Instagram" width={25} height={25} className="w-6 md:w-7 h-auto" />
-              </Link>
-              <Link href="https://www.linkedin.com/company/lawyered/" onMouseEnter={() => setHovered('linkedin')} onMouseLeave={() => setHovered('')}>
+              </a>
+              <a href="https://www.linkedin.com/company/lawyered/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHovered('linkedin')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'linkedin' ? '/linkedin4.png' : '/linkedin3.png'} alt="LinkedIn" width={25} height={25} className="w-6 md:w-7 h-auto" />
-              </Link>
-              <Link href="https://x.com/LawyeredIN" onMouseEnter={() => setHovered('twitter')} onMouseLeave={() => setHovered('')}>
+              </a>
+              <a href="https://x.com/LawyeredIN" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHovered('twitter')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'twitter' ? '/twitter5.png' : '/twitter3.png'} alt="Twitter" width={25} height={25} className="w-6 md:w-7 h-auto" />
-              </Link>
-              <Link className="" href="https://www.youtube.com/@LawyeredIN/videos" onMouseEnter={() => setHovered('youtube')} onMouseLeave={() => setHovered('')}>
+              </a>
+              <a className="" href="https://www.youtube.com/@LawyeredIN/videos" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHovered('youtube')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'youtube' ? '/youtube6.png' : '/youtube5.png'} alt="YouTube" width={25} height={25} className="w-6 md:w-10 h-auto" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -264,7 +264,7 @@ function LotsPricing() {
                 
                 {plan.topSeller && (
                   <Image 
-                    src="/TopSeller.png" 
+                    src="/TopSeller2.png" 
                     alt="Top Seller"
                     width={150}
                     height={150}

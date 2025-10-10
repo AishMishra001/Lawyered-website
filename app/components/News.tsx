@@ -41,7 +41,7 @@ const newsData = [
     link: "https://www.hindustantimes.com/business/delhi-traffic-challan-how-to-get-them-waived-off-or-settled-at-lok-adalat-2025-101740993817814.html",
   },
   {
-    image: "/news8.png",
+    image: "/news10.png",
     headline: "Celebrating Vision and Leadership : Himanshu Gupta Awarded 'Entrepreneur of the Year' at 2024 Entrepreneur India Startup Awards",
     description: "On February 28, 2024, the Federation of Automobile Dealers Associations (FADA) and the Raipur Automobile Dealers Association (RADA) welcomed the launch of Lawyered's flagship product, LOTS24x7 (On-Road Legal Assistance), at dealerships across Raipur, Chhattisgarh.",
     date: "Oct 23, 2024",
@@ -85,12 +85,8 @@ export function News() {
     if (scrollContainerRef.current) {
       setIsInteracting(true);
       const container = scrollContainerRef.current;
-      const currentScroll = container.scrollLeft;
-      const itemWidth = container.firstChild ? (container.firstChild as HTMLElement).offsetWidth : 400;
-      const gap = 32;
-      const scrollAmount = isMobile ? itemWidth + gap : (itemWidth * 3) + (gap * 2);
-      const newScrollPosition = Math.max(0, currentScroll - scrollAmount);
-      container.scrollTo({ left: newScrollPosition, behavior: 'smooth' });
+      const scrollAmount = getScrollAmount();
+      container.scrollTo({ left: container.scrollLeft - scrollAmount, behavior: 'smooth' });
       setTimeout(() => setIsInteracting(false), 1000);
     }
   };
@@ -99,31 +95,42 @@ export function News() {
     if (scrollContainerRef.current) {
       setIsInteracting(true);
       const container = scrollContainerRef.current;
-      const currentScroll = container.scrollLeft;
-      const itemWidth = container.firstChild ? (container.firstChild as HTMLElement).offsetWidth : 400;
-      const gap = 32;
-      const scrollAmount = isMobile ? itemWidth + gap : (itemWidth * 3) + (gap * 2);
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      const newScrollPosition = Math.min(maxScroll, currentScroll + scrollAmount);
-      container.scrollTo({ left: newScrollPosition, behavior: 'smooth' });
+      const scrollAmount = getScrollAmount();
+      container.scrollTo({ left: container.scrollLeft + scrollAmount, behavior: 'smooth' });
       setTimeout(() => setIsInteracting(false), 1000);
     }
-  }, [isMobile]);
+  }, [isMobile, getScrollAmount]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container || isMobile) return;
 
-    // Simplified scroll handling - just ensure smooth scrolling without complex logic
+    let scrollEndTimer: NodeJS.Timeout;
+
     const handleScroll = () => {
-      // Let the scroll happen naturally, no need for complex position corrections
-      // The duplicated data will handle the infinite scroll appearance
+      clearTimeout(scrollEndTimer);
+      scrollEndTimer = setTimeout(() => {
+        if (scrollContainerRef.current) {
+          const { scrollLeft } = scrollContainerRef.current;
+          
+          const firstItem = scrollContainerRef.current.firstChild as HTMLElement;
+          if (!firstItem) return;
+          const itemWidth = firstItem.offsetWidth;
+          const gap = 32; // from gap-8
+          const firstHalfWidth = (itemWidth + gap) * newsData.length;
+
+          if (scrollLeft >= firstHalfWidth) {
+            scrollContainerRef.current.scrollLeft = scrollLeft - firstHalfWidth;
+          }
+        }
+      }, 150);
     };
 
     container.addEventListener('scroll', handleScroll);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollEndTimer);
     };
   }, [isMobile]);
 
@@ -131,7 +138,7 @@ export function News() {
     let interval: NodeJS.Timeout | null = null;
     if (!isHovering && !isInteracting) {
       // Automatically scroll to the next set of items.
-      interval = setInterval(handleNext, 4000);
+      interval = setInterval(handleNext, 2000);
     }
     return () => {
       if (interval) {
@@ -189,7 +196,7 @@ export function News() {
                   <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="contain" className={article.image === '/news6.png' ? '' : 'filter brightness-0 invert'} />
                 </div>
                 <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg overflow-hidden">
-                  <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]">
+                  <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]" target="_blank">
                     {article.headline}
                   </Link>
                 </h3>
@@ -198,7 +205,7 @@ export function News() {
                 </p>
                 <div className="mt-auto flex justify-between items-center text-sm">
                   <span className="text-gray-500">{article.date}</span>
-                  <Link href={article.link} className="text-[#22D2EE] text-lg hover:underline font-semibold">
+                  <Link href={article.link} className="text-[#22D2EE] text-lg hover:underline font-semibold" target="_blank">
                     Read More
                   </Link>
                 </div>

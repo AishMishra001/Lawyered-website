@@ -373,7 +373,7 @@ function ContactFormSection() {
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" checked={isAuthorized} onChange={(e) => setIsAuthorized(e.target.checked)} className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]" required />
               <label htmlFor="auth" className="text-base text-white">
-                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms of Services</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
+                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms & Conditons</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
               </label>
             </div>
 

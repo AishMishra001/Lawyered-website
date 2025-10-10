@@ -43,9 +43,10 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        alert('This feature is temporarily disabled.');
+        // Redirect to current page
+        window.location.href = window.location.href;
     };
 
     return (

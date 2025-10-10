@@ -102,7 +102,7 @@ export function ValuesPromiseTabs() {
               </motion.div>
             )}
             {activeTab === 'promise' && (
-              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-black/20 flex flex-col lg:flex-row items-center justify-between gap-8">
+              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-transparent flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
                   <HeartHandshake size={50} className="text-white font-light flex-shrink-0"/>
                   <p className="text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>

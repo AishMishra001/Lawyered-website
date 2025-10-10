@@ -214,6 +214,7 @@ function ChallanVehicleSelector() {
     const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [isValid, setIsValid] = useState(true);
+    const [isTermsChecked, setIsTermsChecked] = useState(false);
 
     const handleVehicleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.toUpperCase();
@@ -238,15 +239,19 @@ function ChallanVehicleSelector() {
     };
 
     const handleCheckChallan = () => {
-        if (isValid && vehicleNumber && selectedVehicleId) {
+        if (isValid && vehicleNumber && selectedVehicleId && isTermsChecked) {
             let vehicleType = selectedVehicleId;
             if (vehicleType === 'two-wheeler') {
                 vehicleType = 'private-two-wheeler';
             }
             const url = `https://www.challanpay.in/verification/${vehicleNumber}?type=${vehicleType}`;
-            window.location.href = url;
+            window.open(url, '_blank');
         } else {
-            alert("Please select a vehicle type and enter a valid vehicle number.");
+            if (!isTermsChecked) {
+                alert("Please agree to the terms & conditions and privacy policy before checking challan status.");
+            } else {
+                alert("Please select a vehicle type and enter a valid vehicle number.");
+            }
         }
     };
 
@@ -256,14 +261,16 @@ function ChallanVehicleSelector() {
         return (
             <div
                 onClick={onClick}
-                className="flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-2 border-gray-700 text-gray-400 hover:border-brand-cyan"
+                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-4 text-gray-400 hover:border-brand-cyan ${
+                    isSelected ? 'border-[#0b9eb4]' : 'border-gray-700'
+                }`}
             >
                 <Image
                     src={iconSrc}
                     alt={vehicle.label}
                     width={iconSize}
                     height={iconSize}
-                    className={`${isSelected ? 'w-20 md:w-20' : 'w-16 md:w-14'} h-auto transition-all duration-300 ${isSelected ? 'border-brand-cyan' : ''}`}
+                    className={`${isSelected ? 'w-20 md:w-20' : 'w-16 md:w-14'} h-auto transition-all duration-300 ${isSelected ? 'border-[#0b9eb4]' : ''}`}
                 />
             </div>
         );
@@ -319,7 +326,31 @@ function ChallanVehicleSelector() {
             Check Challan Status
           </button>
           <div className="flex items-start gap-3 md:gap-4">
-            <input type="checkbox" id="terms" className="md:h-5 md:w-5 rounded bg-gray-700 border-gray-600 accent-brand-cyan flex-shrink-0 mt-1"/>
+            <div className="relative">
+              <input
+                type="checkbox"
+                id="terms"
+                checked={isTermsChecked}
+                onChange={(e) => setIsTermsChecked(e.target.checked)}
+                className="md:h-5 md:w-5 rounded border-gray-600 flex-shrink-0 mt-1 appearance-none bg-gray-700 checked:bg-[#0b9eb4]  focus:ring-opacity-50"
+                style={{
+                  accentColor: '#0b9eb4'
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg
+                  className={`w-3 h-3 text-white transition-opacity duration-200 ${isTermsChecked ? 'opacity-100' : 'opacity-0'}`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
             <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
               <Link href="/terms-and-conditions" className="font-bold underline text-[#22D2EE]">
