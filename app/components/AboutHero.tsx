@@ -88,7 +88,7 @@ export function AboutHero() {
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
-          <Image src={isImageHovered ? "/culture4.png" : "/culture3.png"} alt="About Us Sticker" width={440} height={270} className="object-contain"/>
+          <Image src={isImageHovered ? "/abouthero2.png" : "/abouthero1.png"} alt="About Us Sticker" width={400} height={250} className="object-contain"/>
         </div>
         <div className="md:col-span-2 flex justify-center">
           <div className="flex gap-2 mt-4">

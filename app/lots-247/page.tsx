@@ -334,7 +334,7 @@ function LotsForm() {
   // State for the form inputs to make them controlled components
   const [companyName, setCompanyName] = useState("");
   const [mobileNo, setMobileNo] = useState("");
-  const [employeeCount, setEmployeeCount] = useState("1-10");
+  const [employeeCount, setEmployeeCount] = useState("");
 
   const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -369,7 +369,7 @@ function LotsForm() {
         // Reset form fields after the process is complete
         setCompanyName("");
         setMobileNo("");
-        setEmployeeCount("1-10");
+        setEmployeeCount("");
       }, 3000); // Popup will disappear after 3000 milliseconds (3 seconds)
 
       // Cleanup the timer if the component unmounts or the popup is closed manually
@@ -405,22 +405,82 @@ function LotsForm() {
                 required
               />
               <div className="relative col-span-1 md:col-span-2">
-                <select 
-                  className="w-full appearance-none bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 pr-8 text-sm md:text-base"
-                  value={employeeCount}
-                  onChange={(e) => setEmployeeCount(e.target.value)}
-                  required
-                >
-                  <option>1-10</option>
-                  <option>11-20</option>
-                  <option>21-30</option>
-                  <option>31-40</option>
-                  <option>41-50</option>
-                  <option>50+</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
-                  <ChevronDown size={20} />
+                <div className="relative">
+                  <select
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                    style={{
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'none'
+                    }}
+                    value={employeeCount}
+                    onChange={(e) => setEmployeeCount(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled className="text-gray-500">Select</option>
+                    <option value="1-10">1-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-30">21-30</option>
+                    <option value="31-40">31-40</option>
+                    <option value="41-50">41-50</option>
+                    <option value="50+">50+</option>
+                  </select>
+                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                  </div>
                 </div>
+                <style jsx>{`
+                  select option {
+                    background-color: rgba(31, 41, 55, 0.9);
+                    color: white;
+                    padding: 8px;
+                  }
+                  select option:first-child {
+                    color: #9CA3AF !important;
+                  }
+                  select:focus option {
+                    background-color: rgba(31, 41, 55, 0.9);
+                  }
+
+                  /* Comprehensive autofill styling for all browsers */
+                  input:-webkit-autofill,
+                  input:-webkit-autofill:hover,
+                  input:-webkit-autofill:focus,
+                  input:-webkit-autofill:active,
+                  input:-webkit-autofill::first-line,
+                  textarea:-webkit-autofill,
+                  textarea:-webkit-autofill:hover,
+                  textarea:-webkit-autofill:focus,
+                  textarea:-webkit-autofill:active,
+                  input:autofill,
+                  input:autofill:hover,
+                  input:autofill:focus,
+                  input:autofill:active,
+                  textarea:autofill,
+                  textarea:autofill:hover,
+                  textarea:autofill:focus,
+                  textarea:autofill:active {
+                    -webkit-box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
+                    -webkit-text-fill-color: white !important;
+                    -webkit-background-clip: text !important;
+                    background-color: rgba(31, 41, 55, 0.5) !important;
+                    background-clip: text !important;
+                    border: 1px solid rgb(75 85 99) !important;
+                    box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
+                    text-fill-color: white !important;
+                    -webkit-appearance: none !important;
+                    appearance: none !important;
+                  }
+
+                  /* Additional fallback for stubborn browsers */
+                  input[data-autofilled],
+                  textarea[data-autofilled] {
+                    background-color: rgba(31, 41, 55, 0.5) !important;
+                    color: white !important;
+                  }
+                `}</style>
               </div>
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button type="submit" className="mt-2 bg-[#0891B2] text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto">

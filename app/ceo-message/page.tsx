@@ -122,7 +122,7 @@ function CeoContent() {
               onMouseLeave={() => setIsLinkedInHovered(false)}
             >
               <Image
-                src={isLinkedInHovered ? "/Linkedin2.png" : "/Linkedin.png"}
+                src={isLinkedInHovered ? "/linkedin4.png" : "/linkedin3.png"}
                 alt="LinkedIn"
                 width={32}
                 height={32}

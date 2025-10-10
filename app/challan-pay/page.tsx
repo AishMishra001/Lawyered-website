@@ -205,10 +205,10 @@ function ChallanContent() {
 // Section 3: Select Vehicle Type
 function ChallanVehicleSelector() {
     const vehicleData = [
-        { id: 'private', label: 'Private', unselectedIcon: '/Mask8.png', selectedIcon: '/Mask1.png' },
-        { id: 'electric', label: 'Electric', unselectedIcon: '/Mask9.png', selectedIcon: '/Mask2.png' },
+        { id: 'private', label: 'Private', unselectedIcon: '/Mask5.png', selectedIcon: '/Mask1.png' },
+        { id: 'electric', label: 'Electric', unselectedIcon: '/Mask6.png', selectedIcon: '/Mask2.png' },
         { id: 'commercial', label: 'Commercial', unselectedIcon: '/Mask7.png', selectedIcon: '/Mask3.png' },
-        { id: 'two-wheeler', label: 'Two-Wheeler', unselectedIcon: '/Mask6.png', selectedIcon: '/Mask4.png' },
+        { id: 'two-wheeler', label: 'Two-Wheeler', unselectedIcon: '/Mask8.png', selectedIcon: '/Mask4.png' },
     ];
 
     const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
@@ -252,13 +252,19 @@ function ChallanVehicleSelector() {
 
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
-        const iconSize = isSelected ? 100 : 150;
+        const iconSize = isSelected ? 180 : 120; // Increased size difference for more noticeable effect
         return (
             <div
                 onClick={onClick}
-                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
+                className="flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-2 border-gray-700 text-gray-400 hover:border-brand-cyan"
             >
-                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="w-16 md:w-24 h-auto" />
+                <Image
+                    src={iconSrc}
+                    alt={vehicle.label}
+                    width={iconSize}
+                    height={iconSize}
+                    className={`${isSelected ? 'w-20 md:w-20' : 'w-16 md:w-14'} h-auto transition-all duration-300 ${isSelected ? 'border-brand-cyan' : ''}`}
+                />
             </div>
         );
     };
