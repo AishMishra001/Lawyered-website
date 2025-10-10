@@ -6,16 +6,16 @@ import { ChevronLeft } from "lucide-react";
 
 export default function SingleBlogPage() {
   return (
-    <div className="pt-38 pb-16 px-4 md:px-38">
-      <div className="max-w-8xl mx-auto">
+    <div className="pt-28 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 px-4 md:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
         
         {/* Back Button & Breadcrumbs */}
-        <div className="mb-8">
+        <div className="mb-8 mt-4 md:mt-0">
           <Link href="/blogs" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors border border-gray-700 px-4 py-2 rounded-lg">
             <ChevronLeft size={16} />
             Back
           </Link>
-          <p className="text-xl text-gray-500 mt-6 flex gap-6">
+          <p className="text-sm md:text-xl text-gray-500 mt-4 md:mt-6 flex gap-2 md:gap-6">
             <span> Home</span>
             <span> &gt;</span>
             <span>Blog details</span>
@@ -25,13 +25,13 @@ export default function SingleBlogPage() {
         {/* Article Header */}
         <header className="space-y-4">
           <p className="text-lg text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
-          <h1 className="text-4xl lg:text-3xl font-bold text-[#22D3EE] leading-tight">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#22D3EE] leading-tight">
             Can we pay traffic challan through an app?Explore app that offers seamless on road legal solutions
           </h1>
         </header>
 
         {/* Featured Image */}
-        <div className="my-8 overflow-hidden relative h-200">
+        <div className="my-6 md:my-8 overflow-hidden relative w-full h-64 md:h-80 lg:h-96">
           <Image
             src="/blog.png" // As specified
             alt="Traffic light against a cloudy sky"

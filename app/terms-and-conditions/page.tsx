@@ -61,8 +61,7 @@ function TermsHero() {
             Terms and Conditions
           </h1>
           <p className=" text-white">
-            If you have any questions about this Terms & Conditions, please
-            contact us.
+         We aim to make our terms and conditions simple and easy to follow. We encourage you to read them carefully so you always know your rights and responsibilities.
           </p>
         </div>
 

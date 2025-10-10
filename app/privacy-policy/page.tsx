@@ -59,7 +59,7 @@ function PrivacyHero() {
         <div className="flex flex-col gap-6 pl-10">
           <h1 className="text-4xl font-bold text-white">Privacy Policy</h1>
           <p className="text-xl text-white leading-relaxed">
-            If you have any questions about this privacy policy, please contact us.
+           We aim to make our privacy practices clear, transparent, and user-friendly. Our goal is to ensure you always feel confident and informed about how your data is handled.
           </p>
         </div>
 

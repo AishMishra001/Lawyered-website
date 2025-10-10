@@ -79,7 +79,7 @@ export function AdvisorsSlider() {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
-    <div className="py-24 px-4 md:px-26">
+    <div className="py-2 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-cyan">Our Advisors</h2>

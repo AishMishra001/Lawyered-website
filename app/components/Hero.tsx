@@ -71,7 +71,7 @@ export function Hero() {
         <div className="w-full max-w-7xl mt-8 md:mt-16">
           <div className="flex flex-col md:flex-row justify-center md:justify-end items-center gap-5">
             <Image
-              src="/Himanshu_Gupta.png"
+              src="/Himanshu_Gupta2.png"
               alt="Himanshu Gupta, Founder & CEO"
               width={150}
               height={150}

@@ -33,10 +33,8 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className="fixed top-0 left-0 w-full z-50 bg-[#14141A]"
-    >
-      <nav className="w-full py-5 px-4 md:px-8">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#14141A]">
+      <nav className="relative w-full py-5 px-4 md:px-8">
         {/* Desktop Menu */}
         <div className="hidden md:flex w-full justify-center items-center gap-12">
           {navLinksLeft.map((link) => (
@@ -74,22 +72,24 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden flex justify-between items-center">
+        {/* Mobile & Tablet Menu Bar - STABLE */}
+        <div className="md:hidden lg:hidden flex justify-between items-center w-full">
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
                 src="/lawyered-logo.png"
                 alt="Lawyered Logo"
-                width={200}
-                height={35}
+                width={180}
+                height={32}
                 priority
+                className="w-32 sm:w-40"
               />
             </Link>
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white focus:outline-none"
+            className="text-white focus:outline-none p-2 z-50 relative"
+            aria-label={isMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           >
             {isMenuOpen ? (
               <svg
@@ -126,21 +126,39 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile & Tablet Full Screen Menu Below Navbar */}
       {isMenuOpen && (
-        <div className="md:hidden bg-[#14141A] absolute w-full">
-          <div className="flex flex-col items-center px-4 pt-2 pb-8 space-y-4">
-            {allLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div className="md:hidden lg:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-[#14141A] z-30">
+          <div className="flex flex-col justify-center items-center h-full px-6 py-8">
+            <div className="flex flex-col items-center space-y-6 w-full max-w-sm">
+              {allLinks.map((link, index) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-white text-xl sm:text-2xl font-normal uppercase tracking-wider hover:text-[#22D2EE] transition-colors duration-200 w-full text-center py-3"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                    animation: 'fadeInUp 0.5s ease forwards'
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
+          <style jsx>{`
+            @keyframes fadeInUp {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          `}</style>
         </div>
       )}
     </header>

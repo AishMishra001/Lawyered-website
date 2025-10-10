@@ -51,7 +51,7 @@ export function TrustedPartners() {
               const isEnlarged = logo.name === "91Trucks" || logo.name === "OLX Autos" || logo.name === "Car Info" || logo.name === "Car Dekho";
               const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-180" : ""}`;
               return (
-                <div key={`${logo.name}-${index}`} className="h-10 lg:h-18 w-40 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden flex-shrink-0">
+                <div key={`${logo.name}-${index}`} className="h-10 lg:h-18 w-30 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden flex-shrink-0">
                   <Image
                     src={logo.src}
                     alt={logo.name}

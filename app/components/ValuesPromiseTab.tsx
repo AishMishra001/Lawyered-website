@@ -84,9 +84,9 @@ export function ValuesPromiseTabs() {
   return (
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
-        <div className="flex flex-col sm:flex-row border border-white text-sm md:text-xl w-full sm:w-auto">
-          <button onClick={() => setActiveTab("value")} className={`w-full sm:w-auto px-8 py-4 sm:px-12 md:px-16 sm:py-6 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
-          <button onClick={() => setActiveTab("promise")} className={`w-full sm:w-auto px-8 py-4 sm:px-12 md:px-16 sm:py-6 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white sm:border-l border-gray-700'}`}>What We Promise</button>
+        <div className="flex flex-row border border-white text-sm md:text-xl w-full md:w-auto">
+          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
+          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white md:border-l border-gray-700'}`}>What We Promise</button>
         </div>
         <div className="mt-12 w-full px-4 sm:px-8 md:px-12 lg:px-22">
           <AnimatePresence mode="wait">

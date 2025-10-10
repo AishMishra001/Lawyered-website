@@ -263,12 +263,12 @@ function LotsPricing() {
               <div key={plan.name} className="relative flex flex-col gap-4">
                 
                 {plan.topSeller && (
-                  <Image 
-                    src="/TopSeller2.png" 
+                  <Image
+                    src="/TopSeller2.png"
                     alt="Top Seller"
                     width={150}
                     height={150}
-                    className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3 rotate-12 z-10"
+                    className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-10"
                   />
                 )}
                 

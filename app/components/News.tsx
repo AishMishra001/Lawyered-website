@@ -151,7 +151,7 @@ export function News() {
     <div className="py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl font-semibold text-[#22D2EE]">
+          <h2 className="text-xl md:text-4xl font-semibold text-[#22D2EE]">
             Latest News and Media
           </h2>
           <div className="flex items-center gap-4">

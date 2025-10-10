@@ -55,10 +55,10 @@ function BlogsHero() {
         </div>
       </div>
 
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 items-center h-screen">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-16 md:py-32 grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-screen">
         {/* Left Column: Sticker */}
         <div
-          className="flex justify-center"
+          className="flex justify-center order-2 md:order-1"
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
@@ -67,13 +67,13 @@ function BlogsHero() {
             alt="Person excited at laptop"
             width={400}
             height={400}
-            className="object-contain"
+            className="object-contain w-full max-w-sm md:max-w-md"
           />
         </div>
 
         {/* Right Column: Text Content */}
-        <div className="flex flex-col gap-6">
-          <h1 className="text-3xl font-semibold text-white leading-tight">
+        <div className="flex flex-col gap-6 order-1 md:order-2 text-center md:text-left">
+          <h1 className="text-2xl md:text-3xl font-semibold text-white leading-tight">
             Read our blog for sharp legal insights that simplify the law
           </h1>
         </div>
@@ -154,31 +154,34 @@ function BlogsGrid() {
   ];
 
   return (
-    <div className="pb-24 px-4 md:px-26">
+    <div className="pb-12 md:pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-10 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {blogPosts.map((post) => (
-            <div key={post.title} className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col">
-              <Image src={post.image} alt={post.title} width={600} height={400} className="w-full object-cover" />
-              <div className="p-6 flex flex-col flex-grow gap-6">
-                <h3 className="text-xl font-semibold text-[#22D3EE] hover:underline">
+            <div key={post.title} className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#22D3EE] transition-colors duration-300">
+              <div className="aspect-video overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-4 md:p-6 flex flex-col flex-grow gap-3 md:gap-6">
+                <h3 className="text-lg md:text-xl font-semibold text-[#22D3EE] hover:underline leading-tight">
                   <a href={post.href}>{post.title}</a>
                 </h3>
-                <p className="mt-4 text-white text-base leading-relaxed flex-grow">
+                <p className="text-white text-sm md:text-base leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
-                <div className="mt-6 pt-4 border-t border-gray-800 text-base text-white">
+                <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-white">
                   <span>{post.date}</span> | <span>{post.readTime}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        {/* <div className="text-center mt-12">
-          <a href="#" className="flex text-base items-center justify-center gap-1 text-[#22D3EE] hover:underline">
-            See All <ChevronDown size={16} />
-          </a>
-        </div> */}
       </div>
     </div>
   );
