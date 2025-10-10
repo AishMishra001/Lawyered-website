@@ -8,7 +8,7 @@ export function Footer() {
   
   return (
     <>
-      <footer className="border-t border-gray-800 py-12 md:py-16 px-4 md:px-26">
+      <footer className="border-t border-gray-800 py-12 md:py-12 mt-22 px-4 md:px-26">
         <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-4 gap-8 text-white">
           {/* Column 1: Info */}
           <div className="col-span-2 flex flex-col text-sm md:text-base items-center md:items-start text-center md:text-left justify-between">
@@ -54,8 +54,8 @@ export function Footer() {
               <Link href="https://x.com/LawyeredIN" onMouseEnter={() => setHovered('twitter')} onMouseLeave={() => setHovered('')}>
                 <Image src={hovered === 'twitter' ? '/twitter2.png' : '/twitter.png'} alt="Twitter" width={25} height={25} className="w-6 md:w-7 h-auto" />
               </Link>
-              <Link className="mt-0.5" href="https://www.youtube.com/@LawyeredIN/videos" onMouseEnter={() => setHovered('youtube')} onMouseLeave={() => setHovered('')}>
-                <Image src={hovered === 'youtube' ? '/youtube4.png' : '/youtube3.png'} alt="YouTube" width={25} height={25} className="w-6 md:w-7 h-auto" />
+              <Link className="" href="https://www.youtube.com/@LawyeredIN/videos" onMouseEnter={() => setHovered('youtube')} onMouseLeave={() => setHovered('')}>
+                <Image src={hovered === 'youtube' ? '/youtube4.png' : '/youtube3.png'} alt="YouTube" width={25} height={25} className="w-6 md:w-10 h-auto" />
               </Link>
             </div>
           </div>

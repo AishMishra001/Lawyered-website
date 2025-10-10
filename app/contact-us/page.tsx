@@ -89,15 +89,85 @@ function AboutHero() {
 function ContactFormSection() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [inquiryType, setInquiryType] = useState('Partnership');
+  const [inquiryType, setInquiryType] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [captcha, setCaptcha] = useState('');
+  const [generatedCaptcha, setGeneratedCaptcha] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [formStatus, setFormStatus] = useState('');
+  const [errors, setErrors] = useState<{email?: string; phone?: string}>({});
+
+  // Generate random captcha
+  const generateCaptcha = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
+  // Generate captcha on component mount
+  useEffect(() => {
+    setGeneratedCaptcha(generateCaptcha());
+  }, []);
+
+  // Refresh captcha function
+  const refreshCaptcha = () => {
+    setGeneratedCaptcha(generateCaptcha());
+    setCaptcha('');
+  };
+
+  // Validation functions
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return 'Email is required';
+    if (!emailRegex.test(email)) return 'Please enter a valid email address';
+    return '';
+  };
+
+  const validatePhone = (phone: string) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phone) return 'Phone number is required';
+    if (!phoneRegex.test(phone)) return 'Phone number must be exactly 10 digits';
+    return '';
+  };
+
+  // Handle input changes with validation
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    setErrors(prev => ({ ...prev, email: validateEmail(value) }));
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow numbers and limit to 10 digits
+    const numericValue = value.replace(/\D/g, '').slice(0, 10);
+    setPhone(numericValue);
+    setErrors(prev => ({ ...prev, phone: validatePhone(numericValue) }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      // Validate all fields
+      const emailError = validateEmail(email);
+      const phoneError = validatePhone(phone);
+
+      if (emailError || phoneError) {
+        setErrors({ email: emailError, phone: phoneError });
+        setFormStatus('Please fix the errors above.');
+        return;
+      }
+
+      // Validate captcha
+      if (captcha !== generatedCaptcha) {
+        setFormStatus('Captcha verification failed. Please try again.');
+        return;
+      }
+
       setFormStatus('Submitting...');
 
       const formData = {
@@ -130,11 +200,12 @@ function ContactFormSection() {
               // Reset form
               setName('');
               setEmail('');
-              setInquiryType('Partnership');
+              setInquiryType('');
               setPhone('');
               setMessage('');
               setCaptcha('');
               setIsAuthorized(false);
+              setGeneratedCaptcha(generateCaptcha()); // Generate new captcha for next use
           } else {
               console.log('Webhook response:', responseData);
               setFormStatus('An error occurred. Please try again.');
@@ -154,26 +225,150 @@ function ContactFormSection() {
             Fill out the form and our executive will reach out to you
           </h2>
           <form className="space-y-8" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
-            <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
-            <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-500">
-              <option className="bg-gray-900 border border-gray-700">Partnership</option>
-              <option className="bg-gray-900 border border-gray-700">Vendor</option>
-              <option className="bg-gray-900 border border-gray-700">Carrer</option>
-              <option className="bg-gray-900 border border-gray-700">Other</option>
-            </select>
-            <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
-            <textarea placeholder="Your Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required></textarea>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 autofill:bg-gray-800/50"
+              style={{
+                backgroundColor: 'rgba(31, 41, 55, 0.5)',
+              }}
+              required
+            />
+            <div>
+              <input
+                type="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={handleEmailChange}
+                className={`w-full bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 autofill:bg-gray-800/50 ${errors.email ? 'border-red-500' : 'border-gray-700'}`}
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                }}
+                required
+              />
+              {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}
+            </div>
+            <div className="relative">
+              <select
+                value={inquiryType}
+                onChange={(e) => setInquiryType(e.target.value)}
+                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'none'
+                }}
+              >
+                <option value="" disabled>Select Inquiry Type</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Vendor">Vendor</option>
+                <option value="Career">Career</option>
+                <option value="Other">Other</option>
+              </select>
+              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <style jsx>{`
+                select option {
+                  background-color: rgba(31, 41, 55, 0.9);
+                  color: white;
+                  padding: 8px;
+                }
+                select option:first-child {
+                  color: #9CA3AF;
+                }
+                select:focus option {
+                  background-color: rgba(31, 41, 55, 0.9);
+                }
+
+                /* Comprehensive autofill styling for all browsers */
+                input:-webkit-autofill,
+                input:-webkit-autofill:hover,
+                input:-webkit-autofill:focus,
+                input:-webkit-autofill:active,
+                input:-webkit-autofill::first-line,
+                textarea:-webkit-autofill,
+                textarea:-webkit-autofill:hover,
+                textarea:-webkit-autofill:focus,
+                textarea:-webkit-autofill:active,
+                input:autofill,
+                input:autofill:hover,
+                input:autofill:focus,
+                input:autofill:active,
+                textarea:autofill,
+                textarea:autofill:hover,
+                textarea:autofill:focus,
+                textarea:autofill:active {
+                  -webkit-box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
+                  -webkit-text-fill-color: white !important;
+                  -webkit-background-clip: text !important;
+                  background-color: rgba(31, 41, 55, 0.5) !important;
+                  background-clip: text !important;
+                  border: 1px solid rgb(75 85 99) !important;
+                  box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
+                  text-fill-color: white !important;
+                  -webkit-appearance: none !important;
+                  appearance: none !important;
+                }
+
+                /* Additional fallback for stubborn browsers */
+                input[data-autofilled],
+                textarea[data-autofilled] {
+                  background-color: rgba(31, 41, 55, 0.5) !important;
+                  color: white !important;
+                }
+              `}</style>
+            </div>
+            <div>
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                value={phone}
+                onChange={handlePhoneChange}
+                className={`w-full bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 autofill:bg-gray-800/50 ${errors.phone ? 'border-red-500' : 'border-gray-700'}`}
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                }}
+                maxLength={10}
+                required
+              />
+              {errors.phone && <p className="mt-2 text-sm text-red-500">{errors.phone}</p>}
+            </div>
+            <textarea
+              placeholder="Your Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={3}
+              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 autofill:bg-gray-800/50"
+              style={{
+                backgroundColor: 'rgba(31, 41, 55, 0.5)',
+              }}
+              required
+            ></textarea>
             
             <div className="flex items-center gap-4">
-              <div className="font-[Times New Roman] text-lg">
-                7Y6QQR
+              <div className="font-[Times New Roman] text-lg select-none bg-gray-700 px-3 py-2 rounded border">
+                {generatedCaptcha}
               </div>
-              <button type="button" className="p-3 text-gray-400">
+              <button type="button" onClick={refreshCaptcha} className="p-3 text-gray-400 hover:text-white transition-colors">
                 <RefreshCw size={20} />
               </button>
             </div>
-            <input type="text" placeholder="Enter Captcha" value={captcha} onChange={(e) => setCaptcha(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" required />
+            <input
+              type="text"
+              placeholder="Enter Captcha"
+              value={captcha}
+              onChange={(e) => setCaptcha(e.target.value)}
+              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 autofill:bg-gray-800/50"
+              style={{
+                backgroundColor: 'rgba(31, 41, 55, 0.5)',
+              }}
+              required
+            />
             
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" checked={isAuthorized} onChange={(e) => setIsAuthorized(e.target.checked)} className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]" required />

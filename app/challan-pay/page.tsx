@@ -252,13 +252,13 @@ function ChallanVehicleSelector() {
 
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
-      const iconSize = isSelected ? 100 : 150;
+        const iconSize = isSelected ? 100 : 150;
         return (
             <div
                 onClick={onClick}
                 className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-2 ${isSelected ? 'border-brand-cyan' : 'border-gray-700'} text-gray-400 hover:border-brand-cyan`}
             >
-                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="transition-all duration-300 w-16 md:w-24 h-auto" />
+                <Image src={iconSrc} alt={vehicle.label} width={iconSize} height={iconSize} className="w-16 md:w-24 h-auto" />
             </div>
         );
     };
@@ -307,7 +307,7 @@ function ChallanVehicleSelector() {
               placeholder="e.g. UP32MM1313"
               className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
             />
-            {!isValid && <p className="text-red-500 mt-2 text-sm md:text-base">Please enter a valid vehicle number.</p>}
+            <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
           </div>
           <button onClick={handleCheckChallan} className="w-full md:w-[50%] bg-[#0b9eb4] text-white text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-lg">
             Check Challan Status
@@ -316,11 +316,11 @@ function ChallanVehicleSelector() {
             <input type="checkbox" id="terms" className="md:h-5 md:w-5 rounded bg-gray-700 border-gray-600 accent-brand-cyan flex-shrink-0 mt-1"/>
             <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
-              <Link href="/terms-and-conditions" className="hover:font-bold hover:text-[#22D2EE]">
-                terms, conditions
+              <Link href="/terms-and-conditions" className="font-bold underline text-[#22D2EE]">
+                terms & conditions
               </Link>
               {' '}and the{' '}
-              <Link href="/privacy-policy" className="hover:font-bold hover:text-[#22D2EE]">
+              <Link href="/privacy-policy" className="font-bold underline text-[#22D2EE]">
                 privacy policy
               </Link>
               , and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
@@ -335,7 +335,7 @@ function ChallanVehicleSelector() {
 // NEW: Modal component for the WhatsApp form
 const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
     const [companyName, setCompanyName] = useState('');
-    const [numVehicles, setNumVehicles] = useState('0-10');
+    const [numVehicles, setNumVehicles] = useState('');
 
     const handleChat = () => {
         const phone = '919289928628';
@@ -356,30 +356,56 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
                 <form className="space-y-5">
                     <div>
                         <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
-                        <input 
-                            type="text" 
-                            placeholder="ABC Private Limited" 
-                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                        <input
+                            type="text"
+                            placeholder="ABC Private Limited"
+                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-white placeholder-gray-500"
                             value={companyName}
                             onChange={(e) => setCompanyName(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <div className="relative">
                         <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
-                        <select 
-                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300"
-                            value={numVehicles}
-                            onChange={(e) => setNumVehicles(e.target.value)}
-                        >
-                            <option>0-10</option>
-                            <option>11-20</option>
-                            <option>21-30</option>
-                            <option>31-40</option>
-                            <option>41-50</option>
-                            <option>50+</option>
-                        </select>
+                        <div className="relative">
+                            <select
+                                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                                style={{
+                                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                                    WebkitAppearance: 'none',
+                                    MozAppearance: 'none'
+                                }}
+                                value={numVehicles}
+                                onChange={(e) => setNumVehicles(e.target.value)}
+                            >
+                                <option value="" disabled>Select</option>
+                                <option value="0-10">0-10</option>
+                                <option value="11-20">11-20</option>
+                                <option value="21-30">21-30</option>
+                                <option value="31-40">31-40</option>
+                                <option value="41-50">41-50</option>
+                                <option value="50+">50+</option>
+                            </select>
+                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="6,9 12,15 18,9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <style jsx>{`
+                            select option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                                color: white;
+                                padding: 8px;
+                            }
+                            select option:first-child {
+                                color: #9CA3AF;
+                            }
+                            select:focus option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                            }
+                        `}</style>
                     </div>
-                    <button 
+                    <button
                         type="button" // To prevent form submission
                         onClick={handleChat}
                         className="w-full mt-4 inline-flex items-center justify-center gap-3 bg-[#1A9849] text-white font-bold py-3 rounded-lg text-lg"

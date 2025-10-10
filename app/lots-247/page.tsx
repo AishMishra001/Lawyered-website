@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 // app/lots-247/page.tsx
 import Image from "next/image"
 import { Check, Truck, Scale, MapPin, X, ChevronDown } from "lucide-react"
@@ -107,7 +107,7 @@ function LotsHero() {
             ))}
         </div>
       </div>
-      <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 text-sm md:text-base max-w-4xl">
+      <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 text-sm md:text-base max-w-7xl">
         LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
         (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
         and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
@@ -121,7 +121,7 @@ function LotsHero() {
 function LotsInfrastructure() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   return (
-    <div className="py-12 md:py-24 px-4 md:px-26">
+    <div className="pb-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <h2 className="text-xl md:text-2xl font-semibold text-center mb-8 md:mb-16 px-4">
           The Only Scalable & Dependable Legal-Tech Infrastructure
@@ -240,7 +240,7 @@ function LotsPricing() {
         </p>
 
         <div className="mt-12 lg:mt-22 grid grid-cols-1 lg:grid-cols-[1.5fr_3fr] gap-8 lg:gap-12 items-start lg:items-end">
-          
+          {/* Left column : features  */}
           <div className="hidden lg:flex flex-col">
             <div 
               className="flex items-center justify-center"
@@ -251,13 +251,13 @@ function LotsPricing() {
             </div>
             <div className="bg-white rounded-lg py-6 space-y-4">
               {features.map((f, idx) => (
-                <div key={idx} className="min-h-[3rem] py-2 flex items-center justify-center text-lg text-center text-black border-b border-black/10 last:border-b-0">
+                <div key={idx} className="h-[5rem] pb-6 flex flex-col items-center justify-center text-lg text-center text-black border-b border-black/10 last:border-b-0 p-2">
                   {f === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : f}
                 </div>
               ))}
             </div>
           </div>
-
+              {/* Right column : plans */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {plans.map((plan) => (
               <div key={plan.name} className="relative flex flex-col gap-4">
@@ -286,7 +286,7 @@ function LotsPricing() {
                   {plan.values.map((val, idx) => (
                     <div
                       key={idx}
-                      className="min-h-[3rem] py-2 px-4 lg:px-2 flex items-center justify-center text-base lg:text-lg text-center border-b border-black/10 last:border-b-0"
+                      className="h-[5rem] pb-6  px-4 lg:px-2 flex items-center justify-center text-base lg:text-lg text-center border-b border-black/10 last:border-b-0 p-2"
                     >
                       <div className="w-full flex items-center justify-between lg:justify-center">
                         <span className="lg:hidden font-semibold text-sm text-gray-600 text-left pr-2">{features[idx] === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : features[idx]}</span>

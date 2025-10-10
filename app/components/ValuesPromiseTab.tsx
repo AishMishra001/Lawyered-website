@@ -15,16 +15,43 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => (
                     <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
                     <input type="text" placeholder="Enter name" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
                 </div>
-                <div>
+                <div className="relative">
                     <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
-                    <select className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300">
-                        <option className="bg-gray-900 border border-gray-700">Choose</option>
-                        <option className="bg-gray-800">Technology</option>
-                        <option className="bg-gray-800">Marketing</option>
-                        <option className="bg-gray-800">Operations</option>
-                        <option className="bg-gray-800">Product</option>
-                        <option className="bg-gray-800">Other</option>
-                    </select>
+                    <div className="relative">
+                        <select
+                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                            style={{
+                                backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'none'
+                            }}
+                        >
+                            <option value="" disabled>Select Department</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Product">Product</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6,9 12,15 18,9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <style jsx>{`
+                        select option {
+                            background-color: rgba(31, 41, 55, 0.9);
+                            color: white;
+                            padding: 8px;
+                        }
+                        select option:first-child {
+                            color: #9CA3AF;
+                        }
+                        select:focus option {
+                            background-color: rgba(31, 41, 55, 0.9);
+                        }
+                    `}</style>
                 </div>
                 <div>
                     <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
