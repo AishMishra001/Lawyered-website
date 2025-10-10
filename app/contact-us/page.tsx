@@ -261,11 +261,11 @@ function ContactFormSection() {
                   MozAppearance: 'none'
                 }}
               >
-                <option value="" disabled>Select Inquiry Type</option>
+                <option value="" disabled className="text-gray-500">Select Inquiry Type</option>
                 <option value="Partnership">Partnership</option>
                 <option value="Vendor">Vendor</option>
                 <option value="Career">Career</option>
-                <option value="Other">Other</option>
+                <option value="Other">Others</option>
               </select>
               <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
