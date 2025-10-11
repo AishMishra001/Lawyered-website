@@ -154,7 +154,7 @@ function ChallanHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-32 md:py-32 flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[80vh] md:min-h-screen">
         {/* Left Column: Sticker */}
         <div
-          className="flex justify-center pt-4 md:pt-26 relative h-[250px] md:h-[600px] w-full md:w-[700px] order-2 md:order-1"
+          className="flex justify-center md:pt-26 relative h-[250px] md:h-[600px] w-full md:w-[700px] order-2 md:order-1 -mt-4"
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
@@ -176,6 +176,20 @@ function ChallanHero() {
               />
             </motion.div>
           </AnimatePresence>
+        </div>
+
+        {/* Dots for Mobile */}
+        <div className="flex md:hidden justify-center gap-2 mt-4 order-3">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                index === i ? 'bg-[#22D2EE]' : 'bg-gray-600'
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
 
         {/* Right Column: Text Content */}
@@ -206,7 +220,7 @@ function ChallanHero() {
               </motion.div>
             </AnimatePresence>
           </div>
-          <div className="flex gap-2 mt-1 md:mt-4">
+          <div className="hidden md:flex gap-2 mt-1 md:mt-4">
             {slides.map((_, i) => (
               <button
                 key={i}

@@ -4,3 +4,26 @@ body {
   background-color: #14141A;
   color: white;
 }
+
+/* Infinite scroll animation for LotsCoverage */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 60s linear infinite;
+}
+
+.hover\:pause-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth continuous animation */
+.animate-infinite-scroll {
+  width: calc(320px * 36); /* 9 stats * 4 duplicates * 320px width */
+}

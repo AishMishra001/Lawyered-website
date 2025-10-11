@@ -129,10 +129,10 @@ function LotsHero() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
                 className="absolute w-full left-0 right-0"
               >
                 <h1 className="text-2xl md:text-4xl font-bold text-white px-4">{slides[index].h1}</h1>
@@ -592,7 +592,7 @@ function LotsForm() {
 function LotsCoverage() {
   const stats = [
     {
-      icon: <Truck width={40} height={40} />,
+      icon: <Image src="/Truck.png" alt="Truck" width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Over 800+ logistics partners onboarded,</span> expanding reach across the
@@ -601,7 +601,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Scale width={40} height={40} />,
+      icon: <Image src="/Scale.png" alt="Scale" width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Providing legal assistance</span> to 600K+ private and commercial vehicles.
@@ -609,7 +609,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <MapPin width={40} height={40} />,
+      icon: <Image src="/Signpost.png" alt="Signpost" width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">Over 200K+ Roadside Legal Cases</span> successfully handled.
@@ -617,7 +617,39 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Check width={ 40} height={40} />,
+      icon: <Image src="/Repeat1.png" alt="Check" width={40} height={40} />,
+      text: (
+        <>
+          <span className="text-[#22D2EE]">Multi-Industry Integration ,</span> Seamless collaboration with insurers, fleet operators, leasing companies, and mobility platforms.
+        </>
+      ),
+    },
+    {
+      icon: <Image src="/HandHelping.png" alt="Check" width={40} height={40} />,
+      text: (
+        <>
+          <span className="text-[#22D2EE]">Pan-India legal support</span> available across 98% of India’s pin codes.
+        </>
+      ),
+    },
+    {
+      icon: <Image src="/PhoneCall.png" alt="Check" width={40} height={40} />,
+      text: (
+        <>
+          <span className="text-[#22D2EE]">On-Call Resolution Rate 85%</span> of cases are resolved instantly over a call, reducing downtime for customers.
+        </>
+      ),
+    },
+    {
+      icon: <Image src="/SquareUserRound.png" alt="Check" width={40} height={40} />,
+      text: (
+        <>
+          <span className="text-[#22D2EE]">On-Site Lawyer assistance</span> deployed within 2 hours through our 70,000+ strong lawyer network.
+        </>
+      ),
+    },
+    {
+      icon: <Image src="/SquareCheckBig.png" alt="Check" width={40} height={40} />,
       text: (
         <>
           <span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
@@ -625,19 +657,32 @@ function LotsCoverage() {
         </>
       ),
     },
+    {
+      icon: <Image src="/LineChart.png" alt="Check" width={40} height={40} />,
+      text: (
+        <>
+          <span className="text-[#22D2EE]">High Scalability, Handling thousands of cases daily, </span> reinforcing LOTS as the most reliable and indispensable legal-tech infrastructure for mobility in India.
+        </>
+      ),
+    },
   ]
+
+  // Create duplicated stats for infinite scroll effect
+  const duplicatedStats = [...stats, ...stats, ...stats, ...stats]
 
   return (
     <div className="py-12 md:py-24 px-4 md:px-26 max-w-8xl">
       <div className="mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-16 px-4">Comprehensive Legal Coverage for Fleets</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {stats.map((stat, i) => (
-            <div key={i} className="border border-gray-600 p-6 flex flex-col">
-              <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
-              <p className="text-gray-300 text-sm md:text-base pb-8 md:pb-32">{stat.text}</p>
-            </div>
-          ))}
+        <div className="relative overflow-hidden">
+          <div className="flex animate-infinite-scroll hover:pause-scroll">
+            {duplicatedStats.map((stat, i) => (
+              <div key={i} className="flex-none w-80 mx-4 border border-gray-600 p-6 flex flex-col">
+                <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
+                <p className="text-gray-300 text-sm md:text-base">{stat.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="mt-12 md:mt-24 relative rounded-lg overflow-hidden text-center p-8 md:p-16 flex flex-col items-center justify-center">
           <Image

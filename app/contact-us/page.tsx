@@ -440,16 +440,14 @@ function ContactFormSection() {
         <div className="relative rounded-lg overflow-hidden p-8 flex flex-col justify-center items-center h-48">
             <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-80 grayscale"/>
             <div className="absolute inset-0 bg-black/70 z-10"></div>
-            <div className="relative z-20 flex items-center gap-22">
-
-              <div className="flex gap-4">
-
-                <Mail size={28} className="text-white"/>
-                <p className="text-lg text-white">Email</p>
-              </div>
-                <a href="mailto:info@lawyered.in" className=" hover:bg-white text-white hover:text-[#0891B2] bg-[#0891B2]  font-semibold px-6 py-2 text-lg">
-                    info@lawyered.in
-                </a>
+            <div className="relative z-20 text-center">
+              <h3 className="text-lg md:text-2xl text-white px-4">Connect with us to know more at</h3>
+              <a
+                href="mailto:info@lawyered.in"
+                className="inline-block mt-4 md:mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
+              >
+                info@lawyered.in
+              </a>
             </div>
         </div>
       </div>
