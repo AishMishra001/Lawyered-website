@@ -9,6 +9,8 @@ export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -23,7 +25,7 @@ export function Hero() {
     const animationFrame = requestAnimationFrame(() => {
       const dx = mousePosition.x - delayedMousePosition.x;
       const dy = mousePosition.y - delayedMousePosition.y;
-      
+
       setDelayedMousePosition({
         x: delayedMousePosition.x + dx * 0.05,
         y: delayedMousePosition.y + dy * 0.05,
@@ -33,30 +35,80 @@ export function Hero() {
     return () => cancelAnimationFrame(animationFrame);
   }, [mousePosition, delayedMousePosition]);
 
-  const spotlightStyle: React.CSSProperties = {
+  // Mobile detection and rotation animation
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Rotation animation for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setRotation(prev => (prev + 1) % 360);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  // Desktop spotlight style (mouse-following)
+  const desktopSpotlightStyle: React.CSSProperties = {
     opacity: isHovering ? 1 : 0,
     transition: 'opacity 0.3s ease-in-out',
     maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
     WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
   };
 
+  // Mobile spotlight style (rotating mask)
+  const mobileSpotlightStyle: React.CSSProperties = {
+    opacity: 1,
+    transition: 'opacity 0.3s ease-in-out',
+    maskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+  };
+
   return (
     <div
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={!isMobile ? handleMouseMove : undefined}
+      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
     >
       <Navbar />
-      <div className="absolute inset-0 z-10" style={spotlightStyle}>
-        <div className="relative w-full h-full opacity-40">
-          <Image
-            src="/MainFrame.png"
-            alt="Background Frame"
-            fill
-            className="object-cover"
-          />
+
+      {/* Desktop MainFrame background */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-10" style={desktopSpotlightStyle}>
+          <div className="relative w-full h-full opacity-40">
+            <Image
+              src="/MainFrame.png"
+              alt="Background Frame"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Mobile Grid background */}
+      {isMobile && (
+        <div className="absolute inset-0 z-10" style={mobileSpotlightStyle}>
+          <div className="relative w-full h-full opacity-40">
+            <Image
+              src="/mobileGrid.png"
+              alt="Mobile Grid Background"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      )}
       
       {/* Main content container */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 gap-4 pt-20 md:pt-0">

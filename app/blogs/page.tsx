@@ -9,6 +9,8 @@ function BlogsHero() {
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -23,7 +25,7 @@ function BlogsHero() {
     const animationFrame = requestAnimationFrame(() => {
       const dx = mousePosition.x - delayedMousePosition.x;
       const dy = mousePosition.y - delayedMousePosition.y;
-      
+
       setDelayedMousePosition({
         x: delayedMousePosition.x + dx * 0.05,
         y: delayedMousePosition.y + dy * 0.05,
@@ -33,27 +35,77 @@ function BlogsHero() {
     return () => cancelAnimationFrame(animationFrame);
   }, [mousePosition, delayedMousePosition]);
 
-  const spotlightStyle: CSSProperties = {
+  // Mobile detection and rotation animation
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Rotation animation for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setRotation(prev => (prev + 1) % 360);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  // Desktop spotlight style (mouse-following)
+  const desktopSpotlightStyle: CSSProperties = {
     opacity: isHovering ? 1 : 0,
     transition: 'opacity 0.3s ease-in-out',
     maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
     WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
   };
 
+  // Mobile spotlight style (rotating mask)
+  const mobileSpotlightStyle: CSSProperties = {
+    opacity: 1,
+    transition: 'opacity 0.3s ease-in-out',
+    maskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+  };
+
   return (
-    <div className="relative w-full overflow-hidden" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
-      <div className="absolute inset-0 z-0" style={spotlightStyle}>
-        <div className="relative w-full h-full opacity-40">
-          <Image
-            src="/MainFrame.png"
-            alt="background frame"
-            fill
-            className="object-cover"
-          />
+
+      {/* Desktop MainFrame background */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
+          <div className="relative w-full h-full opacity-40">
+            <Image
+              src="/MainFrame.png"
+              alt="background frame"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Mobile Grid background */}
+      {isMobile && (
+        <div className="absolute inset-0 z-0" style={mobileSpotlightStyle}>
+          <div className="relative w-full h-full opacity-40">
+            <Image
+              src="/mobileGrid.png"
+              alt="Mobile Grid Background"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      )}
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-16 md:py-32 grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-screen">
         {/* Left Column: Sticker */}
