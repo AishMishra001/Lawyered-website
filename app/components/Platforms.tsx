@@ -89,10 +89,10 @@ export function Platforms() {
     <div className="relative pb-12 md:pb-24 px-4 md:px-24">
       <div className="flex flex-col items-center justify-center text-center md:text-left">
         <div className="max-w-8xl">
-          <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#22D2EE]">
+          <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#22D2EE] text-left">
             Platforms
           </h2>
-          <p className="text-gray-300 max-w-8xl text-base leading-relaxed mx-auto md:mx-0">
+          <p className="text-gray-300 max-w-8xl text-left text-base leading-relaxed mx-auto md:mx-0">
          India’s mobility sector is a key industry comprising commercial fleet operators, logistics providers, ride-hailing services, and private vehicle owners, the public VAHAN dashboard displaying roughly 40.24 crore total vehicle registrations (and growing). The legal complexities in this sector are vast and often result in operational disruptions, financial losses, and compliance risks. A combination of stringent regulations, fragmented enforcement policies, and a growing number of vehicles on the road has intensified the legal challenges faced by stakeholders in this space.
           </p>
 

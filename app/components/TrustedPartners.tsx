@@ -44,19 +44,19 @@ export function TrustedPartners() {
         }
       `}</style>
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-4xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
+        <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
         <div className="scroller" data-animated="true">
           <div className="scroller__inner">
             {[...logos, ...logos].map((logo, index) => {
               const isEnlarged = logo.name === "91Trucks" || logo.name === "OLX Autos" || logo.name === "Car Info" || logo.name === "Car Dekho";
-              const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-180" : ""}`;
+              const imageClasses = `object-contain h-full w-full ${isEnlarged ? "scale-200" : ""}`;
               return (
-                <div key={`${logo.name}-${index}`} className="h-10 lg:h-18 w-30 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden flex-shrink-0">
+                <div key={`${logo.name}-${index}`} className="h-12 lg:h-18 w-36 lg:w-45 bg-white flex items-center justify-center rounded-lg p-2 overflow-hidden flex-shrink-0">
                   <Image
                     src={logo.src}
                     alt={logo.name}
-                    width={190}
-                    height={80}
+                    width={200}
+                    height={100}
                     className={imageClasses}
                   />
                 </div>

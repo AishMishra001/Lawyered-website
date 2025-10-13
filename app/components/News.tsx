@@ -49,7 +49,7 @@ const newsData = [
   },
 ];
 
-const extendedNewsData = [...newsData, ...newsData];
+const extendedNewsData = [...newsData, ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData];
 
 export function News() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -151,21 +151,21 @@ export function News() {
     <div className="py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-xl md:text-4xl font-semibold text-[#22D2EE]">
+          <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE]">
             Latest News and Media
           </h2>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap">
             <button
               onClick={handlePrev}
-              className="p-2 border border-gray-700 rounded-full hover:bg-white/10 transition-colors"
+              className="p-1 border border-gray-700 rounded-full hover:bg-white/10 transition-colors"
             >
-              <ArrowLeft size={20} />
+              <ArrowLeft size={12} />
             </button>
             <button
               onClick={handleNext}
-              className="p-2 border border-gray-700 rounded-full hover:bg-white/10 transition-colors"
+              className="p-1 border border-gray-700 rounded-full hover:bg-white/10 transition-colors"
             >
-              <ArrowRight size={20} />
+              <ArrowRight size={12} />
             </button>
           </div>
         </div>

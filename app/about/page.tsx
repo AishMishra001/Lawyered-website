@@ -1,4 +1,4 @@
-// app/about-us/page.tsx
+// app/about/page.tsx
 
 import { AboutHero } from "@/app/components/AboutHero";
 import { AboutIntro } from "@/app/components/AboutIntro";

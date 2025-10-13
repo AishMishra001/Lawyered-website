@@ -1,10 +1,10 @@
-  "use client";
+"use client";
 // app/lots-247/page.tsx
 import Image from "next/image"
 import { X } from "lucide-react"
 import { News } from "../components/News"
-import { useState, useEffect, MouseEvent, CSSProperties } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, MouseEvent, CSSProperties, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 // Section 1: Hero
 function LotsHero() {
@@ -65,7 +65,8 @@ function LotsHero() {
   // Mobile detection and rotation animation
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
     };
 
     checkMobile();
@@ -182,7 +183,7 @@ function LotsInfrastructure() {
           >
             {/* <p className="text-base text-gray-400">Layer 1</p>
              */}
-            <h3 className="text-lg md:text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
+            <h3 className="text-base md:text-2xl font-bold mt-1">24×7 On-Call Resolution</h3>
             <Image
               src={hoveredCard === 1 ? "/sticker23.png" : "/sticker32.png"}
               alt="On-Call Resolution"
@@ -204,7 +205,7 @@ function LotsInfrastructure() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             {/* <p className="text-base text-gray-400">Layer 2</p> */}
-            <h3 className="text-lg md:text-2xl font-bold mt-1">On-Site Deployment</h3>
+            <h3 className="text-base md:text-2xl font-bold mt-1">On-Site Deployment</h3>
             <Image
               src={hoveredCard === 2 ? "/sticker22.png" : "/sticker88.png"}
               alt="On-Site Deployment"
@@ -226,7 +227,7 @@ function LotsInfrastructure() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             {/* <p className="text-base text-gray-400">Layer 3</p> */}
-            <h3 className="text-lg md:text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
+            <h3 className="text-base md:text-2xl font-bold mt-1">Challans & RTO-as-a-Service</h3>
             <Image
               src={hoveredCard === 3 ? "/sticker24.png" : "/sticker42.png"}
               alt="Challans & RTO Service"
@@ -252,8 +253,174 @@ function LotsInfrastructure() {
 }
 
 // Section 3: Drive Ahead Without Legal Worries! (Pricing)
+
+interface Plan {
+  name: string;
+  logo: string;
+  bgColor: string;
+  topSeller?: boolean;
+  values: (string | boolean | number | null | undefined)[];
+}
+
+const DesktopPlan = ({ plan, features }: { plan: Plan, features: string[] }) => (
+  <div className="flex flex-col gap-4">
+    <div className={`relative rounded-xl p-6 flex items-center justify-center ${plan.bgColor} z-10 h-24`}>
+      {plan.topSeller && (
+        <Image
+          src="/TopSeller2.png"
+          alt="Top Seller"
+          width={150}
+          height={150}
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-20"
+        />
+      )}
+      <Image
+        src={plan.logo || "/placeholder.svg"}
+        alt={`${plan.name} logo`}
+        width={150}
+        height={50}
+        className="object-contain"
+      />
+    </div>
+    <div className="bg-white rounded-lg py-6 space-y-4">
+      {plan.values.map((val: string | boolean | number | null | undefined, idx: number) => (
+        <div
+          key={idx}
+          className="h-[5rem] pb-6 px-4 lg:px-2 flex items-center justify-center text-base lg:text-lg text-center border-b border-black/10 last:border-b-0 p-2"
+        >
+          <div className="w-full flex items-center justify-between lg:justify-center">
+            <span className="lg:hidden font-semibold text-sm text-gray-600 text-left pr-2">
+              {features[idx] === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : features[idx]}
+            </span>
+            <div className="text-right lg:text-center">
+              {val === true ? (
+                <Image src="/Tick.png" alt="Checkmark" width={24} height={24} className="object-contain inline-block" />
+              ) : val === false ? (
+                <Image src="/CircleX.png" alt="Cross" width={24} height={24} className="object-contain inline-block" />
+              ) : typeof val === 'string' && val.includes(' , ') ? (
+                <div>
+                  {val.split(' , ').map((line: string, i: number) => {
+                    if (!isNaN(Number(line.replace(/,/g, '')))) {
+                      if (plan.name === 'V Care' && idx === 4) {
+                        return <p key={i} className="text-black">{line}</p>;
+                      }
+                      return <p key={i} className="text-black">INR {line}</p>;
+                    }
+                    return <p key={i} className="text-black">{line}</p>;
+                  })}
+                </div>
+              ) : (
+                <p className="text-black">{val}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const MobilePlan = ({ plan, features }: { plan: Plan, features: string[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentScrollHeight, setContentScrollHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const scrollHeight = contentRef.current.scrollHeight;
+      const clientHeight = contentRef.current.clientHeight;
+      setContentScrollHeight(scrollHeight - clientHeight);
+    }
+  }, [plan.values]);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const translateY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -contentScrollHeight]
+  );
+
+  return (
+    <div ref={containerRef} className="h-[200vh]">
+      <div className="sticky top-28 flex flex-col gap-4">
+        <div className={`relative rounded-xl p-6 flex items-center justify-center ${plan.bgColor} z-10 h-24`}>
+          {plan.topSeller && (
+            <Image
+              src="/TopSeller2.png"
+              alt="Top Seller"
+              width={150}
+              height={150}
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-20"
+            />
+          )}
+          <Image
+            src={plan.logo || "/placeholder.svg"}
+            alt={`${plan.name} logo`}
+            width={150}
+            height={50}
+            className="object-contain"
+          />
+        </div>
+        <div ref={contentRef} className="bg-white rounded-lg pt-6 space-y-4 overflow-hidden" style={{ maxHeight: 'calc(100vh - 13rem)' }}>
+          <motion.div style={{ translateY }}>
+            {plan.values.map((val: string | boolean | number | null | undefined, idx: number) => (
+              <div
+                key={idx}
+                className="h-[5rem] px-4 flex items-center justify-center text-base text-center border-b border-black/10 last:border-b-0 p-2"
+              >
+                <div className="w-full flex items-center justify-between">
+                  <span className="font-semibold text-sm text-gray-600 text-left pr-2">
+                    {features[idx] === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : features[idx]}
+                  </span>
+                  <div className="text-right">
+                    {val === true ? (
+                      <Image src="/Tick.png" alt="Checkmark" width={24} height={24} className="object-contain inline-block" />
+                    ) : val === false ? (
+                      <Image src="/CircleX.png" alt="Cross" width={24} height={24} className="object-contain inline-block" />
+                    ) : typeof val === 'string' && val.includes(' , ') ? (
+                      <div>
+                        {val.split(' , ').map((line, i) => {
+                          if (!isNaN(Number(line.replace(/,/g, '')))) {
+                            if (plan.name === 'V Care' && idx === 4) {
+                              return <p key={i} className="text-black">{line}</p>;
+                            }
+                            return <p key={i} className="text-black">INR {line}</p>;
+                          }
+                          return <p key={i} className="text-black">{line}</p>;
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-black">{val}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function LotsPricing() {
+  const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const [isStickerHovered, setIsStickerHovered] = useState(false);
+
   const features = [
     "Number of Vehicles", "24/7 On-Call Resolution", "On-Site Legal Resolution", "Challan-as-a-Service",
     "Online Lok Adalat Court", "RTO-as-a-Service", "Dashboard Access", "No.of Users", "Automated Report",
@@ -261,7 +428,6 @@ function LotsPricing() {
     "Dedicated Account Manager", "Bulk Challan Resolution", "API Integration",
   ];
 
-  
   const plans = [
     {
       name: "U Drive", logo: "/Udrive.png", bgColor: "bg-[#06B6D4]",
@@ -307,63 +473,11 @@ function LotsPricing() {
               {/* Right column : plans */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {plans.map((plan) => (
-              <div key={plan.name} className="relative flex flex-col gap-4">
-                
-                {plan.topSeller && (
-                  <Image
-                    src="/TopSeller2.png"
-                    alt="Top Seller"
-                    width={150}
-                    height={150}
-                    className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-10"
-                  />
-                )}
-                
-                <div className={`rounded-xl p-6 flex items-center justify-center ${plan.bgColor}`}>
-                  <Image
-                    src={plan.logo || "/placeholder.svg"}
-                    alt={`${plan.name} logo`}
-                    width={150}
-                    height={50}
-                    className="object-contain"
-                  />
-                </div>
-                
-                <div className="bg-white rounded-lg py-6 space-y-4">
-                  {plan.values.map((val, idx) => (
-                    <div
-                      key={idx}
-                      className="h-[5rem] pb-6  px-4 lg:px-2 flex items-center justify-center text-base lg:text-lg text-center border-b border-black/10 last:border-b-0 p-2"
-                    >
-                      <div className="w-full flex items-center justify-between lg:justify-center">
-                        <span className="lg:hidden font-semibold text-sm text-gray-600 text-left pr-2">{features[idx] === "Online Lok Adalat Court" ? <div>Online<br/>Lok Adalat<br/>Court</div> : features[idx]}</span>
-                        
-                        <div className="text-right lg:text-center">
-                            {val === true ? (
-                                <Image src="/Tick.png" alt="Checkmark" width={24} height={24} className="object-contain inline-block" />
-                            ) : val === false ? (
-                                <Image src="/CircleX.png" alt="Cross" width={24} height={24} className="object-contain inline-block" />
-                            ) : (typeof val === 'string' && val.includes(' , ')) ? (
-                                <div>
-                                    {val.split(' , ').map((line, i) => {
-                                        if (!isNaN(Number(line.replace(/,/g, '')))) {
-                                            if (plan.name === 'V Care' && idx === 4) {
-                                                return <p key={i} className="text-black">{line}</p>;
-                                            }
-                                            return <p key={i} className="text-black">INR {line}</p>;
-                                        }
-                                        return <p key={i} className="text-black">{line}</p>;
-                                    })}
-                                </div>
-                            ) : (
-                                <p className="text-black">{val}</p>
-                            )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              isClient && isMobile ? (
+                <MobilePlan key={plan.name} plan={plan} features={features} />
+              ) : (
+                <DesktopPlan key={plan.name} plan={plan} features={features} />
+              )
             ))}
           </div>
         </div>
@@ -371,6 +485,7 @@ function LotsPricing() {
     </div>
   );
 }
+
 
 // Section 4: Submit Card
 function LotsForm() {

@@ -115,7 +115,7 @@ function BlogsHero() {
           onMouseLeave={() => setIsImageHovered(false)}
         >
           <Image
-            src={isImageHovered ? "/blogHero2.png" : "/blogHero.png"}
+            src={isImageHovered ? "/blogHero4.png" : "/blogHero3.png"}
             alt="Person excited at laptop"
             width={400}
             height={400}

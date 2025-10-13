@@ -151,7 +151,7 @@ function ChallanHero() {
         </div>
       )}
 
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-32 md:py-32 flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center min-h-[80vh] md:min-h-screen">
+      <div className="relative px-4 md:px-16 lg:px-26 z-10 max-w-8xl mx-auto pt-32 md:pt-28 lg:py-32 flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center min-h-[80vh] md:min-h-[85vh] lg:min-h-screen">
         {/* Left Column: Sticker */}
         <div
           className="flex justify-center md:pt-26 relative h-[250px] md:h-[600px] w-full md:w-[700px] order-2 md:order-1 -mt-4"
@@ -179,7 +179,7 @@ function ChallanHero() {
         </div>
 
         {/* Dots for Mobile */}
-        <div className="flex md:hidden justify-center gap-2 order-3">
+        <div className="flex md:hidden justify-center gap-2 order-3 ">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -241,8 +241,8 @@ function ChallanHero() {
 // Section 2: Content
 function ChallanContent() {
   return (
-    <div className="pb-12 md:pb-24 px-4 md:px-26">
-      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-6 md:space-y-8">
+    <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
+      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8">
         <p className="px-4 md:px-0">
           India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
@@ -336,7 +336,7 @@ function ChallanVehicleSelector() {
                     alt={vehicle.label}
                     width={iconSize}
                     height={iconSize}
-                    className={`${isSelected ? 'w-20 md:w-20' : 'w-16 md:w-14'} h-auto transition-all duration-300 ${isSelected ? 'border-[#0b9eb4]' : ''}`}
+                    className={`w-20 md:w-20 h-auto transition-all duration-300 ${isSelected ? 'border-[#0b9eb4]' : ''}`}
                 />
             </div>
         );
@@ -383,7 +383,6 @@ function ChallanVehicleSelector() {
               type="text"
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
-              placeholder="e.g. UP32MM1313"
               className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
             />
             <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
@@ -419,11 +418,11 @@ function ChallanVehicleSelector() {
             </div>
             <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
-              <Link href="/terms-and-conditions" className="font-bold underline text-[#22D2EE]">
+              <Link href="https://lawyered.in/p/terms-and-conditions-for-challan-resolution" className="font-bold underline text-[#22D2EE]">
                 terms & conditions
               </Link>
               {' '}and the{' '}
-              <Link href="/privacy-policy" className="font-bold underline text-[#22D2EE]">
+              <Link href="https://lawyered.in/p/privacy-policy" className="font-bold underline text-[#22D2EE]">
                 privacy policy
               </Link>
               , and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
@@ -434,6 +433,7 @@ function ChallanVehicleSelector() {
     </div>
   );
 }
+
 
 // NEW: Modal component for the WhatsApp form
 const WhatsappModal = ({ onClose }: { onClose: () => void }) => {

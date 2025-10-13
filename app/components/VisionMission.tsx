@@ -9,8 +9,8 @@ export function VisionMission() {
     <div className="py-16 md:py-24 px-4 md:px-24 bg-brand-dark">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
         {/* Mobile: Heading */}
-        <div className="order-1 md:hidden text-center">
-          <h2 className="text-2xl font-semibold text-[#22D2EE] mb-6">Vision & Mission</h2>
+        <div className="order-1 md:hidden text-left">
+          <h2 className="text-2xl font-semibold text-[#22D2EE] mb-0 md:mb-6">Vision & Mission</h2>
         </div>
         {/* Mobile: Image */}
         <div

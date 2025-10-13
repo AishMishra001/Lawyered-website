@@ -4,9 +4,9 @@ import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const stats = [
-  "70,000+ lawyers Network",
-  "600,000+ Vehicles covered",
-  "200,000+ Legal matters resolved",
+  "70,000+ lawyers network",
+  "600,000+ vehicles covered",
+  "200,000+ 'legal matters resolved",
 ];
 
 export function AboutHero() {
