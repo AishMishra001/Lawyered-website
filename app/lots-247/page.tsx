@@ -1,7 +1,7 @@
   "use client";
 // app/lots-247/page.tsx
 import Image from "next/image"
-import { Check, Truck, Scale, MapPin, X } from "lucide-react"
+import { X } from "lucide-react"
 import { News } from "../components/News"
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -430,7 +430,7 @@ function LotsForm() {
       <div className="py-12 md:py-24 max-w-8xl px-4 md:px-26">
         <div className="mx-auto border border-gray-800 rounded-lg p-4 md:p-8">
           <div className="w-full max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-            <p className="text-gray-200 text-sm md:text-base text-center md:text-left">
+            <p className="text-gray-200 text-base text-center md:text-left">
               To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the form
               and our executive will contact you.
             </p>

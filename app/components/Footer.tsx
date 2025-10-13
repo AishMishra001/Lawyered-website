@@ -11,9 +11,9 @@ export function Footer() {
       <footer className="border-t border-gray-800 py-12 md:py-8  mt-2 lg:mt-22 px-4 md:px-26">
         <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-4 gap-8 text-white">
           {/* Column 1: Info */}
-          <div className="col-span-2 flex flex-col text-xs lg:text-sm items-center md:items-start text-center md:text-left justify-between">
+          <div className="col-span-2 flex flex-col text-xs lg:text-sm items-start text-left justify-between">
             <div>
-              <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className="mx-auto md:mx-0 md:-ml-6 w-48 md:w-64 h-auto" />
+              <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className="mx-0 -ml-6 w-64 h-auto" />
               <p>Sproutech Solutions Private Limited</p>
               <p>India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF <br className="hidden md:block" />Metropolis Mall, MG Road, Gurugram, Haryana 122002</p>
             </div>
@@ -21,14 +21,14 @@ export function Footer() {
           </div>
           
           {/* START: Wrapper for Links & Social Icons */}
-          <div className="col-span-2 flex flex-col md:flex-row items-center md:items-start">
+          <div className="col-span-2 flex flex-col md:flex-row items-start">
             
             {/* Column 2 & 3: Links */}
             {/* The class w-full was changed to w-fit here */}
             <div className="w-fit md:w-2/3 grid grid-cols-2 gap-16 md:gap-0 text-sm lg:mt-4">
               <div>
                 <ul className="space-y-3 md:space-y-4">
-                  <li><Link href="#" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
+                  <li><Link href="/" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
                   <li><Link href="/ceo-message" className="text-white hover:text-[#22D2EE] hover:font-bold">CEO&apos;S MESSAGE</Link></li>
                   <li><Link href="/lots-247" className="text-white hover:text-[#22D2EE] hover:font-bold">LOTS247</Link></li>
                   <li><Link href="/challan-pay" className="text-white hover:text-[#22D2EE] hover:font-bold">CHALLANPAY</Link></li>

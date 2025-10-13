@@ -179,7 +179,7 @@ function ChallanHero() {
         </div>
 
         {/* Dots for Mobile */}
-        <div className="flex md:hidden justify-center gap-2 mt-4 order-3">
+        <div className="flex md:hidden justify-center gap-2 order-3">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -327,7 +327,7 @@ function ChallanVehicleSelector() {
         return (
             <div
                 onClick={onClick}
-                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-24 h-24 md:w-40 md:h-40 border-4 text-gray-400 hover:border-brand-cyan ${
+                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-30 h-30 md:w-40 md:h-40 border-4 text-gray-400 hover:border-brand-cyan ${
                     isSelected ? 'border-[#0b9eb4]' : 'border-gray-700'
                 }`}
             >
@@ -343,13 +343,13 @@ function ChallanVehicleSelector() {
     };
 
   return (
-    <div className="py-12 md:py-24 px-4 md:px-26">
+    <div className="pb-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4 md:px-22">
         {/* Left Column: Vehicle Type Buttons */}
         <div className="w-full">
-          <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center md:text-left">Select Vehicle Type*</h2>
-          <div className="flex flex-col items-center md:items-start gap-y-8 md:gap-y-14">
-            <div className="flex justify-center md:justify-start gap-x-4 md:gap-x-6">
+          <h2 className="text-2xl font-bold mb-6 md:mb-8  text-left">Select Vehicle Type*</h2>
+          <div className="flex flex-col items-center md:items-start gap-y-12 md:gap-y-14">
+            <div className="flex justify-center  md:justify-start gap-x-12 md:gap-x-6">
                 <VehicleCircle 
                     vehicle={vehicleData[0]}
                     isSelected={selectedVehicleId === vehicleData[0].id}
@@ -361,7 +361,7 @@ function ChallanVehicleSelector() {
                     onClick={() => handleVehicleSelect(vehicleData[1].id)}
                 />
             </div>
-            <div className="flex justify-center md:justify-start gap-x-4 md:gap-x-6">
+            <div className="flex justify-center md:justify-start gap-x-12 md:gap-x-6">
                 <VehicleCircle 
                     vehicle={vehicleData[2]}
                     isSelected={selectedVehicleId === vehicleData[2].id}
@@ -532,7 +532,8 @@ function ChallanWhatsapp() {
     <>
       <div className="py-12 md:py-16 px-4 md:px-26 border-y-2 border-gray-800">
         <div className="max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div 
+          {/* Image Section */}
+          <div
             className="flex justify-center md:justify-start bg-transparent rounded-lg p-4 order-2 md:order-1"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -545,6 +546,8 @@ function ChallanWhatsapp() {
               className="object-contain w-64 md:w-full h-auto"
             />
           </div>
+
+          {/* Text and Button Section */}
           <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 order-1 md:order-2 text-center md:text-left">
             <p className="text-lg md:text-2xl font-semibold text-white px-4 md:px-0">
               Want to check challans for multiple vehicles together? Do not worry.

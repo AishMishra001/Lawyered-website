@@ -76,7 +76,7 @@ export function ValuesPromiseTabs() {
   const [isJoinTeamModalOpen, setJoinTeamModalOpen] = useState(false);
 
   const values = [
-    { icon: <Image src="/promise1.png" alt="Wisdom and Empathy" width={45} height={45} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
+    { icon: <Image src="/promise1.png" alt="Wisdom and Empathy" width={35} height={35} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
     { icon: <Image src="/promise2.png" alt="Innovation and Inspiration" width={50} height={50} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
     { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other’s expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people’s lives." },
   ];

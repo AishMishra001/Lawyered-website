@@ -75,7 +75,7 @@ export function Navbar() {
         {/* Mobile & Tablet Menu Bar - STABLE */}
         <div className="md:hidden lg:hidden flex justify-between items-center w-full">
           <div className="flex-shrink-0">
-            <Link href="/">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
               <Image
                 src="/lawyered-logo.png"
                 alt="Lawyered Logo"

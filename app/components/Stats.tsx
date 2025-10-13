@@ -36,7 +36,7 @@ export function Stats() {
                 {stat.icon}
               </div>
               <p className="text-xl md:text-2xl font-bold mt-2 text-white">{stat.value}</p>
-              <p className="text- text-base  mt-1 pb-6">{stat.label}</p>
+              <p className="text-xs md:text-base  mt-1 pb-6">{stat.label}</p>
             </div>
           ))}
         </div>
