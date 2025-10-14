@@ -47,31 +47,29 @@ function BlogsHero() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Rotation animation for mobile
+  // Rotation animation for both desktop and mobile
   useEffect(() => {
-    if (!isMobile) return;
-
     const interval = setInterval(() => {
       setRotation(prev => (prev + 1) % 360);
     }, 50);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, []);
 
-  // Desktop spotlight style (mouse-following)
+  // Desktop spotlight style (rotating mask with increased size)
   const desktopSpotlightStyle: CSSProperties = {
-    opacity: isHovering ? 1 : 0,
+    opacity: 1,
     transition: 'opacity 0.3s ease-in-out',
-    maskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
-    WebkitMaskImage: `radial-gradient(circle 300px at ${delayedMousePosition.x}px ${delayedMousePosition.y}px, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    maskImage: `radial-gradient(circle 400px at ${50 + 35 * Math.cos(rotation * Math.PI / 180)}% ${50 + 35 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 400px at ${50 + 35 * Math.cos(rotation * Math.PI / 180)}% ${50 + 35 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
   };
 
   // Mobile spotlight style (rotating mask)
   const mobileSpotlightStyle: CSSProperties = {
     opacity: 1,
     transition: 'opacity 0.3s ease-in-out',
-    maskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
-    WebkitMaskImage: `radial-gradient(circle 200px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    maskImage: `radial-gradient(circle 250px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
+    WebkitMaskImage: `radial-gradient(circle 250px at ${50 + 30 * Math.cos(rotation * Math.PI / 180)}% ${50 + 30 * Math.sin(rotation * Math.PI / 180)}%, black 20%, rgba(0, 0, 0, 0.5) 50%, transparent 80%)`,
   };
 
   return (

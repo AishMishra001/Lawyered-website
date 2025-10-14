@@ -1,10 +1,42 @@
 'use client';
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 export function Culture() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isInCenter, setIsInCenter] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  // Check if element is in center of viewport (mobile only)
+  const checkIfInCenter = () => {
+    if (window.innerWidth >= 768 || !imageRef.current) return; // Only for mobile
+
+    const element = imageRef.current;
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const elementCenter = rect.top + rect.height / 2;
+    const windowCenter = windowHeight / 2;
+
+    // Check if element center is within 100px of window center
+    const isCenter = Math.abs(elementCenter - windowCenter) < 100;
+    setIsInCenter(isCenter);
+  };
+
+  useEffect(() => {
+    // Only add scroll listener for mobile
+    if (window.innerWidth < 768) {
+      const handleScroll = () => {
+        checkIfInCenter();
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      // Check initial position
+      checkIfInCenter();
+
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   return (
     <div className="py-16 md:py-24 px-4 md:px-24 bg-brand-dark">
@@ -15,12 +47,13 @@ export function Culture() {
         </div>
         {/* Mobile: Image */}
         <div
+          ref={imageRef}
           className="order-2 md:hidden justify-self-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <Image
-            src={isHovered ? "/culture2.png" : "/culture1.png"}
+            src={(isHovered || isInCenter) ? "/culture2.png" : "/culture1.png"}
             alt="Team collaborating"
             width={400}
             height={300}
