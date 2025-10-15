@@ -44,7 +44,7 @@ export function TrustedPartners() {
         }
       `}</style>
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE] mb-8">Trusted Partners</h2>
+        <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE] mb-8 text-center md:text-left">Trusted Partners</h2>
         <div className="scroller" data-animated="true">
           <div className="scroller__inner">
             {[...logos, ...logos].map((logo, index) => {

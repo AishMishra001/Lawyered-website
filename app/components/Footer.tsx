@@ -9,19 +9,20 @@ export function Footer() {
   return (
     <>
       <footer className="border-t border-gray-800 py-12 md:py-8  mt-2 lg:mt-22 px-4 md:px-26">
-        <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-4 gap-8 text-white">
+        <div className="max-w-8xl mx-auto">
+          <div className="flex flex-col md:grid md:grid-cols-4 gap-8 text-white justify-center md:justify-start">
           {/* Column 1: Info */}
-          <div className="col-span-2 flex flex-col text-xs lg:text-sm items-start text-left justify-between">
-            <div>
-              <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className="mx-0 -ml-6 w-64 h-auto" />
-              <p>Sproutech Solutions Private Limited</p>
+          <div className="col-span-2 flex flex-col text-xs lg:text-sm items-center md:items-start text-center md:text-left justify-between">
+            <div className="flex flex-col items-center md:items-start">
+              <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className=" md:-ml-6 w-64 h-auto" />
+              <p className="mb-1 md:mb-0">Sproutech Solutions Private Limited</p>
               <p>India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF <br className="hidden md:block" />Metropolis Mall, MG Road, Gurugram, Haryana 122002</p>
             </div>
-            <p className="md:mt-0">T: 99-88-44-1033 E: info@lawyered.in</p>
+            <p className="text-center md:text-left mt-1 md:mt-0">T: 99-88-44-1033 E: info@lawyered.in</p>
           </div>
           
           {/* START: Wrapper for Links & Social Icons */}
-          <div className="col-span-2 flex flex-col md:flex-row items-start">
+          <div className="col-span-2 flex flex-col md:flex-row items-center md:items-start">
             
             {/* Column 2 & 3: Links */}
             {/* The class w-full was changed to w-fit here */}
@@ -66,6 +67,7 @@ export function Footer() {
 
           </div>
           {/* END: Wrapper */}
+          </div>
         </div>
       </footer>
       

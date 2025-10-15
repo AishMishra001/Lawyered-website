@@ -240,16 +240,16 @@ function ChallanHero() {
 function ChallanContent() {
   return (
     <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
-      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8">
+      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
         <p className="px-4 md:px-0">
-          India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
+          India's traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
         <p className="px-4 md:px-0">
-          ChallanPay is India&apos;s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
+          ChallanPay is India's first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
         </p>
-        <div className="px-4 md:px-0">
+        <div className="px-4 md:px-0 text-left">
           <p className="mb-4 md:mb-6">
-            We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
+            We are building the "Default Rail of Mobility Compliance" — a digital-first legal infrastructure layer that powers the entire ecosystem:
           </p>
           <ul className="space-y-3 md:space-y-4 list-disc list-inside">
             <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
@@ -321,21 +321,21 @@ function ChallanVehicleSelector() {
 
     const VehicleCircle = ({ vehicle, isSelected, onClick }: { vehicle: typeof vehicleData[0], isSelected: boolean, onClick: () => void }) => {
         const iconSrc = isSelected ? vehicle.selectedIcon : vehicle.unselectedIcon;
-        const iconSize = isSelected ? 180 : 120; // Increased size difference for more noticeable effect
         return (
             <div
                 onClick={onClick}
-                className={`flex flex-col items-center justify-center rounded-full bg-white aspect-square cursor-pointer transition-all duration-300 w-30 h-30 md:w-40 md:h-40 border-4 text-gray-400 hover:border-brand-cyan ${
-                    isSelected ? 'border-[#0b9eb4]' : 'border-gray-700'
+                className={`relative flex flex-col items-center justify-center rounded-full aspect-square cursor-pointer transition-all duration-300 ease-in-out w-30 h-30 md:w-40 md:h-40 border-2 text-gray-400 hover:border-brand-cyan ${
+                    isSelected ? 'border-[#0b9eb4] bg-blue-100' : 'border-gray-700 bg-white'
                 }`}
             >
-                <Image
-                    src={iconSrc}
-                    alt={vehicle.label}
-                    width={iconSize}
-                    height={iconSize}
-                    className={`w-20 md:w-20 h-auto transition-all duration-300 ${isSelected ? 'border-[#0b9eb4]' : ''}`}
-                />
+                <div className="relative w-20 md:w-20 h-20 md:h-20">
+                    <Image
+                        src={iconSrc}
+                        alt={vehicle.label}
+                        fill
+                        className="object-contain"
+                    />
+                </div>
             </div>
         );
     };
@@ -345,7 +345,7 @@ function ChallanVehicleSelector() {
       <div className="max-w-8xl mx-auto flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4 md:px-22">
         {/* Left Column: Vehicle Type Buttons */}
         <div className="w-full">
-          <h2 className="text-2xl font-bold mb-6 md:mb-8  text-left">Select Vehicle Type*</h2>
+          <h2 className="text-2xl font-bold mb-6 md:mb-8 text-center md:text-left">Select Vehicle Type*</h2>
           <div className="flex flex-col items-center md:items-start gap-y-12 md:gap-y-14">
             <div className="flex justify-center  md:justify-start gap-x-12 md:gap-x-6">
                 <VehicleCircle 
@@ -381,6 +381,7 @@ function ChallanVehicleSelector() {
               type="text"
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
+              placeholder="Enter Vehicle Number"
               className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
             />
             <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>

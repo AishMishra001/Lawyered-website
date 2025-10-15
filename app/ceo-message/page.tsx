@@ -106,7 +106,7 @@ function CeoHero() {
 
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-24 grid md:grid-cols-5 gap-32 items-center">
         {/* Left Column: Text Content */}
-        <div className="md:col-span-3 flex flex-col gap-10">
+        <div className="md:col-span-3 flex flex-col gap-10 text-center md:text-left">
           <h1 className="text-2xl lg:text-4xl font-bold leading-tight text-white">
             A Note from our Founder,<br />Himanshu Gupta
           </h1>
@@ -154,15 +154,15 @@ function CeoContent() {
 
   return (
     <div className="bg-brand-dark py-12 px-4 md:px-26">
-      <div className="max-w-8xl  mx-auto space-y-8 text-gray-300 text-base leading-relaxed">
+      <div className="max-w-8xl mx-auto space-y-8 text-gray-300 text-base leading-relaxed text-center md:text-left">
         {messageParagraphs.map((text, index) => (
           <p key={index}>{text}</p>
         ))}
-        
+
         {/* Signature */}
-        <div className="pt-8">
+        <div className="pt-8 text-center md:text-left">
           <p className="text-base">Regards,</p>
-          <div className="flex items-center gap-4 mt-4">
+          <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
             <p className="text-3xl font-bold text-[#22D2EE]">Himanshu Gupta</p>
             <a
               href="https://www.linkedin.com/in/gupta-himanshu/"

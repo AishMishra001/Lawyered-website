@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect, MouseEvent, CSSProperties } from "react";
 
 // Section 1: Hero
@@ -176,6 +177,33 @@ interface BlogPost {
 // Section 3: Blogs Grid
 function BlogsGrid() {
   const blogPosts: BlogPost[] = [
+     {
+      image: "/blog6.png",
+      title: "How to Resolve E-Challans Online: A Step-by-Step Guide for Traffic Fine Payment in India .",
+      excerpt: "Navigating India’s bustling roads can be challenging, often leading to unintentional traffic rule violations. This can result in hefty e-challans, but managing them has never been easier. But what if managing these fines was as easy as a few taps on your smartphone?",
+      date: "Dec 3, 2024",
+      readTime: "5 min read",
+      href: "/blogs/resolve-Echallan",
+
+    },
+     {
+      image: "/blog5.png",
+      title: "Stay Compliant with Himachal's New E-Challan System: How LOTS Can Keep You Covered on the Road",
+      excerpt: "Himachal’s new e-challan system is revolutionising road compliance. Discover how LOTS can help you stay updated on vehicle documentation, avoid fines, and access legal support as needed. Learn more with our guide .",
+      date: "Dec 3, 2024",
+      readTime: "5 min read",
+      href: "/blogs/lots-covered",
+
+    },
+      {
+      image: "/blog4.png",
+      title: "Traffic Challan in Haryana: Methods for Instant Online Payment.",
+      excerpt: "The road can be unpredictable, and on-road legal problems are increasingly common. One issue drivers frequently encounter in Haryana is receiving a traffic challan, a fine issued for violating traffic laws. Fortunately, with the surge in online payment options, paying a challan has become more straightforward .",
+      date: "Dec 3, 2024",
+      readTime: "5 min read",
+      href: "/blogs/traffic-challan-haryana",
+
+    },
     {
       image: "/blog3.png",
       title: "Can we pay traffic challan through an app? Explore app that offers seamless on road legal solutions",
@@ -183,7 +211,7 @@ function BlogsGrid() {
       date: "Dec 3, 2024",
       readTime: "5 min read",
       href: "/blogs/traffic-challan-app",
-      
+
     },
     {
       image: "/blog2.png",
@@ -207,29 +235,31 @@ function BlogsGrid() {
     <div className="pb-12 md:pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-          {blogPosts.map((post) => (
-            <div key={post.title} className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#22D3EE] transition-colors duration-300">
-              <div className="aspect-video overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  width={600}
-                  height={400}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-4 md:p-6 flex flex-col flex-grow gap-3 md:gap-6">
-                <h3 className="text-lg md:text-xl font-semibold text-[#22D3EE] hover:underline leading-tight">
-                  <a href={post.href}>{post.title}</a>
-                </h3>
-                <p className="text-white text-sm md:text-base leading-relaxed flex-grow">
-                  {post.excerpt}
-                </p>
-                <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-white">
-                  <span>{post.date}</span> | <span>{post.readTime}</span>
+          {blogPosts.map((post, index) => (
+            <Link key={`blog-post-${index}`} href={post.href}>
+              <div className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#22D3EE] transition-colors duration-300 cursor-pointer h-full">
+                <div className="aspect-video overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-4 md:p-6 flex flex-col flex-grow gap-3 md:gap-6">
+                  <h3 className="text-lg md:text-xl font-semibold text-[#22D3EE] hover:underline leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-white text-sm md:text-base leading-relaxed flex-grow">
+                    {post.excerpt}
+                  </p>
+                  <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-white">
+                    <span>{post.date}</span> | <span>{post.readTime}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
