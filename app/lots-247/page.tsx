@@ -40,6 +40,8 @@ function LotsHero() {
   const [isHovering, setIsHovering] = useState(false)
   const [rotation, setRotation] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true)
@@ -137,7 +139,7 @@ function LotsHero() {
           className="w-64 md:w-96 h-auto"
         />
 
-        <div className="relative h-48 mt-6 w-full">
+        <div className="relative h-52 sm:h-42 md:h-36 mt-6 w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -147,31 +149,32 @@ function LotsHero() {
               transition={{ duration: 0.3 }}
               className="absolute w-full left-0 right-0"
             >
-              <h1 className="text-2xl md:text-4xl font-bold text-white px-4">{slides[index].h1}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold text-white px-4">{slides[index].h1}</h1>
               <p className="mt-4 text-sm md:text-base text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="flex gap-2 mt-8">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                index === i ? "bg-[#22D2EE]" : "bg-gray-600"
-              }`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
+        {/* Video Section - positioned within hero bounds */}
+        <div className="-mt-4 w-full max-w-4xl flex items-center justify-center">
+          <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl" style={{ aspectRatio: '16/9', maxHeight: '400px' }}>
+            <video
+              ref={videoRef}
+              className={`w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
+              controls
+              preload="metadata"
+              playsInline
+              muted
+              onPlay={() => setIsVideoPlaying(true)}
+              onPause={() => setIsVideoPlaying(false)}
+            >
+              <source src="/lots-vid.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
+
       </div>
-      <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 text-sm md:text-base max-w-7xl">
-        LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
-        (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
-        and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
-        is a painkiller solution—an indispensable safety net for every vehicle on Indian roads.
-      </p>
     </div>
   )
 }
@@ -182,6 +185,12 @@ function LotsInfrastructure() {
   return (
     <div className="pb-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
+        <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
+          LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
+          (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
+          and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
+          is a painkiller solution—an indispensable safety net for every vehicle on Indian roads.
+        </p>
         <h2 className="text-xl md:text-2xl font-semibold text-center mb-8 md:mb-16 px-4">
           The Only Scalable & Dependable Legal-Tech Infrastructure
         </h2>
