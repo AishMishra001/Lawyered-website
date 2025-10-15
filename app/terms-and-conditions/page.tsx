@@ -72,7 +72,7 @@ function TermsHero() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
+    <div className="relative w-full overflow-hidden h-full" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 
@@ -104,13 +104,13 @@ function TermsHero() {
         </div>
       )}
 
-      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-64 grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-34 md:py-64 grid md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-4xl font-bold text-white">
+          <h1 className="text-4xl font-bold text-white text-center md:text-left">
             Terms and Conditions
           </h1>
-          <p className=" text-white">
+          <p className=" text-white text-center md:text-left">
          We aim to make our terms and conditions simple and easy to follow. We encourage you to read them carefully so you always know your rights and responsibilities.
           </p>
         </div>

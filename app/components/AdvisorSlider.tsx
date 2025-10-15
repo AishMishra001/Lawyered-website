@@ -82,7 +82,7 @@ export function AdvisorsSlider() {
     <div className="py-2 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-cyan">Our Advisors</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-cyan text-center md:text-left">Our Advisors</h2>
           <div className="flex gap-4">
             <button onClick={scrollPrev} className="p-2 border border-gray-700 rounded-full hover:bg-white/10"><ArrowLeft size={20}/></button>
             <button onClick={scrollNext} className="p-2 border border-gray-700 rounded-full hover:bg-white/10"><ArrowRight size={20}/></button>

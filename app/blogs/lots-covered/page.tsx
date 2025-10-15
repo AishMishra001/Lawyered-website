@@ -26,7 +26,7 @@ export default function SingleBlogPage() {
         <header className="space-y-4">
           <p className="text-lg text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#22D3EE] leading-tight">
-          Stay Compliant with Himachal's New E-Challan System: How LOTS Can Keep You Covered on the Road
+          Stay Compliant with Himachal&apos;s New E-Challan System: How LOTS Can Keep You Covered on the Road
           </h1>
         </header>
 

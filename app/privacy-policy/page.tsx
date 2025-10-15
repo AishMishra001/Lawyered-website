@@ -107,8 +107,8 @@ function PrivacyHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6 pl-10">
-          <h1 className="text-4xl font-bold text-white">Privacy Policy</h1>
-          <p className="text-xl text-white leading-relaxed">
+          <h1 className="text-4xl font-bold text-white text-center md:text-left">Privacy Policy</h1>
+          <p className="text-xl text-white leading-relaxed text-center md:text-left">
            We aim to make our privacy practices clear, transparent, and user-friendly. Our goal is to ensure you always feel confident and informed about how your data is handled.
           </p>
         </div>

@@ -110,8 +110,8 @@ function AboutHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-4xl font-bold text-white">Contact Us</h1>
-          <p className="text-base text-white leading-relaxed">
+          <h1 className="text-4xl font-bold text-white text-center md:text-left">Contact Us</h1>
+          <p className="text-base text-white leading-relaxed text-center md:text-left">
             Lawyered is redefining legal assistance for mobility in India. With a mission to make legal help as accessible as consumer products, we invite customers, partners, team members, investors and industry experts to be part of this transformational journey.
           </p>
         </div>

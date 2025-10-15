@@ -91,7 +91,7 @@ export function Platforms() {
             Platforms
           </h2>
           <p className="text-gray-300 max-w-8xl text-center md:text-left text-base leading-relaxed mx-auto md:mx-0">
-         India’s mobility sector is a key industry comprising commercial fleet operators, logistics providers, ride-hailing services, and private vehicle owners, the public VAHAN dashboard displaying roughly 40.24 crore total vehicle registrations (and growing). The legal complexities in this sector are vast and often result in operational disruptions, financial losses, and compliance risks. A combination of stringent regulations, fragmented enforcement policies, and a growing number of vehicles on the road has intensified the legal challenges faced by stakeholders in this space.
+         India&apos;s mobility sector is a key industry comprising commercial fleet operators, logistics providers, ride-hailing services, and private vehicle owners, the public VAHAN dashboard displaying roughly 40.24 crore total vehicle registrations (and growing). The legal complexities in this sector are vast and often result in operational disruptions, financial losses, and compliance risks. A combination of stringent regulations, fragmented enforcement policies, and a growing number of vehicles on the road has intensified the legal challenges faced by stakeholders in this space.
           </p>
 
           {/* Background grid section starts here */}
@@ -144,7 +144,7 @@ export function Platforms() {
                   <p className="text-gray-300 text-sm md:text-base max-w-sm flex-grow px-4 md:px-0">
                     LOTS247 is not just a legal solution; it is a mission-critical,
                     technology-driven new SaaS (Service-as-a-Software) designed to
-                    eliminate roadside legal issues in real time- India's first
+                    eliminate roadside legal issues in real time- India&apos;s first
                     road side legal assistance platform.
                   </p>
                   <button className="mt-auto border border-gray-600 text-white py-2 px-6 rounded-lg hover:bg-white hover:text-black transition-colors w-fit hover:cursor-pointer">
@@ -166,7 +166,7 @@ export function Platforms() {
                     />
                   </div>
                   <p className="text-gray-300 text-sm md:text-base max-w-sm flex-grow px-4 md:px-0">
-                    ChallanPay is India's first unified platform for discovering,
+                    ChallanPay is India&apos;s first unified platform for discovering,
                     resolving, and tracking traffic challans across all states and
                     enforcement authorities.
                   </p>

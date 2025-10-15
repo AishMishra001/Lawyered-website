@@ -242,14 +242,14 @@ function ChallanContent() {
     <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
       <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
         <p className="px-4 md:px-0">
-          India's traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
+          India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
         <p className="px-4 md:px-0">
-          ChallanPay is India's first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
+          ChallanPay is India&apos;s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
         </p>
         <div className="px-4 md:px-0 text-left">
           <p className="mb-4 md:mb-6">
-            We are building the "Default Rail of Mobility Compliance" — a digital-first legal infrastructure layer that powers the entire ecosystem:
+            We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
           </p>
           <ul className="space-y-3 md:space-y-4 list-disc list-inside">
             <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
@@ -580,3 +580,4 @@ export default function ChallanPayPage() {
     </>
   );
 }
+

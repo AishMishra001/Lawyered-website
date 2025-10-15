@@ -77,7 +77,7 @@ export default function SingleBlogPage() {
 
           <h2 className="text-white font-bold text-2xl">How to submit grievances?</h2>
           <p>
-           If you feel your challan was issued in error, don’t panic. Gather any evidence to support your case, then visit the Parivahan website and follow these steps:
+           If you feel your challan was issued in error, don&apos;t panic. Gather any evidence to support your case, then visit the Parivahan website and follow these steps:
           </p>
           
          
@@ -94,7 +94,7 @@ export default function SingleBlogPage() {
 
           <h2 className="text-white font-bold text-2xl">Conclusion</h2>
           <p>
-          While resolving a challan may seem daunting at first, it's a straightforward process if you follow this guide.Remember, promptly paying your challans not only helps you avoid additional fines but also contributes to safer roads for everyone.
+          While resolving a challan may seem daunting at first, it&apos;s a straightforward process if you follow this guide.Remember, promptly paying your challans not only helps you avoid additional fines but also contributes to safer roads for everyone.
 “Driving safely” means “travelling carefully”
           </p>
           
