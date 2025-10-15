@@ -73,7 +73,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile & Tablet Menu Bar - STABLE */}
-        <div className="md:hidden lg:hidden flex justify-between items-center w-full">
+        <div className="md:hidden lg:hidden relative flex justify-center items-center w-full">
           <div className="flex-shrink-0">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
               <Image
@@ -88,7 +88,7 @@ export function Navbar() {
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white focus:outline-none p-2 z-50 relative"
+            className="text-white focus:outline-none p-2 z-50 absolute right-4"
             aria-label={isMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           >
             {isMenuOpen ? (
