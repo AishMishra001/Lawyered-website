@@ -566,7 +566,7 @@ function ChallanWhatsapp() {
           <div className="border-2 border-gray-700 p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
               <h2 className="text-md md:text-2xl font-bold text-white text-center">
-                Socials Ahead, Don't Miss the Signal!
+                Socials Ahead, Don&apos;t Miss the Signal!
               </h2>
               <div className="flex items-center space-x-6 md:space-x-8">
                 <a href="https://www.facebook.com/share/14KSBMrXdXs/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('facebook')} onMouseLeave={() => setSocialHovered('')}>
