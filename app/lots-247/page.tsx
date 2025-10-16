@@ -159,7 +159,7 @@ function LotsHero() {
         <div className="-mt-4 w-full max-w-5xl flex items-center justify-center px-4">
           <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl w-full" style={{
             aspectRatio: '16/9',
-            maxHeight: 'min(60vh, 400px)',
+            maxHeight: 'min(60vh, 450px)',
             maxWidth: '100%'
           }}>
             <video
