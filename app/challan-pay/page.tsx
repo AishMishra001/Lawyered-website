@@ -526,36 +526,66 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
 function ChallanWhatsapp() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [socialHovered, setSocialHovered] = useState('');
 
   return (
     <>
       <div className="py-12 md:py-16 px-4 md:px-26 border-y-2 border-gray-800">
-        <div className="max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Image Section */}
-          <div
-            className="flex justify-center md:justify-start bg-transparent rounded-lg p-4 order-2 md:order-1"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <Image
-              src={isHovered ? "/whatsapp96.png" : "/whatsapp69.png"}
-              alt="Trucks on a highway"
-              width={500}
-              height={200}
-              className="object-contain w-64 md:w-full h-auto"
-            />
+        <div className="max-w-8xl mx-auto space-y-8">
+          {/* WhatsApp Section */}
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+            {/* Image Section */}
+            <div
+              className="flex justify-center md:justify-start bg-transparent rounded-lg p-4 order-2 md:order-1"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <Image
+                src={isHovered ? "/whatsapp96.png" : "/whatsapp69.png"}
+                alt="Trucks on a highway"
+                width={500}
+                height={200}
+                className="object-contain w-64 md:w-full h-auto"
+              />
+            </div>
+
+            {/* Text and Button Section */}
+            <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 order-1 md:order-2 text-center md:text-left">
+              <p className="text-lg md:text-2xl font-semibold text-white px-4 md:px-0">
+                Want to check challans for multiple vehicles together? Do not worry.
+              </p>
+              {/* This button now opens the modal */}
+              <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-sm md:text-base">
+                <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
+                Chat with us on WhatsApp
+              </button>
+            </div>
           </div>
 
-          {/* Text and Button Section */}
-          <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 order-1 md:order-2 text-center md:text-left">
-            <p className="text-lg md:text-2xl font-semibold text-white px-4 md:px-0">
-              Want to check challans for multiple vehicles together? Do not worry.
-            </p>
-            {/* This button now opens the modal */}
-            <button onClick={() => setModalOpen(true)} className="inline-flex items-center gap-3 bg-[#1A9849] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-sm md:text-base">
-              <Image src="/whatsapp2.png" alt="WhatsApp icon" width={24} height={24} />
-              Chat with us on WhatsApp
-            </button>
+          {/* Social Media Section */}
+          <div className="border-2 border-gray-700 p-8 md:p-12">
+            <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
+              <h2 className="text-md md:text-2xl font-bold text-white text-center">
+                Socials Ahead, Don't Miss the Signal!
+              </h2>
+              <div className="flex items-center space-x-6 md:space-x-8">
+                <a href="https://www.facebook.com/share/14KSBMrXdXs/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('facebook')} onMouseLeave={() => setSocialHovered('')}>
+                  <Image src={socialHovered === 'facebook' ? '/facebook4.png' : '/facebook3.png'} alt="Facebook" width={35} height={35} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
+                </a>
+                <a href="https://www.instagram.com/challanpay.in" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('instagram')} onMouseLeave={() => setSocialHovered('')}>
+                  <Image src={socialHovered === 'instagram' ? '/instagram4.png' : '/instagram3.png'} alt="Instagram" width={35} height={35} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
+                </a>
+                <a href="https://x.com/challanpay25389?t=Rt94s4lkuIfFsUpMHC8_VA&s=09" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('twitter')} onMouseLeave={() => setSocialHovered('')}>
+                  <Image src={socialHovered === 'twitter' ? '/twitter5.png' : '/twitter3.png'} alt="Twitter" width={35} height={35} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
+                </a>
+                <a href="https://www.youtube.com/@LawyeredIN/videos" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('youtube')} onMouseLeave={() => setSocialHovered('')}>
+                  <Image src={socialHovered === 'youtube' ? '/youtube6.png' : '/youtube5.png'} alt="YouTube" width={35} height={35} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+                </a>
+                <a href="https://www.linkedin.com/company/challanpay/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('linkedin')} onMouseLeave={() => setSocialHovered('')}>
+                  <Image src={socialHovered === 'linkedin' ? '/linkedin4.png' : '/linkedin3.png'} alt="LinkedIn" width={35} height={35} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -580,4 +610,3 @@ export default function ChallanPayPage() {
     </>
   );
 }
-

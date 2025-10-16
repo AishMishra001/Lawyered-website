@@ -988,7 +988,45 @@ function LotsForm() {
   )
 }
 
-// Section 5: Comprehensive Legal Coverage for Fleets
+
+
+// Section 5: Social Media
+function LotsSocials() {
+  const [socialHovered, setSocialHovered] = useState('');
+
+  return (
+    <div className="pb-12 md:pb-16 px-4 md:px-26">
+      <div className="max-w-8xl mx-auto">
+        <div className="border-2 border-gray-700 p-8 md:p-12">
+          <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
+            <h2 className="text-md md:text-2xl font-bold text-white text-center">
+              Socials Ahead, Don't Miss the Signal!
+            </h2>
+            <div className="flex items-center space-x-6 md:space-x-8">
+              <a href="https://www.facebook.com/people/Lots247/61582100346946/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('facebook')} onMouseLeave={() => setSocialHovered('')}>
+                <Image src={socialHovered === 'facebook' ? '/facebook4.png' : '/facebook3.png'} alt="Facebook" width={30} height={30} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
+              </a>
+              <a href="https://www.instagram.com/lots_247/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('instagram')} onMouseLeave={() => setSocialHovered('')}>
+                <Image src={socialHovered === 'instagram' ? '/instagram4.png' : '/instagram3.png'} alt="Instagram" width={30} height={30} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+              </a>
+              <a href="https://x.com/LOTS24X7" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('twitter')} onMouseLeave={() => setSocialHovered('')}>
+                <Image src={socialHovered === 'twitter' ? '/twitter5.png' : '/twitter3.png'} alt="Twitter" width={30} height={30} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+              </a>
+              <a href="https://www.youtube.com/@LOTS24X7" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('youtube')} onMouseLeave={() => setSocialHovered('')}>
+                <Image src={socialHovered === 'youtube' ? '/youtube6.png' : '/youtube5.png'} alt="YouTube" width={30} height={30} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+              </a>
+              <a href="https://www.linkedin.com/company/lots24x7/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('linkedin')} onMouseLeave={() => setSocialHovered('')}>
+                <Image src={socialHovered === 'linkedin' ? '/linkedin4.png' : '/linkedin3.png'} alt="LinkedIn" width={30} height={30} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Section 6: Comprehensive Legal Coverage for Fleets
 function LotsCoverage() {
   const stats = [
     {
@@ -1121,6 +1159,7 @@ export default function Lots247Page() {
       <LotsInfrastructure />
       <LotsPricing />
       <LotsForm />
+      <LotsSocials />
       <LotsCoverage />
       <News />
     </>
