@@ -106,7 +106,7 @@ function LotsHero() {
 
   return (
     <div
-      className="relative w-full text-center py-38 h-screen"
+      className="relative w-full text-center pt-30 h-screen"
       onMouseMove={!isMobile ? handleMouseMove : undefined}
       onMouseLeave={!isMobile ? handleMouseLeave : undefined}
     >
@@ -150,14 +150,18 @@ function LotsHero() {
               className="absolute w-full left-0 right-0"
             >
               <h1 className="text-2xl md:text-3xl font-bold text-white px-4">{slides[index].h1}</h1>
-              <p className="mt-4 text-sm md:text-base text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
+              <p className="mt-4 text-xs md:text-base text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Video Section - positioned within hero bounds */}
-        <div className="-mt-4 w-full max-w-4xl flex items-center justify-center">
-          <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl" style={{ aspectRatio: '16/9', maxHeight: '400px' }}>
+        <div className="-mt-4 w-full max-w-5xl flex items-center justify-center px-4">
+          <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl w-full" style={{
+            aspectRatio: '16/9',
+            maxHeight: 'min(60vh, 400px)',
+            maxWidth: '100%'
+          }}>
             <video
               ref={videoRef}
               className={`w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
@@ -185,7 +189,7 @@ function LotsInfrastructure() {
   return (
     <div className="pb-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <p className="relative z-10 text-white w-full mx-auto mt-24 px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
+        <p className="relative z-10 text-white w-full mx-auto  px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
           LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
           (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
           and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
