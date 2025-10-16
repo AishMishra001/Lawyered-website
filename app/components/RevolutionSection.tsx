@@ -43,10 +43,48 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
         }
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        // Redirect to current page
-        window.location.href = window.location.href;
+
+        if (!name || !department || !file) {
+            setMessage('Please fill in all fields and select a file');
+            return;
+        }
+
+        setLoading(true);
+        setMessage('');
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('name', name);
+            formData.append('department', department);
+
+            const response = await fetch('/api/upload-resume', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setMessage('Resume uploaded successfully!');
+                // Reset form
+                setName('');
+                setDepartment('');
+                setFile(null);
+                // Close modal after 2 seconds
+                setTimeout(() => {
+                    onClose();
+                }, 2000);
+            } else {
+                setMessage(`Upload failed: ${result.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            setMessage(`Error uploading resume: ${error instanceof Error ? error.message : 'Network error'}`);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -102,7 +140,12 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                     <div>
                         <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
                         <div className="relative border border-gray-700 rounded-md">
-                            <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                            <input
+                                type="file"
+                                accept=".pdf,.doc,.docx"
+                                onChange={handleFileChange}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            />
                             <div className="flex justify-between items-center p-3">
                                 <span className="text-gray-300">{file ? file.name : 'Choose file'}</span>
                                 <span className="text-gray-500">{file ? `${(file.size / 1024).toFixed(2)} KB` : 'No file chosen'}</span>

@@ -5,71 +5,143 @@ import { HeartHandshake, X } from "lucide-react";
 import Image from "next/image";
 
 // NEW: Modal for "Join Our Team" Form
-const JoinTeamModal = ({ onClose }: { onClose: () => void }) => (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-        <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
-            <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
-            <form className="space-y-5">
-                <div>
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
-                    <input type="text" placeholder="Enter name" className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
-                </div>
-                <div className="relative">
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
+const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
+    const [name, setName] = useState('');
+    const [department, setDepartment] = useState('');
+    const [file, setFile] = useState<File | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            setFile(event.target.files[0]);
+        }
+    };
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        if (!name || !department || !file) {
+            setMessage('Please fill in all fields and select a file');
+            return;
+        }
+
+        setLoading(true);
+        setMessage('');
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('name', name);
+            formData.append('department', department);
+
+            const response = await fetch('/api/upload-resume', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setMessage('Resume uploaded successfully!');
+                // Reset form
+                setName('');
+                setDepartment('');
+                setFile(null);
+                // Close modal after 2 seconds
+                setTimeout(() => {
+                    onClose();
+                }, 2000);
+            } else {
+                setMessage(`Upload failed: ${result.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            setMessage(`Error uploading resume: ${error instanceof Error ? error.message : 'Network error'}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                    <div>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+                        />
+                    </div>
                     <div className="relative">
-                        <select
-                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
-                            style={{
-                                backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                                WebkitAppearance: 'none',
-                                MozAppearance: 'none'
-                            }}
-                        >
-                            <option value="" disabled>Select Department</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Operations">Operations</option>
-                            <option value="Product">Product</option>
-                            <option value="Other">Others</option>
-                        </select>
-                        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="6,9 12,15 18,9"></polyline>
-                            </svg>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
+                        <div className="relative">
+                            <select
+                                value={department}
+                                onChange={(e) => setDepartment(e.target.value)}
+                                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                                style={{
+                                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                                    WebkitAppearance: 'none',
+                                    MozAppearance: 'none'
+                                }}
+                            >
+                                <option value="" disabled>Select Department</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Operations">Operations</option>
+                                <option value="Product">Product</option>
+                                <option value="Other">Others</option>
+                            </select>
+                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="6,9 12,15 18,9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <style jsx>{`
+                            select option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                                color: white;
+                                padding: 8px;
+                            }
+                            select option:first-child {
+                                color: #9CA3AF;
+                            }
+                            select:focus option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                            }
+                        `}</style>
+                    </div>
+                    <div>
+                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
+                        <div className="relative border border-gray-700 rounded-md">
+                            <input
+                                type="file"
+                                accept=".pdf,.doc,.docx"
+                                onChange={handleFileChange}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            />
+                            <div className="flex justify-between items-center p-3">
+                                <span className="text-gray-300">{file ? file.name : 'Choose file'}</span>
+                                <span className="text-gray-500">{file ? `${(file.size / 1024).toFixed(2)} KB` : 'No file chosen'}</span>
+                            </div>
                         </div>
                     </div>
-                    <style jsx>{`
-                        select option {
-                            background-color: rgba(31, 41, 55, 0.9);
-                            color: white;
-                            padding: 8px;
-                        }
-                        select option:first-child {
-                            color: #9CA3AF;
-                        }
-                        select:focus option {
-                            background-color: rgba(31, 41, 55, 0.9);
-                        }
-                    `}</style>
-                </div>
-                <div>
-                    <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
-                    <div className="relative border border-gray-700 rounded-md">
-                        <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                        <div className="flex justify-between items-center p-3">
-                            <span className="text-gray-300">Choose file</span>
-                            <span className="text-gray-500">No file chosen</span>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" className="w-full bg-[#0891B2] text-white font-bold py-3 rounded-lg mt-4">
-                    Submit
-                </button>
-            </form>
+                    <button type="submit" className="w-full bg-[#0891B2] text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
+                        {loading ? 'Submitting...' : 'Submit'}
+                    </button>
+                    {message && <p className="text-center text-sm mt-4">{message}</p>}
+                </form>
+            </motion.div>
         </motion.div>
-    </motion.div>
-);
+    );
+};
 
 export function ValuesPromiseTabs() {
   const [activeTab, setActiveTab] = useState("value");
