@@ -762,6 +762,7 @@ function LotsForm() {
   const [companyName, setCompanyName] = useState("")
   const [mobileNo, setMobileNo] = useState("")
   const [employeeCount, setEmployeeCount] = useState("")
+  const [formStatus, setFormStatus] = useState("")
 
   const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -772,11 +773,46 @@ function LotsForm() {
   }
 
   // Handler for the main form submission
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real application, you would send the form data to your backend here
-    // to trigger an OTP service. For this example, we'll just open the OTP popup.
-    setShowOtpPopup(true)
+
+    setFormStatus('Submitting...')
+
+    const formData = {
+      companyName,
+      mobileNo,
+      employeeCount,
+      source: 'LOTS 247 Form'
+    }
+
+    try {
+      const response = await fetch('https://automate.indiaaccelerator.co/webhook/5da90f77-0b4d-4695-904b-1583dc1a6323', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Referer': window.location.origin,
+          'Origin': window.location.origin,
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const responseData = await response.json()
+
+      if (response.ok && responseData.message === "Workflow was started") {
+        setFormStatus('Your message has been sent successfully!')
+        // Reset form
+        setCompanyName('')
+        setMobileNo('')
+        setEmployeeCount('')
+        setShowThankYouPopup(true)
+      } else {
+        console.log('Webhook response:', responseData)
+        setFormStatus('An error occurred. Please try again.')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setFormStatus('An error occurred. Please try again.')
+    }
   }
 
   // Handler for the OTP form submission
