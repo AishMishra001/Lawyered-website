@@ -172,7 +172,7 @@ function LotsHero() {
               onPlay={() => setIsVideoPlaying(true)}
               onPause={() => setIsVideoPlaying(false)}
             >
-              <source src="/lots-vid.mp4" type="video/mp4" />
+              <source src="/lots.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
