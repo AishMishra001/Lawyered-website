@@ -7,6 +7,7 @@ import { X } from "lucide-react"
 import { News } from "../components/News"
 import { useState, useEffect, type MouseEvent, type CSSProperties, useRef } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import WhatsAppBot from "../WhatsApp-Bot/page"
 
 // Section 1: Hero
 function LotsHero() {
@@ -1198,6 +1199,7 @@ export default function Lots247Page() {
       <LotsSocials />
       <LotsCoverage />
       <News />
+      <WhatsAppBot />
     </>
   )
 }
