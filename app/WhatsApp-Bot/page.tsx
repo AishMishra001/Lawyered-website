@@ -5,7 +5,7 @@ import type React from "react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
-const whatsAppBot = () => {
+const WhatsAppBot = () => {
   const [imageSize, setImageSize] = useState(200);
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const whatsAppBot = () => {
   )
 }
 
-export default whatsAppBot
+export default WhatsAppBot
