@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const stats = [
   "70,000+ lawyers network",
   "600,000+ vehicles covered",
-  "200,000+ 'legal matters resolved",
+  "200,000+ legal matters resolved",
 ];
 
 export function AboutHero() {

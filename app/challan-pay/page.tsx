@@ -6,6 +6,7 @@ import { News } from "../components/News";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
 import { X } from "lucide-react"; // Required for the close icon
+import RewardBot from "../reward-Bot/page";
 
 // Section 1: Hero
 function ChallanHero() {
@@ -607,6 +608,7 @@ export default function ChallanPayPage() {
       <ChallanVehicleSelector />
       <ChallanWhatsapp />
       <News/>
+      <RewardBot />
     </>
   );
 }
