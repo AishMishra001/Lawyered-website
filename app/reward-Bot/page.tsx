@@ -11,15 +11,15 @@ const RewardBot = () => {
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth < 640) { // Small mobile screens
-        setImageSize(140);
+        setImageSize(220);
       } else if (window.innerWidth < 768) { // Larger mobile screens
-        setImageSize(160);
+        setImageSize(230);
       } else if (window.innerWidth < 1024) { // Tablets
-        setImageSize(180);
+        setImageSize(240);
       } else if (window.innerWidth < 1280) { // Small laptops
-        setImageSize(190);
+        setImageSize(250);
       } else { // Desktops and larger screens
-        setImageSize(200);
+        setImageSize(300);
       }
     };
 
