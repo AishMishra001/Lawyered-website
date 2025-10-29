@@ -6,10 +6,11 @@ import { VisionMission } from "./components/VisionMission";
 import { TrustedPartners } from "./components/TrustedPartners";
 import { News } from "./components/News";
 import { SupportedBy } from "./components/SupportedBy";
+import RewardBot from "./reward-Bot/page";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-brand-dark">
+    <main className="relative min-h-screen bg-brand-dark">
       <Hero />
       <Platforms />
       <VisionMission />
@@ -18,6 +19,7 @@ export default function Home() {
       <TrustedPartners/>
       <News/>
       <SupportedBy/>
+      <RewardBot />
     </main>
   );
 }

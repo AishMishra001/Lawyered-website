@@ -42,6 +42,7 @@ function LotsHero() {
   const [rotation, setRotation] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -163,19 +164,25 @@ function LotsHero() {
             maxHeight: 'min(60vh, 450px)',
             maxWidth: '100%'
           }}>
-            <video
-              ref={videoRef}
-              className={`w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
-              controls
-              preload="metadata"
-              playsInline
-              muted
-              onPlay={() => setIsVideoPlaying(true)}
-              onPause={() => setIsVideoPlaying(false)}
-            >
-              <source src="/lots.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {videoError ? (
+              <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+                <p>Video not available</p>
+              </div>
+            ) : (
+              <video
+                ref={videoRef}
+                className={`w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
+                controls
+                preload="none"
+                playsInline
+                onPlay={() => setIsVideoPlaying(true)}
+                onPause={() => setIsVideoPlaying(false)}
+                onError={() => setVideoError(true)}
+              >
+                <source src="/lots.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
         </div>
 
@@ -762,7 +769,11 @@ function LotsForm() {
   // State for the form inputs to make them controlled components
   const [companyName, setCompanyName] = useState("")
   const [mobileNo, setMobileNo] = useState("")
-  const [employeeCount, setEmployeeCount] = useState("")
+  const [cityRegion, setCityRegion] = useState("")
+  const [numberOfVehicles, setNumberOfVehicles] = useState("")
+  const [briefRequirement, setBriefRequirement] = useState("")
+  const [contactPerson, setContactPerson] = useState("")
+  const [emailId, setEmailId] = useState("")
   const [formStatus, setFormStatus] = useState("")
 
   const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -782,7 +793,11 @@ function LotsForm() {
     const formData = {
       companyName,
       mobileNo,
-      employeeCount,
+      cityRegion,
+      numberOfVehicles,
+      briefRequirement,
+      contactPerson,
+      emailId,
       source: 'LOTS 247 Form'
     }
 
@@ -804,7 +819,11 @@ function LotsForm() {
         // Reset form
         setCompanyName('')
         setMobileNo('')
-        setEmployeeCount('')
+        setCityRegion('')
+        setNumberOfVehicles('')
+        setBriefRequirement('')
+        setContactPerson('')
+        setEmailId('')
         setShowThankYouPopup(true)
       } else {
         console.log('Webhook response:', responseData)
@@ -833,7 +852,11 @@ function LotsForm() {
         // Reset form fields after the process is complete
         setCompanyName("")
         setMobileNo("")
-        setEmployeeCount("")
+        setCityRegion("")
+        setNumberOfVehicles("")
+        setBriefRequirement("")
+        setContactPerson("")
+        setEmailId("")
       }, 3000) // Popup will disappear after 3000 milliseconds (3 seconds)
 
       // Cleanup the timer if the component unmounts or the popup is closed manually
@@ -868,95 +891,75 @@ function LotsForm() {
                 className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
                 required
               />
-              <div className="relative col-span-1 md:col-span-2">
-                <div className="relative">
-                  <select
-                    className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
-                    style={{
-                      backgroundColor: "rgba(31, 41, 55, 0.5)",
-                      WebkitAppearance: "none",
-                      MozAppearance: "none",
-                    }}
-                    value={employeeCount}
-                    onChange={(e) => setEmployeeCount(e.target.value)}
-                    required
-                  >
-                    <option value="" disabled className="text-gray-500">
-                      Select
-                    </option>
-                    <option value="1-10">1-10</option>
-                    <option value="11-20">11-20</option>
-                    <option value="21-30">21-30</option>
-                    <option value="31-40">31-40</option>
-                    <option value="41-50">41-50</option>
-                    <option value="50+">50+</option>
-                  </select>
-                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="6,9 12,15 18,9"></polyline>
-                    </svg>
-                  </div>
+              <input
+                type="text"
+                placeholder="City/Region"
+                value={cityRegion}
+                onChange={(e) => setCityRegion(e.target.value)}
+                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                required
+              />
+              <div className="relative col-span-1">
+                <select
+                  className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                  style={{
+                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                    WebkitAppearance: 'none',
+                    MozAppearance: 'none'
+                  }}
+                  value={numberOfVehicles}
+                  onChange={(e) => setNumberOfVehicles(e.target.value)}
+                  required
+                >
+                  <option value="" disabled hidden>No. of Vehicle</option>
+                  <option value="0-10">0-10</option>
+                  <option value="11-20">11-20</option>
+                  <option value="21-30">21-30</option>
+                  <option value="31-40">31-40</option>
+                  <option value="41-50">41-50</option>
+                  <option value="50+">50+</option>
+                </select>
+                <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
                 </div>
-                <style jsx>{`
-                  select option {
-                    background-color: rgba(31, 41, 55, 0.9);
-                    color: white;
-                    padding: 8px;
-                  }
-                  select option:first-child {
-                    color: #9CA3AF !important;
-                  }
-                  select:focus option {
-                    background-color: rgba(31, 41, 55, 0.9);
-                  }
-
-                  /* Comprehensive autofill styling for all browsers */
-                  input:-webkit-autofill,
-                  input:-webkit-autofill:hover,
-                  input:-webkit-autofill:focus,
-                  input:-webkit-autofill:active,
-                  input:-webkit-autofill::first-line,
-                  textarea:-webkit-autofill,
-                  textarea:-webkit-autofill:hover,
-                  textarea:-webkit-autofill:focus,
-                  textarea:-webkit-autofill:active,
-                  input:autofill,
-                  input:autofill:hover,
-                  input:autofill:focus,
-                  input:autofill:active,
-                  textarea:autofill,
-                  textarea:autofill:hover,
-                  textarea:autofill:focus,
-                  textarea:autofill:active {
-                    -webkit-box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
-                    -webkit-text-fill-color: white !important;
-                    -webkit-background-clip: text !important;
-                    background-color: rgba(31, 41, 55, 0.5) !important;
-                    background-clip: text !important;
-                    border: 1px solid rgb(75 85 99) !important;
-                    box-shadow: 0 0 0 1000px rgba(31, 41, 55, 0.5) inset !important;
-                    text-fill-color: white !important;
-                    -webkit-appearance: none !important;
-                    appearance: none !important;
-                  }
-
-                  /* Additional fallback for stubborn browsers */
-                  input[data-autofilled],
-                  textarea[data-autofilled] {
-                    background-color: rgba(31, 41, 55, 0.5) !important;
-                    color: white !important;
-                  }
-                `}</style>
               </div>
+
+              <div className="relative col-span-1 md:col-span-2">
+                <select
+                  className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer"
+                  value={briefRequirement}
+                  onChange={(e) => setBriefRequirement(e.target.value)}
+                  required
+                >
+                <option value="" disabled hidden>Brief Requirement</option>
+                  <option value="Challan" style={{  color: "#d1d5db" }}>Challan</option>
+                  <option value="Accident" style={{  color: "#d1d5db" }}>Accident</option>
+                  <option value="Legal Support" style={{ color: "#d1d5db" }}>Legal Support</option>
+                  <option value="Subscription" style={{ color: "#d1d5db" }}>Subscription</option>
+                  <option value="RTO" style={{ color: "#d1d5db" }}>RTO</option>
+                </select>
+                <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <input
+                type="text"
+                placeholder="Contact Person"
+                value={contactPerson}
+                onChange={(e) => setContactPerson(e.target.value)}
+                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+              />
+              <input
+                type="email"
+                placeholder="Email ID"
+                value={emailId}
+                onChange={(e) => setEmailId(e.target.value)}
+                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+              />
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button
                   type="submit"
@@ -1021,6 +1024,19 @@ function LotsForm() {
           </div>
         </div>
       )}
+      <style jsx>{`
+        select option {
+          background-color: rgba(31, 41, 55, 0.9);
+          color: white;
+          padding: 8px;
+        }
+        select option:first-child {
+          color: #9CA3AF;
+        }
+        select:focus option {
+          background-color: rgba(31, 41, 55, 0.9);
+        }
+      `}</style>
     </>
   )
 }
