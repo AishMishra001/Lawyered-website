@@ -1,78 +1,121 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+"use client"
+import Image from "next/image"
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { useTheme } from "next-themes"
+import { ThemeSwitch } from "@/components/theme-switch"
+
 
 export function Navbar() {
+  const { theme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [hasMouseMoved, setHasMouseMoved] = useState(false)
+
+  // Handle mounting state
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Mouse move effect
+  useEffect(() => {
+    const handleMouseMove = () => {
+      setHasMouseMoved(true)
+      window.removeEventListener("mousemove", handleMouseMove)
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
+  // Don't render theme-dependent content until mounted
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A]">
+        <nav className="relative w-full py-5 px-4 md:px-8 flex justify-center items-center">
+          <div className="flex-shrink-0">
+            <Image
+              src="/lawyered-logo.png"
+              alt="Lawyered Logo"
+              width={270}
+              height={45}
+              priority
+            />
+          </div>
+        </nav>
+      </header>
+    )
+  }
+
+  // Determine logo properties based on resolved theme
+  const logoSrc = resolvedTheme === "light" ? "/lawyered-logo2.png" : "/lawyered-logo.png"
+  const logoWidth = resolvedTheme === "light" ? 250 : 270
+  const logoHeight = resolvedTheme === "light" ? 40 : 45
+
   const navLinksLeft = [
     { href: "/ceo-message", label: "CEO'S MESSAGE" },
     { href: "/lots-247", label: "LOTS247" },
     { href: "/challan-pay", label: "CHALLANPAY" },
-  ];
+  ]
   const navLinksRight = [
     { href: "/about", label: "ABOUT US" },
     { href: "/blogs", label: "BLOGS" },
     { href: "/contact", label: "CONTACT US" },
-  ];
+  ]
 
-  const allLinks = [...navLinksLeft, ...navLinksRight];
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hasMouseMoved, setHasMouseMoved] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = () => {
-      setHasMouseMoved(true);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+  const allLinks = [...navLinksLeft, ...navLinksRight]
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#14141A]">
-      <nav className="relative w-full py-5 px-4 md:px-8">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A]">
+      <nav className="relative w-full py-5 px-4 md:px-8 flex justify-center items-center">
         {/* Desktop Menu */}
-        <div className="hidden md:flex w-full justify-center items-center gap-12">
+        <div className="hidden md:flex w-full justify-center items-center gap-12 relative">
           {navLinksLeft.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
                 hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               {link.label}
             </Link>
           ))}
+
+          {/* Logo in center */}
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/lawyered-logo.png"
+                src={logoSrc}
                 alt="Lawyered Logo"
-                width={300}
-                height={50}
+                width={logoWidth}
+                height={logoHeight}
                 priority
               />
             </Link>
           </div>
+
           {navLinksRight.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
                 hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               {link.label}
             </Link>
           ))}
+
+          {/* ✅ Theme toggle button on the far right */}
+          <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${
+                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+              }`}>
+  <ThemeSwitch />
+</div>
+
         </div>
 
-        {/* Mobile & Tablet Menu Bar - STABLE */}
+        {/* Mobile & Tablet Menu Bar */}
         <div className="md:hidden lg:hidden relative flex justify-center items-center w-full">
           <div className="flex-shrink-0">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
@@ -88,7 +131,7 @@ export function Navbar() {
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white focus:outline-none p-2 z-50 absolute right-4"
+            className="text-black dark:text-white focus:outline-none p-2 z-50 absolute right-4"
             aria-label={isMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           >
             {isMenuOpen ? (
@@ -126,9 +169,9 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile & Tablet Full Screen Menu Below Navbar */}
+      {/* Mobile & Tablet Full Screen Menu */}
       {isMenuOpen && (
-        <div className="md:hidden lg:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-[#14141A] z-30">
+        <div className="md:hidden lg:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-background z-30">
           <div className="flex flex-col justify-center items-center h-full px-6 py-8">
             <div className="flex flex-col items-center space-y-6 w-full max-w-sm">
               {allLinks.map((link, index) => (
@@ -139,13 +182,18 @@ export function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                   style={{
                     animationDelay: `${index * 100}ms`,
-                    animation: 'fadeInUp 0.5s ease forwards'
+                    animation: "fadeInUp 0.5s ease forwards",
                   }}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
+            {/* ✅ Optional: Add theme toggle in mobile menu too */}
+            <div className="mt-8">
+  <ThemeSwitch />
+</div>
+
           </div>
           <style jsx>{`
             @keyframes fadeInUp {
@@ -162,5 +210,5 @@ export function Navbar() {
         </div>
       )}
     </header>
-  );
+  )
 }
