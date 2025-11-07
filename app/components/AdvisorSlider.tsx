@@ -20,9 +20,9 @@ const AdvisorModal = ({ advisor, onClose }: { advisor: Advisor; onClose: () => v
   const lastName = nameParts.slice(1).join(" ");
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-[#1a1a1a] rounded-xl p-8 max-w-3xl w-full border border-gray-700">
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X /></button>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 dark:bg-black/80 z-50 flex items-center justify-center p-4">
+      <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-white dark:bg-[#1a1a1a] rounded-xl p-8 max-w-3xl w-full border border-gray-300 dark:border-gray-700">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white"><X /></button>
         <div className="flex flex-col md:flex-row items-center gap-8 mb-6">
           <Image src={advisor.img} alt={advisor.name} width={150} height={150} className="rounded-full flex-shrink-0"/>
           <div>
@@ -34,13 +34,13 @@ const AdvisorModal = ({ advisor, onClose }: { advisor: Advisor; onClose: () => v
                 {lastName.toUpperCase()}
               </span>
             </div>
-            <p className="text-lg md:text-xl text-gray-300 mt-2">{advisor.title}</p>
-            <a href={advisor.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 border border-gray-600 px-4 py-2 rounded-lg text-xs md:text-sm text-gray-300 hover:bg-gray-700">
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mt-2">{advisor.title}</p>
+            <a href={advisor.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-lg text-xs md:text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
               <Linkedin size={16}/> LinkedIn
             </a>
           </div>
         </div>
-        <div className="text-gray-400 space-y-4 text-xs md:text-sm leading-relaxed">
+        <div className="text-gray-600 dark:text-gray-400 space-y-4 text-xs md:text-sm leading-relaxed">
           <p>{advisor.description}</p>
         </div>
       </motion.div>
@@ -82,10 +82,10 @@ export function AdvisorsSlider() {
     <div className="py-2 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-cyan text-center md:text-left">Our Advisors</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-brand-cyan text-center md:text-left">Our Advisors</h2>
           <div className="flex gap-4">
-            <button onClick={scrollPrev} className="p-2 border border-gray-700 rounded-full hover:bg-white/10"><ArrowLeft size={20}/></button>
-            <button onClick={scrollNext} className="p-2 border border-gray-700 rounded-full hover:bg-white/10"><ArrowRight size={20}/></button>
+            <button onClick={scrollPrev} className="p-2 border border-gray-300 dark:border-gray-700 rounded-full hover:bg-black/10 dark:hover:bg-white/10"><ArrowLeft size={20}/></button>
+            <button onClick={scrollNext} className="p-2 border border-gray-300 dark:border-gray-700 rounded-full hover:bg-black/10 dark:hover:bg-white/10"><ArrowRight size={20}/></button>
           </div>
         </div>
         <div className="overflow-hidden" ref={emblaRef}>
@@ -93,8 +93,8 @@ export function AdvisorsSlider() {
             {advisors.map((advisor, i) => (
               <div key={i} className="flex-shrink-0 flex-grow-0 basis-1/2 md:basis-1/3 lg:basis-1/5 text-center px-4 cursor-pointer">
                 <Image src={advisor.img} alt={advisor.name} width={200} height={200} className="rounded-full mx-auto"/>
-                <h3 className="text-base md:text-lg font-bold text-white mt-4">{advisor.name}</h3>
-                <p className="text-xs md:text-sm text-gray-400">{advisor.title}</p>
+                <h3 className="text-base md:text-lg font-bold text-black dark:text-white mt-4">{advisor.name}</h3>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">{advisor.title}</p>
               </div>
             ))}
           </div>

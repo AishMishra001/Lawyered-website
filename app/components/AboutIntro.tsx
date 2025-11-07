@@ -1,7 +1,7 @@
 export function AboutIntro() {
   return (
     <div className="pb-24 px-4 md:px-26">
-      <div className="max-w-8xl mx-auto space-y-16 text-white text-base leading-relaxed">
+      <div className="max-w-8xl mx-auto space-y-16 text-black dark:text-white text-base leading-relaxed">
         <div className="space-y-6 max-w-8xl">
             <p>Navigating legal risks has always been messy, expensive, and reactive. At Lawyered, we asked a simple question: what if legal support worked like infrastructure — always on, affordable, and built into everyday life?</p>
             <p>That’s the idea behind Lawyered. We’ve created India’s first Gen AI-driven Legal Risk Management platform, starting with the mobility sector. With LOTS247 (roadside legal assistance) and ChallanPay (challan discovery and resolution), we’re already helping 600,000+ vehicles and 800+ businesses stay compliant and stress-free. Backed by a 70,000+ lawyer network, we’ve resolved more than 200,000 legal matters, saving our customers over ₹50 Cr in penalties and downtime.</p>

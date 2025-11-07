@@ -107,10 +107,10 @@ function TermsHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-34 md:py-64 grid md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-4xl font-bold text-white text-center md:text-left">
+          <h1 className="text-4xl font-bold text-black dark:text-white text-center md:text-left">
             Terms and Conditions
           </h1>
-          <p className=" text-white text-center md:text-left">
+          <p className=" text-black dark:text-white text-center md:text-left">
          We aim to make our terms and conditions simple and easy to follow. We encourage you to read them carefully so you always know your rights and responsibilities.
           </p>
         </div>
@@ -137,7 +137,7 @@ function TermsContent() {
       <div className="max-w-8xl text-base mx-auto text-gray-300 leading-relaxed space-y-6">
         <p>LAST UPDATED: 25.02.2025</p>
         {/* User Agreement */}
-        <h2 className=" text-white mt-12 mb-6">USER AGREEMENT</h2>
+        <h2 className=" text-black dark:text-white mt-12 mb-6">USER AGREEMENT</h2>
         <p>
           This User Agreement (this &quot;Agreement&quot;) is being entered into between
           You (herein referred to as &quot;Customer,&quot; &quot;User,&quot; &quot;Client,&quot; or &quot;Visitor&quot;
@@ -172,7 +172,7 @@ function TermsContent() {
           employees of Lawyered. The platform&apos;s role is limited to facilitating
           connections and supporting the resolution process through technology.
         </p>
-        <h2 className="  text-white mt-12 mb-6">I. WHAT TO DO ?</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">I. WHAT TO DO ?</h2>
         <p>
           Sproutech Solutions Private Limited, commonly known as Lawyered, is on
           a mission to make law accessible and affordable to every individual,
@@ -202,7 +202,7 @@ function TermsContent() {
           https://lawyered.in/p/terms-and-conditions-for-challan-resolution
         </p>
         {/* Registration */}
-        <h2 className="  text-white mt-12 mb-6">II. REGISTRATION WITH US.</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">II. REGISTRATION WITH US.</h2>
         <p>
           By choosing to register and make use of the product and by taking our
           subscription or membership(s) as may be applicable, You agree to the
@@ -215,7 +215,7 @@ function TermsContent() {
         </p>
 
         {/* Eligibility */}
-        <h2 className="  text-white mt-12 mb-6">III. USER ELIGIBILITY</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">III. USER ELIGIBILITY</h2>
         <p>
           You, as a Users, are the owner or driver of a vehicle as described
           under Motor Vehicle Act,1988 (private or commercial), or engaged in
@@ -251,7 +251,7 @@ function TermsContent() {
           or yourself.
         </p>
         {/* Terms */}
-        <h2 className="  text-white mt-12 mb-6">IV. PAYMENT TERMS</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">IV. PAYMENT TERMS</h2>
         <p>
           To avail the service(s) through Lawyered&apos;s local legal professional
           network PAN India, You shall pay the professional fee of the legal
@@ -269,7 +269,7 @@ function TermsContent() {
         </p>
 
         {/* Terms */}
-        <h2 className="  text-white mt-12 mb-6">Invoice: </h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">Invoice: </h2>
         <p>
           Lawyered will issue a tax invoice to the User, detailing the
           professional fee and the service fee, including GST( Goods and
@@ -288,7 +288,7 @@ function TermsContent() {
           regarding any applicable deductions.
         </p>
         {/* Cancellation */}
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           V. CANCELLATION, REFUND AND SUSPENSION.
         </h2>
         <p>
@@ -315,7 +315,7 @@ function TermsContent() {
           request.
         </p>
         {/* General Terms */}
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           VI. GENERAL TERMS AND CONDITIONS.
         </h2>
         <p>
@@ -413,7 +413,7 @@ function TermsContent() {
         </p>
 
         {/* Liability */}
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           VII. YOUR RIGHTS AND LIABILITIES.{" "}
         </h2>
         <p>
@@ -476,7 +476,7 @@ function TermsContent() {
         </p>
 
         {/* Campaign */}
-        <h2 className="  text-white mt-12 mb-6"> Promotional Campaigns</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6"> Promotional Campaigns</h2>
         <p>
           a) Lawyered may, from time to time, run promotional campaigns offering
           discounts, incentives, or other benefits to Users. Each promotional
@@ -511,7 +511,7 @@ function TermsContent() {
         </p>
 
         {/* Confidentiality */}
-        <h2 className="  text-white mt-12 mb-6">VIII. CONFIDENTIALITY.</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">VIII. CONFIDENTIALITY.</h2>
         <p>
           In accordance with the terms of this Agreement, both Lawyered and the
           User acknowledge that they may receive confidential information from
@@ -558,7 +558,7 @@ function TermsContent() {
         </p>
 
         {/* Intellectual Property Rights */}
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           IX. INTELLECTUAL PROPERTY RIGHTS.
         </h2>
         <p>
@@ -592,7 +592,7 @@ function TermsContent() {
         </p>
 
         {/* Limitations of Liability */}
-        <h2 className="  text-white mt-12 mb-6">X. LIMITATION OF LIABILITY</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">X. LIMITATION OF LIABILITY</h2>
         <p>
           The User acknowledges that to the fullest extent permitted by law,
           Lawyered shall not be liable for any indirect, incidental, special,
@@ -653,7 +653,7 @@ function TermsContent() {
           have incurred.{" "}
         </p>
         {/* Government Laws */}
-        <h2 className="  text-white mt-12 mb-6">XI. INDEMNIFICATION.</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">XI. INDEMNIFICATION.</h2>
         <p>
           The User hereby agrees to indemnify, defend, and hold harmless
           Lawyered, its affiliates, directors, officers, employees, agents,
@@ -683,7 +683,7 @@ function TermsContent() {
           applicable laws, or otherwise
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">XII. FORCE MAJEURE</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">XII. FORCE MAJEURE</h2>
         <p>
           Lawyered shall not be liable for any failure or delay in performing
           its obligations under these Terms and Conditions where such failure or
@@ -706,7 +706,7 @@ function TermsContent() {
           except for obligations that accrued prior to the force majeure event.
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           XII. DISPUTE RESOLUTION AND GOVERNING LAW
         </h2>
         <p>
@@ -750,7 +750,7 @@ function TermsContent() {
           either party may proceed to arbitration as outlined above.
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">
+        <h2 className="  text-black dark:text-white mt-12 mb-6">
           XIV. DISCLAIMERS OF WARRANTIES.{" "}
         </h2>
         <p>
@@ -784,7 +784,7 @@ function TermsContent() {
           the legal professionals.
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">XV. TERMINATION</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">XV. TERMINATION</h2>
         <p>
           Termination by User: Users may terminate their account and discontinue
           the use of Lawyered&apos;s services at any time by: a) Deleting their
@@ -825,7 +825,7 @@ function TermsContent() {
           damages or injunctive relief for any breach of these Terms
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">XVI. SURVIVAL</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">XVI. SURVIVAL</h2>
         <p>
           Upon the termination, some or all of the service may cease to operate,
           without prior notice, unless otherwise agreed between the parties.
@@ -834,7 +834,7 @@ function TermsContent() {
           shall survive.
         </p>
 
-        <h2 className="  text-white mt-12 mb-6">XVII. AMENDMENT</h2>
+        <h2 className="  text-black dark:text-white mt-12 mb-6">XVII. AMENDMENT</h2>
         <p>
           Lawyered reserves the right to modify, amend, change, or update any
           Terms at its sole discretion. It is Your responsibility to review

@@ -66,7 +66,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
             <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
                 <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-black dark:text-white mb-6">Share Your Details To Join Our Team</h2>
                 <form className="space-y-5" onSubmit={handleSubmit}>
                     <div>
                         <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
@@ -157,8 +157,8 @@ export function ValuesPromiseTabs() {
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
         <div className="flex flex-row border border-white text-sm md:text-xl w-full md:w-auto">
-          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-white'}`}>What We Value</button>
-          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-white md:border-l border-gray-700'}`}>What We Promise</button>
+          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-black dark:text-white'}`}>What We Value</button>
+          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-black dark:text-white md:border-l border-gray-700'}`}>What We Promise</button>
         </div>
         <div className="mt-12 w-full px-4 sm:px-8 md:px-12 lg:px-22">
           <AnimatePresence mode="wait">
@@ -167,7 +167,7 @@ export function ValuesPromiseTabs() {
                 {values.map(v => (
                   <div key={v.title} className="border border-gray-700 p-6 space-y-10">
                     <div className="text-gray-400 mb-4">{v.icon}</div>
-                    <h3 className="text-lg md:text-xl font-bold text-white">{v.title}</h3>
+                    <h3 className="text-lg md:text-xl font-bold text-black dark:text-white">{v.title}</h3>
                     <p className="mt-2 text-gray-300 text-base leading-relaxed pb-12">{v.description}</p>
                   </div>
                 ))}
@@ -176,7 +176,7 @@ export function ValuesPromiseTabs() {
             {activeTab === 'promise' && (
               <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-transparent flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
-                  <HeartHandshake size={50} className="text-white font-light flex-shrink-0"/>
+                  <HeartHandshake size={50} className="text-black dark:text-white font-light flex-shrink-0"/>
                   <p className="text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
                 </div>
                 <button onClick={() => setJoinTeamModalOpen(true)} className="w-full lg:w-auto bg-[#0891B2] text-base md:text-base px-8 py-4 md:px-16 md:py-5 rounded-lg whitespace-nowrap mt-6 lg:mt-0">Join Our Team</button>

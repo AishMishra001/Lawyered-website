@@ -110,11 +110,11 @@ export function Hero() {
       
       {/* Main content container */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 gap-4 pt-20 md:pt-0">
-        <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight max-w-7xl mx-auto">
+        <h1 className="text-3xl md:text-5xl font-semibold text-black dark:text-white leading-tight max-w-7xl mx-auto">
           Identifying & Resolving Recurring <br />
           Legal Risks For Mobility
         </h1>
-        <p className="mt-4 text-base  text-gray-300 max-w-3xl mx-auto">
+        <p className="mt-4 text-base  text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
           Innovating & Building Scalable Technology Platforms
         </p>
 
@@ -131,16 +131,16 @@ export function Hero() {
 
               <div>
 
-              <p className="text-white text-base">
+              <p className="text-black dark:text-white text-base">
                 A note from our founder & CEO,
               </p>
-              <p className="text-white font-bold text-base">
+              <p className="text-black dark:text-white font-bold text-base">
                 Himanshu Gupta
               </p>
               </div>
               <Link
                 href="/ceo-message"
-                className="text-white underline block text-base hover:underline pt-6 font-semibold hover:text-[#22D2EE] hover:font-bold"
+                className="text-black dark:text-white underline block text-base hover:underline pt-6 font-semibold hover:text-black dark:hover:text-[#22D2EE] hover:font-bold"
               >
                 Read More
               </Link>

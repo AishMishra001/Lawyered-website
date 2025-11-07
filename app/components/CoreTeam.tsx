@@ -18,9 +18,9 @@ const TeamMemberModal = ({ member, onClose }: { member: TeamMember; onClose: () 
   const lastName = nameParts.slice(1).join(" ");
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-[#1a1a1a] rounded-xl p-6 md:p-8 max-w-3xl w-full border border-gray-700">
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X /></button>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 dark:bg-black/80 z-50 flex items-center justify-center p-4">
+      <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-white dark:bg-[#1a1a1a] rounded-xl p-6 md:p-8 max-w-3xl w-full border border-gray-300 dark:border-gray-700">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white"><X /></button>
         <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-6 md:gap-8 mb-6">
           <Image src={member.img} alt={member.name} width={150} height={150} className="rounded-full flex-shrink-0 w-28 h-28 md:w-36 md:h-36"/>
           <div>
@@ -32,13 +32,13 @@ const TeamMemberModal = ({ member, onClose }: { member: TeamMember; onClose: () 
                 {lastName.toUpperCase()}
               </span>
             </div>
-            <p className="text-base md:text-lg text-gray-300 mt-2">{member.title}</p>
-            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 border border-gray-600 px-4 py-2 rounded-lg text-xs md:text-sm text-gray-300 hover:bg-gray-700">
+            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 mt-2">{member.title}</p>
+            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-lg text-xs md:text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
               <Linkedin size={16}/> LinkedIn
             </a>
           </div>
         </div>
-        <div className="text-gray-400 space-y-4 text-xs md:text-sm leading-relaxed max-h-[50vh] md:max-h-none overflow-y-auto">
+        <div className="text-gray-600 dark:text-gray-400 space-y-4 text-xs md:text-sm leading-relaxed max-h-[50vh] md:max-h-none overflow-y-auto">
           <p>{member.description}</p>
         </div>
       </motion.div>
@@ -70,8 +70,8 @@ export function CoreTeam() {
           {team.map(member => (
             <div key={member.name} className="text-center cursor-pointer" onClick={() => setSelectedMember(member)}>
               <Image src={member.img} alt={member.name} width={200} height={200} className="rounded-full mx-auto"/>
-              <h3 className="text-base md:text-lg font-bold text-white mt-4">{member.name}</h3>
-              <p className="text-xs md:text-sm text-gray-400">{member.title}</p>
+              <h3 className="text-base md:text-lg font-bold text-black dark:text-white mt-4">{member.name}</h3>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">{member.title}</p>
             </div>
           ))}
         </div>

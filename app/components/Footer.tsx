@@ -1,20 +1,32 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 
 export function Footer() {
   const [hovered, setHovered] = useState('');
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
   
   return (
     <>
       <footer className="border-t border-gray-800 py-12 md:py-8  mt-2 lg:mt-22 px-4 md:px-26">
         <div className="max-w-8xl mx-auto">
-          <div className="flex flex-col md:grid md:grid-cols-4 gap-8 text-white justify-center md:justify-start">
+          <div className="flex flex-col md:grid md:grid-cols-4 gap-8 text-black dark:text-white font-bold dark:font-normal justify-center md:justify-start">
           {/* Column 1: Info */}
           <div className="col-span-2 flex flex-col text-xs lg:text-sm items-center md:items-start text-center md:text-left justify-between">
             <div className="flex flex-col items-center md:items-start">
-              <Image src="/lawyered-logo.png" alt="Lawyered Logo" width={280} height={100} className=" md:-ml-6 w-64 h-auto" />
+              <Image
+                src={theme === "dark" ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
+                alt="Lawyered Logo"
+                width={theme === "dark" ? 280 : 120}
+                height={theme === "dark" ? 100 : 45}
+                className={theme === "dark" ? "md:-ml-6 w-64 h-auto" : "w-28 h-auto"}
+              />
               <p className="mb-1 md:mb-0">Sproutech Solutions Private Limited</p>
               <p>India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF <br className="hidden md:block" />Metropolis Mall, MG Road, Gurugram, Haryana 122002</p>
             </div>
@@ -29,17 +41,17 @@ export function Footer() {
             <div className="w-fit md:w-2/3 grid grid-cols-2 gap-16 md:gap-0 text-sm lg:mt-4">
               <div>
                 <ul className="space-y-3 md:space-y-4">
-                  <li><Link href="/" className="text-white hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
-                  <li><Link href="/ceo-message" className="text-white hover:text-[#22D2EE] hover:font-bold">CEO&apos;S MESSAGE</Link></li>
-                  <li><Link href="/lots-247" className="text-white hover:text-[#22D2EE] hover:font-bold">LOTS247</Link></li>
-                  <li><Link href="/challan-pay" className="text-white hover:text-[#22D2EE] hover:font-bold">CHALLANPAY</Link></li>
+                  <li><Link href="/" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">HOME</Link></li>
+                  <li><Link href="/ceo-message" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">CEO&#39;S MESSAGE</Link></li>
+                  <li><Link href="/lots-247" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">LOTS247</Link></li>
+                  <li><Link href="/challan-pay" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">CHALLANPAY</Link></li>
                 </ul>
               </div>
               <div>
                  <ul className="space-y-3 md:space-y-4">
-                  <li><Link href="/about" className="text-white hover:text-[#22D2EE] hover:font-bold">ABOUT US</Link></li>
-                  <li><Link href="/blogs" className="text-white hover:text-[#22D2EE] hover:font-bold">BLOGS</Link></li>
-                  <li><Link href="/contact" className="text-white hover:text-[#22D2EE] hover:font-bold">CONTACT US</Link></li>
+                  <li><Link href="/about" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">ABOUT US</Link></li>
+                  <li><Link href="/blogs" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">BLOGS</Link></li>
+                  <li><Link href="/contact" className="text-black dark:text-white font-bold dark:font-normal hover:text-[#22D2EE] hover:font-bold">CONTACT US</Link></li>
                 </ul>
               </div>
             </div>
@@ -72,7 +84,7 @@ export function Footer() {
       </footer>
       
       <div className="border-t border-gray-700 py-4 md:py-6 px-4 md:px-26">
-        <p className="text-center text-white text-sm md:text-base">
+        <p className="text-center text-black dark:text-white font-bold dark:font-normal text-sm md:text-base">
           © 2025 Lawyered. All Rights Reserved |{' '}
           <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">
             Privacy Policy

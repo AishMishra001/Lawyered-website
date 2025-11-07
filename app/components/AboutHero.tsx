@@ -110,7 +110,7 @@ export function AboutHero() {
       )}
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto pt-38 pb-22 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
         <div className="flex flex-col gap-4 text-center md:text-left md:pl-20">
-          <h1 className="text-2xl md:text-5xl font-semibold text-white">About Us</h1>
+          <h1 className="text-2xl md:text-5xl font-semibold text-black dark:text-white">About Us</h1>
 
           <div className="relative h-12">
             <AnimatePresence mode="wait">
@@ -120,7 +120,7 @@ export function AboutHero() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="absolute left-0 right-0 text-center md:text-left text-base md:text-2xl text-gray-300 whitespace-nowrap"
+                className="absolute left-0 right-0 text-center md:text-left text-base md:text-2xl text-black dark:text-gray-300 whitespace-nowrap"
               >
                 {stats[index]}
               </motion.p>

@@ -8,11 +8,11 @@ import { Linkedin, X } from "lucide-react";
 const FounderModal = ({ onClose }: { onClose: () => void }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
     <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-[#1a1a1a] rounded-xl p-8 max-w-3xl w-full border border-gray-700">
-      <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X /></button>
+      <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white"><X /></button>
       <div className="flex flex-col md:flex-row items-center gap-8 mb-6">
         <Image src="/about1.png" alt="Himanshu Gupta" width={150} height={150} className="rounded-full flex-shrink-0"/>
         <div>
-          <h2 className="text-2xl md:text-4xl font-bold text-white">Himanshu Gupta</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white">Himanshu Gupta</h2>
           <p className="text-lg md:text-xl text-gray-300">Founder & CEO</p>
           <a href="#" className="inline-flex items-center gap-2 mt-4 border border-gray-600 px-4 py-2 rounded-lg text-xs md:text-sm text-gray-300 hover:bg-gray-700">
             <Linkedin size={16}/> LinkedIn
@@ -90,8 +90,8 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
             <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Share Your Details To Join Our Team</h2>
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
+                <h2 className="text-xl md:text-2xl font-bold text-black dark:text-white mb-6">Share Your Details To Join Our Team</h2>
                 <form className="space-y-5" onSubmit={handleSubmit}>
                     <div>
                         <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
@@ -152,7 +152,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="w-full bg-[#0891B2] text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
+                    <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
                     {message && <p className="text-center text-sm mt-4">{message}</p>}
@@ -174,7 +174,7 @@ export function RevolutionSection() {
         <p className="max-w-8xl text-gray-300 mt-4 text-base">Lawyered is a hub for those who value knowledge, seek empathetic support, and believe in the power of expert guidance. Our team members, clients, partners, and stakeholders value wisdom and appreciate our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. We are a team of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.</p>
 
         {/* UPDATED: "Join Our Team" button now opens the new modal */}
-        <button onClick={() => setJoinTeamModalOpen(true)} className="mt-8 bg-[#0891B2] text-white px-10 py-3 rounded-lg">
+        <button onClick={() => setJoinTeamModalOpen(true)} className="mt-8 bg-[#0891B2] text-black dark:text-white px-10 py-3 rounded-lg">
           Join Our Team
         </button>
 

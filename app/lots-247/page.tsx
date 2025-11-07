@@ -6,7 +6,7 @@ import Image from "next/image"
 import { X } from "lucide-react"
 import { News } from "../components/News"
 import { useState, useEffect, type MouseEvent, type CSSProperties, useRef } from "react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import WhatsAppBot from "../WhatsApp-Bot/page"
 
 // Section 1: Hero
@@ -151,8 +151,8 @@ function LotsHero() {
               transition={{ duration: 0.3 }}
               className="absolute w-full left-0 right-0"
             >
-              <h1 className="text-2xl md:text-3xl font-bold text-white px-4">{slides[index].h1}</h1>
-              <p className="mt-4 text-xs md:text-base text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white px-4">{slides[index].h1}</h1>
+              <p className="mt-4 text-xs md:text-base text-black dark:text-white max-w-6xl mx-auto px-4">{slides[index].p}</p>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -165,7 +165,7 @@ function LotsHero() {
             maxWidth: '100%'
           }}>
             {videoError ? (
-              <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+              <div className="w-full h-full flex items-center justify-center bg-gray-800 text-black dark:text-white">
                 <p>Video not available</p>
               </div>
             ) : (
@@ -197,7 +197,7 @@ function LotsInfrastructure() {
   return (
     <div className="pb-12 md:py-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <p className="relative z-10 text-white w-full mx-auto  px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
+        <p className="relative z-10 text-black dark:text-white w-full mx-auto  px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
           LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
           (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
           and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
@@ -223,7 +223,7 @@ function LotsInfrastructure() {
               height={200}
               className="mx-auto my-6 md:my-8 w-32 md:w-48"
             />
-            <p className="text-gray-300 text-sm md:text-base">
+            <p className="text-black dark:text-gray-300 text-sm md:text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
               <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
               issues before they spiral, backed by in-house Lawyers.
@@ -245,7 +245,7 @@ function LotsInfrastructure() {
               height={200}
               className="mx-auto my-4 md:my-6 w-32 md:w-48"
             />
-            <p className="text-gray-300 text-sm md:text-base pt-6 md:pt-10">
+            <p className="text-black dark:text-gray-300 text-sm md:text-base pt-6 md:pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
               <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
               deployment anytime, anywhere.
@@ -267,7 +267,7 @@ function LotsInfrastructure() {
               height={240}
               className="mx-auto my-4 md:my-6 w-36 md:w-56"
             />
-            <ul className="text-gray-300 space-y-3 md:space-y-4 text-sm md:text-base">
+            <ul className="text-black dark:text-gray-300 space-y-3 md:space-y-4 text-sm md:text-base">
               <li>
                 <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
                 dashboard for tracking traffic violations across multiple vehicles.
@@ -374,127 +374,6 @@ const DesktopPlan = ({ plan, features }: { plan: Plan; features: string[] }) => 
   </div>
 )
 
-const MobilePlan = ({ plan, features }: { plan: Plan; features: string[] }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const [contentScrollHeight, setContentScrollHeight] = useState(0)
-
-  useEffect(() => {
-    if (contentRef.current) {
-      const scrollHeight = contentRef.current.scrollHeight
-      const clientHeight = contentRef.current.clientHeight
-      setContentScrollHeight(scrollHeight - clientHeight)
-    }
-  }, [plan.values])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
-
-  const translateY = useTransform(scrollYProgress, [0, 1], [0, -contentScrollHeight])
-
-  return (
-    <div ref={containerRef} className="h-[200vh]">
-      <div className="sticky top-28 flex flex-col gap-4">
-        <div className={`relative rounded-xl p-6 flex items-center justify-center ${plan.bgColor} z-10 h-24`}>
-          {plan.topSeller && (
-            <Image
-              src="/TopSeller2.png"
-              alt="Top Seller"
-              width={150}
-              height={150}
-              className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-20"
-            />
-          )}
-          <Image
-            src={plan.logo || "/placeholder.svg"}
-            alt={`${plan.name} logo`}
-            width={150}
-            height={50}
-            className="object-contain"
-          />
-        </div>
-        <div
-          ref={contentRef}
-          className="bg-white rounded-lg pt-6 space-y-4 overflow-hidden"
-          style={{ maxHeight: "calc(100vh - 13rem)" }}
-        >
-          <motion.div style={{ translateY }}>
-            {plan.values.map((val: string | boolean | number | null | undefined, idx: number) => (
-              <div
-                key={idx}
-                className="h-[5rem] px-4 flex items-center justify-center text-base text-center border-b border-black/10 last:border-b-0 p-2"
-              >
-                <div className="w-full flex items-center justify-between">
-                  <span className="font-semibold text-sm text-gray-600 text-left pr-2">
-                    {features[idx] === "Online Lok Adalat Court" ? (
-                      <div>
-                        Online
-                        <br />
-                        Lok Adalat
-                        <br />
-                        Court
-                      </div>
-                    ) : (
-                      features[idx]
-                    )}
-                  </span>
-                  <div className="text-right">
-                    {val === true ? (
-                      <Image
-                        src="/Tick.png"
-                        alt="Checkmark"
-                        width={24}
-                        height={24}
-                        className="object-contain inline-block"
-                      />
-                    ) : val === false ? (
-                      <Image
-                        src="/CircleX.png"
-                        alt="Cross"
-                        width={24}
-                        height={24}
-                        className="object-contain inline-block"
-                      />
-                    ) : typeof val === "string" && val.includes(" , ") ? (
-                      <div>
-                        {val.split(" , ").map((line, i) => {
-                          if (!isNaN(Number(line.replace(/,/g, "")))) {
-                            if (plan.name === "V Care" && idx === 4) {
-                              return (
-                                <p key={i} className="text-black">
-                                  {line}
-                                </p>
-                              )
-                            }
-                            return (
-                              <p key={i} className="text-black">
-                                INR {line}
-                              </p>
-                            )
-                          }
-                          return (
-                            <p key={i} className="text-black">
-                              {line}
-                            </p>
-                          )
-                        })}
-                      </div>
-                    ) : (
-                      <p className="text-black">{val}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 const MobilePricingMatrix = ({
   plans,
   features,
@@ -573,7 +452,7 @@ const MobilePricingMatrix = ({
       <div className="mt-8 rounded-2xl p-4">
         {features.map((feature, idx) => (
           <div key={idx} className="mb-6 last:mb-0">
-            <div className="text-white font-semibold text-sm mb-3">{mobileLabel(feature)}</div>
+            <div className="text-black dark:text-white font-semibold text-sm mb-3">{mobileLabel(feature)}</div>
             <div className="grid grid-cols-3 gap-3">
               {plans.map((plan) => (
                 <div
@@ -702,7 +581,7 @@ function LotsPricing() {
       <div className="absolute inset-0 bg-brand-dark/95 lg:bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
-        <p className="text-gray-300 text-center text-base my-4">
+        <p className="text-black dark:text-gray-300 text-center text-base my-4">
           Choose the right package to keep your fleet running smoothly
         </p>
 
@@ -774,7 +653,6 @@ function LotsForm() {
   const [briefRequirement, setBriefRequirement] = useState("")
   const [contactPerson, setContactPerson] = useState("")
   const [emailId, setEmailId] = useState("")
-  const [formStatus, setFormStatus] = useState("")
 
   const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -788,7 +666,6 @@ function LotsForm() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    setFormStatus('Submitting...')
 
     const formData = {
       companyName,
@@ -815,7 +692,6 @@ function LotsForm() {
       const responseData = await response.json()
 
       if (response.ok && responseData.message === "Workflow was started") {
-        setFormStatus('Your message has been sent successfully!')
         // Reset form
         setCompanyName('')
         setMobileNo('')
@@ -827,11 +703,9 @@ function LotsForm() {
         setShowThankYouPopup(true)
       } else {
         console.log('Webhook response:', responseData)
-        setFormStatus('An error occurred. Please try again.')
       }
     } catch (error) {
       console.error('Form submission error:', error)
-      setFormStatus('An error occurred. Please try again.')
     }
   }
 
@@ -963,7 +837,7 @@ function LotsForm() {
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className="mt-2 bg-[#0891B2] text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto"
+                  className="mt-2 bg-[#0891B2] text-black dark:text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto"
                 >
                   Submit
                 </button>
@@ -976,14 +850,14 @@ function LotsForm() {
       {/* OTP Verification Popup (Photo 2) */}
       {showOtpPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-[#20242A] p-8 rounded-2xl shadow-xl w-full max-w-sm relative text-white">
+          <div className="bg-[#20242A] p-8 rounded-2xl shadow-xl w-full max-w-sm relative text-black dark:text-white">
             <button
               onClick={() => setShowOtpPopup(false)}
               className="absolute top-3 right-3 bg-gray-600 rounded-full p-1 text-gray-300 hover:text-white"
             >
               <X size={20} />
             </button>
-            <h2 className="text-2xl font-semibold mb-6">Submit Verification Code</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Submit Verification Code</h2>
             <form onSubmit={handleOtpSubmit}>
               <label htmlFor="otp" className="text-gray-400 text-sm">
                 Enter OTP
@@ -996,7 +870,7 @@ function LotsForm() {
                 required
                 autoFocus
               />
-              <button type="submit" className="w-full mt-6 bg-[#0891B2] text-white py-3 px-14 rounded-lg font-semibold">
+              <button type="submit" className="w-full mt-6 bg-[#0891B2] text-black dark:text-white py-3 px-14 rounded-lg font-semibold">
                 Submit
               </button>
             </form>
@@ -1010,7 +884,7 @@ function LotsForm() {
           <div className="bg-[#20242A] p-12 rounded-2xl shadow-xl w-full max-w-md text-center flex flex-col items-center">
             <div className="bg-green-500 rounded-full h-20 w-20 flex items-center justify-center mb-6">
               <svg
-                className="w-12 h-12 text-white"
+                className="w-12 h-12 text-black dark:text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -1019,8 +893,8 @@ function LotsForm() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2">Thank you for Submitting!</h2>
-            <p className="text-xl text-white">Our team will reach out to you!</p>
+            <h2 className="text-3xl font-bold text-black dark:text-white mb-2">Thank you for Submitting!</h2>
+            <p className="text-xl text-black dark:text-white">Our team will reach out to you!</p>
           </div>
         </div>
       )}
@@ -1052,7 +926,7 @@ function LotsSocials() {
       <div className="max-w-8xl mx-auto">
         <div className="border-2 border-gray-700 p-8 md:p-12">
           <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
-            <h2 className="text-md md:text-2xl font-bold text-white text-center">
+            <h2 className="text-md md:text-2xl font-bold text-black dark:text-white text-center">
               Socials Ahead, Don&apos;t Miss the Signal!
             </h2>
             <div className="flex items-center space-x-6 md:space-x-8">
@@ -1086,8 +960,10 @@ function LotsCoverage() {
       icon: <Image src="/Truck.png" alt="Truck" width={40} height={40} />,
       text: (
         <>
+        <div className="text-black dark:text-gray-300">      
           <span className="text-[#22D2EE]">Over 800+ logistics partners onboarded,</span> expanding reach across the
           transport industry.
+        </div>
         </>
       ),
     },
@@ -1095,7 +971,9 @@ function LotsCoverage() {
       icon: <Image src="/Scale.png" alt="Scale" width={40} height={40} />,
       text: (
         <>
+        <div className="text-black dark:text-gray-300">
           <span className="text-[#22D2EE]">Providing legal assistance</span> to 600K+ private and commercial vehicles.
+        </div>
         </>
       ),
     },
@@ -1103,7 +981,9 @@ function LotsCoverage() {
       icon: <Image src="/Signpost.png" alt="Signpost" width={40} height={40} />,
       text: (
         <>
+        <div className="text-black dark:text-gray-300">
           <span className="text-[#22D2EE]">Over 200K+ Roadside Legal Cases</span> successfully handled.
+        </div>
         </>
       ),
     },
@@ -1111,8 +991,10 @@ function LotsCoverage() {
       icon: <Image src="/Repeat1.png" alt="Check" width={40} height={40} />,
       text: (
         <>
+        <div className="text-black dark:text-gray-300">
           <span className="text-[#22D2EE]">Multi-Industry Integration ,</span> Seamless collaboration with insurers,
           fleet operators, leasing companies, and mobility platforms.
+        </div>
         </>
       ),
     },
@@ -1120,7 +1002,9 @@ function LotsCoverage() {
       icon: <Image src="/HandHelping.png" alt="Check" width={40} height={40} />,
       text: (
         <>
+        <div className="text-black dark:text-gray-300">
           <span className="text-[#22D2EE]">Pan-India legal support</span> available across 98% of India’s pin codes.
+        </div>
         </>
       ),
     },
@@ -1128,8 +1012,10 @@ function LotsCoverage() {
       icon: <Image src="/PhoneCall.png" alt="Check" width={40} height={40} />,
       text: (
         <>
-          <span className="text-[#22D2EE]">On-Call Resolution Rate 85%</span> of cases are resolved instantly over a
-          call, reducing downtime for customers.
+          <div className="text-black dark:text-gray-300">
+            <span className="text-[#22D2EE]">On-Call Resolution Rate 85%</span> of cases are resolved instantly over a
+            call, reducing downtime for customers.
+          </div>
         </>
       ),
     },
@@ -1137,8 +1023,10 @@ function LotsCoverage() {
       icon: <Image src="/SquareUserRound.png" alt="Check" width={40} height={40} />,
       text: (
         <>
-          <span className="text-[#22D2EE]">On-Site Lawyer assistance</span> deployed within 2 hours through our 70,000+
-          strong lawyer network.
+          <div className="text-black dark:text-gray-300">
+            <span className="text-[#22D2EE]">On-Site Lawyer assistance</span> deployed within 2 hours through our 70,000+
+            strong lawyer network.
+          </div>
         </>
       ),
     },
@@ -1146,21 +1034,23 @@ function LotsCoverage() {
       icon: <Image src="/SquareCheckBig.png" alt="Check" width={40} height={40} />,
       text: (
         <>
-          <span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
-          legal fees.
+          <div className="text-black dark:text-gray-300">
+            <span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
+            legal fees.
+          </div>
         </>
       ),
     },
     {
       icon: <Image src="/LineChart.png" alt="Check" width={40} height={40} />,
       text: (
-        <>
-          <span className="text-[#22D2EE]">High Scalability, Handling thousands of cases daily, </span> reinforcing LOTS
-          as the most reliable and indispensable legal-tech infrastructure for mobility in India.
-        </>
-      ),
-    },
-  ]
+        <div className="text-black dark:text-gray-300">
+          <span className="text-[#22D2EE]">High Scalability, Handling thousands of cases daily, </span> 
+          reinforcing LOTS as the most reliable and indispensable legal-tech infrastructure for mobility in India.
+        </div>
+      )
+    }
+  ];
 
   // Create duplicated stats for infinite scroll effect
   const duplicatedStats = [...stats, ...stats, ...stats, ...stats]
@@ -1176,7 +1066,7 @@ function LotsCoverage() {
             {duplicatedStats.map((stat, i) => (
               <div key={i} className="flex-none w-80 mx-4 border border-gray-600 p-6 flex flex-col">
                 <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
-                <p className="text-gray-300 text-sm md:text-base">{stat.text}</p>
+                <div className="text-gray-300 text-sm md:text-base">{stat.text}</div>
               </div>
             ))}
           </div>

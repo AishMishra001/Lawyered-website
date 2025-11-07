@@ -110,8 +110,8 @@ function AboutHero() {
       <div className="relative px-4 md:px-26 z-10 max-w-8xl mx-auto py-32 grid md:grid-cols-2 gap-16 items-center h-screen">
         {/* Left Column: Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="text-4xl font-bold text-white text-center md:text-left">Contact Us</h1>
-          <p className="text-base text-white leading-relaxed text-center md:text-left">
+          <h1 className="text-4xl font-bold text-black dark:text-white text-center md:text-left">Contact Us</h1>
+          <p className="text-base text-black dark:text-white leading-relaxed text-center md:text-left">
             Lawyered is redefining legal assistance for mobility in India. With a mission to make legal help as accessible as consumer products, we invite customers, partners, team members, investors and industry experts to be part of this transformational journey.
           </p>
         </div>
@@ -281,7 +281,7 @@ function ContactFormSection() {
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Form */}
         <div className="border border-gray-800 rounded-lg p-8 space-y-10">
-          <h2 className="text-3xl text-white">
+          <h2 className="text-3xl text-black dark:text-white">
             Fill out the form and our executive will reach out to you
           </h2>
           <form className="space-y-8" onSubmit={handleSubmit}>
@@ -348,7 +348,7 @@ function ContactFormSection() {
 
             {/* START: REVISED CAPTCHA SECTION */}
             <div className="flex items-center gap-4">
-              <div className="relative flex items-center justify-center w-52 h-[60px] select-none bg-gray-900 px-4 rounded-lg border border-gray-700 text-white overflow-hidden">
+              <div className="relative flex items-center justify-center w-52 h-[60px] select-none bg-gray-900 px-4 rounded-lg border border-gray-700 text-black dark:text-white overflow-hidden">
                 {/* Strikethrough Line */}
                 <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white -translate-y-[1px] z-10"></div>
                 
@@ -377,15 +377,15 @@ function ContactFormSection() {
             
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" checked={isAuthorized} onChange={(e) => setIsAuthorized(e.target.checked)} className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]" required />
-              <label htmlFor="auth" className="text-base text-white">
+              <label htmlFor="auth" className="text-base text-black dark:text-white">
                 I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms & Conditions</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-[#0891B2] text-white py-3 text-base rounded-lg mt-4">
+            <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white py-3 text-base rounded-lg mt-4">
               Submit
             </button>
-            {formStatus && <p className="text-center text-white mt-4">{formStatus}</p>}
+            {formStatus && <p className="text-center text-black dark:text-white mt-4">{formStatus}</p>}
           </form>
         </div>
         
@@ -394,10 +394,10 @@ function ContactFormSection() {
             <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-80 grayscale"/>
             <div className="absolute inset-0 bg-black/70 z-10"></div>
             <div className="relative z-20 text-center">
-              <h3 className="text-lg md:text-2xl text-white px-4">Connect with us to know more at</h3>
+              <h3 className="text-lg md:text-2xl text-black dark:text-white px-4">Connect with us to know more at</h3>
               <a
                 href="mailto:info@lawyered.in"
-                className="inline-block mt-4 md:mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
+                className="inline-block mt-4 md:mt-6 bg-[#0891B2] hover:bg-white text-black dark:text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
               >
                 info@lawyered.in
               </a>

@@ -210,10 +210,10 @@ function ChallanHero() {
                 transition={{ duration: 0.5 }}
                 className="absolute w-full"
               >
-                <h1 className="text-xl md:text-3xl font-bold text-white pb-2 md:pb-4 px-4 md:px-0">
+                <h1 className="text-xl md:text-3xl font-bold text-black dark:text-white pb-2 md:pb-4 px-4 md:px-0">
                   {slides[index].h1}
                 </h1>
-                <p className="text-sm md:text-base text-white px-4 md:px-0">
+                <p className="text-sm md:text-base text-black dark:text-white px-4 md:px-0">
                   {slides[index].p}
                 </p>
               </motion.div>
@@ -241,7 +241,7 @@ function ChallanHero() {
 function ChallanContent() {
   return (
     <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
-      <div className="max-w-8xl mx-auto text-sm md:text-base text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
+      <div className="max-w-8xl mx-auto text-sm md:text-base text-black dark:text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
         <p className="px-4 md:px-0">
           India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
         </p>
@@ -416,7 +416,7 @@ function ChallanVehicleSelector() {
                 </svg>
               </div>
             </div>
-            <label htmlFor="terms" className="text-white text-xs md:text-base leading-relaxed">
+            <label htmlFor="terms" className="text-black dark:text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
               <Link href="https://lawyered.in/p/terms-and-conditions-for-challan-resolution" className="font-bold underline text-[#22D2EE]">
                 terms & conditions
@@ -455,7 +455,7 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
                 <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-400 hover:text-white bg-gray-800 rounded-full p-2 border-2 border-gray-700">
                     <X size={24} />
                 </button>
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">Share Your Company Details</h2>
+                <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center">Share Your Company Details</h2>
                 <form className="space-y-5">
                     <div>
                         <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
@@ -552,7 +552,7 @@ function ChallanWhatsapp() {
 
             {/* Text and Button Section */}
             <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 order-1 md:order-2 text-center md:text-left">
-              <p className="text-lg md:text-2xl font-semibold text-white px-4 md:px-0">
+              <p className="text-lg md:text-2xl font-semibold text-black dark:text-white px-4 md:px-0">
                 Want to check challans for multiple vehicles together? Do not worry.
               </p>
               {/* This button now opens the modal */}
@@ -566,8 +566,8 @@ function ChallanWhatsapp() {
           {/* Social Media Section */}
           <div className="border-2 border-gray-700 p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
-              <h2 className="text-md md:text-2xl font-bold text-white text-center">
-                Socials Ahead, Don&apos;t Miss the Signal!
+              <h2 className="text-md md:text-2xl font-bold text-black dark:text-white text-center">
+Socials Ahead, Don&apos;t Miss the Signal!
               </h2>
               <div className="flex items-center space-x-6 md:space-x-8">
                 <a href="https://www.facebook.com/share/14KSBMrXdXs/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('facebook')} onMouseLeave={() => setSocialHovered('')}>

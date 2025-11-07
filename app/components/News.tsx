@@ -200,7 +200,7 @@ export function News() {
                     {article.headline}
                   </Link>
                 </h3>
-                <p className="text-white text-base leading-relaxed max-w-lg overflow-hidden">
+                <p className="text-black dark:text-white text-base leading-relaxed max-w-lg overflow-hidden">
                   {article.description}
                 </p>
                 <div className="mt-auto flex justify-between items-center text-sm">
