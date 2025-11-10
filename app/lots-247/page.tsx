@@ -4,7 +4,7 @@ import type React from "react"
 
 import Image from "next/image"
 import { X } from "lucide-react"
-import { News } from "../components/News"
+import Lots247News from "../components/Lots247News"
 import { useState, useEffect, type MouseEvent, type CSSProperties, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import WhatsAppBot from "../WhatsApp-Bot/page"
@@ -1104,7 +1104,7 @@ export default function Lots247Page() {
       <LotsForm />
       <LotsSocials />
       <LotsCoverage />
-      <News />
+      <Lots247News />
       <WhatsAppBot />
     </>
   )

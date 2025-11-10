@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { News } from "../components/News";
+import ChallanPayNews from "../components/ChallanPayNews";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
 import { X } from "lucide-react"; // Required for the close icon
@@ -607,7 +607,7 @@ export default function ChallanPayPage() {
       <ChallanContent />
       <ChallanVehicleSelector />
       <ChallanWhatsapp />
-      <News/>
+      <ChallanPayNews />
       <RewardBot />
     </>
   );

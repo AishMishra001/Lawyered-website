@@ -6,95 +6,66 @@ import { useState, useRef, useEffect, useCallback } from "react";
 
 const newsData = [
   {
-    image: "/news1.png",
-    headline: "Revolutionizing On-Road Legal Support: Lawyered's Journey Towards Accessible Justice",
-    description: "Lawyered, a legal tech startup founded by Himanshu Gupta, is transforming the landscape of on-road legal assistance for vehicle owners in India. With its innovative LOTS platform, the company connects users to a network of over 70,000 lawyers for immediate support on traffic violations and legal disputes, operating 24/7 across 98% of India's pin codes.",
-    date: "September 02, 2024",
-    link: "https://yourstory.com/2024/08/justice-on-the-road-lawyered-legal-tech-startup-lawyers-network-highway",
+    image: "/news13.png",
+    headline: "Indian Tourist Transporters Association partners with Lawyered for 24x7 legal support",
+    description: "A nationwide partnership brings round‑the‑clock legal assistance to tourist transport operators, streamlining roadside queries, challan resolution, and incident support via LOTS 24x7.",
+    date: "May 19, 2025",
+    link: "https://travel.economictimes.indiatimes.com/news/associations/indian-tourist-transporters-association-partners-with-lawyered-for-24x7-legal-support/121265623",
+  },
+  {
+    image: "/news17.png",
+    headline: "Mobility’s Hidden Backlog: How India’s Vehicle Boom Created a Challan Pendency Problem",
+    description: "India’s vehicle base tops 40 crore, but e‑challan pendency keeps rising—9.75 crore pending and ₹16,000+ crore penalties; why proactive, timely resolution now matters for mobility.",
+    date: "September 15, 2025",
+    link: "https://www.evmechanica.com/mobilitys-hidden-backlog-how-indias-vehicle-boom-created-a-challan-pendency-problem/",
+  },
+  {
+    image: "/news13.png",
+    headline: "National Lok Adalat: Clearing challans has potential—but reach is limited",
+    description: "Citizens can settle pending traffic challans during Lok Adalats, yet infrequent sessions and selection‑based resolution constrain impact—reinforcing the need for continuous, on‑demand legal help.",
+    date: "March 6, 2025",
+    link: "https://economictimes.indiatimes.com/wealth/save/time-to-settle-pending-traffic-challan-national-lok-adalat-on-march-8-2025-for-delhi-traffic-police-challans-know-how-it-works/articleshow/118684698.cms",
+  },
+  {
+    image: "/news16.png",
+    headline: "How LOTS is transforming roadside legal assistance",
+    description: "Explore how LOTS delivers on‑the‑spot legal guidance, seamless challan checks and disputes, and rapid support for drivers—turning roadside stress into quick, informed resolution.",
+    date: "February 16, 2025",
+    link: "https://www.techiexpert.com/lawyered-journey-recolonizing-roadside-legal-assistance/",
   },
   {
     image: "/news2.png",
-    headline: "Meet Himanshu Gupta: The Visionary Revolutionizing Road Side Legal Assistance with LOTS",
-    description: "With a mission to make Indian roads safer and more efficient, Himanshu has introduced cutting-edge tools like challan resolution and immediate legal help through the LOTS app. His journey is a testament to passion, purpose, and the power of technology to solve real-world problems.",
-    date: "Apr 02, 2025",
+    headline: "Himanshu Gupta on transforming legal access with Lawyered",
+    description: "An in‑depth profile on building Lawyered and LOTS, product‑led innovation, and the mission to make legal help faster, human, and accessible across everyday mobility contexts.",
+    date: "January 17, 2025",
     link: "https://sugermint.com/himanshu-gupta/",
   },
   {
-    image: "/news3.png",
-    headline: "Contracts To Code: Legal Tech Is Shaping India's Startup Future. Here's How",
-    description: "At a justice innovation workshop in a rural Tamil Nadu law school—well past the temple town of Mahabalipuram—we asked a class of law students how many were using ChatGPT. Every hand shot up. In an urban college, this wouldn't have been surprising. But here? Their professor explained: most of these students were the children of farmers and fishermen from adjoining villages.",
-    date: "May 11, 2025",
-    link: "https://news.abplive.com/technology/legal-tech-is-shaping-india-s-startup-future-here-s-how-1770572/amp",
-  },
-  {
-    image: "/news4.png",
-    headline: "LOTS Launches at Dealerships in Chhattisgarh with FADA & RADA",
-    description: "On February 28, 2024, the Federation of Automobile Dealers Associations (FADA) and the Raipur Automobile Dealers Association (RADA) welcomed the launch of Lawyered's flagship product, LOTS24x7 (On-Road Legal Assistance), at dealerships across Raipur, Chhattisgarh.",
-    date: "March 12, 2024",
-    link: "https://theprint.in/ani-press-releases/fada-and-lawyered-spearheaded-on-road-legal-assistance-for-dealerships-started-from-raipur-on-february-28th-2024/1997875/",
-  },
-  {
-    image: "/news5.png",
-    headline: "Delhi traffic challan: How to get them waived off or settled at Lok Adalat 2025",
-    description: "In India today, technology touches almost every part of our lives — from how we pay bills to how we travel, shop, and even consult a doctor. Quietly, but powerfully, it’s also starting to reshape another cornerstone of our society: the legal system.",
-    date: "Mar 3, 2025",
-    link: "https://www.hindustantimes.com/business/delhi-traffic-challan-how-to-get-them-waived-off-or-settled-at-lok-adalat-2025-101740993817814.html",
-  },
-  {
-    image: "/news10.png",
-    headline: "Celebrating Vision and Leadership : Himanshu Gupta Awarded 'Entrepreneur of the Year' at 2024 Entrepreneur India Startup Awards",
-    description: "On February 28, 2024, the Federation of Automobile Dealers Associations (FADA) and the Raipur Automobile Dealers Association (RADA) welcomed the launch of Lawyered's flagship product, LOTS24x7 (On-Road Legal Assistance), at dealerships across Raipur, Chhattisgarh.",
-    date: "Oct 23, 2024",
-    link: "https://lawyered.in/events-and-news/lots-launches-at-dealerships-in-chhattisgarh-with-fada-&-rada",
-  },
-  {
-    image: "/news19.png",
-    headline: "Reimagining Road Rules: 5 Legal-Tech Startups Reinventing Compliance in India’s Mobility Sector",
-    description: "APN News spotlights five legal‑tech startups reshaping mobility compliance—from smarter challan workflows to real‑time roadside support—with Lawyered among the innovators.",
-    date: "Oct 23, 2024",
-    link: "https://www.apnnews.com/reimagining-road-rules-5-legal-tech-startups-reinventing-compliance-in-indias-mobility-sector/",
+    image: "/news18.png",
+    headline: "Ride‑hailing price surges: who really pays?",
+    description: "Outlook Business unpacks why Ola, Uber, and Rapido fares spike during rain and rush hours, the regulatory backdrop, and the real cost borne by commuters and drivers.",
+    date: "July 13, 2025",
+    link: "https://www.outlookbusiness.com/in-depth/rain-rush-too-few-cabs-why-ola-uber-rapido-prices-surge-and-who-really-pays",
   },
   {
     image: "/news15.png",
-    headline: "The Hidden Cost of Driving: How Unlawful Challans Are Undermining Everyday Mobility",
-    description: "Unlawful or mistaken challans inflate time and money costs for commuters; learn how digital tools help check, dispute, and clear dues efficiently to keep daily mobility smooth.",
-    date: "Aug 8, 2025",
-    link: "https://evolutionautoindia.in/the-hidden-cost-of-driving-how-unlawful-challans-are-undermining-everyday-mobility/",
+    headline: "Smarter Legal Tools for Transport Businesses – Lawyered Insight",
+    description: "Discover how Lawyered empowers transport firms with legal-tech like LOTS247 & ChallanPay to tackle roadside risk and scale operations efficiently.",
+    date: "November 1, 2025",
+    link: "https://evolutionautoindia.in/the-road-ahead-why-transport-businesses-need-smarter-legal-tools-to-scale/",
   },
   {
-    image: "/news3.png",
-    headline: "Your Legal Lifeline At A Red Light: How Legaltech Is Driving Change On Indian Roads",
-    description: "ABP Live highlights how legal‑tech brings quick, on‑road assistance for traffic disputes and challans, turning red‑light stress into guided, timely resolution for drivers.",
-    date: "July 2, 2025",
-    link: "https://news.abplive.com/technology/your-legal-lifeline-at-a-red-light-how-legaltech-is-driving-change-on-indian-roads-1784770",
-  },
-  {
-    image: "/news20.png",
-    headline: "How Technology is Solving Roadside Legal Issues in Real-Time",
-    description: "Analytics Insight covers real‑time legal support for motorists—tech‑enabled discovery, instant guidance, and faster dispute handling—making help accessible right at the roadside.",
-    date: "June 11, 2025",
-    link: "https://www.analyticsinsight.net/tech-news/how-technology-is-solving-roadside-legal-issues-in-real-time",
-  },
-  {
-    image: "/news3.png",
-    headline: "Contracts To Code: Legal Tech Is Shaping India’s Startup Future. Here's How",
-    description: "ABP Live examines how legal tech powers India’s startup ecosystem—from faster contracts and compliance to data‑driven risk management and founder‑friendly workflows.",
-    date: "May 11, 2025",
-    link: "https://news.abplive.com/technology/legal-tech-is-shaping-india-s-startup-future-here-s-how-1770572/amp",
-  },
-  {
-    image: "/news15.png",
-    headline: "The Electric Storm Ahead: Why Legal Risk Could Stall India’s EV Leasing Revolution",
-    description: "Evolution Auto India analyzes regulatory and contractual risks in EV leasing—and how proactive legal frameworks can unlock adoption while protecting operators and consumers.",
-    date: "April 11, 2025",
-    link: "https://evolutionautoindia.in/the-electric-storm-ahead-why-legal-risk-could-stall-indias-ev-leasing-revolution/",
+    image: "/news17.png",
+    headline: "Lawyered Launches LOTS247: 24/7 Fleet Legal-Tech Platform",
+    description: "Lawyered unveils LOTS247 — India’s first 24×7 fleet-legal-tech ecosystem for drivers, fleets & vehicles, redefining roadside legal support upgrading the ecosystem for India’s mobility and logistics sectors.",
+    date: "November 4, 2025",
+    link: "https://www.evmechanica.com/lawyered-transforms-lots-into-lots247-for-fleet-legal-tech/",
   },
 ];
 
 const extendedNewsData = [...newsData, ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData , ...newsData];
-
-export function News() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+function Lots247News() {
+   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -259,3 +230,5 @@ export function News() {
     </div>
   );
 }
+
+export default Lots247News
