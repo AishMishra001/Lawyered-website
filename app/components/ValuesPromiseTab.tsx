@@ -168,7 +168,7 @@ export function ValuesPromiseTabs() {
                   <div key={v.title} className="border border-gray-700 p-6 space-y-10">
                     <div className="text-gray-400 mb-4">{v.icon}</div>
                     <h3 className="text-lg md:text-xl font-bold text-black dark:text-white">{v.title}</h3>
-                    <p className="mt-2 text-gray-300 text-base leading-relaxed pb-12">{v.description}</p>
+                    <p className="mt-2 text-gray-700 dark:text-gray-300 text-base leading-relaxed pb-12">{v.description}</p>
                   </div>
                 ))}
               </motion.div>
@@ -177,7 +177,7 @@ export function ValuesPromiseTabs() {
               <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-transparent flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
                   <HeartHandshake size={50} className="text-black dark:text-white font-light flex-shrink-0"/>
-                  <p className="text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
+                  <p className="text-gray-700 dark:text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>
                 </div>
                 <button onClick={() => setJoinTeamModalOpen(true)} className="w-full lg:w-auto bg-[#0891B2] text-base md:text-base px-8 py-4 md:px-16 md:py-5 rounded-lg whitespace-nowrap mt-6 lg:mt-0">Join Our Team</button>
               </motion.div>

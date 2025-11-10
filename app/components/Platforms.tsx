@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, MouseEvent, CSSProperties, useRef } from "react";
+import { useTheme } from "next-themes";
  
 export function Platforms() {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: -1, y: -1 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
@@ -125,16 +127,16 @@ export function Platforms() {
             )}
 
             <div
-              className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0"
+              className={`relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 ${theme === 'light' ? 'md:gap-2.5' : ''}`}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
               {/* LOTS 247 Card */}
               <Link href="/lots-247">
-                <div className="flex flex-col items-center gap-6 text-center py-8 md:py-0 hover:cursor-pointer">
+                <div className={`flex flex-col items-start gap-6 text-left py-8 md:py-0 hover:cursor-pointer bg-[#F7F7F7] dark:bg-transparent dark:items-center dark:text-center ${theme === 'light' ? 'px-10 py-5' : ''}`}>
                   <div className="h-20 flex items-center">
                     <Image
-                      src="/lots-247-logo.png"
+                      src={theme === 'light' ? "/lots-247-logo2.png" : "/lots-247-logo.png"}
                       alt="LOTS 247 Logo"
                       width={250}
                       height={70}
@@ -155,10 +157,10 @@ export function Platforms() {
 
               {/* ChallanPay Card */}
               <Link href="/challan-pay">
-                <div className="flex flex-col items-center gap-6 text-center py-8 md:py-0 hover:cursor-pointer">
+                <div className={`flex flex-col items-start gap-6 text-left py-8 md:py-0 hover:cursor-pointer bg-[#F7F7F7] dark:bg-transparent dark:items-center dark:text-center ${theme === 'light' ? 'px-10 py-5' : ''}`}>
                   <div className="h-20 flex items-center">
                     <Image
-                      src="/challanPay-logo2.png"
+                      src={theme === 'light' ? "/challanPay-logo4.png" : "/challanPay-logo2.png"}
                       alt="ChallanPay Logo"
                       width={250}
                       height={70}
