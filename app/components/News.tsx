@@ -213,7 +213,7 @@ export function News() {
         </div>
 
         <div
-          className="overflow-hidden relative"
+          className="overflow-hidden relative "
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -229,13 +229,13 @@ export function News() {
             {extendedNewsData.map((article, index) => (
               <div
                 key={index}
-                className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full md:w-[calc((100%-64px)/3)]"
+                className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full bg-[#F7F7F7] dark:bg-transparent md:w-[calc((100%-64px)/3)] "
                 style={{
                   scrollSnapAlign: isMobile ? 'none' : 'start'
                 }}
               >
                 <div className="w-40 h-12 flex items-center relative">
-                  <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="cover" className={article.image === '/news6.png' ? '' : 'filter brightness-0 invert'} />
+                  <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="cover" className={article.image === '/news6.png' ? '' : 'dark:filter dark:brightness-0 dark:invert'} />
                 </div>
                 <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg overflow-hidden">
                   <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]" target="_blank">
