@@ -73,9 +73,8 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
-                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
-              }`}
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
             >
               {link.label}
             </Link>
@@ -98,20 +97,18 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${
-                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
-              }`}
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
             >
               {link.label}
             </Link>
           ))}
 
           {/* ✅ Theme toggle button on the far right */}
-          <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${
-                hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
-              }`}>
-  <ThemeSwitch />
-</div>
+          {/* <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}>
+            <ThemeSwitch />
+          </div> */}
 
         </div>
 
@@ -191,8 +188,8 @@ export function Navbar() {
             </div>
             {/* ✅ Optional: Add theme toggle in mobile menu too */}
             <div className="mt-8">
-  <ThemeSwitch />
-</div>
+              <ThemeSwitch />
+            </div>
 
           </div>
           <style jsx>{`
