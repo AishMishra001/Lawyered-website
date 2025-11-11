@@ -4,13 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "./Navbar";
 import { useState, MouseEvent, useEffect } from "react";
+import { useTheme } from "next-themes";
 
 export function Hero() {
+  const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  // added mounted guard to avoid theme/window-dependent markup before hydration
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -42,9 +48,9 @@ export function Hero() {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Rotation animation for both desktop and mobile
@@ -84,12 +90,17 @@ export function Hero() {
       {!isMobile && (
         <div className="absolute inset-0 z-10" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
-            <Image
-              src="/MainFrame.png"
-              alt="Background Frame"
-              fill
-              className="object-cover"
-            />
+            {mounted ? (
+              <Image
+                src={theme === 'light' ? "/homepage-grid.png" : "/MainFrame.png"}
+                alt="Background Frame"
+                fill
+                className="object-cover"
+              />
+            ) : (
+              // Render a static, non-theme-dependent fallback during SSR/hydration
+              <div className="w-full h-full bg-transparent" />
+            )}
           </div>
         </div>
       )}
@@ -98,12 +109,16 @@ export function Hero() {
       {isMobile && (
         <div className="absolute inset-0 z-10" style={mobileSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
-            <Image
-              src="/mobileGrid.png"
-              alt="Mobile Grid Background"
-              fill
-              className="object-cover"
-            />
+            {mounted ? (
+              <Image
+                src="/mobileGrid.png"
+                alt="Mobile Grid Background"
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-transparent" />
+            )}
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@ const newsData = [
     headline: "E-Challan Backlog Soars: ChallanPay Featured in TOI Gurgaon Edition",
     description: "Featured in the Times of India – Gurgaon edition: India’s e-challan backlog is swelling, with ~60% of fines tied in courts. Discover how ChallanPay aims to ease the burden.",
     date: "Aug 15, 2025",
-    link: "https://epaper.indiatimes.com/timesepaper/publication-the-times-of-india,city-delhi.cms?redirectionSource=TOIWeb&_gl=1*7eud4s*_gcl_au*ODcxNDcxMTQuMTc1MjgyNDA1MQ..*_ga*MjEzNTU4Mzk1NS4xNzE3NDE3MjU3*_ga_FCN624MN68*czE3NjA1OTIxMDUkbzQ1JGcxJHQxNzYwNTkyMTMwJGozNSRsMCRoMA",
+    link: "https://www.linkedin.com/posts/lots24x7_lots24x7-challanpay-independenceday2025-activity-7362027003450900480-lKMk?utm_source=share&utm_medium=member_ios&rcm=ACoAADx_nZsBle5m_BNW0uC2SCQ6C2F0oAkwXmk ",
   },
   {
     image: "/news12.png",

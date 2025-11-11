@@ -51,7 +51,7 @@ const newsData = [
     image: "/news19.png",
     headline: "Reimagining Road Rules: 5 Legal-Tech Startups Reinventing Compliance in India’s Mobility Sector",
     description: "APN News spotlights five legal‑tech startups reshaping mobility compliance—from smarter challan workflows to real‑time roadside support—with Lawyered among the innovators.",
-    date: "Oct 23, 2024",
+    date: "Oct 23, 2025",
     link: "https://www.apnnews.com/reimagining-road-rules-5-legal-tech-startups-reinventing-compliance-in-indias-mobility-sector/",
   },
   {
