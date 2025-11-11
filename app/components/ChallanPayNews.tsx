@@ -196,10 +196,14 @@ function ChallanPayNews() {
                   <Image src={article.image} alt={article.headline} width={120} height={40} objectFit="cover" className={article.image === '/news6.png' ? '' : 'dark:filter dark:brightness-0 dark:invert'} />
                 </div>
                 <h3 className="text-lg font-semibold text-brand-cyan mb-3 max-w-lg overflow-hidden">
-                  <Link href={article.link} className="hover:underline text-lg text-[#22D2EE]" target="_blank">
-                    {article.headline}
-                  </Link>
-                </h3>
+									<Link
+										href={article.link}
+										className="hover:underline text-lg text-black dark:text-[#22D2EE]"
+										target="_blank"
+									>
+										{article.headline}
+									</Link>
+								</h3>
                 <p className="text-black dark:text-white text-base leading-relaxed max-w-lg overflow-hidden">
                   {article.description}
                 </p>
