@@ -161,20 +161,23 @@ function LotsHero() {
         <div className="-mt-4 w-full max-w-5xl flex items-center justify-center px-4">
           <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl w-full" style={{
             aspectRatio: '16/9',
-            maxHeight: 'min(60vh, 450px)',
-            maxWidth: '100%'
+            width: '100%',
+            height: 'auto'
           }}>
             {videoError ? (
-              <div className="w-full h-full flex items-center justify-center bg-gray-800 text-black dark:text-white">
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-800 text-black dark:text-white">
                 <p>Video not available</p>
               </div>
             ) : (
               <video
                 ref={videoRef}
-                className={`w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 ${!isVideoPlaying ? 'grayscale' : 'grayscale-0'}`}
                 controls
-                preload="none"
+                autoPlay
+                loop
+                muted
                 playsInline
+                preload="auto"
                 onPlay={() => setIsVideoPlaying(true)}
                 onPause={() => setIsVideoPlaying(false)}
                 onError={() => setVideoError(true)}
