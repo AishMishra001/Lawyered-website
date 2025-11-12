@@ -108,7 +108,7 @@ function LotsHero() {
 
   return (
     <div
-      className="relative w-full text-center pt-30 h-screen"
+      className="relative w-full text-center pt-30 min-h-screen pb-12"
       onMouseMove={!isMobile ? handleMouseMove : undefined}
       onMouseLeave={!isMobile ? handleMouseLeave : undefined}
     >
@@ -198,9 +198,9 @@ function LotsHero() {
 function LotsInfrastructure() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   return (
-    <div className="pb-12 md:py-24 px-4 md:px-26">
+    <div className="pt-12 md:pt-24 pb-12 md:pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <p className="relative z-10 text-black dark:text-white w-full mx-auto  px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
+        <p className="relative z-10 text-black dark:text-white w-full mx-auto px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
           LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
           (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
           and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
