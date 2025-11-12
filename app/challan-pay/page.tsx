@@ -298,7 +298,7 @@ function ChallanContent() {
         </div>
         <div className="hidden dark:md:col-span-2 dark:flex dark:items-center dark:justify-center dark:p-4 dark:overflow-hidden">
           <div className="relative w-full max-w-xs flex items-center justify-center" style={{ minHeight: '600px', height: '600px' }}>
-            {/* Background color layer - first layer */}
+            {/* Background color layer - first layers */}
             <div className="absolute bg-[#181820] rounded-lg" style={{ height: '130%', width: '150%', left: '-25%', top: '-15%' }}></div>
             
             {/* Phone frame image - second layer, can adjust height independently */}
