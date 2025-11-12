@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChallanPayNews from "../components/ChallanPayNews";
-import { useState, useEffect, MouseEvent, CSSProperties } from "react"; // Required for state and click events
+import { useState, useEffect, MouseEvent, CSSProperties, useRef } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
-import { X } from "lucide-react"; // Required for the close icon
+import { X, Play, Pause, Volume2, VolumeX } from "lucide-react"; // Required for the close icon and play/pause controls
 import RewardBot from "../reward-Bot/page";
 
 // Section 1: Hero
@@ -239,29 +239,144 @@ function ChallanHero() {
 
 // Section 2: Content
 function ChallanContent() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showControls, setShowControls] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleVideoPlay = () => {
+    setIsPlaying(true);
+  };
+
+  const handleVideoPause = () => {
+    setIsPlaying(false);
+  };
+
+  const handleMouseEnter = () => {
+    setShowControls(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowControls(false);
+  };
+
   return (
     <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
-      <div className="max-w-8xl mx-auto text-sm md:text-base text-black dark:text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
-        <p className="px-4 md:px-0">
-          India&apos;s traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike.
-        </p>
-        <p className="px-4 md:px-0">
-          ChallanPay is India&apos;s first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience.
-        </p>
-        <div className="px-4 md:px-0 text-left">
-          <p className="mb-4 md:mb-6">
-            We are building the &quot;Default Rail of Mobility Compliance&quot; — a digital-first legal infrastructure layer that powers the entire ecosystem:
+      <div className="max-w-8xl mx-auto md:grid md:grid-cols-5 md:gap-8 md:items-start">
+        <div className="col-span-1 md:col-span-5 dark:md:col-span-3 text-sm md:text-base text-black dark:text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
+          <p className="px-4 md:px-0">
+            {"India's traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike."}
           </p>
-          <ul className="space-y-3 md:space-y-4 list-disc list-inside">
-            <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
-            <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
-          </ul>
+          <p className="px-4 md:px-0">
+            {"ChallanPay is India's first unified platform for discovering, resolving, and tracking traffic challans across all states and enforcement authorities. Our mission is to remove the fragmentation and inefficiencies that plague traffic compliance today by unifying data, payments, and legal processes into a single experience."}
+          </p>
+          <div className="px-4 md:px-0 text-left">
+            <p className="mb-4 md:mb-6">
+              {`We are building the "Default Rail of Mobility Compliance" — a digital-first legal infrastructure layer that powers the entire ecosystem:`}
+            </p>
+            <ul className="space-y-3 md:space-y-4 list-disc list-inside">
+              <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
+              <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
+              <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
+              <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
+            </ul>
+          </div>
+          <p className="px-4 md:px-0">
+            With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
+          </p>
         </div>
-        <p className="px-4 md:px-0">
-          With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
-        </p>
+        <div className="hidden dark:md:col-span-2 dark:flex dark:items-center dark:justify-center dark:p-4 dark:overflow-hidden">
+          <div className="relative w-full max-w-xs flex items-center justify-center" style={{ minHeight: '600px', height: '600px' }}>
+            {/* Background color layer - first layer */}
+            <div className="absolute bg-[#181820] rounded-lg" style={{ height: '130%', width: '150%', left: '-25%', top: '-15%' }}></div>
+            
+            {/* Phone frame image - second layer, can adjust height independently */}
+            <div className="absolute inset-0 z-10 w-full flex items-center justify-center pointer-events-none">
+              <Image
+                src="/mobilePhone3.png"
+                alt="Mobile Phone"
+                width={280}
+                height={200}
+                className="object-fill pointer-events-none"
+                style={{ 
+                  // width: '100%',
+                  // height: '100%',
+                  objectFit: 'fill'
+                }}
+              />
+            </div>
+
+            {/* Video container - positioned behind the phone frame */}
+            <div 
+              className="absolute inset-0 flex items-center justify-center z-[5] cursor-pointer" 
+              style={{
+                width: '100%',
+                height: '100%',
+                paddingTop: '3%', // Top padding for notch/camera area
+                paddingBottom: '3%', // Bottom padding for home indicator
+                paddingLeft: '5.5%', // Left padding to center screen (keep as is - width is perfect)
+                paddingRight: '5.5%', // Right padding to center screen (keep as is - width is perfect)
+              }}
+              onClick={togglePlayPause}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover " // Rounded corners to match phone screen
+                loop
+                playsInline
+                onPlay={handleVideoPlay}
+                onPause={handleVideoPause}
+                style={{
+                  maxHeight: '82%', // Increased height to fill more of the screen
+                  maxWidth: '95%', // Keep width as is - it's perfect
+                  borderRadius: '1.2rem',
+                }}
+              >
+                <source src="/challanPayVideo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Play/Pause Button Overlay */}
+              <AnimatePresence>
+                {showControls && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 flex items-center justify-center z-[15] pointer-events-none"
+                    style={{
+                      paddingTop: '3%',
+                      paddingBottom: '3%',
+                      paddingLeft: '5.5%',
+                      paddingRight: '5.5%',
+                    }}
+                  >
+                    <div className="bg-black/60 rounded-full p-4 md:p-6 backdrop-blur-sm">
+                      {isPlaying ? (
+                        <Pause className="w-8 h-8 md:w-10 md:h-10 text-white" fill="white" />
+                      ) : (
+                        <Play className="w-8 h-8 md:w-10 md:h-10 text-white" fill="white" />
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -567,7 +682,7 @@ function ChallanWhatsapp() {
           <div className="border-2 border-gray-700 p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
               <h2 className="text-md md:text-2xl font-bold text-black dark:text-white text-center">
-Socials Ahead, Don&apos;t Miss the Signal!
+                {"Socials Ahead, Don't Miss the Signal!"}
               </h2>
               <div className="flex items-center space-x-6 md:space-x-8">
                 <a href="https://www.facebook.com/share/14KSBMrXdXs/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('facebook')} onMouseLeave={() => setSocialHovered('')}>
@@ -608,7 +723,7 @@ export default function ChallanPayPage() {
       <ChallanVehicleSelector />
       <ChallanWhatsapp />
       <ChallanPayNews />
-      <RewardBot />
+      {/* <RewardBot /> */}
     </>
   );
 }

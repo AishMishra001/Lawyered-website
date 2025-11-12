@@ -397,7 +397,7 @@ function ContactFormSection() {
               <h3 className="text-lg md:text-2xl text-black dark:text-white px-4">Connect with us to know more at</h3>
               <a
                 href="mailto:info@lawyered.in"
-                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-black dark:text-white dark:hover:bg-[#0891B2] dark:hover:text-white font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
+                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-black dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
               >
                 info@lawyered.in
               </a>
