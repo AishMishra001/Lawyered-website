@@ -7,10 +7,12 @@ import { X } from "lucide-react"
 import Lots247News from "../components/Lots247News"
 import { useState, useEffect, type MouseEvent, type CSSProperties, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
 import WhatsAppBot from "../WhatsApp-Bot/page"
 
 // Section 1: Hero
 function LotsHero() {
+  const { theme } = useTheme()
   const slides = [
     {
       h1: "Seamless Mobility, Zero Legal Hassles.",
@@ -133,7 +135,7 @@ function LotsHero() {
       )}
       <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
         <Image
-          src="/lots247-logo2.png"
+          src={theme === 'light' ? "/lots-247-logo3.png" : "/lots247-logo2.png"}
           alt="LOTS 247 Logo"
           width={400}
           height={100}

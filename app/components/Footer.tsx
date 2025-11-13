@@ -14,20 +14,23 @@ export function Footer() {
 
   return (
     <>
-      <footer className="border-t border-gray-800 py-12 md:py-8 mt-2 lg:mt-22 px-4 md:px-26">
+      <footer className="border-t border-gray-200 dark:border-gray-800 py-12 md:py-8 mt-2 lg:mt-22 px-4 md:px-26">
         <div className="max-w-8xl mx-auto">
           <div className="flex flex-col md:grid md:grid-cols-4 gap-8 text-black dark:text-white font-bold dark:font-normal justify-center md:justify-start">
 
             {/* Column 1: Info */}
-            <div className="col-span-2 flex flex-col text-xs lg:text-sm items-center md:items-start text-center md:text-left justify-between">
+            <div className="col-span-2 flex flex-col text-xs lg:text-sm items-center md:items-start text-center md:text-left dark:justify-between">
               <div className="flex flex-col items-center md:items-start">
-                <Image
-                  src={theme === "dark" ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
-                  alt="Lawyered Logo"
-                  width={280}
-                  height={100}
-                  className="w-64 h-auto md:ml-4" // 👈 shifted slightly right
-                />
+                <div className="w-64 h-auto md:ml-4">
+                  <Image
+                    src={theme === "dark" ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
+                    alt="Lawyered Logo"
+                    width={theme === "dark" ? 280 : 200}
+                    height={theme === "dark" ? 100 : 80}
+                    className={`${theme === "dark" ? "w-full h-auto object-contain" : "object-contain"}`}
+                    style={theme !== "dark" ? { width: "220px", height: "80px" } : undefined}
+                  />
+                </div>
                 <p className="mb-1 md:mb-0 md:ml-4"> {/* 👈 aligns text with logo */}
                   Sproutech Solutions Private Limited
                 </p>
@@ -37,7 +40,7 @@ export function Footer() {
                   Metropolis Mall, MG Road, Gurugram, Haryana 122002
                 </p>
               </div>
-              <p className="text-center md:text-left mt-1 md:mt-0 md:ml-4">
+              <p className="text-center md:text-left mt-1 md:mt-0 md:ml-4 dark:mt-0">
                 T: 99-88-44-1033 E: info@lawyered.in
               </p>
 
@@ -149,7 +152,7 @@ export function Footer() {
         </div>
       </footer>
 
-      <div className="border-t border-gray-700 py-4 md:py-6 px-4 md:px-26">
+      <div className="border-t border-gray-200 dark:border-gray-700 py-4 md:py-6 px-4 md:px-26">
         <p className="text-center text-black dark:text-white font-bold dark:font-normal text-sm md:text-base">
           © 2025 Lawyered. All Rights Reserved |{" "}
           <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">

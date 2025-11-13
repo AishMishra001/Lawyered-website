@@ -2,14 +2,19 @@
 
 import Image from "next/image";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
+import { useTheme } from "next-themes";
 
 // Hero Section Component
 function CeoHero() {
+  const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -78,21 +83,26 @@ function CeoHero() {
 
       {/* Desktop MainFrame background */}
       {!isMobile && (
-        <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
-          <div className="relative w-full h-full opacity-40">
-              <Image
-                  src="/MainFrame.png"
-                  alt="background frame"
-                  fill
-                  className="object-cover"
-              />
-          </div>
+        <div className="absolute inset-0 z-10" style={desktopSpotlightStyle}>
+        <div className="relative w-full h-full opacity-40">
+          {mounted ? (
+            <Image
+              src={theme === 'light' ? "/homepage-grid.png" : "/MainFrame.png"}
+              alt="Background Frame"
+              fill
+              className="object-cover"
+            />
+          ) : (
+            // Render a static, non-theme-dependent fallback during SSR/hydration
+            <div className="w-full h-full bg-transparent" />
+          )}
         </div>
+      </div>
       )}
 
       {/* Mobile Grid background */}
       {isMobile && (
-        <div className="absolute inset-0 z-0" style={mobileSpotlightStyle}>
+        <div className="absolute inset-0 z-10" style={mobileSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
               <Image
                   src="/mobileGrid.png"

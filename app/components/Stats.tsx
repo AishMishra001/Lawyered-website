@@ -58,7 +58,7 @@ export function Stats() {
         </p>
         <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 ">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-3 items-start text-center p-4 md:py-6 md:pl-6 border border-gray-700 bg-[#F7F7F7] dark:bg-transparent">
+            <div key={stat.label} className="flex flex-col gap-3 items-start text-center p-4 md:py-6 md:pl-6 dark:border dark:border-gray-700 bg-[#F7F7F7] dark:bg-transparent">
               <div className="h-20 w-20 flex items-center justify-start">
                 {stat.icon}
               </div>

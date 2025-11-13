@@ -30,15 +30,16 @@ export function Navbar() {
   // Don't render theme-dependent content until mounted
   if (!mounted) {
     return (
-      <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A]">
+      <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A] border-b-0">
         <nav className="relative w-full py-5 px-4 md:px-8 flex justify-center items-center">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 h-[45px] flex items-center justify-center">
             <Image
               src="/lawyered-logo.png"
               alt="Lawyered Logo"
               width={270}
               height={45}
               priority
+              className="object-contain"
             />
           </div>
         </nav>
@@ -48,8 +49,9 @@ export function Navbar() {
 
   // Determine logo properties based on resolved theme
   const logoSrc = resolvedTheme === "light" ? "/lawyered-logo2.png" : "/lawyered-logo.png"
-  const logoWidth = resolvedTheme === "light" ? 250 : 270
-  const logoHeight = resolvedTheme === "light" ? 40 : 45
+  // Use different dimensions for light mode logo
+  const logoWidth = resolvedTheme === "light" ? 240 : 270  // 70% of 270 for light mode
+  const logoHeight = resolvedTheme === "light" ? 38 : 45   // Adjusted proportionally
 
   const navLinksLeft = [
     { href: "/ceo-message", label: "CEO'S MESSAGE" },
@@ -65,7 +67,7 @@ export function Navbar() {
   const allLinks = [...navLinksLeft, ...navLinksRight]
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A]">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A] border-b border-gray-300 dark:border-b-0">
       <nav className="relative w-full py-5 px-4 md:px-8 flex justify-center items-center">
         {/* Desktop Menu */}
         <div className="hidden md:flex w-full justify-center items-center gap-12 relative">
@@ -81,7 +83,7 @@ export function Navbar() {
           ))}
 
           {/* Logo in center */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 h-[45px] w-[270px] flex items-center justify-center">
             <Link href="/">
               <Image
                 src={logoSrc}
@@ -89,6 +91,7 @@ export function Navbar() {
                 width={logoWidth}
                 height={logoHeight}
                 priority
+                className="object-contain"
               />
             </Link>
           </div>
@@ -105,10 +108,10 @@ export function Navbar() {
           ))}
 
           {/* ✅ Theme toggle button on the far right */}
-          {/* <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+          <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
             }`}>
             <ThemeSwitch />
-          </div> */}
+          </div>
 
         </div>
 

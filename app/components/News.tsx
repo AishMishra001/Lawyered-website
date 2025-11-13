@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useTheme } from "next-themes";
 
 const newsData = [
 	{
@@ -136,6 +137,10 @@ export function News() {
 	const [isHovering, setIsHovering] = useState(false);
 	const [isInteracting, setIsInteracting] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
+	const { theme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => setMounted(true), []);
 
 	useEffect(() => {
 		const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
@@ -273,20 +278,24 @@ export function News() {
 						{extendedNewsData.map((article, index) => (
 							<div
 								key={index}
-								className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full bg-[#F7F7F7] dark:bg-transparent md:w-[calc((100%-64px)/3)] "
+								className="border border-gray-200 dark:border-0 p-4 flex flex-col gap-8 flex-shrink-0 w-full bg-[#F7F7F7] dark:bg-transparent md:w-[calc((100%-64px)/3)] "
 								style={{
 									scrollSnapAlign: isMobile ? "none" : "start",
 								}}
 							>
 								<div className="w-40 h-12 flex items-center relative">
 									<Image
-										src={article.image}
+										src={
+											article.image === "/news10.png" && mounted && theme !== "dark"
+												? "/lawyered-logo2.png"
+												: article.image
+										}
 										alt={article.headline}
 										width={120}
 										height={40}
 										objectFit="cover"
 										className={
-											article.image === "/news6.png"
+											article.image === "/news6.png" || (article.image === "/news10.png" && mounted && theme !== "dark")
 												? ""
 												: "dark:filter dark:brightness-0 dark:invert"
 										}
