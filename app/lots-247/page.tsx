@@ -184,7 +184,7 @@ function LotsHero() {
                 onPause={() => setIsVideoPlaying(false)}
                 onError={() => setVideoError(true)}
               >
-                <source src="/lots.mp4" type="video/mp4" />
+                <source src="/lots-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             )}
