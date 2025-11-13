@@ -113,7 +113,7 @@ export function Platforms() {
                     <div className="relative w-full h-full opacity-40">
                       {mounted ? (
                         <Image
-                          src={theme === 'light' ? "/homepage-grid.png" : "/MainFrame.png"}
+                          src={theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"}
                           alt="Background Frame"
                           fill
                           className="object-cover"

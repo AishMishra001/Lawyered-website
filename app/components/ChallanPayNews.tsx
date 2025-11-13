@@ -187,7 +187,7 @@ function ChallanPayNews() {
             {extendedNewsData.map((article, index) => (
               <div
                 key={index}
-                className="border border-gray-500 p-4 flex flex-col gap-8 flex-shrink-0 w-full bg-[#F7F7F7] dark:bg-transparent md:w-[calc((100%-64px)/3)] "
+                className="border border-gray-200 dark:border-0 p-4 flex flex-col gap-8 flex-shrink-0 w-full bg-[#F7F7F7] dark:bg-transparent md:w-[calc((100%-64px)/3)] "
                 style={{
                   scrollSnapAlign: isMobile ? 'none' : 'start'
                 }}

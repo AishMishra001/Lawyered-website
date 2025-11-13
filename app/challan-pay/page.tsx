@@ -6,10 +6,14 @@ import ChallanPayNews from "../components/ChallanPayNews";
 import { useState, useEffect, MouseEvent, CSSProperties, useRef } from "react"; // Required for state and click events
 import { motion, AnimatePresence } from "framer-motion"; // Required for animations
 import { X, Play, Pause, Volume2, VolumeX } from "lucide-react"; // Required for the close icon and play/pause controls
+import { useTheme } from "next-themes";
 import RewardBot from "../reward-Bot/page";
 
 // Section 1: Hero
 function ChallanHero() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
   const slides = [
     {
       h1: "ChallanPay, Anytime, Anywhere",
@@ -56,6 +60,10 @@ function ChallanHero() {
   const [isHovering, setIsHovering] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -127,7 +135,7 @@ function ChallanHero() {
         <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
             <Image
-              src="/MainFrame.png"
+              src={mounted && theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"}
               alt="Background Frame"
               fill
               className="object-cover"
@@ -498,7 +506,7 @@ function ChallanVehicleSelector() {
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
               placeholder="Enter Vehicle Number"
-              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border-none'}`}
+              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-black dark:border-none'}`}
             />
             <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
           </div>
@@ -512,7 +520,7 @@ function ChallanVehicleSelector() {
                 id="terms"
                 checked={isTermsChecked}
                 onChange={(e) => setIsTermsChecked(e.target.checked)}
-                className="md:h-5 md:w-5 rounded border-gray-600 flex-shrink-0 mt-1 appearance-none bg-gray-700 checked:bg-[#0b9eb4]  focus:ring-opacity-50"
+                className="md:h-5 md:w-5 rounded border border-black dark:border-gray-600 flex-shrink-0 mt-1 appearance-none bg-white dark:bg-gray-700 checked:bg-[#0b9eb4]  focus:ring-opacity-50"
                 style={{
                   accentColor: '#0b9eb4'
                 }}

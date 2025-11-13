@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const stats = [
   "70,000+ lawyers network",
@@ -10,8 +11,14 @@ const stats = [
 ];
 
 export function AboutHero() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0);
   const [isImageHovered, setIsImageHovered] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -95,7 +102,7 @@ export function AboutHero() {
       {!isMobile && (
         <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
-            <Image src="/MainFrame.png" alt="background frame" fill className="object-cover"/>
+            <Image src={mounted && theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"} alt="background frame" fill className="object-cover"/>
           </div>
         </div>
       )}

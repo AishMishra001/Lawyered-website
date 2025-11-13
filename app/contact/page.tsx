@@ -79,18 +79,32 @@ function AboutHero() {
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 
-      {/* Desktop MainFrame background */}
+      {/* Desktop background - Light mode: Whitegrid11.png, Dark mode: MainFrame.png */}
       {!isMobile && (
-        <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
-          <div className="relative w-full h-full opacity-40">
-            <Image
-              src="/MainFrame.png"
-              alt="background frame"
-              fill
-              className="object-cover"
-            />
+        <>
+          {/* Light mode background */}
+          <div className="absolute inset-0 z-0 dark:hidden" style={desktopSpotlightStyle}>
+            <div className="relative w-full h-full opacity-40">
+              <Image
+                src="/Whitegrid11.png"
+                alt="background frame"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
-        </div>
+          {/* Dark mode background */}
+          <div className="absolute inset-0 z-0 hidden dark:block" style={desktopSpotlightStyle}>
+            <div className="relative w-full h-full opacity-40">
+              <Image
+                src="/MainFrame.png"
+                alt="background frame"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </>
       )}
 
       {/* Mobile Grid background */}
@@ -291,7 +305,7 @@ function ContactFormSection() {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
               required
             />
             <div>
@@ -300,7 +314,7 @@ function ContactFormSection() {
                 placeholder="E-mail"
                 value={email}
                 onChange={handleEmailChange}
-                className={`w-full bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-700'}`}
+                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-700'}`}
                 required
               />
               {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}
@@ -309,7 +323,7 @@ function ContactFormSection() {
               <select
                 value={inquiryType}
                 onChange={(e) => setInquiryType(e.target.value)}
-                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-900 dark:text-gray-300 appearance-none cursor-pointer pr-10"
                 style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                 required
               >
@@ -331,7 +345,7 @@ function ContactFormSection() {
                 placeholder="Phone Number"
                 value={phone}
                 onChange={handlePhoneChange}
-                className={`w-full bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.phone ? 'border-red-500' : 'border-gray-700'}`}
+                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.phone ? 'border-red-500' : 'border-gray-700'}`}
                 maxLength={10}
                 required
               />
@@ -342,15 +356,15 @@ function ContactFormSection() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={3}
-              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
               required
             ></textarea>
 
             {/* START: REVISED CAPTCHA SECTION */}
             <div className="flex items-center gap-4">
-              <div className="relative flex items-center justify-center w-52 h-[60px] select-none bg-gray-900 px-4 rounded-lg border border-gray-700 text-black dark:text-white overflow-hidden">
+              <div className="relative flex items-center justify-center w-52 h-[60px] select-none bg-white dark:bg-gray-900 px-4 rounded-lg border border-gray-700 text-black dark:text-white overflow-hidden">
                 {/* Strikethrough Line */}
-                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white -translate-y-[1px] z-10"></div>
+                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-black dark:bg-white -translate-y-[1px] z-10"></div>
                 
                 <div className="flex items-center justify-center">
                   {generatedCaptcha.split('').map((char, index) => (
@@ -371,7 +385,7 @@ function ContactFormSection() {
               placeholder="Enter Captcha"
               value={captcha}
               onChange={(e) => setCaptcha(e.target.value)}
-              className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
               required
             />
             
@@ -394,10 +408,10 @@ function ContactFormSection() {
             <Image src="/road-forest.jpg" alt="Road in a forest" layout="fill" className="object-cover z-0 opacity-80 grayscale"/>
             <div className="absolute inset-0 bg-black/70 z-10"></div>
             <div className="relative z-20 text-center">
-              <h3 className="text-lg md:text-2xl text-black dark:text-white px-4">Connect with us to know more at</h3>
+              <h3 className="text-lg md:text-2xl text-white dark:text-white px-4">Connect with us to know more at</h3>
               <a
                 href="mailto:info@lawyered.in"
-                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-black dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
+                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-black hover:bg-white hover:text-[#0891B2] dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
               >
                 info@lawyered.in
               </a>

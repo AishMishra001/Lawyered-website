@@ -28,9 +28,11 @@ function LotsHero() {
     },
   ]
 
+  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
+    setMounted(true)
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % slides.length)
     }, 3000) // scrolls every 3 seconds
@@ -111,37 +113,42 @@ function LotsHero() {
   return (
     <div
       className="relative w-full text-center pt-30 min-h-screen pb-12"
-      onMouseMove={!isMobile ? handleMouseMove : undefined}
-      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
+      onMouseMove={mounted && !isMobile ? handleMouseMove : undefined}
+      onMouseLeave={mounted && !isMobile ? handleMouseLeave : undefined}
     >
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 
-      {/* Desktop MainFrame background */}
-      {!isMobile && (
-        <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
+      {/* Desktop MainFrame background - use CSS to handle mobile/desktop instead of conditional rendering */}
+      <div className="absolute inset-0 z-0 hidden lg:block" style={mounted ? desktopSpotlightStyle : {}}>
+        {mounted && (
           <div className="relative w-full h-full opacity-40">
-            <Image src="/MainFrame.png" alt="background frame" fill className="object-cover" />
+            <Image src={theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"} alt="background frame" fill className="object-cover" />
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Mobile Grid background */}
-      {isMobile && (
-        <div className="absolute inset-0 z-0" style={mobileSpotlightStyle}>
+      <div className="absolute inset-0 z-0 lg:hidden" style={mounted ? mobileSpotlightStyle : {}}>
+        {mounted && (
           <div className="relative w-full h-full opacity-40">
             <Image src="/mobileGrid.png" alt="Mobile Grid Background" fill className="object-cover" />
           </div>
-        </div>
-      )}
+        )}
+      </div>
       <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
-        <Image
-          src={theme === 'light' ? "/lots-247-logo3.png" : "/lots247-logo2.png"}
-          alt="LOTS 247 Logo"
-          width={400}
-          height={100}
-          priority
-          className="w-64 md:w-96 h-auto"
-        />
+        {mounted && (
+          <Image
+            src={theme === 'light' ? "/lots-247-logo3.png" : "/lots247-logo2.png"}
+            alt="LOTS 247 Logo"
+            width={400}
+            height={100}
+            priority
+            className="w-64 md:w-96 h-auto"
+          />
+        )}
+        {!mounted && (
+          <div className="w-64 md:w-96 h-24 bg-transparent" aria-hidden="true" />
+        )}
 
         <div className="relative h-52 sm:h-42 md:h-36 mt-6 w-full">
           <AnimatePresence mode="wait">
@@ -198,7 +205,13 @@ function LotsHero() {
 
 // Section 2: The Only Scalable & Dependable Legal-Tech Infrastructure
 function LotsInfrastructure() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   return (
     <div className="pt-12 md:pt-24 pb-12 md:pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
@@ -230,7 +243,7 @@ function LotsInfrastructure() {
             />
             <p className="text-black dark:text-gray-300 text-sm md:text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
-              <span className="text-[#22D2EE]">round-the-clock legal safety</span> net that immediately tackles roadside
+              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>round-the-clock legal safety</span> net that immediately tackles roadside
               issues before they spiral, backed by in-house Lawyers.
             </p>
           </div>
@@ -252,7 +265,7 @@ function LotsInfrastructure() {
             />
             <p className="text-black dark:text-gray-300 text-sm md:text-base pt-6 md:pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
-              <span className="text-[#22D2EE]">75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
+              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
               deployment anytime, anywhere.
             </p>
           </div>
@@ -274,11 +287,11 @@ function LotsInfrastructure() {
             />
             <ul className="text-black dark:text-gray-300 space-y-3 md:space-y-4 text-sm md:text-base">
               <li>
-                <span className="text-[#22D2EE]">Advanced Live Challan Dashboard –</span> A real-time, centralized
+                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Advanced Live Challan Dashboard –</span> A real-time, centralized
                 dashboard for tracking traffic violations across multiple vehicles.
               </li>
               <li>
-                <span className="text-[#22D2EE]">RC & Vehicle Insight API Access –</span> Ownership, hypothecation,
+                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>RC & Vehicle Insight API Access –</span> Ownership, hypothecation,
                 blacklist, fitness, and pollution check in real-time.
               </li>
             </ul>
@@ -299,7 +312,7 @@ interface Plan {
   values: (string | boolean | number | null | undefined)[]
 }
 
-const DesktopPlan = ({ plan, features }: { plan: Plan; features: string[] }) => (
+const DesktopPlan = ({ plan, features, theme }: { plan: Plan; features: string[]; theme?: string }) => (
   <div className="flex flex-col gap-4">
     <div className={`relative rounded-xl p-6 flex items-center justify-center ${plan.bgColor} z-10 h-24`}>
       {plan.topSeller && (
@@ -319,7 +332,7 @@ const DesktopPlan = ({ plan, features }: { plan: Plan; features: string[] }) => 
         className="object-contain"
       />
     </div>
-    <div className="bg-white rounded-lg py-6 space-y-4">
+    <div className={`rounded-lg py-6 space-y-4 ${theme === 'light' ? 'bg-[#FAFAFA] border border-black/20' : 'bg-white'}`}>
       {plan.values.map((val: string | boolean | number | null | undefined, idx: number) => (
         <div
           key={idx}
@@ -382,9 +395,11 @@ const DesktopPlan = ({ plan, features }: { plan: Plan; features: string[] }) => 
 const MobilePricingMatrix = ({
   plans,
   features,
+  theme,
 }: {
   plans: Plan[]
   features: string[]
+  theme?: string
 }) => {
   const renderValue = (val: string | boolean | number | null | undefined, planName: string, idx: number) => {
     if (val === true) {
@@ -462,7 +477,7 @@ const MobilePricingMatrix = ({
               {plans.map((plan) => (
                 <div
                   key={plan.name}
-                  className={`bg-white rounded-lg ${feature === "Online Lok Adalat Court" ? "h-28" : "h-14"} flex items-center justify-center px-2 text-center`}
+                  className={`rounded-lg ${feature === "Online Lok Adalat Court" ? "h-28" : "h-14"} flex items-center justify-center px-2 text-center ${theme === 'light' ? 'bg-[#FAFAFA] border border-black/20' : 'bg-white'}`}
                 >
                   {renderValue(plan.values[idx], plan.name, idx)}
                 </div>
@@ -476,11 +491,12 @@ const MobilePricingMatrix = ({
 }
 
 function LotsPricing() {
-  const [isClient, setIsClient] = useState(false)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
+    setMounted(true)
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
     checkMobile()
     window.addEventListener("resize", checkMobile)
@@ -581,8 +597,27 @@ function LotsPricing() {
     },
   ]
 
+  if (!mounted) {
+    return (
+      <div className="pb-24 px-4 md:px-8 lg:px-26 relative bg-transparent">
+        <div className="absolute inset-0 bg-brand-dark/95 lg:bg-brand-dark/95"></div>
+        <div className="max-w-8xl mx-auto relative z-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
+          <p className="text-black dark:text-gray-300 text-center text-base my-4">
+            Choose the right package to keep your fleet running smoothly
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="pb-24 px-4 md:px-8 lg:px-26 relative bg-transparent bg-[url('/sketch.png')] bg-no-repeat bg-[length:110%_auto] lg:bg-[center_top_10rem]">
+    <div 
+      className="pb-24 px-4 md:px-8 lg:px-26 relative bg-transparent bg-no-repeat bg-[length:110%_auto] lg:bg-[center_top_10rem]"
+      style={{
+        backgroundImage: mounted ? `url('${theme === 'light' ? '/sketch2.png' : '/sketch.png'}')` : undefined
+      }}
+    >
       <div className="absolute inset-0 bg-brand-dark/95 lg:bg-brand-dark/95"></div>
       <div className="max-w-8xl mx-auto relative z-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center">Drive Ahead Without Legal Worries!</h2>
@@ -590,8 +625,8 @@ function LotsPricing() {
           Choose the right package to keep your fleet running smoothly
         </p>
 
-        {isClient && isMobile ? (
-          <MobilePricingMatrix plans={plans} features={features} />
+        {isMobile ? (
+          <MobilePricingMatrix plans={plans} features={features} theme={theme} />
         ) : (
           <div className="mt-12 lg:mt-22 grid grid-cols-1 lg:grid-cols-[1.5fr_3fr] gap-8 lg:gap-12 items-start lg:items-end">
             {/* Left column : features (desktop only) */}
@@ -609,7 +644,7 @@ function LotsPricing() {
                   className="object-contain"
                 />
               </div>
-              <div className="bg-white rounded-lg py-6 space-y-4">
+              <div className={`rounded-lg py-6 space-y-4 ${theme === 'light' ? 'bg-[#FAFAFA] border border-black/20' : 'bg-white'}`}>
                 {features.map((f, idx) => (
                   <div
                     key={idx}
@@ -634,7 +669,7 @@ function LotsPricing() {
             {/* Right column : plans */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {plans.map((plan) => (
-                <DesktopPlan key={plan.name} plan={plan} features={features} />
+                <DesktopPlan key={plan.name} plan={plan} features={features} theme={theme} />
               ))}
             </div>
           </div>
@@ -646,9 +681,15 @@ function LotsPricing() {
 
 // Section 4: Submit Card
 function LotsForm() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   // State for controlling the visibility of the pop-ups
   const [showOtpPopup, setShowOtpPopup] = useState(false)
   const [showThankYouPopup, setShowThankYouPopup] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // State for the form inputs to make them controlled components
   const [companyName, setCompanyName] = useState("")
@@ -661,10 +702,11 @@ function LotsForm() {
 
   const handleMobileNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
+    // Remove all non-numeric characters
     const numericValue = value.replace(/[^0-9]/g, "")
-    if (numericValue.length <= 10) {
-      setMobileNo(numericValue)
-    }
+    // Limit to 10 digits maximum
+    const limitedValue = numericValue.slice(0, 10)
+    setMobileNo(limitedValue)
   }
 
   // Handler for the main form submission
@@ -684,12 +726,12 @@ function LotsForm() {
     }
 
     try {
+      const origin = typeof window !== 'undefined' ? window.location.origin : ''
       const response = await fetch('https://automate.indiaaccelerator.co/webhook/5da90f77-0b4d-4695-904b-1583dc1a6323', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Referer': window.location.origin,
-          'Origin': window.location.origin,
+          ...(origin && { 'Referer': origin, 'Origin': origin }),
         },
         body: JSON.stringify(formData),
       })
@@ -749,8 +791,8 @@ function LotsForm() {
       <div className="py-12 md:py-24 max-w-8xl px-4 md:px-26">
         <div className="mx-auto border border-gray-800 rounded-lg p-4 md:p-8">
           <div className="w-full max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-            <p className="text-gray-200 text-base text-center md:text-left">
-              To know more about <span className="text-[#22D2EE]">Add-Ons for Business Packages</span>, fill out the
+            <p className={`text-base text-center md:text-left ${mounted && theme === 'light' ? 'text-black' : 'text-gray-200'}`}>
+              To know more about <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Add-Ons for Business Packages</span>, fill out the
               form and our executive will contact you.
             </p>
             <form className="w-full grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleFormSubmit}>
@@ -759,7 +801,7 @@ function LotsForm() {
                 placeholder="Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
                 required
               />
               <input
@@ -767,7 +809,7 @@ function LotsForm() {
                 placeholder="Mobile No."
                 value={mobileNo}
                 onChange={handleMobileNoChange}
-                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
                 required
               />
               <input
@@ -775,14 +817,14 @@ function LotsForm() {
                 placeholder="City/Region"
                 value={cityRegion}
                 onChange={(e) => setCityRegion(e.target.value)}
-                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
                 required
               />
               <div className="relative col-span-1">
                 <select
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                  className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer pr-10"
                   style={{
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                    ...(mounted && theme === 'dark' ? { backgroundColor: 'rgba(31, 41, 55, 0.5)' } : {}),
                     WebkitAppearance: 'none',
                     MozAppearance: 'none'
                   }}
@@ -807,17 +849,17 @@ function LotsForm() {
 
               <div className="relative col-span-1 md:col-span-2">
                 <select
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer"
+                  className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer"
                   value={briefRequirement}
                   onChange={(e) => setBriefRequirement(e.target.value)}
                   required
                 >
                 <option value="" disabled hidden>Brief Requirement</option>
-                  <option value="Challan" style={{  color: "#d1d5db" }}>Challan</option>
-                  <option value="Accident" style={{  color: "#d1d5db" }}>Accident</option>
-                  <option value="Legal Support" style={{ color: "#d1d5db" }}>Legal Support</option>
-                  <option value="Subscription" style={{ color: "#d1d5db" }}>Subscription</option>
-                  <option value="RTO" style={{ color: "#d1d5db" }}>RTO</option>
+                  <option value="Challan" style={{ color: mounted && theme === 'light' ? '#000000' : '#d1d5db' }}>Challan</option>
+                  <option value="Accident" style={{ color: mounted && theme === 'light' ? '#000000' : '#d1d5db' }}>Accident</option>
+                  <option value="Legal Support" style={{ color: mounted && theme === 'light' ? '#000000' : '#d1d5db' }}>Legal Support</option>
+                  <option value="Subscription" style={{ color: mounted && theme === 'light' ? '#000000' : '#d1d5db' }}>Subscription</option>
+                  <option value="RTO" style={{ color: mounted && theme === 'light' ? '#000000' : '#d1d5db' }}>RTO</option>
                 </select>
                 <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -830,19 +872,19 @@ function LotsForm() {
                 placeholder="Contact Person"
                 value={contactPerson}
                 onChange={(e) => setContactPerson(e.target.value)}
-                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
               />
               <input
                 type="email"
                 placeholder="Email ID"
                 value={emailId}
                 onChange={(e) => setEmailId(e.target.value)}
-                className="col-span-1 bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-sm md:text-base"
+                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
               />
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className="mt-2 bg-[#0891B2] text-black dark:text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto"
+                  className={`mt-2 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] text-black dark:text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto`}
                 >
                   Submit
                 </button>
@@ -875,7 +917,7 @@ function LotsForm() {
                 required
                 autoFocus
               />
-              <button type="submit" className="w-full mt-6 bg-[#0891B2] text-black dark:text-white py-3 px-14 rounded-lg font-semibold">
+              <button type="submit" className={`w-full mt-6 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] text-black dark:text-white py-3 px-14 rounded-lg font-semibold`}>
                 Submit
               </button>
             </form>
@@ -905,15 +947,15 @@ function LotsForm() {
       )}
       <style jsx>{`
         select option {
-          background-color: rgba(31, 41, 55, 0.9);
-          color: white;
+          background-color: ${mounted && theme === 'light' ? '#ffffff' : 'rgba(31, 41, 55, 0.9)'};
+          color: ${mounted && theme === 'light' ? '#000000' : 'white'};
           padding: 8px;
         }
         select option:first-child {
-          color: #9CA3AF;
+          color: ${mounted && theme === 'light' ? '#9CA3AF' : '#9CA3AF'};
         }
         select:focus option {
-          background-color: rgba(31, 41, 55, 0.9);
+          background-color: ${mounted && theme === 'light' ? '#ffffff' : 'rgba(31, 41, 55, 0.9)'};
         }
       `}</style>
     </>
@@ -960,13 +1002,20 @@ function LotsSocials() {
 
 // Section 6: Comprehensive Legal Coverage for Fleets
 function LotsCoverage() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const stats = [
     {
       icon: <Image src="/Truck.png" alt="Truck" width={40} height={40} />,
       text: (
         <>
         <div className="text-black dark:text-gray-300">      
-          <span className="text-[#22D2EE]">Over 800+ logistics partners onboarded,</span> expanding reach across the
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Over 800+ logistics partners onboarded,</span> expanding reach across the
           transport industry.
         </div>
         </>
@@ -977,7 +1026,7 @@ function LotsCoverage() {
       text: (
         <>
         <div className="text-black dark:text-gray-300">
-          <span className="text-[#22D2EE]">Providing legal assistance</span> to 600K+ private and commercial vehicles.
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Providing legal assistance</span> to 600K+ private and commercial vehicles.
         </div>
         </>
       ),
@@ -987,7 +1036,7 @@ function LotsCoverage() {
       text: (
         <>
         <div className="text-black dark:text-gray-300">
-          <span className="text-[#22D2EE]">Over 200K+ Roadside Legal Cases</span> successfully handled.
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Over 200K+ Roadside Legal Cases</span> successfully handled.
         </div>
         </>
       ),
@@ -997,7 +1046,7 @@ function LotsCoverage() {
       text: (
         <>
         <div className="text-black dark:text-gray-300">
-          <span className="text-[#22D2EE]">Multi-Industry Integration ,</span> Seamless collaboration with insurers,
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Multi-Industry Integration ,</span> Seamless collaboration with insurers,
           fleet operators, leasing companies, and mobility platforms.
         </div>
         </>
@@ -1008,7 +1057,7 @@ function LotsCoverage() {
       text: (
         <>
         <div className="text-black dark:text-gray-300">
-          <span className="text-[#22D2EE]">Pan-India legal support</span> available across 98% of India’s pin codes.
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Pan-India legal support</span> available across 98% of India&apos;s pin codes.
         </div>
         </>
       ),
@@ -1018,7 +1067,7 @@ function LotsCoverage() {
       text: (
         <>
           <div className="text-black dark:text-gray-300">
-            <span className="text-[#22D2EE]">On-Call Resolution Rate 85%</span> of cases are resolved instantly over a
+            <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>On-Call Resolution Rate 85%</span> of cases are resolved instantly over a
             call, reducing downtime for customers.
           </div>
         </>
@@ -1029,7 +1078,7 @@ function LotsCoverage() {
       text: (
         <>
           <div className="text-black dark:text-gray-300">
-            <span className="text-[#22D2EE]">On-Site Lawyer assistance</span> deployed within 2 hours through our 70,000+
+            <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>On-Site Lawyer assistance</span> deployed within 2 hours through our 70,000+
             strong lawyer network.
           </div>
         </>
@@ -1040,7 +1089,7 @@ function LotsCoverage() {
       text: (
         <>
           <div className="text-black dark:text-gray-300">
-            <span className="text-[#22D2EE]">150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
+            <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>150K+ challans resolved,</span> saving customers over ₹50Cr+ in penalties and
             legal fees.
           </div>
         </>
@@ -1050,7 +1099,7 @@ function LotsCoverage() {
       icon: <Image src="/LineChart.png" alt="Check" width={40} height={40} />,
       text: (
         <div className="text-black dark:text-gray-300">
-          <span className="text-[#22D2EE]">High Scalability, Handling thousands of cases daily, </span> 
+          <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>High Scalability, Handling thousands of cases daily, </span> 
           reinforcing LOTS as the most reliable and indispensable legal-tech infrastructure for mobility in India.
         </div>
       )
@@ -1088,7 +1137,7 @@ function LotsCoverage() {
             <h3 className="text-lg md:text-2xl text-white px-4">Connect with us to know more at</h3>
             <a
               href="mailto:Sales@lawyered.in"
-              className="inline-block mt-4 md:mt-6 bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4"
+              className={`inline-block mt-4 md:mt-6 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4`}
             >
               Sales@lawyered.in
             </a>

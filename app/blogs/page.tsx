@@ -3,9 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, MouseEvent, CSSProperties } from "react";
+import { useTheme } from "next-themes";
 
 // Section 1: Hero
 function BlogsHero() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -37,6 +40,10 @@ function BlogsHero() {
   }, [mousePosition, delayedMousePosition]);
 
   // Mobile detection and rotation animation
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -83,7 +90,7 @@ function BlogsHero() {
         <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
             <Image
-              src="/MainFrame.png"
+              src={mounted && theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"}
               alt="background frame"
               fill
               className="object-cover"
@@ -124,7 +131,7 @@ function BlogsHero() {
 
         {/* Right Column: Text Content */}
         <div className="flex flex-col gap-6 order-1 md:order-2 text-center md:text-left">
-          <h1 className="text-2xl md:text-3xl font-semibold text-white leading-tight">
+          <h1 className="text-2xl md:text-3xl font-semibold text-black dark:text-white leading-tight">
             Read our blog for sharp legal insights that simplify the law
           </h1>
         </div>

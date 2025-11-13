@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeartHandshake, X } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 // NEW: Modal for "Join Our Team" Form
 const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
@@ -146,9 +147,23 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
 export function ValuesPromiseTabs() {
   const [activeTab, setActiveTab] = useState("value");
   const [isJoinTeamModalOpen, setJoinTeamModalOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Handle mounting to prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Same dimensions for both light and dark mode images
+  const wisdomIconWidth = 35;
+  const wisdomIconHeight = 35;
+
+  // Use default dark mode image during SSR, then switch based on theme after mount
+  const wisdomIconSrc = mounted && resolvedTheme === "light" ? "/promise4.png" : "/promise1.png";
 
   const values = [
-    { icon: <Image src="/promise1.png" alt="Wisdom and Empathy" width={35} height={35} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
+    { icon: <Image src={wisdomIconSrc} alt="Wisdom and Empathy" width={wisdomIconWidth} height={wisdomIconHeight} className="object-contain" />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
     { icon: <Image src="/promise2.png" alt="Innovation and Inspiration" width={50} height={50} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
     { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other’s expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people’s lives." },
   ];
@@ -156,9 +171,9 @@ export function ValuesPromiseTabs() {
   return (
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
-        <div className="flex flex-row border border-white text-sm md:text-xl w-full md:w-auto">
-          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-white text-black' : 'bg-transparent text-black dark:text-white'}`}>What We Value</button>
-          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-white text-black' : 'bg-transparent text-black dark:text-white md:border-l border-gray-700'}`}>What We Promise</button>
+        <div className="flex flex-row border border-black dark:border-white text-sm md:text-xl w-full md:w-auto">
+          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border border-gray-300 dark:bg-transparent dark:text-white dark:border-transparent'}`}>What We Value</button>
+          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border border-gray-300 dark:bg-transparent dark:text-white dark:border-transparent dark:md:border-l dark:md:border-gray-700'}`}>What We Promise</button>
         </div>
         <div className="mt-12 w-full px-4 sm:px-8 md:px-12 lg:px-22">
           <AnimatePresence mode="wait">
