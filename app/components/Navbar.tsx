@@ -108,10 +108,10 @@ export function Navbar() {
           ))}
 
           {/* ✅ Theme toggle button on the far right */}
-          <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+          {/* <div className={`absolute right-0 flex items-center transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
             }`}>
             <ThemeSwitch />
-          </div>
+          </div> */}
 
         </div>
 
