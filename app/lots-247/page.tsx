@@ -1011,7 +1011,7 @@ function LotsCoverage() {
 
   const stats = [
     {
-      icon: <Image src="/Truck.png" alt="Truck" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/Truck2.png" : "/Truck.png"} alt="Truck" width={40} height={40} />,
       text: (
         <>
         <div className="text-black dark:text-gray-300">      
@@ -1022,9 +1022,9 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/Scale.png" alt="Scale" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/Scale2.png" : "/Scale.png"} alt="Scale" width={40} height={40} />,
       text: (
-        <>
+        <>  
         <div className="text-black dark:text-gray-300">
           <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Providing legal assistance</span> to 600K+ private and commercial vehicles.
         </div>
@@ -1032,7 +1032,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/Signpost.png" alt="Signpost" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/Signpost2.png" : "/Signpost.png"} alt="Signpost" width={40} height={40} />,
       text: (
         <>
         <div className="text-black dark:text-gray-300">
@@ -1042,7 +1042,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/Repeat1.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/Repeat2.png" : "/Repeat1.png"} alt="Check" width={40} height={40} />,
       text: (
         <>
         <div className="text-black dark:text-gray-300">
@@ -1053,7 +1053,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/HandHelping.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/HandHelping2.png" : "/HandHelping.png"} alt="Check" width={40} height={40} />,
       text: (
         <>
         <div className="text-black dark:text-gray-300">
@@ -1063,7 +1063,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/PhoneCall.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/PhoneCall2.png" : "/PhoneCall.png"} alt="Check" width={40} height={40} />,
       text: (
         <>
           <div className="text-black dark:text-gray-300">
@@ -1074,7 +1074,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/SquareUserRound.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/SquareUserRound2.png" : "/SquareUserRound.png"} alt="Check" width={40} height={40} />,
       text: (
         <>
           <div className="text-black dark:text-gray-300">
@@ -1085,7 +1085,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/SquareCheckBig.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/SquareCheckBig2.png" : "/SquareCheckBig.png"} alt="Check" width={40} height={40} />,
       text: (
         <>
           <div className="text-black dark:text-gray-300">
@@ -1096,7 +1096,7 @@ function LotsCoverage() {
       ),
     },
     {
-      icon: <Image src="/LineChart.png" alt="Check" width={40} height={40} />,
+      icon: <Image src={mounted && theme === 'light' ? "/LineChart2.png" : "/LineChart.png"} alt="Check" width={40} height={40} />,
       text: (
         <div className="text-black dark:text-gray-300">
           <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>High Scalability, Handling thousands of cases daily, </span> 

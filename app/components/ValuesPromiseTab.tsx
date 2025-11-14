@@ -172,6 +172,14 @@ export function ValuesPromiseTabs() {
   const lightModeIconWidth = 35;
   const lightModeIconHeight = 35;
 
+  // Dimensions for innovation icon - dark mode (promise2.png)
+  const innovationDarkModeWidth = 50;
+  const innovationDarkModeHeight = 50;
+  
+  // Manual dimensions for innovation icon - light mode (promise6.png) - adjust these as needed
+  const innovationLightModeWidth = 50;
+  const innovationLightModeHeight = 50;
+
   // Use default dark mode image during SSR and initial render to prevent hydration mismatch
   // Only switch based on theme after component has mounted
   // resolvedTheme can be undefined during SSR, so we default to dark mode
@@ -183,15 +191,20 @@ export function ValuesPromiseTabs() {
   const wisdomIconClassName = isLightMode ? "object-cover" : "object-contain";
 
   // Innovation icon: use promise6.png in light mode, promise2.png in dark mode
-  const innovationIconSrc = isLightMode ? "/promise6.png" : "/promise2.png";
+  const innovationIconSrc = isLightMode ? "/promise9.png" : "/promise2.png";
+  const innovationIconWidth = isLightMode ? innovationLightModeWidth : innovationDarkModeWidth;
+  const innovationIconHeight = isLightMode ? innovationLightModeHeight : innovationDarkModeHeight;
   const innovationIconClassName = isLightMode ? "object-cover" : "object-contain";
+
+  // Aspiration icon: use promise11.png in light mode, promise3.png in dark mode
+  const aspirationIconSrc = isLightMode ? "/promise11.png" : "/promise3.png";
 
   // Memoize values array to prevent recreation and ensure consistent rendering
   const values = useMemo(() => [
     { icon: <Image src={wisdomIconSrc} alt="Wisdom and Empathy" width={wisdomIconWidth} height={wisdomIconHeight} className={wisdomIconClassName} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
-    { icon: <Image src={innovationIconSrc} alt="Innovation and Inspiration" width={50} height={50} className={innovationIconClassName} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
-    { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other's expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people's lives." },
-  ], [wisdomIconSrc, wisdomIconWidth, wisdomIconHeight, wisdomIconClassName, innovationIconSrc, innovationIconClassName]);
+    { icon: <Image src={innovationIconSrc} alt="Innovation and Inspiration" width={innovationIconWidth} height={innovationIconHeight} className={innovationIconClassName} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
+    { icon: <Image src={aspirationIconSrc} alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other's expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people's lives." },
+  ], [wisdomIconSrc, wisdomIconWidth, wisdomIconHeight, wisdomIconClassName, innovationIconSrc, innovationIconWidth, innovationIconHeight, innovationIconClassName, aspirationIconSrc]);
 
   return (
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
