@@ -140,7 +140,9 @@ function CeoHero() {
               className="object-contain"
             />
             {/* Overlay for the gradient effect */}
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#14141A] to-transparent"></div>
+            {!isLightMode && (
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#14141A] to-transparent"></div>
+            )}
           </div>
         </div>
       </div>
