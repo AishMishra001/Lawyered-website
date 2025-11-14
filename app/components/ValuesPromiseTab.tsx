@@ -185,7 +185,7 @@ export function ValuesPromiseTabs() {
   // resolvedTheme can be undefined during SSR, so we default to dark mode
   const isLightMode = mounted && resolvedTheme === "light";
   
-  const wisdomIconSrc = isLightMode ? "/promise10.png" : "/promise1.png";
+  const wisdomIconSrc = isLightMode ? "/promise5.png" : "/promise1.png";
   const wisdomIconWidth = isLightMode ? lightModeIconWidth : darkModeIconWidth;
   const wisdomIconHeight = isLightMode ? lightModeIconHeight : darkModeIconHeight;
   const wisdomIconClassName = isLightMode ? "object-cover" : "object-contain";
