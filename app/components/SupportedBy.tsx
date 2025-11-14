@@ -40,7 +40,7 @@ export function SupportedBy() {
         }
       `}</style>
       <div className="max-w-8xl mx-auto ">
-        <h2 className="text-2xl md:text-4xl font-semibold text-black dark:text-[#22D2EE] mb-8 text-center md:text-left">Supported By</h2>
+        <h2 className="text-2xl md:text-4xl font-semibold text-[#0E7490] dark:text-[#22D2EE] mb-8 text-center md:text-left">Supported By</h2>
         <div className="scroller " data-animated="true">
           <div className="scroller__inner ">
             {[...logos, ...logos].map((logo, index) => {

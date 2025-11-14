@@ -88,24 +88,23 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
     };
 
     return (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white bg-gray-800 rounded-full p-1"><X size={20} /></button>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-white/80 dark:bg-black/80 z-50 flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-300 dark:border-gray-700 shadow-xl">
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-800 dark:text-gray-400 dark:hover:text-white bg-gray-200 dark:bg-gray-800 rounded-full p-1 hover:bg-gray-300 dark:hover:bg-gray-700"><X size={20} /></button>
                 <h2 className="text-xl md:text-2xl font-bold text-black dark:text-white mb-6">Share Your Details To Join Our Team</h2>
                 <form className="space-y-5" onSubmit={handleSubmit}>
                     <div>
-                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Name</label>
-                        <input type="text" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500" />
+                        <label className="text-xs md:text-sm text-gray-700 dark:text-gray-400 mb-2 block">Name</label>
+                        <input type="text" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-md p-3 placeholder-gray-500 dark:placeholder-gray-500 text-black dark:text-gray-300" />
                     </div>
                     <div className="relative">
-                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Select Department</label>
+                        <label className="text-xs md:text-sm text-gray-700 dark:text-gray-400 mb-2 block">Select Department</label>
                         <div className="relative">
                             <select
                                 value={department}
                                 onChange={(e) => setDepartment(e.target.value)}
-                                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                                className="w-full bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer pr-10"
                                 style={{
-                                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
                                     WebkitAppearance: 'none',
                                     MozAppearance: 'none'
                                 }}
@@ -117,7 +116,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                                 <option value="Product">Product</option>
                                 <option value="Other">Others</option>
                             </select>
-                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-700 dark:text-gray-400 pointer-events-none">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <polyline points="6,9 12,15 18,9"></polyline>
                                 </svg>
@@ -125,21 +124,31 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                         </div>
                         <style jsx>{`
                             select option {
-                                background-color: rgba(31, 41, 55, 0.9);
-                                color: white;
+                                background-color: white;
+                                color: black;
                                 padding: 8px;
                             }
+                            .dark select option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                                color: white;
+                            }
                             select option:first-child {
+                                color: #6B7280;
+                            }
+                            .dark select option:first-child {
                                 color: #9CA3AF;
                             }
                             select:focus option {
+                                background-color: white;
+                            }
+                            .dark select:focus option {
                                 background-color: rgba(31, 41, 55, 0.9);
                             }
                         `}</style>
                     </div>
                     <div>
-                        <label className="text-xs md:text-sm text-gray-400 mb-2 block">Share your CV</label>
-                        <div className="relative border border-gray-700 rounded-md">
+                        <label className="text-xs md:text-sm text-gray-700 dark:text-gray-400 mb-2 block">Share your CV</label>
+                        <div className="relative border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-transparent">
                             <input
                                 type="file"
                                 accept=".pdf,.doc,.docx"
@@ -147,15 +156,15 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             />
                             <div className="flex justify-between items-center p-3">
-                                <span className="text-gray-300">{file ? file.name : 'Choose file'}</span>
-                                <span className="text-gray-500">{file ? `${(file.size / 1024).toFixed(2)} KB` : 'No file chosen'}</span>
+                                <span className="text-gray-800 dark:text-gray-300">{file ? file.name : 'Choose file'}</span>
+                                <span className="text-gray-600 dark:text-gray-500">{file ? `${(file.size / 1024).toFixed(2)} KB` : 'No file chosen'}</span>
                             </div>
                         </div>
                     </div>
                     <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
-                    {message && <p className="text-center text-sm mt-4">{message}</p>}
+                    {message && <p className="text-center text-sm mt-4 text-black dark:text-white">{message}</p>}
                 </form>
             </motion.div>
         </motion.div>

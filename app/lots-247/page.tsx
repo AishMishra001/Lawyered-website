@@ -928,7 +928,7 @@ function LotsForm() {
       {/* Thank You Popup (Photo 3) */}
       {showThankYouPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-[#20242A] p-12 rounded-2xl shadow-xl w-full max-w-md text-center flex flex-col items-center">
+          <div className={`${mounted && theme === 'light' ? 'bg-white' : 'bg-[#20242A]'} p-12 rounded-2xl shadow-xl w-full max-w-md text-center flex flex-col items-center`}>
             <div className="bg-green-500 rounded-full h-20 w-20 flex items-center justify-center mb-6">
               <svg
                 className="w-12 h-12 text-black dark:text-white"

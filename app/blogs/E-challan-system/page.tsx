@@ -25,7 +25,7 @@ export default function SingleBlogPage() {
         {/* Article Header */}
         <header className="space-y-3 md:space-y-4">
           <p className="text-sm md:text-lg text-black dark:text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#22D3EE] leading-tight">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] leading-tight">
             Stay Compliant with Himachal&apos;s New E-Challan System: How LOTS Can Keep You Covered on the Road
           </h1>
         </header>
@@ -53,12 +53,12 @@ export default function SingleBlogPage() {
           <p>
             In a significant shift towards enhanced road compliance, Himachal Pradesh&apos;s Department of Transport has recently announced the rollout of an e-challan system to monitor vehicles traversing four-lane highways under the National Highways Authority of India (NHAI) across the state. This digital system relies on data gathered at NHAI toll plazas, automatically detecting and penalising vehicles that fail to meet required compliance standards. Developed by the National Informatics Centre (NIC), the system is designed to streamline compliance enforcement and make it easier to identify non-compliant vehicles, reminding all drivers of the importance of keeping documentation current and regulations met.
 
-For drivers who want to stay compliant, avoid fines, and drive with peace of mind, LOTS is here to help. LOTS provides crucial tools and resources to help drivers navigate the new regulations and remain road-ready.
+            For drivers who want to stay compliant, avoid fines, and drive with peace of mind, LOTS is here to help. LOTS provides crucial tools and resources to help drivers navigate the new regulations and remain road-ready.
 
-Link to Himachal Pradesh Transport Department announcement
-Link to official NHAI information
+            Link to Himachal Pradesh Transport Department announcement
+            Link to official NHAI information
           </p>
-          
+
           <h2 className="text-black dark:text-white font-bold text-2xl">Why This E-Challan System Matters for Drivers</h2>
           <p>
             The new e-challan system represents a proactive approach by Himachal Pradesh&apos;s Department of Transport. With toll plazas now serving as data points for vehicle documentation, the system automates the monitoring process and ensures that road safety standards are being upheld. Each time a vehicle crosses an NHAI toll plaza, data about the vehicle is transmitted to the transport department. Daily uploads of this data allow authorities to analyze which vehicles are missing required documentation or otherwise in violation of compliance regulations. This analysis will lead to the automatic issuance of e-challans to offending vehicles, adding accountability to every road journey.
@@ -74,8 +74,8 @@ Link to official NHAI information
           </p>
           <p>
             Vehicle Fitness: Vehicles must meet specific standards for road safety and mechanical fitness. Non-compliant vehicles risk e-challans for operating without proper fitness verification.
-State Tax Compliance: For vehicles with an All-India Tourist Permit (AITP), state tax is required. The system is designed to identify vehicles attempting to bypass this payment.
-Pollution and Insurance Certificates: The law requires all vehicles to have valid Pollution Under Control (PUC) certificates and insurance coverage. Vehicles without these essential documents will be flagged by the system and subject to e-challans.
+            State Tax Compliance: For vehicles with an All-India Tourist Permit (AITP), state tax is required. The system is designed to identify vehicles attempting to bypass this payment.
+            Pollution and Insurance Certificates: The law requires all vehicles to have valid Pollution Under Control (PUC) certificates and insurance coverage. Vehicles without these essential documents will be flagged by the system and subject to e-challans.
           </p>
 
           <p>
@@ -86,15 +86,15 @@ Pollution and Insurance Certificates: The law requires all vehicles to have vali
 
           <h2 className="text-black dark:text-white font-bold text-2xl">Document Expiration Alerts</h2>
           <p>
-LOTS provides real-time notifications for renewing important documents, such as your PUC and insurance certificates. This alert system ensures you’re proactive in maintaining compliance, so you don&apos;t have to worry about accidentally overlooking an expiration date. By keeping all your vehicle documentation up to date, you can avoid penalties that may arise from missed renewals.
+            LOTS provides real-time notifications for renewing important documents, such as your PUC and insurance certificates. This alert system ensures you’re proactive in maintaining compliance, so you don&apos;t have to worry about accidentally overlooking an expiration date. By keeping all your vehicle documentation up to date, you can avoid penalties that may arise from missed renewals.
 
           </p>
-          
+
           <h2 className="text-black dark:text-white font-bold text-2xl">E-Challan Assistance
 
-</h2>
+          </h2>
           <p>
-LOTS offers step-by-step guidance for handling any e-challans you might receive. Whether it’s a matter of a missing document, an oversight in tax payments, or any other compliance issue, LOTS provides you with resources and assistance to address the issue quickly and effectively, helping you avoid unnecessary fines and disputes.
+            LOTS offers step-by-step guidance for handling any e-challans you might receive. Whether it’s a matter of a missing document, an oversight in tax payments, or any other compliance issue, LOTS provides you with resources and assistance to address the issue quickly and effectively, helping you avoid unnecessary fines and disputes.
 
           </p>
           <p>
@@ -104,9 +104,9 @@ LOTS offers step-by-step guidance for handling any e-challans you might receive.
           {/* Content from Photo 4 */}
           <h2 className="text-black dark:text-white font-bold text-2xl">On-Demand Legal Assistance
 
-</h2>
+          </h2>
           <p>
-One of the standout features of LOTS is its on-demand legal support. For any road-related legal questions or disputes, LOTS connects you with professionals who can offer advice and representation as needed. Whether it’s an e-challan issue or any other legal matter related to road compliance, LOTS makes it easy to access reliable legal support when you need it most.          </p>
+            One of the standout features of LOTS is its on-demand legal support. For any road-related legal questions or disputes, LOTS connects you with professionals who can offer advice and representation as needed. Whether it’s an e-challan issue or any other legal matter related to road compliance, LOTS makes it easy to access reliable legal support when you need it most.          </p>
         </article>
       </div>
     </div>

@@ -423,6 +423,10 @@ function ContactFormSection() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
         
         select option {
+          background-color: white;
+          color: black;
+        }
+        :global(.dark) select option {
           background-color: rgba(31, 41, 55, 0.9);
           color: white;
         }

@@ -8,7 +8,7 @@ export default function SingleBlogPage() {
   return (
     <div className="pt-28 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 px-4 md:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        
+
         {/* Back Button & Breadcrumbs */}
         <div className="mb-8 mt-4 md:mt-0">
           <Link href="/blogs" className="inline-flex items-center gap-2 text-black dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors border border-gray-700 px-4 py-2 rounded-lg">
@@ -25,7 +25,7 @@ export default function SingleBlogPage() {
         {/* Article Header */}
         <header className="space-y-4">
           <p className="text-lg text-black dark:text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#22D3EE] leading-tight">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] leading-tight">
             Can we pay traffic challan through an app?Explore app that offers seamless on road legal solutions
           </h1>
         </header>
@@ -51,7 +51,7 @@ export default function SingleBlogPage() {
           <p>
             As traffic violations rise, so do the corresponding fines and penalties. In cities like Mumbai, where traffic congestion is a daily challenge, understanding and managing these fines can be overwhelming for the average driver. Thankfully, innovative solutions are emerging in the form of mobile applications designed to provide support in Mumbai and beyond.
           </p>
-          
+
           <h2 className="text-black dark:text-white font-bold text-2xl">The Rise of Traffic Challan Resolution Apps</h2>
           <p>
             With new advancements in the technology sector, a range of dedicated applications have come that make the process of processing traffic challans even simpler. These apps allow their users to pay the challan fines easily but offer them valuable information regarding their rights and obligations on the roads.
@@ -77,7 +77,7 @@ export default function SingleBlogPage() {
           <p>
             The rise of traffic challan resolution apps is a significant step toward modernizing traffic management in India. With seamless payment options and on-road legal support, these apps empower drivers to take control of their on-road legal obligations.
           </p>
-          
+
           <h2 className="text-black dark:text-white font-bold text-2xl">Data-Driven Insights</h2>
           <p>
             According to recent surveys, a significant percentage of Indian motorists are unaware of their rights during traffic stops. A survey conducted by the Indian Road Safety Campaign found that about 60% of respondents did not know how to contest a traffic fine or the on road legal procedures involved. This lack of awareness can lead to unjust penalties and on road legal complications <a href="https://www.road-safety-india.org" target="_blank" rel="noopener noreferrer" className="text-[#22D3EE] hover:underline">https://www.road-safety-india.org</a>

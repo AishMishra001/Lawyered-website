@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Linkedin, X } from "lucide-react";
+import { useTheme } from "next-themes";
 
 interface TeamMember {
   name: string;
@@ -16,16 +17,30 @@ const TeamMemberModal = ({ member, onClose }: { member: TeamMember; onClose: () 
   const nameParts = member.name.split(" ");
   const firstName = nameParts[0];
   const lastName = nameParts.slice(1).join(" ");
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use about29.png in light mode, about1.png in dark mode for Himanshu Gupta
+  const memberImg = member.name === "Himanshu Gupta" && mounted
+    ? (resolvedTheme === "light" ? "/about29.png" : "/about1.png")
+    : member.img;
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 dark:bg-black/80 z-50 flex items-center justify-center p-4">
       <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative bg-white dark:bg-[#1a1a1a] rounded-xl p-6 md:p-8 max-w-3xl w-full border border-gray-300 dark:border-gray-700">
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 dark:hover:text-white"><X /></button>
         <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-6 md:gap-8 mb-6">
-          <Image src={member.img} alt={member.name} width={150} height={150} className="rounded-full flex-shrink-0 w-28 h-28 md:w-36 md:h-36"/>
+          <Image src={memberImg} alt={member.name} width={150} height={150} className="rounded-full flex-shrink-0 w-28 h-28 md:w-36 md:h-36"/>
           <div>
             <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-white" style={{ WebkitTextStroke: "1px white" }}>
+              <span 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-black dark:text-white" 
+                style={{ WebkitTextStroke: mounted && resolvedTheme === "light" ? "1px black" : "1px white" }}
+              >
                 {firstName.toUpperCase()}
               </span>
               <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-[#0E7490] dark:text-[#22D3EE]">
@@ -48,9 +63,19 @@ const TeamMemberModal = ({ member, onClose }: { member: TeamMember; onClose: () 
 
 export function CoreTeam() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Handle mounting to prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use about29.png in light mode, about1.png in dark mode
+  const himanshuImg = mounted && resolvedTheme === "light" ? "/about29.png" : "/about1.png";
 
   const team: TeamMember[] = [
-    { name: "Himanshu Gupta", title: "Founder & CEO", img: "/about1.png", linkedin: "https://www.linkedin.com/in/gupta-himanshu/", description: "Himanshu Gupta is revolutionizing the legal tech landscape. With an engineering background and as an alumnus of IIM Calcutta, he brings over two decades of expertise in product development and management. His passion lies in transforming traditional legal services into innovative legal consumer products that cater to both individuals and businesses. Throughout his career, Himanshu has been committed to developing products and solutions that bridge the gap between legal professionals and consumers. At Lawyered, he leads the charge in developing tech-driven legal products designed to change how people think about and access legal assistance. Under his leadership, Lawyered is redefining the legal landscape by offering cutting-edge products that make legal solutions more accessible and affordable. His vision is to leverage the latest technologies to make legal products within reach for everyone, making a real impact in the lives of individuals and businesses alike. Lawyered is not just keeping pace with the future of legal tech—it’s defining it." },
+    { name: "Himanshu Gupta", title: "Founder & CEO", img: himanshuImg, linkedin: "https://www.linkedin.com/in/gupta-himanshu/", description: "Himanshu Gupta is revolutionizing the legal tech landscape. With an engineering background and as an alumnus of IIM Calcutta, he brings over two decades of expertise in product development and management. His passion lies in transforming traditional legal services into innovative legal consumer products that cater to both individuals and businesses. Throughout his career, Himanshu has been committed to developing products and solutions that bridge the gap between legal professionals and consumers. At Lawyered, he leads the charge in developing tech-driven legal products designed to change how people think about and access legal assistance. Under his leadership, Lawyered is redefining the legal landscape by offering cutting-edge products that make legal solutions more accessible and affordable. His vision is to leverage the latest technologies to make legal products within reach for everyone, making a real impact in the lives of individuals and businesses alike. Lawyered is not just keeping pace with the future of legal tech—it's defining it." },
     { name: "Ashish Bhatia", title: "Founding Partner", img: "/about2.png", linkedin: "https://www.linkedin.com/in/bhatia-ashish/", description: "Ashish has over two decades of experience in leadership positions and as a strategist at reputed MNCs followed by huge success in building the startup ecosystem. Recognized as a key player in the Indian entrepreneurial ecosystem, he has contributed his rich and dynamic experience to the growth of Lawyered. His areas of expertise include product management, marketing strategy, digital transformation, business development and sales enablement." },
     // { name: "Deepak Sharma", title: "Chief Agility Officer", img: "/about3.png", linkedin: "https://www.linkedin.com/in/deepak-sharma-21617622/", description: "Deepak's passion for technology and innovation has led him to work with Fortune 500 companies, venture-backed startups, and many others across the globe. Deepak has a global perspective on Agile and Lean practices, product discovery techniques, design thinking, DevOps processes and more. Deepak's goal is to help organizations become more efficient and able to quickly adapt to change in order to survive in today's fast-paced world." },
     { name: "Gautam Saraf", title: "Managing Partner / Chief Growth Officer", img: "/about222.png", linkedin: "https://www.linkedin.com/in/saraf-gautam/", description: "Gautam is a firm believer in the saying, Giving takes care of getting. That's why he's passionate about undertaking the journey with the founders. Gautam has over 3 decades of diverse experience in International Trade, Finance, Distribution and Land Development. He has played a major role in bringing some influential corporations into India and helping them establish nationwide distribution networks and achieving multi-million dollar turnovers." },

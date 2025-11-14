@@ -80,11 +80,19 @@ function PrivacyHero() {
       {!isMobile && (
         <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
+            {/* Light mode background */}
+            <Image
+              src="/Whitegrid11.png"
+              alt="background frame"
+              fill
+              className="object-cover dark:hidden"
+            />
+            {/* Dark mode background */}
             <Image
               src="/MainFrame.png"
               alt="background frame"
               fill
-              className="object-cover"
+              className="object-cover hidden dark:block"
             />
           </div>
         </div>
@@ -115,12 +123,21 @@ function PrivacyHero() {
 
         {/* Right Column: Sticker */}
         <div className="flex justify-center">
+          {/* Light mode image */}
+          <Image
+            src="/privacy-policy1.png"
+            alt="Privacy Policy Document Icon"
+            width={400}
+            height={400}
+            className="object-contain dark:hidden"
+          />
+          {/* Dark mode image */}
           <Image
             src="/privacy-policy.png"
             alt="Privacy Policy Document Icon"
             width={400}
             height={400}
-            className="object-contain"
+            className="object-contain hidden dark:block"
           />
         </div>
       </div>
@@ -164,21 +181,21 @@ function PrivacyContent() {
             <div className="text-lg  text-black dark:text-white mt-12 mb-6">3. WHAT PERSONAL INFORMATION IS COLLECTED?</div>
             <p>We may collect the following types of information:</p>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Personal/Company Information:</h3>
+                <h3 className="text-black dark:text-gray-200">*Personal/Company Information:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>Name, contact number, email address, and KYC details (e.g., driving license, government-issued identification numbers, proof of address, etc.).<br/>Vehicle-related information, including registration details, ownership details, fines, and other challan-related information.<br/>Payment details for transactions related to our services.<br/>Voice recordings of interactions with our team to address queries.<br/>Any additional information required to deliver our services.</p>
                     <p>We recognize the sensitivity and legal implications surrounding the sharing of personal and company information. To ensure its lawful and ethical management we adhere to stringent guidelines and comply with applicable laws including but not limited to the Information Technology Act, 2000, Digital Personal Data Protection Act (DPDPA) 2023, and the Information Technology (Reasonable security practices and procedures and sensitive personal data or information) Rules, 2011.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Payment Information:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Payment Information:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>When you subscribe to our services and make payments through the platform, we may share relevant payment details with third-party service providers, vendors, and payment gateways to facilitate the transaction. These entities are contractually obligated to handle your payment information in accordance with industry-standard security practices.</p>
                     <p>We use third-party payment processors that comply with stringent security standards, including encryption protocols, to ensure that your payment information is handled securely.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Cookies & Web Tracking Technologies:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Cookies & Web Tracking Technologies:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>We may store session information, cookies, pixels, web beacons and other technologies to recognize your needs and to enhance your experience on our website including improving security, preventing fraudulent activity, and reporting.</p>
                     <p>You have the option to manage your cookies preferences through your browser settings or by opting out of certain third-party tracking mechanisms. Third parties may include marketing agencies, social media networks, analytic services, search engines, etc.</p>
@@ -186,7 +203,7 @@ function PrivacyContent() {
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Know Your Customer (KYC):</h3>
+                <h3 className=" text-black dark:text-gray-200">*Know Your Customer (KYC):</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>Sproutech Solutions Private Limited collects personal information from users as part of the Know Your Customer (KYC) process, which is necessary for compliance with regulatory requirements and to ensure the security and integrity of our services.</p>
                     <p>This information may include, but is not limited to, name, address, date of birth, government-issued identification numbers, and proof of address. We may also collect additional information as required by applicable laws and regulations.</p>
@@ -201,41 +218,41 @@ function PrivacyContent() {
             <div className="text-lg text-black dark:text-white mt-12 mb-6">4. WHAT IS THE PURPOSE FOR COLLECTION OF YOUR INFORMATION?</div>
             <p>The information we collect may be used for following purposes:</p>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Feedbacks & Surveys:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Feedbacks & Surveys:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>To improve our service & user experience, we may collect customer feedback and such data may be used by Sproutech Solutions Private limited for research, analysis and product development purposes.</p>
                     <p>We may also aggregate and anonymize this information for statistical purposes or to share insights with our partners or third-party service providers.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Improving Platform Functionality:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Improving Platform Functionality:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>To identify areas of improvement and enhance functionality and usability, we continuously analyze usage patterns, user feedback, and industry trends, helping us develop new features and services to better serve your legal needs.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Security & Fraud Prevention:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Security & Fraud Prevention:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>To Detect & Investigate (fraudulent or unauthorized activities) we may use your information to ensure compliance with our policies and prevent violations.</p>
                     <p>This includes monitoring for suspicious activities, detecting and preventing fraud, and addressing security vulnerabilities to safeguard your data and maintain platform integrity.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Complying with Legal Obligation:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Complying with Legal Obligation:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>We may use your information to comply with legal & regulatory requirements including but not limited to Data Protection Laws, Data Transfer Laws & Data Retention.</p>
                     <p>Provided that under data retention we only retain your information for as long as necessary and have clear policies for secure deletion or anonymization.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Customer Support:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Customer Support:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>We communicate about your account and legal matters by sending notification, update, and transactional emails related to your platform usage.</p>
                     <p>Our aim is to deliver a seamless and satisfactory customer support experience while maintaining privacy and data protection standards.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Legal Analysis & Advice:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Legal Analysis & Advice:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>Your information is utilized by legal professionals to analyze legal documents and offer tailored legal services and recommendations to address your specific needs.</p>
                     <p>With a Steadfast Commitment to excellence, integrity, and your legal well-being, we stand ready to serve as your trusted legal partner on the journey ahead.</p>
@@ -254,20 +271,20 @@ function PrivacyContent() {
             </ul>
             <p className="mt-4">The importance of protecting the privacy of our customers/users is of utmost importance to us. That is why we share information in the following circumstances:</p>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Legal Compliance & Protection:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Legal Compliance & Protection:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>In order to respond to legal requests, investigations, and to prevent fraud or abuse, we may share your information with government bodies and law enforcement agencies when required to protect the rights, safety, and property of ours and others.</p>
                     <p>By prioritizing legal compliance and protection, we aim to foster trust and confidence in our legal services while ensuring the highest standards of integrity and professionalism.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Legal professionals & Service Providers:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Legal professionals & Service Providers:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>Client information, including vehicle-related details, will be shared with empanelled lawyers to facilitate legal services, including challan resolution. Third-party, vendors and agents assisting in legal service fulfillment may have access to the necessary information to perform the service as committed to the end-user.</p>
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Business Transactions:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Business Transactions:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>During business transactions such as mergers, acquisitions, or asset sales, we prioritize transparent communication to keep you informed about any changes that may affect our services or your data.</p>
                     <p>We conduct these transactions in compliance with applicable legal and regulatory requirements, ensuring that your data rights are protected and respected at all times.</p>
@@ -275,7 +292,7 @@ function PrivacyContent() {
                 </div>
             </div>
             <div className="mt-6">
-                <h3 className=" text-gray-200">*Third Party Platform & Tools:</h3>
+                <h3 className=" text-black dark:text-gray-200">*Third Party Platform & Tools:</h3>
                 <div className="mt-2 text-black dark:text-white space-y-4">
                     <p>To Facilitate our services we may utilize third party tools such as hosting providers document management systems, communication platforms, which complement our services and help us maintain high standards of performance and efficiency.</p>
                 </div>
@@ -344,7 +361,7 @@ function PrivacyContent() {
 
         {/* Grievance Officer */}
         <div className="pt-8">
-            <p className=" text-gray-200">Grievance Officer :</p>
+            <p className=" text-black dark:text-gray-200">Grievance Officer :</p>
             <p className="mt-2">Name:- Ms Deeksha Varshney</p>
             <p>Designation:- Manager - Legal Operations</p>
             <p>E-mail:- deeksha.varshney@lawyered.in</p>

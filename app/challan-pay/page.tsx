@@ -573,30 +573,29 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-700 shadow-xl">
+            <motion.div initial={{ scale: 0.9, y: -20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 max-w-lg w-full border border-gray-300 dark:border-gray-700 shadow-xl">
                 {/* The close button is placed outside the main card for the specific design */}
-                <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-400 hover:text-white bg-gray-800 rounded-full p-2 border-2 border-gray-700">
+                <button onClick={onClose} className="absolute -top-5 -right-5 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white bg-gray-200 dark:bg-gray-800 rounded-full p-2 border-2 border-gray-300 dark:border-gray-700">
                     <X size={24} />
                 </button>
                 <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center">Share Your Company Details</h2>
                 <form className="space-y-5">
                     <div>
-                        <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
+                        <label className="text-sm text-black dark:text-gray-400 mb-2 block">Company Name</label>
                         <input
                             type="text"
                             placeholder="ABC Private Limited"
-                            className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-white placeholder-gray-500"
+                            className="w-full bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-md p-3 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                             value={companyName}
                             onChange={(e) => setCompanyName(e.target.value)}
                         />
                     </div>
                     <div className="relative">
-                        <label className="text-sm text-gray-400 mb-2 block">Number of Vehicles</label>
+                        <label className="text-sm text-black dark:text-gray-400 mb-2 block">Number of Vehicles</label>
                         <div className="relative">
                             <select
-                                className="w-full bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-300 appearance-none cursor-pointer pr-10"
+                                className="w-full bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer pr-10"
                                 style={{
-                                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
                                     WebkitAppearance: 'none',
                                     MozAppearance: 'none'
                                 }}
@@ -611,7 +610,7 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
                                 <option value="41-50">41-50</option>
                                 <option value="50+">50+</option>
                             </select>
-                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400 pointer-events-none">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <polyline points="6,9 12,15 18,9"></polyline>
                                 </svg>
@@ -619,14 +618,21 @@ const WhatsappModal = ({ onClose }: { onClose: () => void }) => {
                         </div>
                         <style jsx>{`
                             select option {
-                                background-color: rgba(31, 41, 55, 0.9);
-                                color: white;
+                                background-color: white;
+                                color: black;
                                 padding: 8px;
                             }
                             select option:first-child {
+                                color: #6B7280;
+                            }
+                            :global(.dark) select option {
+                                background-color: rgba(31, 41, 55, 0.9);
+                                color: white;
+                            }
+                            :global(.dark) select option:first-child {
                                 color: #9CA3AF;
                             }
-                            select:focus option {
+                            :global(.dark) select:focus option {
                                 background-color: rgba(31, 41, 55, 0.9);
                             }
                         `}</style>

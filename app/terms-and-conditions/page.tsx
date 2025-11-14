@@ -78,16 +78,30 @@ function TermsHero() {
 
       {/* Desktop MainFrame background */}
       {!isMobile && (
-        <div className="absolute inset-0 z-0" style={desktopSpotlightStyle}>
-          <div className="relative w-full h-full opacity-40">
-            <Image
-              src="/MainFrame.png"
-              alt="background frame"
-              fill
-              className="object-cover"
-            />
+        <>
+          {/* Light mode: Whitegrid11.png */}
+          <div className="absolute inset-0 z-0 block dark:hidden" style={desktopSpotlightStyle}>
+            <div className="relative w-full h-full opacity-40">
+              <Image
+                src="/Whitegrid11.png"
+                alt="background frame"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
-        </div>
+          {/* Dark mode: MainFrame.png */}
+          <div className="absolute inset-0 z-0 hidden dark:block" style={desktopSpotlightStyle}>
+            <div className="relative w-full h-full opacity-40">
+              <Image
+                src="/MainFrame.png"
+                alt="background frame"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </>
       )}
 
       {/* Mobile Grid background */}
@@ -117,12 +131,21 @@ function TermsHero() {
 
         {/* Right Column: Sticker */}
         <div className="flex justify-center">
+          {/* Light mode: terms1.png */}
+          <Image
+            src="/terms1.png"
+            alt="Terms and Conditions Icon"
+            width={400}
+            height={400}
+            className="object-contain block dark:hidden"
+          />
+          {/* Dark mode: terms.png */}
           <Image
             src="/terms.png"
             alt="Terms and Conditions Icon"
             width={400}
             height={400}
-            className="object-contain"
+            className="object-contain hidden dark:block"
           />
         </div>
       </div>
@@ -134,7 +157,7 @@ function TermsHero() {
 function TermsContent() {
   return (
     <div className="py-28 px-4 md:px-26">
-      <div className="max-w-8xl text-base mx-auto text-gray-300 leading-relaxed space-y-6">
+      <div className="max-w-8xl text-base mx-auto text-black dark:text-gray-300 leading-relaxed space-y-6">
         <p>LAST UPDATED: 25.02.2025</p>
         {/* User Agreement */}
         <h2 className=" text-black dark:text-white mt-12 mb-6">USER AGREEMENT</h2>
