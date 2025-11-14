@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 
 // Hero Section Component
 function CeoHero() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -15,6 +15,9 @@ function CeoHero() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
+  
+  // Use consistent default during SSR to prevent hydration mismatch
+  const isLightMode = mounted && resolvedTheme === "light";
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -85,17 +88,12 @@ function CeoHero() {
       {!isMobile && (
         <div className="absolute inset-0 z-10" style={desktopSpotlightStyle}>
         <div className="relative w-full h-full opacity-40">
-          {mounted ? (
-            <Image
-              src={theme === 'light' ? "/homepage-grid.png" : "/MainFrame.png"}
-              alt="Background Frame"
-              fill
-              className="object-cover"
-            />
-          ) : (
-            // Render a static, non-theme-dependent fallback during SSR/hydration
-            <div className="w-full h-full bg-transparent" />
-          )}
+          <Image
+            src={isLightMode ? "/homepage-grid.png" : "/MainFrame.png"}
+            alt="Background Frame"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
       )}
@@ -135,7 +133,7 @@ function CeoHero() {
           {/* Apply gradient fade to the image */}
           <div className="relative">
             <Image
-              src={theme === 'light' ? "/Himanshu_sir.png" : "/founder2.png"}
+              src={isLightMode ? "/Himanshu_sir.png" : "/founder2.png"}
               alt="Himanshu Gupta, Founder & CEO"
               width={500}
               height={500}

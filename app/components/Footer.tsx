@@ -6,11 +6,14 @@ import { useTheme } from "next-themes";
 
 export function Footer() {
   const [hovered, setHovered] = useState("");
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  
+  // Use consistent default during SSR to prevent hydration mismatch
+  // Default to dark mode during SSR and initial render
+  const isDarkMode = !mounted || resolvedTheme === "dark";
 
   return (
     <>
@@ -23,12 +26,12 @@ export function Footer() {
               <div className="flex flex-col items-center md:items-start">
                 <div className="w-64 h-auto md:ml-4">
                   <Image
-                    src={theme === "dark" ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
+                    src={isDarkMode ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
                     alt="Lawyered Logo"
-                    width={theme === "dark" ? 280 : 200}
-                    height={theme === "dark" ? 100 : 80}
-                    className={`${theme === "dark" ? "w-full h-auto object-contain" : "object-contain"}`}
-                    style={theme !== "dark" ? { width: "220px", height: "80px" } : undefined}
+                    width={isDarkMode ? 280 : 200}
+                    height={isDarkMode ? 100 : 80}
+                    className={`${isDarkMode ? "w-full h-auto object-contain" : "object-contain"}`}
+                    style={!isDarkMode ? { width: "220px", height: "80px" } : undefined}
                   />
                 </div>
                 <p className="mb-1 md:mb-0 md:ml-4"> {/* 👈 aligns text with logo */}

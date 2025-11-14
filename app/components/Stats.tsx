@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
 export function Stats() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Wait until mounted to avoid hydration mismatch
@@ -13,35 +13,28 @@ export function Stats() {
     setMounted(true);
   }, []);
 
-  // Return null or loading state while not mounted
-  if (!mounted) {
-    return (
-      <div className="py-16 md:py-24 px-4 md:px-24">
-        <div className="max-w-8xl mx-auto">
-          {/* Loading placeholder */}
-        </div>
-      </div>
-    );
-  }
+  // Use consistent default during SSR to prevent hydration mismatch
+  // Default to dark mode during SSR and initial render
+  const isLightMode = mounted && resolvedTheme === "light";
 
   const stats = [
     {
-      icon: <Image src={theme === 'light' ? "/trust5.png" : "/trust3.png"} alt="Vehicles Protected" width={100} height={100} />,
+      icon: <Image src={isLightMode ? "/trust5.png" : "/trust3.png"} alt="Vehicles Protected" width={100} height={100} />,
       value: "5.5 Lakhs+",
       label: "Vehicles Protected",
     },
     {
-      icon: <Image src={theme === 'light' ? "/trust6.png" : "/trust1.png"} alt="Challans Resolved" width={100} height={100} />,
+      icon: <Image src={isLightMode ? "/trust6.png" : "/trust1.png"} alt="Challans Resolved" width={100} height={100} />,
       value: "1.65 Lakhs+",
       label: "Challans Resolved",
     },
     {
-      icon: <Image src={theme === 'light' ? "/trust7.png" : "/trust2.png"} alt="Savings on Legal Fee" width={100} height={100} />,
+      icon: <Image src={isLightMode ? "/trust7.png" : "/trust2.png"} alt="Savings on Legal Fee" width={100} height={100} />,
       value: "61 Crore+",
       label: "Savings on Legal Fee",
     },
     {
-      icon: <Image src={theme === 'light' ? "/trust8.png" : "/trust4.png"} alt="Successful Resolutions" width={100} height={100} />,
+      icon: <Image src={isLightMode ? "/trust8.png" : "/trust4.png"} alt="Successful Resolutions" width={100} height={100} />,
       value: "99%",
       label: "Successful Resolutions",
     },

@@ -7,7 +7,7 @@ import { useState, MouseEvent, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 export function Hero() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -17,6 +17,9 @@ export function Hero() {
   // added mounted guard to avoid theme/window-dependent markup before hydration
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  
+  // Use consistent default during SSR to prevent hydration mismatch
+  const isLightMode = mounted && resolvedTheme === "light";
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -90,17 +93,12 @@ export function Hero() {
       {!isMobile && (
         <div className="absolute inset-0 z-10" style={desktopSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
-            {mounted ? (
-              <Image
-                src={theme === 'light' ? "/Whitegrid11.png" : "/MainFrame.png"}
-                alt="Background Frame"
-                fill
-                className="object-cover"
-              />
-            ) : (
-              // Render a static, non-theme-dependent fallback during SSR/hydration
-              <div className="w-full h-full bg-transparent" />
-            )}
+            <Image
+              src={isLightMode ? "/Whitegrid11.png" : "/MainFrame.png"}
+              alt="Background Frame"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       )}

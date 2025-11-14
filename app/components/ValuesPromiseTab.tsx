@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeartHandshake, X } from "lucide-react";
 import Image from "next/image";
@@ -172,21 +172,26 @@ export function ValuesPromiseTabs() {
   const lightModeIconWidth = 35;
   const lightModeIconHeight = 35;
 
-  // Use default dark mode image during SSR, then switch based on theme after mount
-  const wisdomIconSrc = mounted && resolvedTheme === "light" ? "/promise10.png" : "/promise1.png";
+  // Use default dark mode image during SSR and initial render to prevent hydration mismatch
+  // Only switch based on theme after component has mounted
+  // resolvedTheme can be undefined during SSR, so we default to dark mode
+  const isLightMode = mounted && resolvedTheme === "light";
   
-  // Use appropriate dimensions based on theme (default to dark mode during SSR)
-  const wisdomIconWidth = mounted && resolvedTheme === "light" ? lightModeIconWidth : darkModeIconWidth;
-  const wisdomIconHeight = mounted && resolvedTheme === "light" ? lightModeIconHeight : darkModeIconHeight;
-  
-  // Ensure light mode image matches dark mode size exactly by using object-cover to fill the space
-  const wisdomIconClassName = mounted && resolvedTheme === "light" ? "object-cover" : "object-contain";
+  const wisdomIconSrc = isLightMode ? "/promise10.png" : "/promise1.png";
+  const wisdomIconWidth = isLightMode ? lightModeIconWidth : darkModeIconWidth;
+  const wisdomIconHeight = isLightMode ? lightModeIconHeight : darkModeIconHeight;
+  const wisdomIconClassName = isLightMode ? "object-cover" : "object-contain";
 
-  const values = [
+  // Innovation icon: use promise6.png in light mode, promise2.png in dark mode
+  const innovationIconSrc = isLightMode ? "/promise6.png" : "/promise2.png";
+  const innovationIconClassName = isLightMode ? "object-cover" : "object-contain";
+
+  // Memoize values array to prevent recreation and ensure consistent rendering
+  const values = useMemo(() => [
     { icon: <Image src={wisdomIconSrc} alt="Wisdom and Empathy" width={wisdomIconWidth} height={wisdomIconHeight} className={wisdomIconClassName} />, title: "Wisdom and Empathy", description: "We are individuals who not only possess deep expertise but also lead with empathy. We value the human connection as much as the legal solution." },
-    { icon: <Image src="/promise2.png" alt="Innovation and Inspiration" width={50} height={50} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
-    { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other’s expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people’s lives." },
-  ];
+    { icon: <Image src={innovationIconSrc} alt="Innovation and Inspiration" width={50} height={50} className={innovationIconClassName} />, title: "Innovation and Inspiration", description: "We are driven by a digital-first mindset, constantly challenging the status quo to make legal services more accessible and intuitive. Our culture is a breeding ground for new ideas, where creativity is celebrated. We are here to create, not just to comply." },
+    { icon: <Image src="/promise3.png" alt="Aspiration and Admiration" width={50} height={50} />, title: "Aspiration and Admiration", description: "We inspire our stakeholders by offering solutions that are both technically superior and user-friendly. We learn from each other's expertise, celebrate our collective achievements, and are motivated by the shared goal of making a meaningful difference in people's lives." },
+  ], [wisdomIconSrc, wisdomIconWidth, wisdomIconHeight, wisdomIconClassName, innovationIconSrc, innovationIconClassName]);
 
   return (
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
