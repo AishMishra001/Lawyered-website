@@ -146,7 +146,7 @@ function BlogCategories() {
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#22D3EE]">
+        <h2 className="text-3xl font-bold text-[#0E7490] dark:text-[#22D3EE]">
           Blogs
         </h2>
         {/* <div className="flex flex-wrap gap-4 items-center">
@@ -255,13 +255,13 @@ function BlogsGrid() {
                   />
                 </div>
                 <div className="p-4 md:p-6 flex flex-col flex-grow gap-3 md:gap-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-[#22D3EE] hover:underline leading-tight">
+                  <h3 className="text-lg md:text-xl font-semibold text-[#0E7490] dark:text-[#22D3EE] hover:underline leading-tight">
                     {post.title}
                   </h3>
-                  <p className="text-white text-sm md:text-base leading-relaxed flex-grow">
+                  <p className="text-black dark:text-white text-sm md:text-base leading-relaxed flex-grow">
                     {post.excerpt}
                   </p>
-                  <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-white">
+                  <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-black dark:text-white">
                     <span>{post.date}</span> | <span>{post.readTime}</span>
                   </div>
                 </div>

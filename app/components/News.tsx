@@ -242,7 +242,7 @@ export function News() {
 		<div className="py-24 px-4 md:px-26">
 			<div className="max-w-8xl mx-auto">
 				<div className="flex justify-between items-center mb-12">
-					<h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE]">
+					<h2 className="text-2xl md:text-4xl font-semibold text-[#0E7490] dark:text-[#22D3EE]">
 						Latest News and Media
 					</h2>
 					<div className="flex items-center gap-2 md:gap">
@@ -317,7 +317,7 @@ export function News() {
 									<span className="text-gray-500">{article.date}</span>
 									<Link
 										href={article.link}
-										className="text-[#22D2EE] text-lg hover:underline font-semibold"
+										className="text-[#0E7490] dark:text-[#22D3EE] text-lg hover:underline font-semibold"
 										target="_blank"
 									>
 										Read More

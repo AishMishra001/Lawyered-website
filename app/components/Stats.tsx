@@ -50,7 +50,7 @@ export function Stats() {
   return (
     <div className="py-16 md:py-24 px-4 md:px-24">
       <div className="max-w-8xl mx-auto text-start">
-        <h2 className="text-2xl md:text-4xl font-semibold text-[#22D2EE] mb-4 text-center md:text-start">
+        <h2 className="text-2xl md:text-4xl font-semibold text-[#0E7490] dark:text-[#22D3EE] mb-4 text-center md:text-start">
           Trusted By Millions
         </h2>
         <p className="text-black dark:text-gray-300 text-base mb-8 md:mb-12">

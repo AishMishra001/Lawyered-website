@@ -135,7 +135,7 @@ function CeoHero() {
           {/* Apply gradient fade to the image */}
           <div className="relative">
             <Image
-              src="/founder2.png" // Assuming you renamed the image to this
+              src={theme === 'light' ? "/Himanshu_sir.png" : "/founder2.png"}
               alt="Himanshu Gupta, Founder & CEO"
               width={500}
               height={500}

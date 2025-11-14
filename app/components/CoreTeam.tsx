@@ -28,7 +28,7 @@ const TeamMemberModal = ({ member, onClose }: { member: TeamMember; onClose: () 
               <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-white" style={{ WebkitTextStroke: "1px white" }}>
                 {firstName.toUpperCase()}
               </span>
-              <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-[#22D2EE]">
+              <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-[#0E7490] dark:text-[#22D3EE]">
                 {lastName.toUpperCase()}
               </span>
             </div>

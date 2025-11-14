@@ -30,7 +30,7 @@ const AdvisorModal = ({ advisor, onClose }: { advisor: Advisor; onClose: () => v
               <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-transparent" style={{ WebkitTextStroke: "2px white" }}>
                 {firstName.toUpperCase()}
               </span>
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-[#22D2EE]">
+              <span className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-[#0E7490] dark:text-[#22D3EE]">
                 {lastName.toUpperCase()}
               </span>
             </div>

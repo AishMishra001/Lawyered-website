@@ -81,7 +81,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-
+        
           {/* Logo in center */}
           <div className="flex-shrink-0 h-[45px] w-[270px] flex items-center justify-center">
             <Link href="/">

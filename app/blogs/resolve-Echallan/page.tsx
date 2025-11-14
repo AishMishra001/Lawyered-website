@@ -11,11 +11,11 @@ export default function SingleBlogPage() {
         
         {/* Back Button & Breadcrumbs */}
         <div className="mb-8 mt-4 md:mt-0">
-          <Link href="/blogs" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors border border-gray-700 px-4 py-2 rounded-lg">
+          <Link href="/blogs" className="inline-flex items-center gap-2 text-black dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors border border-gray-700 px-4 py-2 rounded-lg">
             <ChevronLeft size={16} />
             Back
           </Link>
-          <p className="text-sm md:text-xl text-gray-500 mt-4 md:mt-6 flex gap-2 md:gap-6">
+          <p className="text-sm md:text-xl text-black dark:text-gray-500 mt-4 md:mt-6 flex gap-2 md:gap-6">
             <span> Home</span>
             <span> &gt;</span>
             <span>Blog details</span>
@@ -24,7 +24,7 @@ export default function SingleBlogPage() {
 
         {/* Article Header */}
         <header className="space-y-4">
-          <p className="text-lg text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
+          <p className="text-lg text-black dark:text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#22D3EE] leading-tight">
             How to Resolve E-Challans Online: A Step-by-Step Guide for Traffic Fine Payment in India
           </h1>
@@ -41,7 +41,7 @@ export default function SingleBlogPage() {
         </div>
 
         {/* Article Body */}
-        <article className="prose prose-invert text-base prose-lg max-w-none text-gray-300 space-y-12">
+        <article className="prose prose-invert text-base prose-lg max-w-none text-black dark:text-gray-300 space-y-12">
           <p>
            Navigating India’s bustling roads can be challenging, often leading to unintentional traffic rule violations. This can result in hefty e-challans, but managing them has never been easier. But what if managing these fines was as easy as a few taps on your smartphone?
           </p>
@@ -50,7 +50,7 @@ export default function SingleBlogPage() {
           </p>
 
           {/* Content from Photo 2 */}
-          <h2 className="text-white font-bold text-2xl">Common E-Challans: Types of Traffic Fines in India</h2>
+          <h2 className="text-black dark:text-white font-bold text-2xl">Common E-Challans: Types of Traffic Fines in India</h2>
           <p>
             While driving, you may come across several types of challans, including:
           </p>
@@ -69,13 +69,13 @@ export default function SingleBlogPage() {
           
 
           {/* Content from Photo 3 */}
-          <h2 className="text-white font-bold text-2xl">Checking Your Challan Status</h2>
+          <h2 className="text-black dark:text-white font-bold text-2xl">Checking Your Challan Status</h2>
           <p>
            The easiest way to check your traffic challan status is by visiting the Parivahan website.
           </p>
           <a href="https://echallan.parivahan.gov.in/index/accused-challan">Check Your Challan Status Here- https://echallan.parivahan.gov.in/index/accused-challan</a>
 
-          <h2 className="text-white font-bold text-2xl">How to submit grievances?</h2>
+          <h2 className="text-black dark:text-white font-bold text-2xl">How to submit grievances?</h2>
           <p>
            If you feel your challan was issued in error, don&apos;t panic. Gather any evidence to support your case, then visit the Parivahan website and follow these steps:
           </p>
@@ -92,7 +92,7 @@ export default function SingleBlogPage() {
 
          
 
-          <h2 className="text-white font-bold text-2xl">Conclusion</h2>
+          <h2 className="text-black dark:text-white font-bold text-2xl">Conclusion</h2>
           <p>
           While resolving a challan may seem daunting at first, it&apos;s a straightforward process if you follow this guide.Remember, promptly paying your challans not only helps you avoid additional fines but also contributes to safer roads for everyone.
 “Driving safely” means “travelling carefully”

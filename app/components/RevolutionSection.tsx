@@ -170,7 +170,7 @@ export function RevolutionSection() {
   return (
     <div className="pt-2 md:pt-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto text-center md:text-left flex flex-col items-center md:items-start">
-        <h2 className="text-2xl md:text-4xl font-bold text-[#22D2EE] text-center md:text-left">Be a Part of the Revolution</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] text-center md:text-left">Be a Part of the Revolution</h2>
         <p className="max-w-8xl text-black dark:text-gray-300 mt-4 text-base">Lawyered is a hub for those who value knowledge, seek empathetic support, and believe in the power of expert guidance. Our team members, clients, partners, and stakeholders value wisdom and appreciate our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. We are a team of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.</p>
 
         {/* UPDATED: "Join Our Team" button now opens the new modal */}
