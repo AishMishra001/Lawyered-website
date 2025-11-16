@@ -294,7 +294,7 @@ function ContactFormSection() {
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Form */}
-        <div className="border border-gray-800 rounded-lg p-8 space-y-10">
+        <div className="bg-[#F7F7F7] dark:bg-transparent border border-gray-800 rounded-lg p-8 space-y-10">
           <h2 className="text-3xl text-black dark:text-white">
             Fill out the form and our executive will reach out to you
           </h2>
@@ -396,7 +396,7 @@ function ContactFormSection() {
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white py-3 text-base rounded-lg mt-4">
+            <button type="submit" className="w-full bg-[#0891B2] text-white dark:text-white py-3 text-base rounded-lg mt-4">
               Submit
             </button>
             {formStatus && <p className="text-center text-black dark:text-white mt-4">{formStatus}</p>}

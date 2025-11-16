@@ -26,12 +26,16 @@ export function Footer() {
               <div className="flex flex-col items-center md:items-start">
                 <div className="w-64 h-auto md:ml-4">
                   <Image
-                    src={isDarkMode ? "/lawyered-logo.png" : "/lawyered-logo2.png"}
+                    src={isDarkMode ? "/lawyered-logo.png" : "/lawyered-logo3.png"}
                     alt="Lawyered Logo"
-                    width={isDarkMode ? 280 : 200}
-                    height={isDarkMode ? 100 : 80}
-                    className={`${isDarkMode ? "w-full h-auto object-contain" : "object-contain"}`}
-                    style={!isDarkMode ? { width: "220px", height: "80px" } : undefined}
+                    width={isDarkMode ? 220 : 220}
+                    height={isDarkMode ? 70 : 70}
+                    className="object-contain"
+                    style={{
+                      width: isDarkMode ? "220px" : "213px",
+                      height: isDarkMode ? "70px" : "70px",
+                      paddingLeft: isDarkMode ? "0px" : "15px"
+                    }}
                   />
                 </div>
                 <p className="mb-1 md:mb-0 md:ml-4"> {/* 👈 aligns text with logo */}

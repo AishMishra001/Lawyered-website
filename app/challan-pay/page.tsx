@@ -202,7 +202,7 @@ function ChallanHero() {
         {/* Right Column: Text Content */}
         <div className="flex flex-col items-center md:items-start gap-3 md:gap-6 order-1 md:order-2 text-center md:text-left">
           <Image
-            src="/challanPay-logo3.png"
+            src={mounted && theme === 'light' ? "/challanPay-logo5.png" : "/challanPay-logo3.png"}
             alt="ChallanPay Logo"
             width={350}
             height={70}

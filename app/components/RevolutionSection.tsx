@@ -183,7 +183,7 @@ export function RevolutionSection() {
         <p className="max-w-8xl text-black dark:text-gray-300 mt-4 text-base">Lawyered is a hub for those who value knowledge, seek empathetic support, and believe in the power of expert guidance. Our team members, clients, partners, and stakeholders value wisdom and appreciate our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. We are a team of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.</p>
 
         {/* UPDATED: "Join Our Team" button now opens the new modal */}
-        <button onClick={() => setJoinTeamModalOpen(true)} className="mt-8 bg-[#0891B2] text-black dark:text-white px-10 py-3 rounded-lg">
+        <button onClick={() => setJoinTeamModalOpen(true)} className="mt-8 bg-[#0891B2] text-white dark:text-white px-10 py-3 rounded-lg">
           Join Our Team
         </button>
 

@@ -884,7 +884,7 @@ function LotsForm() {
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button
                   type="submit"
-                  className={`mt-2 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] text-black dark:text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto`}
+                  className={`mt-2 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] text-white dark:text-white py-3 px-8 md:px-14 rounded-md text-sm md:text-base w-full md:w-auto`}
                 >
                   Submit
                 </button>
