@@ -2,14 +2,20 @@
 
 import Image from "next/image";
 import React, { useState, useEffect, MouseEvent, CSSProperties } from "react";
+import { useTheme } from "next-themes";
 
 // Section 1: Hero
 function TermsHero() {
+  const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [delayedMousePosition, setDelayedMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Mounted guard
+  useEffect(() => setMounted(true), []);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!isHovering) setIsHovering(true);
@@ -109,7 +115,7 @@ function TermsHero() {
         <div className="absolute inset-0 z-0" style={mobileSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
             <Image
-              src="/mobileGrid.png"
+              src={mounted && theme === 'light' ? "/mobileGrid1.png" : "/mobileGrid.png"}
               alt="Mobile Grid Background"
               fill
               className="object-cover"

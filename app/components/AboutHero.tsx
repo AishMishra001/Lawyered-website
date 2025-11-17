@@ -111,7 +111,7 @@ export function AboutHero() {
       {isMobile && (
         <div className="absolute inset-0 z-0" style={mobileSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
-            <Image src="/mobileGrid.png" alt="Mobile Grid Background" fill className="object-cover"/>
+            <Image src={mounted && theme === 'light' ? "/mobileGrid1.png" : "/mobileGrid.png"} alt="Mobile Grid Background" fill className="object-cover"/>
           </div>
         </div>
       )}

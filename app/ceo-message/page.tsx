@@ -103,7 +103,7 @@ function CeoHero() {
         <div className="absolute inset-0 z-10" style={mobileSpotlightStyle}>
           <div className="relative w-full h-full opacity-40">
               <Image
-                  src="/mobileGrid.png"
+                  src={isLightMode ? "/mobileGrid1.png" : "/mobileGrid.png"}
                   alt="Mobile Grid Background"
                   fill
                   className="object-cover"

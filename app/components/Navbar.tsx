@@ -52,6 +52,10 @@ export function Navbar() {
   // Use different dimensions for light mode logo
   const logoWidth = resolvedTheme === "light" ? 240 : 270  // 70% of 270 for light mode
   const logoHeight = resolvedTheme === "light" ? 38 : 45   // Adjusted proportionally
+  
+  // Mobile logo dimensions - manually adjustable for light mode
+  const mobileLogoWidth = resolvedTheme === "light" ? 122 : 180
+  const mobileLogoHeight = resolvedTheme === "light" ? 28 : 32
 
   const navLinksLeft = [
     { href: "/ceo-message", label: "CEO'S MESSAGE" },
@@ -120,12 +124,13 @@ export function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
               <Image
-                src="/lawyered-logo.png"
+                src={resolvedTheme === "light" ? "/lawyered-logo3.png" : "/lawyered-logo.png"}
                 alt="Lawyered Logo"
-                width={180}
-                height={32}
+                width={mobileLogoWidth}
+                height={mobileLogoHeight}
                 priority
-                className="w-32 sm:w-40"
+                className={resolvedTheme === "light" ? "" : "w-32 sm:w-40"}
+                style={resolvedTheme === "light" ? { width: `${mobileLogoWidth}px`, height: `${mobileLogoHeight}px` } : {}}
               />
             </Link>
           </div>
@@ -178,7 +183,7 @@ export function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-white text-xl sm:text-2xl font-normal uppercase tracking-wider hover:text-[#22D2EE] transition-colors duration-200 w-full text-center py-3"
+                  className="text-black dark:text-white text-xl sm:text-2xl font-normal uppercase tracking-wider hover:text-[#22D2EE] transition-colors duration-200 w-full text-center py-3"
                   onClick={() => setIsMenuOpen(false)}
                   style={{
                     animationDelay: `${index * 100}ms`,

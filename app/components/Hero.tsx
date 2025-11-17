@@ -109,7 +109,7 @@ export function Hero() {
           <div className="relative w-full h-full opacity-40">
             {mounted ? (
               <Image
-                src="/mobileGrid.png"
+                src={isLightMode ? "/mobileGrid1.png" : "/mobileGrid.png"}
                 alt="Mobile Grid Background"
                 fill
                 className="object-cover"
