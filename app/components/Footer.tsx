@@ -38,16 +38,16 @@ export function Footer() {
                     }}
                   />
                 </div>
-                <p className="mb-1 md:mb-0 md:ml-4"> {/* 👈 aligns text with logo */}
+                <p className="mb-1 md:mb-0 md:ml-4 font-normal"> {/* 👈 aligns text with logo */}
                   Sproutech Solutions Private Limited
                 </p>
-                <p className="md:ml-4">
+                <p className="md:ml-4 font-normal">
                   India Accelerator Coworking, Lower Ground Floor, LG-007-02, MGF{" "}
                   <br className="hidden md:block" />
                   Metropolis Mall, MG Road, Gurugram, Haryana 122002
                 </p>
               </div>
-              <p className="text-center md:text-left mt-1 md:mt-0 md:ml-4 dark:mt-0">
+              <p className="text-center md:text-left mt-1 md:mt-0 md:ml-4 dark:mt-0 font-normal">
                 T: 99-88-44-1033 E: info@lawyered.in
               </p>
 
@@ -160,7 +160,7 @@ export function Footer() {
       </footer>
 
       <div className="border-t border-gray-200 dark:border-gray-700 py-4 md:py-6 px-4 md:px-26">
-        <p className="text-center text-black dark:text-white font-bold dark:font-normal text-sm md:text-base">
+        <p className="text-center text-black dark:text-white font-normal text-sm md:text-base">
           © 2025 Lawyered. All Rights Reserved |{" "}
           <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">
             Privacy Policy

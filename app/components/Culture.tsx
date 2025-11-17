@@ -43,7 +43,7 @@ export function Culture() {
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
         {/* Mobile: Heading */}
         <div className="order-1 md:hidden text-center">
-          <h2 className="text-2xl font-semibold text-[#0E7490] dark:text-[#22D3EE] mb-0 md:mb-6">Culture</h2>
+          <h2 className="text-2xl font-semibold text-[#00A2BB] dark:text-[#22D3EE] mb-0 md:mb-6">Culture</h2>
         </div>
         {/* Mobile: Image */}
         <div
@@ -89,7 +89,7 @@ export function Culture() {
         </div>
         {/* Desktop: Original combined content (hidden on mobile) */}
         <div className="hidden md:block md:order-2 text-center md:text-left">
-          <h2 className="text-2xl md:text-4xl font-semibold text-[#0E7490] dark:text-[#22D3EE] mb-6">Culture</h2>
+          <h2 className="text-2xl md:text-4xl font-semibold text-[#00A2BB] dark:text-[#22D3EE] mb-6">Culture</h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base">
             Lawyered attracts individuals seeking knowledge, empathetic support, and a belief in the power of expert guidance. Our teams, customers, partners and stakeholders value wisdom but also resonate with our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. Our culture is built on empathy and expertise. We are a collective of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.
           </p>

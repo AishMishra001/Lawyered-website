@@ -146,7 +146,7 @@ function BlogCategories() {
   return (
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#0E7490] dark:text-[#22D3EE]">
+        <h2 className="text-3xl font-bold text-[#00A2BB] dark:text-[#22D3EE]">
           Blogs
         </h2>
         {/* <div className="flex flex-wrap gap-4 items-center">
@@ -244,7 +244,7 @@ function BlogsGrid() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {blogPosts.map((post, index) => (
             <Link key={`blog-post-${index}`} href={post.href}>
-              <div className="bg-transparent border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#0891B2] dark:hover:border-[#22D3EE] transition-colors duration-300 cursor-pointer h-full">
+              <div className="bg-transparent border-gray-200 dark:border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#0891B2] dark:hover:border-[#22D3EE] transition-colors duration-300 cursor-pointer h-full">
                 <div className="aspect-video overflow-hidden">
                   <Image
                     src={post.image}
@@ -255,7 +255,7 @@ function BlogsGrid() {
                   />
                 </div>
                 <div className="p-4 md:p-6 flex flex-col flex-grow gap-3 md:gap-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-[#0E7490] dark:text-[#22D3EE] hover:underline leading-tight">
+                  <h3 className="text-lg md:text-xl font-semibold text-[#00A2BB] dark:text-[#22D3EE] hover:underline leading-tight">
                     {post.title}
                   </h3>
                   <p className="text-black dark:text-white text-sm md:text-base leading-relaxed flex-grow">

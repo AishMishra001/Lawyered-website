@@ -161,7 +161,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
+                    <button type="submit" className="w-full bg-[#0891B2] text-white dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
                     {message && <p className="text-center text-sm mt-4 text-black dark:text-white">{message}</p>}
@@ -179,16 +179,14 @@ export function RevolutionSection() {
   return (
     <div className="pt-2 md:pt-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto text-center md:text-left flex flex-col items-center md:items-start">
-        <h2 className="text-2xl md:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] text-center md:text-left">Be a Part of the Revolution</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-[#00A2BB] dark:text-[#22D3EE] text-center md:text-left">Be a Part of the Revolution</h2>
         <p className="max-w-8xl text-black dark:text-gray-300 mt-4 text-base">Lawyered is a hub for those who value knowledge, seek empathetic support, and believe in the power of expert guidance. Our team members, clients, partners, and stakeholders value wisdom and appreciate our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. We are a team of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of knowledge and the positive impact of compassionate support.</p>
 
         {/* UPDATED: "Join Our Team" button now opens the new modal */}
         <button onClick={() => setJoinTeamModalOpen(true)} className="mt-8 bg-[#0891B2] text-white dark:text-white px-10 py-3 rounded-lg">
           Join Our Team
         </button>
-
-       
-        
+              
       </div> 
 
       <AnimatePresence>

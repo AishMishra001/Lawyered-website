@@ -8,7 +8,7 @@ export function AboutIntro() {
             <p>But our story doesn’t stop at mobility. We’re building the rails of legal infrastructure for the future — expanding into finance, real estate, healthcare, and beyond. Our vision is simple: to make law proactive, preventive, and accessible to all.</p>
         </div>
         <div className="max-w-8xl">
-            <h2 className="text-2xl md:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] mb-16 text-center md:text-left">Culture</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-[#00A2BB] dark:text-[#22D3EE] mb-16 text-center md:text-left">Culture</h2>
             <p className="text-md md:text-lg lg:text-base">Lawyered attracts individuals seeking knowledge, empathetic support, and a belief in the power of expert guidance. Our teams, customers, partners and stakeholders value wisdom but also resonate with our ability to offer empathetic support, finding comfort in our practice of care. By presenting new ideas and fostering creativity, Lawyered continuously cultivates a sense of admiration and aspiration. Our culture is built on empathy and expertise. We are a collective of problem-solvers, innovators, and guides, united by a shared commitment to empower our stakeholders. We believe in the transformative power of compassionate support.</p>
         </div>
       </div>

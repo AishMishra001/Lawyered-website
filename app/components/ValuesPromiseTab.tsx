@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeartHandshake, X } from "lucide-react";
@@ -143,7 +144,7 @@ const JoinTeamModal = ({ onClose }: { onClose: () => void }) => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="w-full bg-[#0891B2] text-black dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
+                    <button type="submit" className="w-full bg-[#0891B2] text-white dark:text-white font-bold py-3 rounded-lg mt-4" disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
                     {message && <p className="text-center text-sm mt-4 text-black dark:text-white">{message}</p>}
@@ -210,15 +211,15 @@ export function ValuesPromiseTabs() {
     <div className="pb-24 px-4 sm:px-6 md:px-8 lg:px-26">
       <div className="max-w-8xl mx-auto flex flex-col items-center">
         <div className="flex flex-row border border-black dark:border-white text-sm md:text-xl w-full md:w-auto">
-          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border border-gray-300 dark:bg-transparent dark:text-white dark:border-transparent'}`}>What We Value</button>
-          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border border-gray-300 dark:bg-transparent dark:text-white dark:border-transparent dark:md:border-l dark:md:border-gray-700'}`}>What We Promise</button>
+          <button onClick={() => setActiveTab("value")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'value' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border !border-gray-200 dark:bg-transparent dark:text-white dark:border-transparent'}`}>What We Value</button>
+          <button onClick={() => setActiveTab("promise")} className={`w-full md:w-auto px-4 py-3 md:py-4 md:px-12 lg:px-16 font-semibold transition-colors ${activeTab === 'promise' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white text-black border !border-gray-200 dark:bg-transparent dark:text-white dark:border-transparent dark:md:border-l dark:md:border-gray-700'}`}>What We Promise</button>
         </div>
         <div className="mt-12 w-full px-4 sm:px-8 md:px-12 lg:px-22">
           <AnimatePresence mode="wait">
             {activeTab === 'value' && (
               <motion.div key="value" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="grid md:grid-cols-3 gap-8">
                 {values.map(v => (
-                  <div key={v.title} className="border border-gray-700 p-6 space-y-10">
+                  <div key={v.title} className="border border-gray-200 dark:border-gray-700 p-6 space-y-10">
                     <div className="text-gray-400 mb-4">{v.icon}</div>
                     <h3 className="text-lg md:text-xl font-bold text-black dark:text-white">{v.title}</h3>
                     <p className="mt-2 text-gray-700 dark:text-gray-300 text-base leading-relaxed pb-12">{v.description}</p>
@@ -227,7 +228,7 @@ export function ValuesPromiseTabs() {
               </motion.div>
             )}
             {activeTab === 'promise' && (
-              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-600 p-4 md:p-8 bg-transparent flex flex-col lg:flex-row items-center justify-between gap-8">
+              <motion.div key="promise" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="border border-gray-200 dark:border-gray-700 p-4 md:p-8 bg-transparent flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
                   <HeartHandshake size={50} className="text-black dark:text-white font-light flex-shrink-0"/>
                   <p className="text-gray-700 dark:text-gray-300 w-full text-base md:text-lg">We offer a platform to make a tangible impact. You will be part of a team that is not only at the forefront of legal innovation but also deeply committed to helping others. If you are ready to use your expertise to solve real-problems with compassion and creativity, you’ve found your home.</p>

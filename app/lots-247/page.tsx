@@ -138,7 +138,7 @@ function LotsHero() {
       <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
         {mounted && (
           <Image
-            src={theme === 'light' ? "/lots-247-logo3.png" : "/lots247-logo2.png"}
+            src={theme === 'light' ? "/lots-247-logo4.png" : "/lots247-logo2.png"}
             alt="LOTS 247 Logo"
             width={400}
             height={100}
@@ -227,7 +227,7 @@ function LotsInfrastructure() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Card 1 */}
           <div
-            className="border border-gray-800 p-6 bg-transparent"
+            className="border border-gray-200 dark:border-gray-800 p-6 bg-transparent"
             onMouseEnter={() => setHoveredCard(1)}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -250,7 +250,7 @@ function LotsInfrastructure() {
 
           {/* Card 2 */}
           <div
-            className="border border-gray-800 p-6 bg-transparent"
+            className="border border-gray-200 dark:border-gray-800 p-6 bg-transparent"
             onMouseEnter={() => setHoveredCard(2)}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -272,7 +272,7 @@ function LotsInfrastructure() {
 
           {/* Card 3 */}
           <div
-            className="border border-gray-800 p-6 bg-transparent"
+            className="border border-gray-200 dark:border-gray-800 p-6 bg-transparent"
             onMouseEnter={() => setHoveredCard(3)}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -789,7 +789,7 @@ function LotsForm() {
     <>
       {/* The main form section */}
       <div className="py-12 md:py-24 max-w-8xl px-4 md:px-26">
-        <div className="mx-auto border border-gray-800 rounded-lg p-4 md:p-8">
+        <div className="mx-auto border border-gray-200 dark:border-gray-800 rounded-lg p-4 md:p-8">
           <div className="w-full max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <p className={`text-base text-center md:text-left ${mounted && theme === 'light' ? 'text-black' : 'text-gray-200'}`}>
               To know more about <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Add-Ons for Business Packages</span>, fill out the
@@ -971,7 +971,7 @@ function LotsSocials() {
   return (
     <div className="pb-12 md:pb-16 px-4 md:px-26">
       <div className="max-w-8xl mx-auto">
-        <div className="border-2 border-gray-700 p-8 md:p-12">
+        <div className="border-2 border-gray-200 dark:border-gray-800 p-8 md:p-12">
           <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
             <h2 className="text-md md:text-2xl font-bold text-black dark:text-white text-center">
               Socials Ahead, Don&apos;t Miss the Signal!
@@ -1118,7 +1118,7 @@ function LotsCoverage() {
         <div className="relative overflow-hidden">
           <div className="flex animate-infinite-scroll hover:pause-scroll">
             {duplicatedStats.map((stat, i) => (
-              <div key={i} className="flex-none w-80 mx-4 border border-gray-600 p-6 flex flex-col">
+              <div key={i} className="flex-none w-80 mx-4 border border-gray-200 dark:border-gray-600 p-6 flex flex-col">
                 <div className="text-gray-400 mb-4 h-10 w-10">{stat.icon}</div>
                 <div className="text-gray-300 text-sm md:text-base">{stat.text}</div>
               </div>

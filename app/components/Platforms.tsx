@@ -91,7 +91,7 @@ export function Platforms() {
     <div className="relative pb-12 md:pb-24 px-4 md:px-24">
       <div className="flex flex-col items-center justify-center text-center md:text-left">
         <div className="max-w-8xl">
-          <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#0E7490] dark:text-[#22D3EE] text-center md:text-left">
+          <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#00A2BB] dark:text-[#22D3EE] text-center md:text-left">
             Platforms
           </h2>
 

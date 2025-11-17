@@ -294,14 +294,14 @@ function ChallanContent() {
               {`We are building the "Default Rail of Mobility Compliance" — a digital-first legal infrastructure layer that powers the entire ecosystem:`}
             </p>
             <ul className="space-y-3 md:space-y-4 list-disc list-inside">
-              <li><span className="font-bold text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
-              <li><span className="font-bold text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
-              <li><span className="font-bold text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
-              <li><span className="font-bold text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
+              <li><span className="font-bold text-[#00A2BB] dark:text-[#22D2EE]">For Individuals:</span> Instant challan discovery, one-click resolution, and peace of mind.</li>
+              <li><span className="font-bold text-[#00A2BB] dark:text-[#22D2EE]">For Fleets & Enterprises:</span> Centralized dashboards, bulk challan settlements, and compliance automation.</li>
+              <li><span className="font-bold text-[#00A2BB] dark:text-[#22D2EE]">For Aggregators, Insurers, & OEMs:</span> Seamless API integrations to enhance customer journeys.</li>
+              <li><span className="font-bold text-[#00A2BB] dark:text-[#22D2EE]">For Governments & Regulators:</span> Better revenue collection, data analytics, and improved enforcement outcomes.</li>
             </ul>
           </div>
           <p className="px-4 md:px-0">
-            With <span className="text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
+            With <span className="text-[#00A2BB] dark:text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
           </p>
         </div>
         <div className="hidden dark:md:col-span-2 dark:flex dark:items-center dark:justify-center dark:p-4 dark:overflow-hidden">
@@ -506,7 +506,7 @@ function ChallanVehicleSelector() {
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
               placeholder="Enter Vehicle Number"
-              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-black dark:border-none'}`}
+              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
             />
             <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
           </div>
@@ -520,14 +520,14 @@ function ChallanVehicleSelector() {
                 id="terms"
                 checked={isTermsChecked}
                 onChange={(e) => setIsTermsChecked(e.target.checked)}
-                className="md:h-5 md:w-5 rounded border border-black dark:border-gray-600 flex-shrink-0 mt-1 appearance-none bg-white dark:bg-gray-700 checked:bg-[#0b9eb4]  focus:ring-opacity-50"
+                className="h-5 w-5 md:h-5 md:w-5 rounded border border-gray-500 dark:border-gray-600 flex-shrink-0 mt-1 appearance-none bg-white dark:bg-gray-700 checked:bg-[#0b9eb4]  focus:ring-opacity-50"
                 style={{
                   accentColor: '#0b9eb4'
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <svg
-                  className={`w-3 h-3 text-white transition-opacity duration-200 ${isTermsChecked ? 'opacity-100' : 'opacity-0'}`}
+                  className={`w-3 h-3 text-white dark:text-white transition-opacity duration-200 ${isTermsChecked ? 'opacity-100' : 'opacity-0'}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -541,11 +541,11 @@ function ChallanVehicleSelector() {
             </div>
             <label htmlFor="terms" className="text-black dark:text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
-              <Link href="https://lawyered.in/p/terms-and-conditions-for-challan-resolution" className="font-bold underline text-[#22D2EE]">
+              <Link href="https://lawyered.in/p/terms-and-conditions-for-challan-resolution" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
                 terms & conditions
               </Link>
               {' '}and the{' '}
-              <Link href="https://lawyered.in/p/privacy-policy" className="font-bold underline text-[#22D2EE]">
+              <Link href="https://lawyered.in/p/privacy-policy" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
                 privacy policy
               </Link>
               , and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
@@ -660,7 +660,7 @@ function ChallanWhatsapp() {
 
   return (
     <>
-      <div className="py-12 md:py-16 px-4 md:px-26 border-y-2 border-gray-800">
+      <div className="py-12 md:py-16 px-4 md:px-26 border-y-2 border-gray-200 dark:border-gray-800">
         <div className="max-w-8xl mx-auto space-y-8">
           {/* WhatsApp Section */}
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -693,7 +693,7 @@ function ChallanWhatsapp() {
           </div>
 
           {/* Social Media Section */}
-          <div className="border-2 border-gray-700 p-8 md:p-12">
+          <div className="border-2 border-gray-200 dark:border-gray-700 p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center justify-around gap-6 md:gap-12">
               <h2 className="text-md md:text-2xl font-bold text-black dark:text-white text-center">
                 {"Socials Ahead, Don't Miss the Signal!"}

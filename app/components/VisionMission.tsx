@@ -42,7 +42,7 @@ export function VisionMission() {
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 items-center gap-12 md:gap-2">
         {/* Mobile: Heading */}
         <div className="order-1 md:hidden text-center">
-          <h2 className="text-2xl font-semibold text-[#0E7490] dark:text-[#22D3EE] mb-0 md:mb-6">Vision & Mission</h2>
+          <h2 className="text-2xl font-semibold text-[#00A2BB] dark:text-[#22D3EE] mb-0 md:mb-6">Vision & Mission</h2>
         </div>
         {/* Mobile: Image */}
         <div

@@ -300,7 +300,7 @@ function ContactFormSection() {
     <div className="pb-24 px-4 md:px-26">
       <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Form */}
-        <div className="bg-[#F7F7F7] dark:bg-transparent border border-gray-800 rounded-lg p-8 space-y-10">
+        <div className="bg-[#F7F7F7] dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-lg p-8 space-y-10">
           <h2 className="text-3xl text-black dark:text-white">
             Fill out the form and our executive will reach out to you
           </h2>
@@ -398,7 +398,7 @@ function ContactFormSection() {
             <div className="flex items-start gap-3 pt-2">
               <input type="checkbox" id="auth" checked={isAuthorized} onChange={(e) => setIsAuthorized(e.target.checked)} className="mt-1 h-4 w-4 rounded bg-gray-700 border-gray-600 accent-[#0891B2]" required />
               <label htmlFor="auth" className="text-base text-black dark:text-white">
-                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#0891B2] underline">Terms & Conditions</a> | <a href="/privacy-policy" className="text-[#0891B2] underline">Privacy Policy</a>
+                I hereby authorise to send notifications via SMS, Email, RCS and others as per <a href="/terms-and-conditions" className="text-[#00A2BB] dark:text-[#0891B2] underline">Terms & Conditions</a> | <a href="/privacy-policy" className="text-[#00A2BB] dark:text-[#0891B2] underline">Privacy Policy</a>
               </label>
             </div>
 
@@ -417,7 +417,7 @@ function ContactFormSection() {
               <h3 className="text-lg md:text-2xl text-white dark:text-white px-4">Connect with us to know more at</h3>
               <a
                 href="mailto:info@lawyered.in"
-                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-black hover:bg-white hover:text-[#0891B2] dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
+                className="inline-block mt-4 md:mt-6 bg-[#0891B2] text-white hover:bg-white hover:text-[#0891B2] dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 mx-auto"
               >
                 info@lawyered.in
               </a>

@@ -120,7 +120,7 @@ function CeoHero() {
           </h1>
           <div>
             <h2 className="text-xl lg:text-3xl text-black dark:text-gray-200">
-              From Reactive to <span className="text-[#22D2EE]">Preventive</span> to <span className="text-[#22D2EE]">Predictive</span> advantage
+              From Reactive to <span className="text-[#00A2BB] dark:text-[#22D2EE]">Preventive</span> to <span className="text-[#00A2BB] dark:text-[#22D2EE]">Predictive</span> advantage
             </h2>
             <p className="mt-4 text-black dark:text-white text-base">
               Gen AI-driven Legal Risks Management (LRM) for the mobility sector—monitor, predict, and resolve legal issues before they disrupt operations.
@@ -173,7 +173,7 @@ function CeoContent() {
         <div className="pt-8 text-center md:text-left">
           <p className="text-base text-black dark:text-white">Regards,</p>
           <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-            <p className="text-3xl font-bold text-[#22D2EE]">Himanshu Gupta</p>
+            <p className="text-3xl font-bold text-[#00A2BB] dark:text-[#22D2EE]">Himanshu Gupta</p>
             <a
               href="https://www.linkedin.com/in/gupta-himanshu/"
               target="_blank"
