@@ -19,8 +19,8 @@ export function ThemeSwitch() {
       aria-label="Toggle theme"
       className={`relative inline-flex h-[30px] w-[60px] items-center rounded-full transition-all duration-500 focus:outline-none shadow-inner
         ${isDark
-          ? "bg-[#404040]"
-          : "bg-[#0891B2]"
+          ? "bg-[#87878A80]"
+          : "bg-[#CBD5E1]"
         }
       `}
     >
@@ -31,9 +31,9 @@ export function ThemeSwitch() {
         `}
       >
         {isDark ? (
-          <Image src="/moon1.png" alt="Dark mode" width={16} height={16} className="transition-transform duration-500 ease-in-out" />
+          <Image src="/moon2.png" alt="Dark mode" width={16} height={16} className="transition-transform duration-500 ease-in-out" />
         ) : (
-          <Image src="/sun1.png" alt="Light mode" width={16} height={16} className="transition-transform duration-500 ease-in-out" />
+          <Image src="/sun2.png" alt="Light mode" width={16} height={16} className="transition-transform duration-500 ease-in-out" />
         )}
       </span>
 
