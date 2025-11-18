@@ -18,9 +18,21 @@ const nextConfig: NextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, HEAD, OPTIONS',
+          },
         ],
       },
     ];
+  },
+  // Ensure large static files are handled properly
+  experimental: {
+    optimizePackageImports: [],
   },
 };
 

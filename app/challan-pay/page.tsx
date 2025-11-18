@@ -253,6 +253,7 @@ function ChallanContent() {
   const [isMuted, setIsMuted] = useState(true);
   const [videoError, setVideoError] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -282,8 +283,39 @@ function ChallanContent() {
     setVideoError(false);
   };
 
-  const handleVideoError = () => {
-    console.error('Video failed to load');
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const video = e.currentTarget;
+    const error = video.error;
+    let errorMsg = 'Video failed to load';
+    
+    if (error) {
+      switch (error.code) {
+        case error.MEDIA_ERR_ABORTED:
+          errorMsg = 'Video loading aborted';
+          break;
+        case error.MEDIA_ERR_NETWORK:
+          errorMsg = 'Network error while loading video';
+          break;
+        case error.MEDIA_ERR_DECODE:
+          errorMsg = 'Video decoding error';
+          break;
+        case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+          errorMsg = 'Video format not supported';
+          break;
+        default:
+          errorMsg = `Video error: ${error.message || 'Unknown error'}`;
+      }
+    }
+    
+    console.error('Video error:', {
+      code: error?.code,
+      message: error?.message,
+      networkState: video.networkState,
+      readyState: video.readyState,
+      src: video.currentSrc || video.src
+    });
+    
+    setErrorMessage(errorMsg);
     setVideoError(true);
     setVideoLoading(false);
   };
@@ -358,8 +390,22 @@ function ChallanContent() {
               onMouseLeave={handleMouseLeave}
             >
               {videoError ? (
-                <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white rounded-lg">
-                  <p className="text-sm">Video unavailable</p>
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-800 text-white rounded-lg p-4">
+                  <p className="text-sm font-semibold mb-1">Video unavailable</p>
+                  <p className="text-xs text-gray-400 text-center mb-3">{errorMessage || 'Unable to load video'}</p>
+                  <button
+                    onClick={() => {
+                      setVideoError(false);
+                      setVideoLoading(true);
+                      setErrorMessage('');
+                      if (videoRef.current) {
+                        videoRef.current.load();
+                      }
+                    }}
+                    className="px-3 py-1.5 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+                  >
+                    Retry
+                  </button>
                 </div>
               ) : (
                 <video
@@ -374,6 +420,17 @@ function ChallanContent() {
                   onLoadedData={handleVideoLoadedData}
                   onError={handleVideoError}
                   onCanPlay={() => setVideoLoading(false)}
+                  onLoadStart={() => {
+                    setVideoLoading(true);
+                    setVideoError(false);
+                    setErrorMessage('');
+                  }}
+                  onStalled={() => {
+                    console.warn('Video stalled, retrying...');
+                    if (videoRef.current) {
+                      videoRef.current.load();
+                    }
+                  }}
                   style={{
                     maxHeight: '82%', // Increased height to fill more of the screen
                     maxWidth: '95%', // Keep width as is - it's perfect
