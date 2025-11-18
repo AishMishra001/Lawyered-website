@@ -251,13 +251,18 @@ function ChallanContent() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoError, setVideoError] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play();
+        videoRef.current.play().catch((error) => {
+          console.error('Error playing video:', error);
+          setVideoError(true);
+        });
       }
       setIsPlaying(!isPlaying);
     }
@@ -265,10 +270,22 @@ function ChallanContent() {
 
   const handleVideoPlay = () => {
     setIsPlaying(true);
+    setVideoLoading(false);
   };
 
   const handleVideoPause = () => {
     setIsPlaying(false);
+  };
+
+  const handleVideoLoadedData = () => {
+    setVideoLoading(false);
+    setVideoError(false);
+  };
+
+  const handleVideoError = () => {
+    console.error('Video failed to load');
+    setVideoError(true);
+    setVideoLoading(false);
   };
 
   const handleMouseEnter = () => {
@@ -340,22 +357,39 @@ function ChallanContent() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover " // Rounded corners to match phone screen
-                loop
-                playsInline
-                onPlay={handleVideoPlay}
-                onPause={handleVideoPause}
-                style={{
-                  maxHeight: '82%', // Increased height to fill more of the screen
-                  maxWidth: '95%', // Keep width as is - it's perfect
-                  borderRadius: '1.2rem',
-                }}
-              >
-                <source src="/challanPayVideo5.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              {videoError ? (
+                <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white rounded-lg">
+                  <p className="text-sm">Video unavailable</p>
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover" // Rounded corners to match phone screen
+                  loop
+                  playsInline
+                  muted={isMuted}
+                  preload="metadata"
+                  onPlay={handleVideoPlay}
+                  onPause={handleVideoPause}
+                  onLoadedData={handleVideoLoadedData}
+                  onError={handleVideoError}
+                  onCanPlay={() => setVideoLoading(false)}
+                  style={{
+                    maxHeight: '82%', // Increased height to fill more of the screen
+                    maxWidth: '95%', // Keep width as is - it's perfect
+                    borderRadius: '1.2rem',
+                  }}
+                >
+                  <source src="/challanPayVideo5.mp4" type="video/mp4" />
+                  <source src="/challanPayVideo5.mp4" type="video/mpeg" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+              {videoLoading && !videoError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 rounded-lg z-[10]">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                </div>
+              )}
               {/* Play/Pause Button Overlay */}
               <AnimatePresence>
                 {showControls && (

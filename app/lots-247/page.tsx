@@ -47,6 +47,7 @@ function LotsHero() {
   const [isMobile, setIsMobile] = useState(false)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [videoError, setVideoError] = useState(false)
+  const [videoLoading, setVideoLoading] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -186,14 +187,33 @@ function LotsHero() {
                 loop
                 muted
                 playsInline
-                preload="auto"
-                onPlay={() => setIsVideoPlaying(true)}
+                preload="metadata"
+                onPlay={() => {
+                  setIsVideoPlaying(true)
+                  setVideoLoading(false)
+                }}
                 onPause={() => setIsVideoPlaying(false)}
-                onError={() => setVideoError(true)}
+                onLoadedData={() => {
+                  setVideoLoading(false)
+                  setVideoError(false)
+                }}
+                onCanPlay={() => setVideoLoading(false)}
+                onError={() => {
+                  console.error('Video failed to load')
+                  setVideoError(true)
+                  setVideoLoading(false)
+                }}
+                onLoadStart={() => setVideoLoading(true)}
               >
                 <source src="/lots-video.mp4" type="video/mp4" />
+                <source src="/lots-video.mp4" type="video/mpeg" />
                 Your browser does not support the video tag.
               </video>
+            )}
+            {videoLoading && !videoError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 z-10">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+              </div>
             )}
           </div>
         </div>
