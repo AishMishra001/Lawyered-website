@@ -353,7 +353,7 @@ function ChallanContent() {
                   borderRadius: '1.2rem',
                 }}
               >
-                <source src="/challanPayVideo4.mp4" type="video/mp4" />
+                <source src="/challanPayVideo5.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               {/* Play/Pause Button Overlay */}
