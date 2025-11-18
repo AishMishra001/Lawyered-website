@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { ThemeSwitch } from "@/components/theme-switch"
 
@@ -11,11 +11,25 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasMouseMoved, setHasMouseMoved] = useState(false)
+  const [navbarHeight, setNavbarHeight] = useState(80)
+  const headerRef = useRef<HTMLElement>(null)
 
   // Handle mounting state
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Measure navbar height for mobile menu positioning
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      if (headerRef.current) {
+        setNavbarHeight(headerRef.current.offsetHeight)
+      }
+    }
+    updateNavbarHeight()
+    window.addEventListener('resize', updateNavbarHeight)
+    return () => window.removeEventListener('resize', updateNavbarHeight)
+  }, [mounted, resolvedTheme])
 
   // Mouse move effect
   useEffect(() => {
@@ -71,7 +85,7 @@ export function Navbar() {
   const allLinks = [...navLinksLeft, ...navLinksRight]
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A] border-b border-gray-300 dark:border-b-0">
+    <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#14141A] border-b border-gray-300 dark:border-b-0">
       <nav className="relative w-full py-5 px-4 md:px-8 flex justify-center items-center">
         {/* Desktop Menu */}
         <div className="hidden md:flex w-full justify-center items-center gap-12 relative">
@@ -176,7 +190,13 @@ export function Navbar() {
 
       {/* Mobile & Tablet Full Screen Menu */}
       {isMenuOpen && (
-        <div className="md:hidden lg:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-background z-30">
+        <div 
+          className="md:hidden lg:hidden fixed left-0 w-full bg-background z-30"
+          style={{
+            top: `${navbarHeight}px`,
+            height: `calc(100vh - ${navbarHeight}px)`
+          }}
+        >
           <div className="flex flex-col justify-center items-center h-full px-6 py-8">
             <div className="flex flex-col items-center space-y-6 w-full max-w-sm">
               {allLinks.map((link, index) => (

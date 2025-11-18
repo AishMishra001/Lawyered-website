@@ -12,6 +12,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Lawyered - Resolving Legal Risks For Mobility",
   description: "Innovating & Building Scalable Technology Platforms",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({

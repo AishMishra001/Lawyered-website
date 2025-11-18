@@ -158,6 +158,8 @@ function AboutHero() {
 // Section 2: Forms
 // Section 2: Forms
 function ContactFormSection() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [inquiryType, setInquiryType] = useState('');
@@ -169,6 +171,10 @@ function ContactFormSection() {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [formStatus, setFormStatus] = useState('');
   const [errors, setErrors] = useState<{email?: string; phone?: string}>({});
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Generate random captcha with styles
   const generateCaptcha = () => {
@@ -311,7 +317,7 @@ function ContactFormSection() {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500`}
               required
             />
             <div>
@@ -320,7 +326,7 @@ function ContactFormSection() {
                 placeholder="E-mail"
                 value={email}
                 onChange={handleEmailChange}
-                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-700'}`}
+                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.email ? 'border-red-500' : (mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700')}`}
                 required
               />
               {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}
@@ -329,7 +335,7 @@ function ContactFormSection() {
               <select
                 value={inquiryType}
                 onChange={(e) => setInquiryType(e.target.value)}
-                className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-gray-900 dark:text-gray-300 appearance-none cursor-pointer pr-10"
+                className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 text-gray-900 dark:text-gray-300 appearance-none cursor-pointer pr-10`}
                 style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                 required
               >
@@ -351,7 +357,7 @@ function ContactFormSection() {
                 placeholder="Phone Number"
                 value={phone}
                 onChange={handlePhoneChange}
-                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.phone ? 'border-red-500' : 'border-gray-700'}`}
+                className={`w-full bg-white dark:bg-gray-800/50 border rounded-md p-3 placeholder-gray-500 ${errors.phone ? 'border-red-500' : (mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700')}`}
                 maxLength={10}
                 required
               />
@@ -362,13 +368,13 @@ function ContactFormSection() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={3}
-              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500`}
               required
             ></textarea>
 
             {/* START: REVISED CAPTCHA SECTION */}
             <div className="flex items-center gap-4">
-              <div className="relative flex items-center justify-center w-52 h-[60px] select-none bg-white dark:bg-gray-900 px-4 rounded-lg border border-gray-700 text-black dark:text-white overflow-hidden">
+              <div className={`relative flex items-center justify-center w-52 h-[60px] select-none bg-white dark:bg-gray-900 px-4 rounded-lg border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} text-black dark:text-white overflow-hidden`}>
                 {/* Strikethrough Line */}
                 <div className="absolute top-1/2 left-0 w-full h-[2px] bg-black dark:bg-white -translate-y-[1px] z-10"></div>
                 
@@ -380,7 +386,15 @@ function ContactFormSection() {
                   ))}
                 </div>
               </div>
-              <button type="button" onClick={refreshCaptcha} className="p-3 text-gray-400 hover:text-white transition-colors bg-gray-700 hover:bg-gray-600 rounded-full border border-gray-600">
+              <button 
+                type="button" 
+                onClick={refreshCaptcha} 
+                className={`p-3 transition-colors rounded-full border ${
+                  mounted && theme === 'light' 
+                    ? 'text-gray-600 hover:text-gray-800 bg-gray-200 hover:bg-gray-300 border-gray-300' 
+                    : 'text-gray-400 hover:text-white bg-gray-700 hover:bg-gray-600 border-gray-600'
+                }`}
+              >
                 <RefreshCw size={20} />
               </button>
             </div>
@@ -391,7 +405,7 @@ function ContactFormSection() {
               placeholder="Enter Captcha"
               value={captcha}
               onChange={(e) => setCaptcha(e.target.value)}
-              className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500"
+              className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500`}
               required
             />
             

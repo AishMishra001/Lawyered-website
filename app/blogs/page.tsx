@@ -261,7 +261,7 @@ function BlogsGrid() {
                   <p className="text-black dark:text-white text-sm md:text-base leading-relaxed flex-grow">
                     {post.excerpt}
                   </p>
-                  <div className="pt-3 md:pt-4 border-t border-gray-800 text-sm md:text-base text-black dark:text-white">
+                  <div className="pt-3 md:pt-4 border-t border-gray-200 dark:border-gray-800 text-sm md:text-base text-black dark:text-white">
                     <span>{post.date}</span> | <span>{post.readTime}</span>
                   </div>
                 </div>

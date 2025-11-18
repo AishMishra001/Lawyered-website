@@ -138,7 +138,7 @@ function LotsHero() {
       <div className="relative max-w-8xl z-10 flex flex-col items-center pt-8 px-4 md:px-26">
         {mounted && (
           <Image
-            src={theme === 'light' ? "/lots-247-logo4.png" : "/lots247-logo2.png"}
+            src={theme === 'light' ? "/lots-247-logo5.png" : "/lots247-logo2.png"}
             alt="LOTS 247 Logo"
             width={400}
             height={100}
@@ -243,7 +243,7 @@ function LotsInfrastructure() {
             />
             <p className="text-black dark:text-gray-300 text-sm md:text-base">
               Talk to a lawyer instantly: A tech-driven,{" "}
-              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>round-the-clock legal safety</span> net that immediately tackles roadside
+              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB] font-bold' : ''} dark:text-[#22D2EE]`}>round-the-clock legal safety</span> net that immediately tackles roadside
               issues before they spiral, backed by in-house Lawyers.
             </p>
           </div>
@@ -265,7 +265,7 @@ function LotsInfrastructure() {
             />
             <p className="text-black dark:text-gray-300 text-sm md:text-base pt-6 md:pt-10">
               A lawyer at your location in 2 hours: Nationwide Network of{" "}
-              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
+              <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB] font-bold' : ''} dark:text-[#22D2EE]`}>75K+ Lawyers across 98% of pin codes,</span> ensuring a 2-hour on-site
               deployment anytime, anywhere.
             </p>
           </div>
@@ -287,11 +287,11 @@ function LotsInfrastructure() {
             />
             <ul className="text-black dark:text-gray-300 space-y-3 md:space-y-4 text-sm md:text-base">
               <li>
-                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Advanced Live Challan Dashboard –</span> A real-time, centralized
+                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB] font-bold' : ''} dark:text-[#22D2EE]`}>Advanced Live Challan Dashboard –</span> A real-time, centralized
                 dashboard for tracking traffic violations across multiple vehicles.
               </li>
               <li>
-                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>RC & Vehicle Insight API Access –</span> Ownership, hypothecation,
+                <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB] font-bold' : ''} dark:text-[#22D2EE]`}>RC & Vehicle Insight API Access –</span> Ownership, hypothecation,
                 blacklist, fitness, and pollution check in real-time.
               </li>
             </ul>
@@ -792,7 +792,7 @@ function LotsForm() {
         <div className="mx-auto border border-gray-200 dark:border-gray-800 rounded-lg p-4 md:p-8">
           <div className="w-full max-w-8xl flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <p className={`text-base text-center md:text-left ${mounted && theme === 'light' ? 'text-black' : 'text-gray-200'}`}>
-              To know more about <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB]' : ''} dark:text-[#22D2EE]`}>Add-Ons for Business Packages</span>, fill out the
+              To know more about <span className={`${mounted && theme === 'light' ? 'text-[#00A2BB] font-bold' : ''} dark:text-[#22D2EE]`}>Add-Ons for Business Packages</span>, fill out the
               form and our executive will contact you.
             </p>
             <form className="w-full grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleFormSubmit}>
@@ -801,7 +801,7 @@ function LotsForm() {
                 placeholder="Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
+                className={`col-span-1 bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base`}
                 required
               />
               <input
@@ -809,7 +809,7 @@ function LotsForm() {
                 placeholder="Mobile No."
                 value={mobileNo}
                 onChange={handleMobileNoChange}
-                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
+                className={`col-span-1 bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base`}
                 required
               />
               <input
@@ -817,12 +817,12 @@ function LotsForm() {
                 placeholder="City/Region"
                 value={cityRegion}
                 onChange={(e) => setCityRegion(e.target.value)}
-                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
+                className={`col-span-1 bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base`}
                 required
               />
               <div className="relative col-span-1">
                 <select
-                  className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer pr-10"
+                  className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer pr-10`}
                   style={{
                     ...(mounted && theme === 'dark' ? { backgroundColor: 'rgba(31, 41, 55, 0.5)' } : {}),
                     WebkitAppearance: 'none',
@@ -849,7 +849,7 @@ function LotsForm() {
 
               <div className="relative col-span-1 md:col-span-2">
                 <select
-                  className="w-full bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer"
+                  className={`w-full bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 text-black dark:text-gray-300 appearance-none cursor-pointer`}
                   value={briefRequirement}
                   onChange={(e) => setBriefRequirement(e.target.value)}
                   required
@@ -872,14 +872,14 @@ function LotsForm() {
                 placeholder="Contact Person"
                 value={contactPerson}
                 onChange={(e) => setContactPerson(e.target.value)}
-                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
+                className={`col-span-1 bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base`}
               />
               <input
                 type="email"
                 placeholder="Email ID"
                 value={emailId}
                 onChange={(e) => setEmailId(e.target.value)}
-                className="col-span-1 bg-white dark:bg-gray-800/50 border border-gray-700 rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base"
+                className={`col-span-1 bg-white dark:bg-gray-800/50 border ${mounted && theme === 'light' ? 'border-gray-200' : 'border-gray-700'} rounded-md p-3 placeholder-gray-500 text-black dark:text-white text-sm md:text-base`}
               />
               <div className="col-span-1 md:col-span-2 flex justify-center md:justify-end">
                 <button
