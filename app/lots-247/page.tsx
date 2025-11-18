@@ -218,7 +218,30 @@ function LotsHero() {
                   const error = video.error
                   let errorMsg = 'Video failed to load'
                   
-                  if (error) {
+                  // Network state meanings:
+                  // 0 = NETWORK_EMPTY, 1 = NETWORK_IDLE, 2 = NETWORK_LOADING, 3 = NETWORK_NO_SOURCE
+                  const networkStateMessages: Record<number, string> = {
+                    0: 'Video source is empty',
+                    1: 'Video is idle',
+                    2: 'Video is loading',
+                    3: 'Video source not found - check file path and deployment'
+                  }
+                  
+                  // Ready state meanings:
+                  // 0 = HAVE_NOTHING, 1 = HAVE_METADATA, 2 = HAVE_CURRENT_DATA, 3 = HAVE_FUTURE_DATA, 4 = HAVE_ENOUGH_DATA
+                  const readyStateMessages: Record<number, string> = {
+                    0: 'No video data available',
+                    1: 'Metadata loaded',
+                    2: 'Current frame data available',
+                    3: 'Future data available',
+                    4: 'Enough data to play'
+                  }
+                  
+                  // Check network state first (most common issue)
+                  if (video.networkState === 3) {
+                    errorMsg = networkStateMessages[3] || 'Video source not found'
+                  } else if (error && error.code !== null && error.code !== undefined) {
+                    // Handle specific error codes
                     switch (error.code) {
                       case error.MEDIA_ERR_ABORTED:
                         errorMsg = 'Video loading aborted'
@@ -233,17 +256,39 @@ function LotsHero() {
                         errorMsg = 'Video format not supported'
                         break
                       default:
-                        errorMsg = `Video error: ${error.message || 'Unknown error'}`
+                        errorMsg = `Video error code: ${error.code}`
                     }
+                  } else if (video.readyState === 0) {
+                    errorMsg = 'No video data loaded - file may not exist or path is incorrect'
                   }
                   
-                  console.error('Video error:', {
-                    code: error?.code,
-                    message: error?.message,
+                  // Enhanced error logging
+                  const errorDetails = {
+                    errorCode: error ? error.code : null,
+                    errorMessage: error ? error.message : null,
                     networkState: video.networkState,
+                    networkStateText: networkStateMessages[video.networkState] || 'Unknown',
                     readyState: video.readyState,
-                    src: video.currentSrc || video.src
-                  })
+                    readyStateText: readyStateMessages[video.readyState] || 'Unknown',
+                    src: video.currentSrc || video.src,
+                    videoSrc: video.src,
+                    videoCurrentSrc: video.currentSrc,
+                    videoSources: Array.from(video.querySelectorAll('source')).map(s => ({
+                      src: s.getAttribute('src'),
+                      type: s.getAttribute('type')
+                    }))
+                  }
+                  
+                  console.error('Video error details:', errorDetails)
+                  
+                  // Additional check: verify file exists
+                  if (video.networkState === 3) {
+                    console.warn('Video file may not be deployed correctly. Check:', {
+                      expectedPath: '/lots-video.mp4',
+                      actualSrc: video.currentSrc || video.src,
+                      suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
+                    })
+                  }
                   
                   setErrorMessage(errorMsg)
                   setVideoError(true)
