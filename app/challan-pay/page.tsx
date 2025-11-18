@@ -247,7 +247,10 @@ function ChallanHero() {
 
 // Section 2: Content
 function ChallanContent() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const observerRef = useRef<WeakMap<HTMLVideoElement, IntersectionObserver>>(new WeakMap());
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -255,24 +258,103 @@ function ChallanContent() {
   const [videoLoading, setVideoLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  // Force video to load on mount and when video element becomes available
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Callback ref to load video when element is mounted
+  const videoRefCallback = (node: HTMLVideoElement | null) => {
+    if (node) {
+      // Store reference
+      videoRef.current = node;
+      
+      // Only load if in dark mode (when video is visible)
+      const isDarkMode = document.documentElement.classList.contains('dark') || 
+                         resolvedTheme === 'dark';
+      
+      if (isDarkMode) {
+        const loadVideo = () => {
+          if (node) {
+            // Check if element is visible
+            const rect = node.getBoundingClientRect();
+            const isVisible = rect.width > 0 && rect.height > 0;
+            
+            if (isVisible) {
+              console.log('Loading video via callback ref, networkState:', node.networkState, 'readyState:', node.readyState);
+              // Always try to load, even if networkState is not 0
+              node.load();
+            }
+          }
+        };
+        
+        // Try loading with multiple delays to handle timing issues
+        setTimeout(loadVideo, 50);
+        setTimeout(loadVideo, 200);
+        setTimeout(loadVideo, 500);
+        
+        // Set up IntersectionObserver to load when visible
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && node) {
+                console.log('Video became visible, loading...', 'networkState:', node.networkState);
+                node.load();
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        observer.observe(node);
+        
+        // Store observer in WeakMap for cleanup
+        observerRef.current.set(node, observer);
+      }
+    } else if (videoRef.current) {
+      // Cleanup observer when element is removed
+      const observer = observerRef.current.get(videoRef.current);
+      if (observer) {
+        observer.disconnect();
+        observerRef.current.delete(videoRef.current);
+      }
+    }
+  };
+
+  // Force video to load when theme changes to dark mode
+  useEffect(() => {
+    if (!mounted) return;
+
+    const isDarkMode = resolvedTheme === 'dark';
+    
+    // Only try to load if in dark mode (when video is visible)
+    if (!isDarkMode) {
+      return;
+    }
+
     const loadVideo = () => {
       if (videoRef.current) {
-        // Reset and load the video
-        videoRef.current.load();
-        console.log('Video load() called, networkState:', videoRef.current.networkState);
+        // Check if video element is actually in the DOM and visible
+        const rect = videoRef.current.getBoundingClientRect();
+        const isVisible = rect.width > 0 && rect.height > 0;
+        
+        if (isVisible && videoRef.current.networkState === 0) {
+          // Reset and load the video
+          videoRef.current.load();
+          console.log('Video load() called via useEffect, networkState:', videoRef.current.networkState, 'readyState:', videoRef.current.readyState);
+        }
       }
     };
     
-    // Try immediately
-    loadVideo();
+    // Try with delays to handle conditional rendering
+    const timers = [
+      setTimeout(loadVideo, 200),
+      setTimeout(loadVideo, 500),
+      setTimeout(loadVideo, 1000),
+    ];
     
-    // Also try after a short delay in case the element isn't ready yet
-    const timer = setTimeout(loadVideo, 500);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      timers.forEach(timer => clearTimeout(timer));
+    };
+  }, [mounted, resolvedTheme]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -377,13 +459,21 @@ function ChallanContent() {
     
     console.error('Video error details:', errorDetails);
     
-    // Additional check: verify file exists
+    // Additional check: verify file exists and retry loading
     if (video.networkState === 3) {
       console.warn('Video file may not be deployed correctly. Check:', {
         expectedPath: '/ChallanPayVideo5.mp4',
         actualSrc: video.currentSrc || video.src,
         suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
       });
+      
+      // Retry loading after a short delay
+      setTimeout(() => {
+        if (videoRef.current && videoRef.current.networkState === 3) {
+          console.log('Retrying video load after error...');
+          videoRef.current.load();
+        }
+      }, 1000);
     }
     
     setErrorMessage(errorMsg);
@@ -480,7 +570,7 @@ function ChallanContent() {
                 </div>
               ) : (
                 <video
-                  ref={videoRef}
+                  ref={videoRefCallback}
                   className="w-full h-full object-cover" // Rounded corners to match phone screen
                   loop
                   playsInline
@@ -493,15 +583,18 @@ function ChallanContent() {
                   onCanPlay={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    console.log('Video can play, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadedMetadata={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    console.log('Video metadata loaded, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadStart={() => {
                     setVideoLoading(true);
                     setVideoError(false);
                     setErrorMessage('');
+                    console.log('Video load started, networkState:', videoRef.current?.networkState);
                   }}
                   onStalled={() => {
                     console.warn('Video stalled, retrying...');
@@ -516,6 +609,10 @@ function ChallanContent() {
                   onCanPlayThrough={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    console.log('Video can play through');
+                  }}
+                  onAbort={() => {
+                    console.warn('Video loading aborted');
                   }}
                   style={{
                     maxHeight: '82%', // Increased height to fill more of the screen
