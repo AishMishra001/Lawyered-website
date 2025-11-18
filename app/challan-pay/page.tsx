@@ -724,8 +724,8 @@ function ChallanWhatsapp() {
                       socialHovered === 'twitter' && !isDarkMode
                         ? {
                             // Manually adjust twitter6.png size in light mode here
-                            width: '30px',
-                            height: '30px',
+                            width: '31px',
+                            height: '31px',
                           }
                         : undefined
                     }

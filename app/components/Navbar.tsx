@@ -79,7 +79,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#00A2BB] dark:hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
                 }`}
             >
               {link.label}
@@ -104,7 +104,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
+              className={`text-black dark:text-white text-lg font-normal uppercase tracking-wider hover:text-[#00A2BB] dark:hover:text-[#22D2EE] hover:font-bold whitespace-nowrap transition-opacity duration-300 ${hasMouseMoved ? "opacity-100 visible" : "opacity-0 invisible"
                 }`}
             >
               {link.label}
@@ -183,7 +183,7 @@ export function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-black dark:text-white text-xl sm:text-2xl font-normal uppercase tracking-wider hover:text-[#22D2EE] transition-colors duration-200 w-full text-center py-3"
+                  className="text-black dark:text-white text-xl sm:text-2xl font-normal uppercase tracking-wider hover:text-[#00A2BB] dark:hover:text-[#22D2EE] transition-colors duration-200 w-full text-center py-3"
                   onClick={() => setIsMenuOpen(false)}
                   style={{
                     animationDelay: `${index * 100}ms`,

@@ -244,7 +244,7 @@ function BlogsGrid() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {blogPosts.map((post, index) => (
             <Link key={`blog-post-${index}`} href={post.href}>
-              <div className="bg-transparent border-gray-200 dark:border-gray-700 border-2 overflow-hidden flex flex-col hover:border-[#0891B2] dark:hover:border-[#22D3EE] transition-colors duration-300 cursor-pointer h-full">
+              <div className="bg-transparent border-gray-200 dark:border-gray-700 border-2 overflow-hidden flex flex-col hover:border-black dark:hover:border-[#22D3EE] transition-colors duration-300 cursor-pointer h-full">
                 <div className="aspect-video overflow-hidden">
                   <Image
                     src={post.image}

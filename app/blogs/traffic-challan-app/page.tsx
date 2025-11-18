@@ -25,7 +25,7 @@ export default function SingleBlogPage() {
         {/* Article Header */}
         <header className="space-y-4">
           <p className="text-lg text-black dark:text-gray-400">Dec 3, 2024 | 5 min read • Author: Team Lawyered</p>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0E7490] dark:text-[#22D3EE] leading-tight">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#00A2BB] dark:text-[#22D3EE] leading-tight">
             Can we pay traffic challan through an app?Explore app that offers seamless on road legal solutions
           </h1>
         </header>
