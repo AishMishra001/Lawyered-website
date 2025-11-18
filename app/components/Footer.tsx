@@ -142,7 +142,15 @@ export function Footer() {
                       onMouseLeave={() => setHovered("")}
                     >
                       <Image
-                        src={hovered === icon.id ? icon.img2 : icon.img1}
+                        src={
+                          icon.id === "youtube" && !isDarkMode && hovered !== icon.id
+                            ? "/youtube7.png"
+                            : icon.id === "twitter" && !isDarkMode && hovered === icon.id
+                            ? "/twitter6.png"
+                            : hovered === icon.id
+                            ? icon.img2
+                            : icon.img1
+                        }
                         alt={icon.id}
                         width={25}
                         height={25}

@@ -657,6 +657,14 @@ function ChallanWhatsapp() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [socialHovered, setSocialHovered] = useState('');
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+  
+  // Use consistent default during SSR to prevent hydration mismatch
+  // Default to dark mode during SSR and initial render
+  const isDarkMode = !mounted || resolvedTheme === "dark";
 
   return (
     <>
@@ -705,11 +713,26 @@ function ChallanWhatsapp() {
                 <a href="https://www.instagram.com/challanpay.in" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('instagram')} onMouseLeave={() => setSocialHovered('')}>
                   <Image src={socialHovered === 'instagram' ? '/instagram4.png' : '/instagram3.png'} alt="Instagram" width={35} height={35} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
                 </a>
-                <a href="https://x.com/challanpay25389?t=Rt94s4lkuIfFsUpMHC8_VA&s=09" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('twitter')} onMouseLeave={() => setSocialHovered('')}>
-                  <Image src={socialHovered === 'twitter' ? '/twitter5.png' : '/twitter3.png'} alt="Twitter" width={35} height={35} className="w-8  h-auto transition-opacity duration-200 hover:opacity-80" />
+                <a href="https://x.com/challanpay25389?t=Rt94s4lkuIfFsUpMHC8_VA&s=09" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('twitter')} onMouseLeave={() => setSocialHovered('')} className="inline-flex w-8 h-8 items-center justify-center">
+                  <Image 
+                    src={socialHovered === 'twitter' ? (isDarkMode ? '/twitter5.png' : '/twitter6.png') : '/twitter3.png'} 
+                    alt="Twitter" 
+                    width={35} 
+                    height={35} 
+                    className={`${socialHovered === 'twitter' && !isDarkMode ? '' : 'w-8 h-8'} object-contain transition-opacity duration-200 hover:opacity-80`}
+                    style={
+                      socialHovered === 'twitter' && !isDarkMode
+                        ? {
+                            // Manually adjust twitter6.png size in light mode here
+                            width: '30px',
+                            height: '30px',
+                          }
+                        : undefined
+                    }
+                  />
                 </a>
                 <a href="https://www.youtube.com/@LawyeredIN/videos" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('youtube')} onMouseLeave={() => setSocialHovered('')}>
-                  <Image src={socialHovered === 'youtube' ? '/youtube6.png' : '/youtube5.png'} alt="YouTube" width={35} height={35} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
+                  <Image src={socialHovered === 'youtube' ? '/youtube6.png' : (isDarkMode ? '/youtube5.png' : '/youtube7.png')} alt="YouTube" width={35} height={35} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
                 </a>
                 <a href="https://www.linkedin.com/company/challanpay/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setSocialHovered('linkedin')} onMouseLeave={() => setSocialHovered('')}>
                   <Image src={socialHovered === 'linkedin' ? '/linkedin4.png' : '/linkedin3.png'} alt="LinkedIn" width={35} height={35} className="w-8 h-auto transition-opacity duration-200 hover:opacity-80" />
