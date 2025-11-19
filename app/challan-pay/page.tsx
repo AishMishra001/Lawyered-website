@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"; // Required for animati
 import { X, Play, Pause, Volume2, VolumeX } from "lucide-react"; // Required for the close icon and play/pause controls
 import { useTheme } from "next-themes";
 import RewardBot from "../reward-Bot/page";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 // Section 1: Hero
 function ChallanHero() {
@@ -127,6 +128,33 @@ function ChallanHero() {
 
   return (
     <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "ChallanPay",
+            url: `${siteUrl}/challan-pay`,
+            provider: { "@type": "Organization", name: "Lawyered", url: siteUrl, logo: `${siteUrl}/lawyered-logo.png` },
+            description: "Fast, secure online traffic challan discovery and resolution for individuals and fleets.",
+            areaServed: "IN",
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: "ChallanPay", item: `${siteUrl}/challan-pay` },
+            ],
+          }),
+        }}
+      />
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 

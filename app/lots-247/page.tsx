@@ -9,6 +9,7 @@ import { useState, useEffect, type MouseEvent, type CSSProperties, useRef } from
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import WhatsAppBot from "../WhatsApp-Bot/page"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 // Section 1: Hero
 function LotsHero() {
@@ -118,6 +119,34 @@ function LotsHero() {
       onMouseMove={mounted && !isMobile ? handleMouseMove : undefined}
       onMouseLeave={mounted && !isMobile ? handleMouseLeave : undefined}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "LOTS247",
+            url: `${siteUrl}/lots-247`,
+            provider: { "@type": "Organization", name: "Lawyered", url: siteUrl, logo: `${siteUrl}/lawyered-logo.png` },
+            description:
+              "Real-time legal compliance, challan resolution, accident support, and regulatory risk management for fleets, logistics, and private mobility.",
+            areaServed: "IN",
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: "LOTS247", item: `${siteUrl}/lots-247` },
+            ],
+          }),
+        }}
+      />
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 
       {/* Desktop MainFrame background - use CSS to handle mobile/desktop instead of conditional rendering */}

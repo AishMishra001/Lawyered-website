@@ -7,6 +7,14 @@ import { TrustedPartners } from "./components/TrustedPartners";
 import { News } from "./components/News";
 import { SupportedBy } from "./components/SupportedBy";
 import RewardBot from "./reward-Bot/page";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Lawyered - On-Road Legal Assistance & Challan Resolution (LOTS247)",
+  description:
+    "Lawyered provides LOTS247 & ChallanPay - real-time on-road legal assistance and challan resolution across India. Protect your vehicle & fleet.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
