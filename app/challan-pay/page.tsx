@@ -870,6 +870,7 @@ function ChallanVehicleSelector() {
               placeholder="Enter Vehicle Number"
               className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
             />
+            <p className="mt-2 text-sm md:text-base text-black dark:text-white">Enter your vehicle registration number without spaces</p>
             <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
           </div>
           <button onClick={handleCheckChallan} className="w-full md:w-[50%] bg-[#0b9eb4] text-white text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-lg">
