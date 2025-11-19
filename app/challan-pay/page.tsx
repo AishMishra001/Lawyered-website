@@ -253,14 +253,65 @@ function ChallanContent() {
   const observerRef = useRef<WeakMap<HTMLVideoElement, IntersectionObserver>>(new WeakMap());
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const isLoadingRef = useRef(false);
+  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Cleanup on unmount
+    return () => {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+      isLoadingRef.current = false;
+    };
   }, []);
+
+  // Safe video loading function that prevents concurrent loads
+  const safeLoadVideo = (node: HTMLVideoElement) => {
+    // Prevent multiple simultaneous load() calls
+    if (isLoadingRef.current) {
+      return;
+    }
+
+    // Check if video already has data loaded
+    if (node.readyState >= 2) {
+      // Video already has current data, no need to reload
+      setVideoLoading(false);
+      return;
+    }
+
+    // Check if video is already loading
+    if (node.networkState === 2) {
+      // Video is currently loading, wait for it
+      return;
+    }
+
+    // Only load if video is empty or needs to be reset
+    if (node.networkState === 0 || node.networkState === 3) {
+      isLoadingRef.current = true;
+      setVideoLoading(true);
+      
+      // Clear any existing timeout
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+
+      // Use a small delay to ensure previous operations complete
+      loadTimeoutRef.current = setTimeout(() => {
+        if (node && (node.networkState === 0 || node.networkState === 3)) {
+          node.load();
+          console.log('Video load() called, networkState:', node.networkState);
+        }
+        isLoadingRef.current = false;
+      }, 100);
+    }
+  };
 
   // Callback ref to load video when element is mounted
   const videoRefCallback = (node: HTMLVideoElement | null) => {
@@ -273,32 +324,27 @@ function ChallanContent() {
                          resolvedTheme === 'dark';
       
       if (isDarkMode) {
-        const loadVideo = () => {
+        // Check if element is visible before loading
+        const checkAndLoad = () => {
           if (node) {
-            // Check if element is visible
             const rect = node.getBoundingClientRect();
             const isVisible = rect.width > 0 && rect.height > 0;
             
             if (isVisible) {
-              console.log('Loading video via callback ref, networkState:', node.networkState, 'readyState:', node.readyState);
-              // Always try to load, even if networkState is not 0
-              node.load();
+              safeLoadVideo(node);
             }
           }
         };
         
-        // Try loading with multiple delays to handle timing issues
-        setTimeout(loadVideo, 50);
-        setTimeout(loadVideo, 200);
-        setTimeout(loadVideo, 500);
+        // Single delayed load to handle timing issues
+        setTimeout(checkAndLoad, 300);
         
         // Set up IntersectionObserver to load when visible
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting && node) {
-                console.log('Video became visible, loading...', 'networkState:', node.networkState);
-                node.load();
+              if (entry.isIntersecting && node && !isLoadingRef.current) {
+                safeLoadVideo(node);
               }
             });
           },
@@ -316,6 +362,11 @@ function ChallanContent() {
         observer.disconnect();
         observerRef.current.delete(videoRef.current);
       }
+      // Clear loading flag
+      isLoadingRef.current = false;
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
     }
   };
 
@@ -330,43 +381,75 @@ function ChallanContent() {
       return;
     }
 
-    const loadVideo = () => {
-      if (videoRef.current) {
-        // Check if video element is actually in the DOM and visible
-        const rect = videoRef.current.getBoundingClientRect();
-        const isVisible = rect.width > 0 && rect.height > 0;
-        
-        if (isVisible && videoRef.current.networkState === 0) {
-          // Reset and load the video
-          videoRef.current.load();
-          console.log('Video load() called via useEffect, networkState:', videoRef.current.networkState, 'readyState:', videoRef.current.readyState);
-        }
+    if (videoRef.current && !isLoadingRef.current) {
+      const rect = videoRef.current.getBoundingClientRect();
+      const isVisible = rect.width > 0 && rect.height > 0;
+      
+      if (isVisible) {
+        safeLoadVideo(videoRef.current);
       }
-    };
-    
-    // Try with delays to handle conditional rendering
-    const timers = [
-      setTimeout(loadVideo, 200),
-      setTimeout(loadVideo, 500),
-      setTimeout(loadVideo, 1000),
-    ];
-    
-    return () => {
-      timers.forEach(timer => clearTimeout(timer));
-    };
+    }
   }, [mounted, resolvedTheme]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        setIsPlaying(false);
       } else {
-        videoRef.current.play().catch((error) => {
-          console.error('Error playing video:', error);
-          setVideoError(true);
-        });
+        // Wait for video to be ready before playing
+        const attemptPlay = () => {
+          if (!videoRef.current) return;
+
+          // Check if video is ready to play
+          if (videoRef.current.readyState >= 2) {
+            // Video has enough data to play
+            const playPromise = videoRef.current.play();
+            
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  setIsPlaying(true);
+                  setVideoLoading(false);
+                })
+                .catch((error) => {
+                  console.error('Error playing video:', error);
+                  // If play was interrupted by load, wait and retry
+                  if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+                    setTimeout(() => {
+                      if (videoRef.current && videoRef.current.readyState >= 2) {
+                        videoRef.current.play()
+                          .then(() => {
+                            setIsPlaying(true);
+                            setVideoLoading(false);
+                          })
+                          .catch((err) => {
+                            console.error('Retry play failed:', err);
+                            setVideoError(true);
+                          });
+                      }
+                    }, 500);
+                  } else {
+                    setVideoError(true);
+                  }
+                });
+            }
+          } else {
+            // Video not ready, wait for it
+            setVideoLoading(true);
+            const checkReady = () => {
+              if (videoRef.current && videoRef.current.readyState >= 2) {
+                attemptPlay();
+              } else if (videoRef.current) {
+                setTimeout(checkReady, 100);
+              }
+            };
+            checkReady();
+          }
+        };
+
+        attemptPlay();
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -382,6 +465,7 @@ function ChallanContent() {
   const handleVideoLoadedData = () => {
     setVideoLoading(false);
     setVideoError(false);
+    isLoadingRef.current = false; // Reset loading flag when data is loaded
   };
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
@@ -467,11 +551,11 @@ function ChallanContent() {
         suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
       });
       
-      // Retry loading after a short delay
+      // Retry loading after a short delay using safe load
       setTimeout(() => {
-        if (videoRef.current && videoRef.current.networkState === 3) {
+        if (videoRef.current && videoRef.current.networkState === 3 && !isLoadingRef.current) {
           console.log('Retrying video load after error...');
-          videoRef.current.load();
+          safeLoadVideo(videoRef.current);
         }
       }, 1000);
     }
@@ -479,6 +563,7 @@ function ChallanContent() {
     setErrorMessage(errorMsg);
     setVideoError(true);
     setVideoLoading(false);
+    isLoadingRef.current = false; // Reset loading flag on error
   };
 
   const handleMouseEnter = () => {
@@ -559,8 +644,8 @@ function ChallanContent() {
                       setVideoError(false);
                       setVideoLoading(true);
                       setErrorMessage('');
-                      if (videoRef.current) {
-                        videoRef.current.load();
+                      if (videoRef.current && !isLoadingRef.current) {
+                        safeLoadVideo(videoRef.current);
                       }
                     }}
                     className="px-3 py-1.5 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
@@ -583,11 +668,13 @@ function ChallanContent() {
                   onCanPlay={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    isLoadingRef.current = false;
                     console.log('Video can play, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadedMetadata={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    isLoadingRef.current = false;
                     console.log('Video metadata loaded, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadStart={() => {
@@ -598,8 +685,8 @@ function ChallanContent() {
                   }}
                   onStalled={() => {
                     console.warn('Video stalled, retrying...');
-                    if (videoRef.current) {
-                      videoRef.current.load();
+                    if (videoRef.current && !isLoadingRef.current) {
+                      safeLoadVideo(videoRef.current);
                     }
                   }}
                   onWaiting={() => {
@@ -609,6 +696,7 @@ function ChallanContent() {
                   onCanPlayThrough={() => {
                     setVideoLoading(false);
                     setVideoError(false);
+                    isLoadingRef.current = false;
                     console.log('Video can play through');
                   }}
                   onAbort={() => {
