@@ -752,10 +752,13 @@ function ChallanVehicleSelector() {
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [isValid, setIsValid] = useState(true);
     const [isTermsChecked, setIsTermsChecked] = useState(false);
+    const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
     const handleVehicleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.toUpperCase();
         setVehicleNumber(value);
+        // Reset attempted submit when user starts typing again
+        setHasAttemptedSubmit(false);
 
         // Regex to validate Indian vehicle number format, allowing for optional spaces
         const regex = /^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{0,3}[ -]?[0-9]{1,4}$/;
@@ -776,19 +779,37 @@ function ChallanVehicleSelector() {
     };
 
     const handleCheckChallan = () => {
-        if (isValid && vehicleNumber && selectedVehicleId && isTermsChecked) {
-            let vehicleType = selectedVehicleId;
-            if (vehicleType === 'two-wheeler') {
-                vehicleType = 'private-two-wheeler';
-            }
-            const url = `https://www.challanpay.in/verification/${vehicleNumber}?type=${vehicleType}`;
+        // Validate vehicle number format
+        const regex = /^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{0,3}[ -]?[0-9]{1,4}$/;
+        const isVehicleNumberValid = vehicleNumber ? regex.test(vehicleNumber) : false;
+        
+        // Mark that user has attempted to submit
+        setHasAttemptedSubmit(true);
+        
+        // Update isValid state based on validation
+        setIsValid(isVehicleNumberValid);
+        
+        if (isVehicleNumberValid && vehicleNumber && selectedVehicleId && isTermsChecked) {
+            // Create JSON data object
+            const dataObject = {
+                vehicleType: selectedVehicleId,
+                vehicleNumber: vehicleNumber,
+                terms: true
+            };
+            // URL encode the JSON data
+            const encodedData = encodeURIComponent(JSON.stringify(dataObject));
+            // Construct the new URL
+            const url = `https://www.challanpay.in/`;
             window.open(url, '_blank');
         } else {
             if (!isTermsChecked) {
                 alert("Please agree to the terms & conditions and privacy policy before checking challan status.");
-            } else {
-                alert("Please select a vehicle type and enter a valid vehicle number.");
+            } else if (!selectedVehicleId) {
+                alert("Please select a vehicle type.");
+            } else if (!vehicleNumber) {
+                alert("Please enter a vehicle number.");
             }
+            // Error message for invalid vehicle number will be shown via the UI
         }
     };
 
@@ -855,10 +876,10 @@ function ChallanVehicleSelector() {
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
               placeholder="Enter Vehicle Number"
-              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
+              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${hasAttemptedSubmit && !isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
             />
             <p className="mt-2 text-sm md:text-base text-black dark:text-white">Enter your vehicle registration number without spaces</p>
-            <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
+            <p className={`mt-2 text-sm md:text-base ${hasAttemptedSubmit && !isValid ? 'text-red-500' : 'opacity-0'}`}>Please enter a valid vehicle number.</p>
           </div>
           <button onClick={handleCheckChallan} className="w-full md:w-[50%] bg-[#0b9eb4] text-white text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-lg">
             Check Challan Status
