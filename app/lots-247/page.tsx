@@ -1281,7 +1281,11 @@ function LotsCoverage() {
             <h3 className="text-lg md:text-2xl text-white px-4">Connect with us to know more at</h3>
             <a
               href="mailto:Sales@lawyered.in"
-              className={`inline-block mt-4 md:mt-6 ${mounted && theme === 'light' ? 'bg-[#0891B2]' : ''} dark:bg-[#0891B2] hover:bg-white text-white hover:text-[#0891B2] font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4`}
+              className={`inline-block mt-4 md:mt-6 transition-colors duration-200 font-bold text-base md:text-lg px-8 md:px-12 py-3 md:py-4 ${
+                mounted && theme === 'light' 
+                  ? 'bg-[#0891B2] text-white hover:bg-white hover:text-[#0891B2]' 
+                  : ''
+              } dark:bg-[#0891B2] dark:text-white dark:hover:bg-white dark:hover:text-[#0891B2]`}
             >
               Sales@lawyered.in
             </a>
