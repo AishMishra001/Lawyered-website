@@ -8,8 +8,8 @@ export function SupportedBy() {
     { name: "AGAMI", src: "/agami-logo.png" },
     { name: "Entrepreneur", src: "/Enterpreneur-logo.png" },
     { name: "MSME", src: "/MSME-logo.png" },
-    { name: "FADA", src: "/FADA-logo.png" },
-    { name: "AITWA", src: "/aitwa.png" },
+    { name: "FADA", src: "/FADA-logo2.png" },
+    { name: "AITWA", src: "/aitwa2.png" },
   ];
 
   return (
