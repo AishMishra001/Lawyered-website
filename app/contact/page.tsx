@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Mail, RefreshCw } from "lucide-react";
 import { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { useTheme } from "next-themes";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 // Section 1: Hero
 function AboutHero() {
@@ -82,6 +83,48 @@ function AboutHero() {
 
   return (
     <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Lawyered",
+            url: siteUrl,
+            logo: `${siteUrl}/lawyered-logo.png`,
+            contactPoint: [
+              { "@type": "ContactPoint", contactType: "customer service", areaServed: "IN", availableLanguage: ["en"] },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "Lawyered",
+            url: siteUrl,
+            image: `${siteUrl}/lawyered-logo.png`,
+            telephone: "+91-9988441033",
+            areaServed: "IN",
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: "Contact", item: `${siteUrl}/contact` },
+            ],
+          }),
+        }}
+      />
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 

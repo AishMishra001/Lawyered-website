@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, MouseEvent, CSSProperties } from "react";
 import { useTheme } from "next-themes";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 // Section 1: Hero
 function BlogsHero() {
@@ -82,6 +83,19 @@ function BlogsHero() {
 
   return (
     <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blogs` },
+            ],
+          }),
+        }}
+      />
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 
