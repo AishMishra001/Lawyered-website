@@ -253,7 +253,7 @@ function ChallanContent() {
   const observerRef = useRef<WeakMap<HTMLVideoElement, IntersectionObserver>>(new WeakMap());
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Must be true for autoplay to work in browsers
   const [videoError, setVideoError] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -377,6 +377,44 @@ function ChallanContent() {
       }
     }
   }, [mounted, resolvedTheme]);
+
+  // Auto-play video when it's ready
+  useEffect(() => {
+    if (!videoRef.current || !mounted) return;
+
+    const video = videoRef.current;
+    
+    const attemptAutoPlay = () => {
+      if (video.readyState >= 2 && video.paused && !isPlaying) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+              setVideoLoading(false);
+            })
+            .catch((error) => {
+              console.log('Autoplay prevented:', error);
+              // Autoplay was prevented, which is fine - user can click to play
+            });
+        }
+      }
+    };
+
+    // Try to play when video can play
+    video.addEventListener('canplay', attemptAutoPlay);
+    video.addEventListener('loadeddata', attemptAutoPlay);
+
+    // Also try immediately if video is already ready
+    if (video.readyState >= 2) {
+      attemptAutoPlay();
+    }
+
+    return () => {
+      video.removeEventListener('canplay', attemptAutoPlay);
+      video.removeEventListener('loadeddata', attemptAutoPlay);
+    };
+  }, [mounted, isPlaying]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -533,7 +571,7 @@ function ChallanContent() {
     // Additional check: verify file exists and retry loading
     if (video.networkState === 3) {
       console.warn('Video file may not be deployed correctly. Check:', {
-        expectedPath: '/ChallanPayVideo5.mp4',
+        expectedPath: '/ChallanPay.mp4',
         actualSrc: video.currentSrc || video.src,
         suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
       });
@@ -648,6 +686,7 @@ function ChallanContent() {
                   playsInline
                   muted={isMuted}
                   preload="auto"
+                  autoPlay
                   onPlay={handleVideoPlay}
                   onPause={handleVideoPause}
                   onLoadedData={handleVideoLoadedData}
@@ -695,8 +734,7 @@ function ChallanContent() {
                     borderRadius: '1.2rem',
                   }}
                 >
-                  <source src="/ChallanPayVideo5.mp4" type="video/mp4" />
-                  <source src="/ChallanPayVideo5.mp4" type="video/mpeg" />
+                  <source src="/ChallanPay.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}

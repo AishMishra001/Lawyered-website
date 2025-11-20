@@ -176,22 +176,8 @@ function LotsHero() {
             height: 'auto'
           }}>
             {videoError ? (
-              <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gray-800 text-black dark:text-white p-4">
-                <p className="text-lg font-semibold mb-2">Video not available</p>
-                <p className="text-sm text-gray-400 text-center">{errorMessage || 'Unable to load video'}</p>
-                <button
-                  onClick={() => {
-                    setVideoError(false)
-                    setVideoLoading(true)
-                    setErrorMessage('')
-                    if (videoRef.current) {
-                      videoRef.current.load()
-                    }
-                  }}
-                  className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                >
-                  Retry
-                </button>
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-800 text-black dark:text-white">
+                <p>Video not available</p>
               </div>
             ) : (
               <video
@@ -202,123 +188,18 @@ function LotsHero() {
                 loop
                 muted
                 playsInline
-                preload="metadata"
-                onPlay={() => {
-                  setIsVideoPlaying(true)
-                  setVideoLoading(false)
-                }}
+                preload="auto"
+                onPlay={() => setIsVideoPlaying(true)}
                 onPause={() => setIsVideoPlaying(false)}
-                onLoadedData={() => {
-                  setVideoLoading(false)
-                  setVideoError(false)
-                }}
-                onCanPlay={() => setVideoLoading(false)}
-                onError={(e) => {
-                  const video = e.currentTarget
-                  const error = video.error
-                  let errorMsg = 'Video failed to load'
-                  
-                  // Network state meanings:
-                  // 0 = NETWORK_EMPTY, 1 = NETWORK_IDLE, 2 = NETWORK_LOADING, 3 = NETWORK_NO_SOURCE
-                  const networkStateMessages: Record<number, string> = {
-                    0: 'Video source is empty',
-                    1: 'Video is idle',
-                    2: 'Video is loading',
-                    3: 'Video source not found - check file path and deployment'
-                  }
-                  
-                  // Ready state meanings:
-                  // 0 = HAVE_NOTHING, 1 = HAVE_METADATA, 2 = HAVE_CURRENT_DATA, 3 = HAVE_FUTURE_DATA, 4 = HAVE_ENOUGH_DATA
-                  const readyStateMessages: Record<number, string> = {
-                    0: 'No video data available',
-                    1: 'Metadata loaded',
-                    2: 'Current frame data available',
-                    3: 'Future data available',
-                    4: 'Enough data to play'
-                  }
-                  
-                  // Check network state first (most common issue)
-                  if (video.networkState === 3) {
-                    errorMsg = networkStateMessages[3] || 'Video source not found'
-                  } else if (error && error.code !== null && error.code !== undefined) {
-                    // Handle specific error codes
-                    switch (error.code) {
-                      case error.MEDIA_ERR_ABORTED:
-                        errorMsg = 'Video loading aborted'
-                        break
-                      case error.MEDIA_ERR_NETWORK:
-                        errorMsg = 'Network error while loading video'
-                        break
-                      case error.MEDIA_ERR_DECODE:
-                        errorMsg = 'Video decoding error'
-                        break
-                      case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-                        errorMsg = 'Video format not supported'
-                        break
-                      default:
-                        errorMsg = `Video error code: ${error.code}`
-                    }
-                  } else if (video.readyState === 0) {
-                    errorMsg = 'No video data loaded - file may not exist or path is incorrect'
-                  }
-                  
-                  // Enhanced error logging
-                  const errorDetails = {
-                    errorCode: error ? error.code : null,
-                    errorMessage: error ? error.message : null,
-                    networkState: video.networkState,
-                    networkStateText: networkStateMessages[video.networkState] || 'Unknown',
-                    readyState: video.readyState,
-                    readyStateText: readyStateMessages[video.readyState] || 'Unknown',
-                    src: video.currentSrc || video.src,
-                    videoSrc: video.src,
-                    videoCurrentSrc: video.currentSrc,
-                    videoSources: Array.from(video.querySelectorAll('source')).map(s => ({
-                      src: s.getAttribute('src'),
-                      type: s.getAttribute('type')
-                    }))
-                  }
-                  
-                  console.error('Video error details:', errorDetails)
-                  
-                  // Additional check: verify file exists
-                  if (video.networkState === 3) {
-                    console.warn('Video file may not be deployed correctly. Check:', {
-                      expectedPath: '/lots-video.mp4',
-                      actualSrc: video.currentSrc || video.src,
-                      suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
-                    })
-                  }
-                  
-                  setErrorMessage(errorMsg)
-                  setVideoError(true)
-                  setVideoLoading(false)
-                }}
-                onLoadStart={() => {
-                  setVideoLoading(true)
-                  setVideoError(false)
-                  setErrorMessage('')
-                }}
-                onStalled={() => {
-                  console.warn('Video stalled, retrying...')
-                  if (videoRef.current) {
-                    videoRef.current.load()
-                  }
-                }}
+                onError={() => setVideoError(true)}
               >
-                <source src="/lots-video.mp4" type="video/mp4" />
-                <source src="/lots-video.mp4" type="video/mpeg" />
+                <source src="/lots.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             )}
-            {videoLoading && !videoError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 z-10">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-              </div>
-            )}
           </div>
         </div>
-
+        
       </div>
     </div>
   )
