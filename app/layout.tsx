@@ -7,6 +7,7 @@ import { Navbar } from "@/app/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
+import { Suspense } from "react"
 import Analytics from "@/app/components/Analytics"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -102,7 +103,9 @@ export default function RootLayout({
         )}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <Navbar />
-          <Analytics />
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
