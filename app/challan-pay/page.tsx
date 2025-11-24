@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"; // Required for animati
 import { X, Play, Pause, Volume2, VolumeX } from "lucide-react"; // Required for the close icon and play/pause controls
 import { useTheme } from "next-themes";
 import RewardBot from "../reward-Bot/page";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 // Section 1: Hero
 function ChallanHero() {
@@ -127,6 +128,84 @@ function ChallanHero() {
 
   return (
     <div className="relative w-full overflow-hidden" onMouseMove={!isMobile ? handleMouseMove : undefined} onMouseLeave={!isMobile ? handleMouseLeave : undefined}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "ChallanPay",
+            url: `${siteUrl}/challan-pay`,
+            provider: { "@type": "Organization", name: "Lawyered", url: siteUrl, logo: `${siteUrl}/lawyered-logo.png` },
+            description: "Fast, secure online traffic challan discovery and resolution for individuals and fleets.",
+            areaServed: "IN",
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: "ChallanPay", item: `${siteUrl}/challan-pay` },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is ChallanPay?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "A unified platform to discover, pay, and track traffic challans across India with secure, authorized payments.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How do I check and pay my challans?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Enter vehicle or license details to fetch challans, review information, and complete payment securely within ChallanPay.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Which states and authorities are supported?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "ChallanPay integrates data from multiple state transport departments and enforcement authorities to provide nationwide coverage.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I dispute a challan via ChallanPay?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Dispute guidance and workflows are available. For complex matters, connect with on‑road legal assistance via LOTS247.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is ChallanPay suitable for fleets?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Fleet operators can discover and resolve challans across vehicles, centralize visibility, and streamline compliance operations.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       {/* Background elements */}
       <div className="absolute inset-0 h-full w-full bg-grid-white/[0.05]"></div>
 

@@ -8,6 +8,7 @@ export function Footer() {
   const [hovered, setHovered] = useState("");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const devEmail = process.env.NEXT_PUBLIC_DEV_CONTACT_EMAIL;
 
   useEffect(() => setMounted(true), []);
   
@@ -177,6 +178,14 @@ export function Footer() {
           <Link href="/terms-and-conditions" className="hover:text-[#00A2BB] dark:hover:text-[#22D2EE] hover:font-bold">
             Terms & Conditions
           </Link>
+          {devEmail && (
+            <>
+              {" "}|{" "}
+              <a href={`mailto:${devEmail}`} className="hover:text-[#22D2EE] hover:font-bold">
+                Developer Contact
+              </a>
+            </>
+          )}
         </p>
       </div>
     </>
