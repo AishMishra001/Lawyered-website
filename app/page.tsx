@@ -14,6 +14,17 @@ export const metadata: Metadata = {
   description:
     "Lawyered provides LOTS247 & ChallanPay - real-time on-road legal assistance and challan resolution across India. Protect your vehicle & fleet.",
   alternates: { canonical: "/" },
+  keywords: [
+    "Lawyered",
+    "legal tech",
+    "on-road legal assistance",
+    "mobility legal assistance",
+    "challan resolution",
+    "fleet compliance",
+    "RTO services",
+    "LOTS247",
+    "ChallanPay"
+  ],
 };
 
 export default function Home() {

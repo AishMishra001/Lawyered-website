@@ -5,6 +5,16 @@ export const metadata: Metadata = {
   description:
     "Fast, secure challan discovery and resolution for individuals, fleets and enterprises across India.",
   alternates: { canonical: "/challan-pay" },
+  keywords: [
+    "ChallanPay",
+    "traffic challan",
+    "e-challan",
+    "pay traffic challan online",
+    "discover challan",
+    "challan payment",
+    "online challan payment",
+    "India e-challan"
+  ],
 }
 
 export default function ChallanPayLayout({ children }: { children: React.ReactNode }) {

@@ -11,6 +11,7 @@ import { useTheme } from "next-themes"
 import WhatsAppBot from "../WhatsApp-Bot/page"
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
+
 // Section 1: Hero
 function LotsHero() {
   const { theme } = useTheme()
@@ -143,6 +144,57 @@ function LotsHero() {
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
               { "@type": "ListItem", position: 2, name: "LOTS247", item: `${siteUrl}/lots-247` },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is LOTS247?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "A 24×7 on‑road legal assistance platform for fleets and drivers, offering compliance tracking, instant challan resolution, and accident support across India.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Who can use LOTS247?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Commercial fleet operators, logistics companies, ride‑hailing providers, and private vehicle owners seeking dependable mobility legal support.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does LOTS247 help with challan resolution?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. LOTS247 provides discovery, guidance, and closure workflows for traffic challans, helping reduce operational disruption and penalties.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is LOTS247 available 24×7?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Access on‑call legal assistance at any time for roadside issues, incidents, or compliance queries.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is LOTS247 available across India?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. LOTS247 serves vehicle owners and fleets nationwide with state‑wise compliance coverage and legal workflows.",
+                },
+              },
             ],
           }),
         }}
