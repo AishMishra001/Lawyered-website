@@ -171,11 +171,11 @@ export function Footer() {
       <div className="border-t border-gray-200 dark:border-gray-700 py-4 md:py-6 px-4 md:px-26">
         <p className="text-center text-black dark:text-white font-normal text-sm md:text-base">
           © 2025 Lawyered. All Rights Reserved |{" "}
-          <Link href="/privacy-policy" className="hover:text-[#22D2EE] hover:font-bold">
+          <Link href="/privacy-policy" className="hover:text-[#00A2BB] dark:hover:text-[#22D2EE] hover:font-bold">
             Privacy Policy
           </Link>{" "}
           |{" "}
-          <Link href="/terms-and-conditions" className="hover:text-[#22D2EE] hover:font-bold">
+          <Link href="/terms-and-conditions" className="hover:text-[#00A2BB] dark:hover:text-[#22D2EE] hover:font-bold">
             Terms & Conditions
           </Link>
           {devEmail && (

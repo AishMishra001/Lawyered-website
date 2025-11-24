@@ -332,7 +332,7 @@ function ChallanContent() {
   const observerRef = useRef<WeakMap<HTMLVideoElement, IntersectionObserver>>(new WeakMap());
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Must be true for autoplay to work in browsers
   const [videoError, setVideoError] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -398,42 +398,36 @@ function ChallanContent() {
       // Store reference
       videoRef.current = node;
       
-      // Only load if in dark mode (when video is visible)
-      const isDarkMode = document.documentElement.classList.contains('dark') || 
-                         resolvedTheme === 'dark';
+      // Check if element is visible before loading
+      const checkAndLoad = () => {
+        if (node) {
+          const rect = node.getBoundingClientRect();
+          const isVisible = rect.width > 0 && rect.height > 0;
+          
+          if (isVisible) {
+            safeLoadVideo(node);
+          }
+        }
+      };
       
-      if (isDarkMode) {
-        // Check if element is visible before loading
-        const checkAndLoad = () => {
-          if (node) {
-            const rect = node.getBoundingClientRect();
-            const isVisible = rect.width > 0 && rect.height > 0;
-            
-            if (isVisible) {
+      // Single delayed load to handle timing issues
+      setTimeout(checkAndLoad, 300);
+      
+      // Set up IntersectionObserver to load when visible
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && node && !isLoadingRef.current) {
               safeLoadVideo(node);
             }
-          }
-        };
-        
-        // Single delayed load to handle timing issues
-        setTimeout(checkAndLoad, 300);
-        
-        // Set up IntersectionObserver to load when visible
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting && node && !isLoadingRef.current) {
-                safeLoadVideo(node);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-        observer.observe(node);
-        
-        // Store observer in WeakMap for cleanup
-        observerRef.current.set(node, observer);
-      }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(node);
+      
+      // Store observer in WeakMap for cleanup
+      observerRef.current.set(node, observer);
     } else if (videoRef.current) {
       // Cleanup observer when element is removed
       const observer = observerRef.current.get(videoRef.current);
@@ -449,16 +443,9 @@ function ChallanContent() {
     }
   };
 
-  // Force video to load when theme changes to dark mode
+  // Force video to load when theme changes or component mounts
   useEffect(() => {
     if (!mounted) return;
-
-    const isDarkMode = resolvedTheme === 'dark';
-    
-    // Only try to load if in dark mode (when video is visible)
-    if (!isDarkMode) {
-      return;
-    }
 
     if (videoRef.current && !isLoadingRef.current) {
       const rect = videoRef.current.getBoundingClientRect();
@@ -469,6 +456,44 @@ function ChallanContent() {
       }
     }
   }, [mounted, resolvedTheme]);
+
+  // Auto-play video when it's ready
+  useEffect(() => {
+    if (!videoRef.current || !mounted) return;
+
+    const video = videoRef.current;
+    
+    const attemptAutoPlay = () => {
+      if (video.readyState >= 2 && video.paused && !isPlaying) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+              setVideoLoading(false);
+            })
+            .catch((error) => {
+              console.log('Autoplay prevented:', error);
+              // Autoplay was prevented, which is fine - user can click to play
+            });
+        }
+      }
+    };
+
+    // Try to play when video can play
+    video.addEventListener('canplay', attemptAutoPlay);
+    video.addEventListener('loadeddata', attemptAutoPlay);
+
+    // Also try immediately if video is already ready
+    if (video.readyState >= 2) {
+      attemptAutoPlay();
+    }
+
+    return () => {
+      video.removeEventListener('canplay', attemptAutoPlay);
+      video.removeEventListener('loadeddata', attemptAutoPlay);
+    };
+  }, [mounted, isPlaying]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -625,7 +650,7 @@ function ChallanContent() {
     // Additional check: verify file exists and retry loading
     if (video.networkState === 3) {
       console.warn('Video file may not be deployed correctly. Check:', {
-        expectedPath: '/ChallanPayVideo5.mp4',
+        expectedPath: '/ChallanPay.mp4',
         actualSrc: video.currentSrc || video.src,
         suggestion: 'Verify the file exists in the public folder and is deployed to Vercel'
       });
@@ -656,7 +681,7 @@ function ChallanContent() {
   return (
     <div className="pb-12 pt-4 md:pt-0 md:pb-16 lg:pb-24 px-4 md:px-16 lg:px-26">
       <div className="max-w-8xl mx-auto md:grid md:grid-cols-5 md:gap-8 md:items-start">
-        <div className="col-span-1 md:col-span-5 dark:md:col-span-3 text-sm md:text-base text-black dark:text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
+        <div className="col-span-1 md:col-span-3 text-sm md:text-base text-black dark:text-white leading-relaxed space-y-5 md:space-y-6 lg:space-y-8 text-center md:text-left">
           <p className="px-4 md:px-0">
             {"India's traffic compliance system is deeply fragmented, inefficient, and inconsistent across states. 8 Cr+ challans are issued annually, valued at over ₹12,000 Cr, but nearly 75% remain unpaid, clogging judicial systems and burdening citizens and businesses alike."}
           </p>
@@ -678,10 +703,10 @@ function ChallanContent() {
             With <span className="text-[#00A2BB] dark:text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
           </p>
         </div>
-        <div className="hidden dark:md:col-span-2 dark:flex dark:items-center dark:justify-center dark:p-4 dark:overflow-hidden">
+        <div className="hidden md:col-span-2 md:flex md:items-center md:justify-center md:p-4 md:overflow-hidden">
           <div className="relative w-full max-w-xs flex items-center justify-center" style={{ minHeight: '600px', height: '600px' }}>
             {/* Background color layer - first layers */}
-            <div className="absolute bg-[#181820] rounded-lg" style={{ height: '130%', width: '150%', left: '-25%', top: '-15%' }}></div>
+            <div className={`absolute rounded-lg ${mounted && resolvedTheme === 'dark' ? 'bg-[#181820]' : 'bg-[#F7F7F7]'}`} style={{ height: '130%', width: '150%', left: '-25%', top: '-15%' }}></div>
             
             {/* Phone frame image - second layer, can adjust height independently */}
             <div className="absolute inset-0 z-10 w-full flex items-center justify-center pointer-events-none">
@@ -740,6 +765,7 @@ function ChallanContent() {
                   playsInline
                   muted={isMuted}
                   preload="auto"
+                  autoPlay
                   onPlay={handleVideoPlay}
                   onPause={handleVideoPause}
                   onLoadedData={handleVideoLoadedData}
@@ -787,8 +813,7 @@ function ChallanContent() {
                     borderRadius: '1.2rem',
                   }}
                 >
-                  <source src="/ChallanPayVideo5.mp4" type="video/mp4" />
-                  <source src="/ChallanPayVideo5.mp4" type="video/mpeg" />
+                  <source src="/ChallanPay.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}
@@ -844,10 +869,13 @@ function ChallanVehicleSelector() {
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [isValid, setIsValid] = useState(true);
     const [isTermsChecked, setIsTermsChecked] = useState(false);
+    const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
     const handleVehicleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.toUpperCase();
         setVehicleNumber(value);
+        // Reset attempted submit when user starts typing again
+        setHasAttemptedSubmit(false);
 
         // Regex to validate Indian vehicle number format, allowing for optional spaces
         const regex = /^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{0,3}[ -]?[0-9]{1,4}$/;
@@ -868,19 +896,37 @@ function ChallanVehicleSelector() {
     };
 
     const handleCheckChallan = () => {
-        if (isValid && vehicleNumber && selectedVehicleId && isTermsChecked) {
-            let vehicleType = selectedVehicleId;
-            if (vehicleType === 'two-wheeler') {
-                vehicleType = 'private-two-wheeler';
-            }
-            const url = `https://www.challanpay.in/verification/${vehicleNumber}?type=${vehicleType}`;
+        // Validate vehicle number format
+        const regex = /^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{0,3}[ -]?[0-9]{1,4}$/;
+        const isVehicleNumberValid = vehicleNumber ? regex.test(vehicleNumber) : false;
+        
+        // Mark that user has attempted to submit
+        setHasAttemptedSubmit(true);
+        
+        // Update isValid state based on validation
+        setIsValid(isVehicleNumberValid);
+        
+        if (isVehicleNumberValid && vehicleNumber && selectedVehicleId && isTermsChecked) {
+            // Create JSON data object
+            const dataObject = {
+                vehicleType: selectedVehicleId,
+                vehicleNumber: vehicleNumber,
+                terms: true
+            };
+            // URL encode the JSON data
+            const encodedData = encodeURIComponent(JSON.stringify(dataObject));
+            // Construct the new URL
+            const url = `https://www.challanpay.in/`;
             window.open(url, '_blank');
         } else {
             if (!isTermsChecked) {
                 alert("Please agree to the terms & conditions and privacy policy before checking challan status.");
-            } else {
-                alert("Please select a vehicle type and enter a valid vehicle number.");
+            } else if (!selectedVehicleId) {
+                alert("Please select a vehicle type.");
+            } else if (!vehicleNumber) {
+                alert("Please enter a vehicle number.");
             }
+            // Error message for invalid vehicle number will be shown via the UI
         }
     };
 
@@ -947,10 +993,10 @@ function ChallanVehicleSelector() {
               value={vehicleNumber}
               onChange={handleVehicleNumberChange}
               placeholder="Enter Vehicle Number"
-              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${!isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
+              className={`w-full bg-white text-black text-lg md:text-2xl font-mono tracking-widest p-4 md:p-8 rounded-lg outline-none ${hasAttemptedSubmit && !isValid ? 'border-2 border-red-500' : 'border border-gray-200 dark:border-none'}`}
             />
             <p className="mt-2 text-sm md:text-base text-black dark:text-white">Enter your vehicle registration number without spaces</p>
-            <p className={`mt-2 text-sm md:text-base ${isValid ? 'opacity-0' : 'text-red-500'}`}>Please enter a valid vehicle number.</p>
+            <p className={`mt-2 text-sm md:text-base ${hasAttemptedSubmit && !isValid ? 'text-red-500' : 'opacity-0'}`}>Please enter a valid vehicle number.</p>
           </div>
           <button onClick={handleCheckChallan} className="w-full md:w-[50%] bg-[#0b9eb4] text-white text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-lg">
             Check Challan Status
@@ -983,11 +1029,11 @@ function ChallanVehicleSelector() {
             </div>
             <label htmlFor="terms" className="text-black dark:text-white text-xs md:text-base leading-relaxed">
               I agree to the{' '}
-              <Link href="https://lawyered.in/p/terms-and-conditions-for-challan-resolution" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
+              <Link href="https://www.challanpay.in/terms-and-condition" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
                 terms & conditions
               </Link>
               {' '}and the{' '}
-              <Link href="https://lawyered.in/p/privacy-policy" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
+              <Link href="https://www.challanpay.in/privacy-policy" className="font-bold underline text-[#00A2BB] dark:text-[#22D2EE]">
                 privacy policy
               </Link>
               , and authorize ChallanPay to fetch my vehicle registration and challan details from the Government database.
