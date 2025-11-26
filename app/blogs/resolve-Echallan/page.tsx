@@ -3,11 +3,59 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
+export const metadata: Metadata = {
+  title: "Resolve E‑Challans Online: Step‑by‑Step Guide",
+  description:
+    "How to pay, check status, and dispute traffic e‑challans in India using official platforms and best practices.",
+  alternates: { canonical: "/blogs/resolve-Echallan" },
+  keywords: [
+    "resolve e‑challan",
+    "pay traffic fine",
+    "Parivahan e‑challan",
+    "check challan status",
+    "dispute challan",
+  ],
+};
 
 export default function SingleBlogPage() {
   return (
     <div className="pt-28 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 px-4 md:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+                { "@type": "ListItem", position: 2, name: "Blogs", item: `${siteUrl}/blogs` },
+                { "@type": "ListItem", position: 3, name: "Resolve E‑Challan", item: `${siteUrl}/blogs/resolve-Echallan` },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: "Resolve E‑Challans Online: Step‑by‑Step Guide",
+              description:
+                "How to pay, check status, and dispute traffic e‑challans in India using official platforms and best practices.",
+              image: `${siteUrl}/blog6.png`,
+              datePublished: "2024-12-03",
+              dateModified: "2024-12-03",
+              author: { "@type": "Organization", name: "Team Lawyered" },
+              mainEntityOfPage: `${siteUrl}/blogs/resolve-Echallan`,
+              url: `${siteUrl}/blogs/resolve-Echallan`
+            }),
+          }}
+        />
 
         {/* Back Button & Breadcrumbs */}
         <div className="mb-8 mt-4 md:mt-0">

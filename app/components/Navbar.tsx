@@ -7,7 +7,7 @@ import { ThemeSwitch } from "@/components/theme-switch"
 
 
 export function Navbar() {
-  const { theme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasMouseMoved, setHasMouseMoved] = useState(false)

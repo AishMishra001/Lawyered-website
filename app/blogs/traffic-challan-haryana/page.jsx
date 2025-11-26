@@ -3,11 +3,58 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
+export const metadata = {
+  title: "Traffic Challan in Haryana: Instant Online Payment Methods",
+  description:
+    "Best platforms and steps to pay Haryana traffic challans online, plus tips to stay compliant and avoid penalties.",
+  alternates: { canonical: "/blogs/traffic-challan-haryana" },
+  keywords: [
+    "Haryana traffic challan",
+    "pay challan online",
+    "Parivahan Haryana",
+    "instant challan payment",
+    "LOTS247",
+  ],
+};
 
 export default function SingleBlogPage() {
   return (
     <div className="pt-28 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 px-4 md:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+                { "@type": "ListItem", position: 2, name: "Blogs", item: `${siteUrl}/blogs` },
+                { "@type": "ListItem", position: 3, name: "Haryana Challan", item: `${siteUrl}/blogs/traffic-challan-haryana` },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: "Traffic Challan in Haryana: Instant Online Payment Methods",
+              description:
+                "Best platforms and steps to pay Haryana traffic challans online, plus tips to stay compliant and avoid penalties.",
+              image: `${siteUrl}/blog4.png`,
+              datePublished: "2024-12-03",
+              dateModified: "2024-12-03",
+              author: { "@type": "Organization", name: "Team Lawyered" },
+              mainEntityOfPage: `${siteUrl}/blogs/traffic-challan-haryana`,
+              url: `${siteUrl}/blogs/traffic-challan-haryana`
+            }),
+          }}
+        />
 
         {/* Back Button & Breadcrumbs */}
         <div className="mb-8 mt-4 md:mt-0">
