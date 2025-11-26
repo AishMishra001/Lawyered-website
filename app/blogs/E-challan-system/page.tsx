@@ -3,11 +3,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 export default function SingleBlogPage() {
   return (
     <div className="pt-28 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 px-4 md:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+                { "@type": "ListItem", position: 2, name: "Blogs", item: `${siteUrl}/blogs` },
+                { "@type": "ListItem", position: 3, name: "E‑Challan System", item: `${siteUrl}/blogs/E-challan-system` },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: "Himachal E‑Challan System – Stay Compliant with LOTS247",
+              description:
+                "Overview of Himachal Pradesh's new e‑challan system and how LOTS247 helps drivers and fleets stay compliant across documentation and enforcement.",
+              image: `${siteUrl}/blog1.png`,
+              datePublished: "2024-12-03",
+              dateModified: "2024-12-03",
+              author: { "@type": "Organization", name: "Team Lawyered" },
+              mainEntityOfPage: `${siteUrl}/blogs/E-challan-system`,
+              url: `${siteUrl}/blogs/E-challan-system`
+            }),
+          }}
+        />
 
         {/* Back Button & Breadcrumbs */}
         <div className="mb-6 md:mb-8">
@@ -42,11 +75,11 @@ export default function SingleBlogPage() {
 
         {/* Article Body */}
         <article className="prose prose-invert max-w-none text-black dark:text-gray-300 space-y-6 md:space-y-12">
-          <h1 className="text-black dark:text-white font-bold text-2xl">
+          <h2 className="text-black dark:text-white font-bold text-2xl">
             Stay Compliant with Himachal&apos;s New E-Challan System: How LOTS Can Keep You Covered on the Road
-          </h1>
+          </h2>
 
-          <p>Himachal&apos;s new e-challan system is revolutionising road compliance. Discover how LOTS can help you stay updated on vehicle documentation, avoid fines, and access legal support as needed. Learn more with our guide.</p>
+          <p>Himachal&apos;s new e-challan system is revolutionising road compliance. Discover how <Link href="/lots-247" className="text-[#22D3EE] hover:underline">LOTS</Link> can help you stay updated on vehicle documentation, avoid fines, and access legal support as needed. Learn more with our guide.</p>
 
           {/* Content from Photo 2 */}
           <h2 className="text-black dark:text-white font-bold text-2xl">Himachal&apos;s New E-Challan System: What It Means for Drivers and How LOTS Can Help You Stay Covered</h2>
@@ -100,6 +133,9 @@ export default function SingleBlogPage() {
           <p>
             By integrating on road legal guidance within these apps, drivers can make informed decisions, fostering a culture of awareness and responsibility on the roads.
           </p>
+          <p>
+            To check and resolve challans online, visit <Link href="/challan-pay" className="text-[#22D3EE] hover:underline">ChallanPay</Link>. For fleets seeking dependable legal cover, explore <Link href="/lots-247" className="text-[#22D3EE] hover:underline">LOTS247</Link>.
+          </p>
 
           {/* Content from Photo 4 */}
           <h2 className="text-black dark:text-white font-bold text-2xl">On-Demand Legal Assistance
@@ -112,3 +148,20 @@ export default function SingleBlogPage() {
     </div>
   );
 }
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Himachal E‑Challan System – Stay Compliant with LOTS247",
+  description:
+    "Overview of Himachal Pradesh's new e‑challan system and how LOTS247 helps drivers and fleets stay compliant across documentation and enforcement.",
+  alternates: { canonical: "/blogs/E-challan-system" },
+  keywords: [
+    "Himachal e-challan",
+    "NIC e-challan",
+    "NHAI toll e-challan",
+    "vehicle compliance Himachal",
+    "LOTS247 compliance",
+    "PUC insurance compliance",
+    "state tax AITP"
+  ],
+};
