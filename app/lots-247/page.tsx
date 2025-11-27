@@ -116,7 +116,7 @@ function LotsHero() {
 
   return (
     <div
-      className="relative w-full text-center pt-30 min-h-screen pb-12"
+      className="relative w-full text-center pt-30 min-h-[600px] lg:min-h-screen pb-8 lg:pb-12"
       onMouseMove={mounted && !isMobile ? handleMouseMove : undefined}
       onMouseLeave={mounted && !isMobile ? handleMouseLeave : undefined}
     >
@@ -211,7 +211,7 @@ function LotsHero() {
       </div>
 
       {/* Mobile Grid background */}
-      <div className="absolute inset-0 z-0 lg:hidden" style={mounted ? mobileSpotlightStyle : {}}>
+      <div className="absolute inset-x-0 top-0 h-[92%] lg:inset-0 lg:h-auto z-0 lg:hidden" style={mounted ? mobileSpotlightStyle : {}}>
         {mounted && (
           <div className="relative w-full h-full opacity-40">
             <Image src={theme === 'light' ? "/mobileGrid1.png" : "/mobileGrid.png"} alt="Mobile Grid Background" fill className="object-cover" />
