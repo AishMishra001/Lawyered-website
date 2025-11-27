@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const gaId = "G-D6G4GWDGL9"
 
 export default function Analytics() {
   const pathname = usePathname()

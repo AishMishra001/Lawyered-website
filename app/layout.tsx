@@ -13,7 +13,7 @@ import Analytics from "@/app/components/Analytics"
 const inter = Inter({ subsets: ["latin"] })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const gaId = "G-D6G4GWDGL9"
 
 export const metadata: Metadata = {
   title: "Lawyered - Resolving Legal Risks For Mobility",
