@@ -4,12 +4,13 @@ import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { ThemeSwitch } from "@/components/theme-switch"
+import { useMobileMenu } from "@/app/contexts/MobileMenuContext"
 
 
 export function Navbar() {
   const { resolvedTheme } = useTheme()
+  const { isMenuOpen, setIsMenuOpen } = useMobileMenu()
   const [mounted, setMounted] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasMouseMoved, setHasMouseMoved] = useState(false)
   const [navbarHeight, setNavbarHeight] = useState(80)
   const headerRef = useRef<HTMLElement>(null)
@@ -197,7 +198,7 @@ export function Navbar() {
             height: `calc(100vh - ${navbarHeight}px)`
           }}
         >
-          <div className="flex flex-col justify-center items-center h-full px-6 py-8">
+          <div className="flex flex-col justify-start items-center h-full px-6 pt-8 pb-8">
             <div className="flex flex-col items-center space-y-6 w-full max-w-sm">
               {allLinks.map((link, index) => (
                 <Link

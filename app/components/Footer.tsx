@@ -11,7 +11,7 @@ export function Footer() {
   const devEmail = process.env.NEXT_PUBLIC_DEV_CONTACT_EMAIL;
 
   useEffect(() => setMounted(true), []);
-  
+
   // Use consistent default during SSR to prevent hydration mismatch
   // Default to dark mode during SSR and initial render
   const isDarkMode = !mounted || resolvedTheme === "dark";
@@ -63,7 +63,7 @@ export function Footer() {
                     <li>
                       <Link
                         href="/"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         HOME
                       </Link>
@@ -71,7 +71,7 @@ export function Footer() {
                     <li>
                       <Link
                         href="/ceo-message"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         CEO&#39;S MESSAGE
                       </Link>
@@ -79,15 +79,15 @@ export function Footer() {
                     <li>
                       <Link
                         href="/lots-247"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         LOTS247
                       </Link>
-                    </li>
+                    </li> 
                     <li>
                       <Link
                         href="/challan-pay"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         CHALLANPAY
                       </Link>
@@ -99,7 +99,7 @@ export function Footer() {
                     <li>
                       <Link
                         href="/about"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         ABOUT US
                       </Link>
@@ -107,7 +107,7 @@ export function Footer() {
                     <li>
                       <Link
                         href="/blogs"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         BLOGS
                       </Link>
@@ -115,7 +115,7 @@ export function Footer() {
                     <li>
                       <Link
                         href="/contact"
-                        className="hover:text-[#22D2EE] hover:font-bold transition-all"
+                        className={`${isDarkMode ? "hover:text-[#22D2EE]" : "hover:text-[#00A2BB]"} hover:font-bold transition-all`}
                       >
                         CONTACT US
                       </Link>
@@ -147,10 +147,10 @@ export function Footer() {
                           icon.id === "youtube" && !isDarkMode && hovered !== icon.id
                             ? "/youtube7.png"
                             : icon.id === "twitter" && !isDarkMode && hovered === icon.id
-                            ? "/twitter6.png"
-                            : hovered === icon.id
-                            ? icon.img2
-                            : icon.img1
+                              ? "/twitter6.png"
+                              : hovered === icon.id
+                                ? icon.img2
+                                : icon.img1
                         }
                         alt={icon.id}
                         width={25}
