@@ -332,12 +332,13 @@ function ChallanContent() {
   const observerRef = useRef<WeakMap<HTMLVideoElement, IntersectionObserver>>(new WeakMap());
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); // Must be true for autoplay to work in browsers
+  const [isMuted, setIsMuted] = useState(false); // Video will play with sound
   const [videoError, setVideoError] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const isLoadingRef = useRef(false);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const hasUserInteractedRef = useRef(false); // Track if user has manually paused/played
 
   useEffect(() => {
     setMounted(true);
@@ -385,7 +386,6 @@ function ChallanContent() {
       loadTimeoutRef.current = setTimeout(() => {
         if (node && (node.networkState === 0 || node.networkState === 3)) {
           node.load();
-          console.log('Video load() called, networkState:', node.networkState);
         }
         isLoadingRef.current = false;
       }, 100);
@@ -457,18 +457,24 @@ function ChallanContent() {
     }
   }, [mounted, resolvedTheme]);
 
-  // Auto-play video when it's ready
+  // Auto-play video when it's ready (only on initial mount, not when isPlaying changes)
   useEffect(() => {
     if (!videoRef.current || !mounted) return;
 
     const video = videoRef.current;
     
     const attemptAutoPlay = () => {
-      if (video.readyState >= 2 && video.paused && !isPlaying) {
+      // Only auto-play if video is ready, paused, and user hasn't manually interacted
+      if (video.readyState >= 2 && video.paused && !hasUserInteractedRef.current) {
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
+              // Ensure video is unmuted when playing (if autoplay with sound is allowed)
+              if (video.muted) {
+                video.muted = false;
+                setIsMuted(false);
+              }
               setIsPlaying(true);
               setVideoLoading(false);
             })
@@ -480,9 +486,26 @@ function ChallanContent() {
       }
     };
 
-    // Try to play when video can play
+    // Track user interactions
+    const handleUserPause = () => {
+      hasUserInteractedRef.current = true;
+    };
+    
+    const handleUserPlay = () => {
+      // Only mark as user interaction if it wasn't from our auto-play
+      // We can check if isPlaying was already true
+      if (!isPlaying) {
+        hasUserInteractedRef.current = true;
+      }
+    };
+
+    // Try to play when video can play (only for initial autoplay)
     video.addEventListener('canplay', attemptAutoPlay);
     video.addEventListener('loadeddata', attemptAutoPlay);
+    
+    // Track user interactions to prevent auto-play after manual pause
+    video.addEventListener('pause', handleUserPause);
+    video.addEventListener('play', handleUserPlay);
 
     // Also try immediately if video is already ready
     if (video.readyState >= 2) {
@@ -492,78 +515,155 @@ function ChallanContent() {
     return () => {
       video.removeEventListener('canplay', attemptAutoPlay);
       video.removeEventListener('loadeddata', attemptAutoPlay);
+      video.removeEventListener('pause', handleUserPause);
+      video.removeEventListener('play', handleUserPlay);
     };
-  }, [mounted, isPlaying]);
+  }, [mounted]); // Removed isPlaying from dependencies to prevent re-triggering
 
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
+  const togglePlayPause = (e?: React.MouseEvent) => {
+    if (!videoRef.current) {
+      return;
+    }
+
+    // Mark that user has manually interacted
+    hasUserInteractedRef.current = true;
+
+    const video = videoRef.current;
+    const isVideoPaused = video.paused;
+    const currentReadyState = video.readyState;
+    
+    // Unmute video when user interacts (browsers may mute for autoplay)
+    if (video.muted) {
+      video.muted = false;
+      setIsMuted(false);
+    }
+    
+    // Always check actual video state, not the isPlaying state
+    if (!isVideoPaused) {
+      // Video is currently playing, pause it
+      try {
+        video.pause();
         setIsPlaying(false);
-      } else {
-        // Wait for video to be ready before playing
-        const attemptPlay = () => {
-          if (!videoRef.current) return;
-
-          // Check if video is ready to play
-          if (videoRef.current.readyState >= 2) {
-            // Video has enough data to play
-            const playPromise = videoRef.current.play();
-            
-            if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  setIsPlaying(true);
-                  setVideoLoading(false);
-                })
-                .catch((error) => {
-                  console.error('Error playing video:', error);
-                  // If play was interrupted by load, wait and retry
-                  if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
-                    setTimeout(() => {
-                      if (videoRef.current && videoRef.current.readyState >= 2) {
-                        videoRef.current.play()
-                          .then(() => {
-                            setIsPlaying(true);
-                            setVideoLoading(false);
-                          })
-                          .catch((err) => {
-                            console.error('Retry play failed:', err);
-                            setVideoError(true);
-                          });
-                      }
-                    }, 500);
-                  } else {
-                    setVideoError(true);
-                  }
-                });
-            }
-          } else {
-            // Video not ready, wait for it
-            setVideoLoading(true);
-            const checkReady = () => {
-              if (videoRef.current && videoRef.current.readyState >= 2) {
-                attemptPlay();
-              } else if (videoRef.current) {
-                setTimeout(checkReady, 100);
+        
+        // Verify pause actually happened and fix state if needed
+        setTimeout(() => {
+          if (videoRef.current) {
+            const actualPaused = videoRef.current.paused;
+            // Force state to match actual video state
+            setIsPlaying((currentIsPlaying) => {
+              const shouldBePlaying = !actualPaused;
+              
+              // If there's a mismatch, fix it
+              if (currentIsPlaying !== shouldBePlaying) {
+                return shouldBePlaying;
               }
-            };
-            checkReady();
+              
+              // If video is still playing, force pause again
+              if (!actualPaused) {
+                videoRef.current?.pause();
+                return false;
+              }
+              
+              return currentIsPlaying;
+            });
+          }
+        }, 50);
+      } catch (error) {
+        console.error('Error pausing video:', error);
+        setIsPlaying(false);
+      }
+    } else {
+      // Video is paused, play it
+      // Check if video is ready to play
+      if (currentReadyState >= 2) {
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // Ensure video is unmuted when playing
+              if (video.muted) {
+                video.muted = false;
+                setIsMuted(false);
+              }
+              setIsPlaying(true);
+              setVideoLoading(false);
+            })
+            .catch((error) => {
+              console.error('Error playing video:', error);
+              
+              // If play was interrupted by load, wait and retry
+              if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+                setTimeout(() => {
+                  if (videoRef.current && videoRef.current.readyState >= 2) {
+                    videoRef.current.play()
+                      .then(() => {
+                        // Ensure video is unmuted when playing
+                        if (videoRef.current && videoRef.current.muted) {
+                          videoRef.current.muted = false;
+                          setIsMuted(false);
+                        }
+                        setIsPlaying(true);
+                        setVideoLoading(false);
+                      })
+                      .catch((err) => {
+                        console.error('Retry play failed:', err);
+                        setVideoError(true);
+                      });
+                  }
+                }, 500);
+              } else {
+                setVideoError(true);
+              }
+            });
+        }
+      } else {
+        // Video not ready, wait for it
+        setVideoLoading(true);
+        
+        const checkReady = () => {
+          if (videoRef.current) {
+            if (videoRef.current.readyState >= 2) {
+              const playPromise = videoRef.current.play();
+              if (playPromise !== undefined) {
+                playPromise
+                  .then(() => {
+                    // Ensure video is unmuted when playing
+                    if (videoRef.current && videoRef.current.muted) {
+                      videoRef.current.muted = false;
+                      setIsMuted(false);
+                    }
+                    setIsPlaying(true);
+                    setVideoLoading(false);
+                  })
+                  .catch((error) => {
+                    console.error('Error playing video after ready:', error);
+                    setVideoError(true);
+                  });
+              }
+            } else if (videoRef.current) {
+              setTimeout(checkReady, 100);
+            }
           }
         };
-
-        attemptPlay();
+        checkReady();
       }
     }
   };
 
   const handleVideoPlay = () => {
-    setIsPlaying(true);
-    setVideoLoading(false);
+    // Double-check the video is actually playing before updating state
+    if (videoRef.current && !videoRef.current.paused) {
+      setIsPlaying(true);
+      setVideoLoading(false);
+    }
   };
 
   const handleVideoPause = () => {
-    setIsPlaying(false);
+    // Double-check the video is actually paused before updating state
+    if (videoRef.current && videoRef.current.paused) {
+      setIsPlaying(false);
+    }
   };
 
   const handleVideoLoadedData = () => {
@@ -703,7 +803,7 @@ function ChallanContent() {
             With <span className="text-[#00A2BB] dark:text-[#22D2EE]">38.5 Cr registered vehicles, 18.2 Cr driving licenses,</span> and the rapid expansion of digital governance initiatives, India faces a critical moment. ChallanPay positions itself as the digital backbone of mobility compliance, integrating government, citizens, fleets, and enterprises into one unified ecosystem.
           </p>
         </div>
-        <div className="hidden md:col-span-2 md:flex md:items-center md:justify-center md:p-4 md:overflow-hidden">
+        <div className="flex md:col-span-2 items-center justify-center p-4 overflow-hidden">
           <div className="relative w-full max-w-xs flex items-center justify-center" style={{ minHeight: '600px', height: '600px' }}>
             {/* Background color layer - first layers */}
             <div className={`absolute rounded-lg ${mounted && resolvedTheme === 'dark' ? 'bg-[#181820]' : 'bg-[#F7F7F7]'}`} style={{ height: '130%', width: '150%', left: '-25%', top: '-15%' }}></div>
@@ -726,7 +826,7 @@ function ChallanContent() {
 
             {/* Video container - positioned behind the phone frame */}
             <div 
-              className="absolute inset-0 flex items-center justify-center z-[5] cursor-pointer" 
+              className="absolute inset-0 flex items-center justify-center z-[5] cursor-pointer pointer-events-auto" 
               style={{
                 width: '100%',
                 height: '100%',
@@ -735,7 +835,9 @@ function ChallanContent() {
                 paddingLeft: '5.5%', // Left padding to center screen (keep as is - width is perfect)
                 paddingRight: '5.5%', // Right padding to center screen (keep as is - width is perfect)
               }}
-              onClick={togglePlayPause}
+              onClick={(e) => {
+                togglePlayPause(e);
+              }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -760,12 +862,16 @@ function ChallanContent() {
               ) : (
                 <video
                   ref={videoRefCallback}
-                  className="w-full h-full object-cover" // Rounded corners to match phone screen
+                  className="w-full h-full object-cover pointer-events-auto" // Rounded corners to match phone screen
                   loop
                   playsInline
                   muted={isMuted}
                   preload="auto"
                   autoPlay
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePlayPause(e);
+                  }}
                   onPlay={handleVideoPlay}
                   onPause={handleVideoPause}
                   onLoadedData={handleVideoLoadedData}
@@ -774,19 +880,16 @@ function ChallanContent() {
                     setVideoLoading(false);
                     setVideoError(false);
                     isLoadingRef.current = false;
-                    console.log('Video can play, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadedMetadata={() => {
                     setVideoLoading(false);
                     setVideoError(false);
                     isLoadingRef.current = false;
-                    console.log('Video metadata loaded, networkState:', videoRef.current?.networkState);
                   }}
                   onLoadStart={() => {
                     setVideoLoading(true);
                     setVideoError(false);
                     setErrorMessage('');
-                    console.log('Video load started, networkState:', videoRef.current?.networkState);
                   }}
                   onStalled={() => {
                     console.warn('Video stalled, retrying...');
@@ -795,17 +898,15 @@ function ChallanContent() {
                     }
                   }}
                   onWaiting={() => {
-                    console.log('Video waiting for data...');
                     setVideoLoading(true);
                   }}
                   onCanPlayThrough={() => {
                     setVideoLoading(false);
                     setVideoError(false);
                     isLoadingRef.current = false;
-                    console.log('Video can play through');
                   }}
                   onAbort={() => {
-                    console.warn('Video loading aborted');
+                    // Video loading was aborted (user navigated away, etc.)
                   }}
                   style={{
                     maxHeight: '82%', // Increased height to fill more of the screen
@@ -818,7 +919,7 @@ function ChallanContent() {
                 </video>
               )}
               {videoLoading && !videoError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 rounded-lg z-[10]">
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50 rounded-lg z-[10] pointer-events-none">
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
                 </div>
               )}
