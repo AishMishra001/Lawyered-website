@@ -7,6 +7,7 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void
     dataLayer?: unknown[]
+    fbq?: (...args: unknown[]) => void
   }
 }
 
@@ -25,6 +26,10 @@ export default function Analytics() {
       gtag("config", gaId, { page_path })
     } else if (Array.isArray(window.dataLayer)) {
       window.dataLayer!.push(["config", gaId, { page_path }])
+    }
+    const fbq = window.fbq
+    if (typeof fbq === "function") {
+      fbq("track", "PageView")
     }
   }, [pathname, searchParams])
 
