@@ -4,8 +4,10 @@ import type React from "react"
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useMobileMenu } from "@/app/contexts/MobileMenuContext"
 
 const RewardBot = () => {
+  const { isMenuOpen } = useMobileMenu()
   const [imageSize, setImageSize] = useState(200);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const RewardBot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className={`fixed bottom-4 right-4 z-50 ${isMenuOpen ? 'hidden' : 'block'} md:block`}>
         <Image src="/reward.png" alt="Reward" width={imageSize} height={imageSize} className="cursor-pointer" onClick={handleRedirect} />
     </div>
   )

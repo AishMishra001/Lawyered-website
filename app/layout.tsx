@@ -6,6 +6,7 @@ import "./globals.css"
 import { Navbar } from "@/app/components/Navbar"
 import { Footer } from "@/app/components/Footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { MobileMenuProvider } from "@/app/contexts/MobileMenuContext"
 import Script from "next/script"
 import { Suspense } from "react"
 import Analytics from "@/app/components/Analytics"
@@ -121,12 +122,14 @@ export default function RootLayout({
           </>
         )}
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <Navbar />
-          <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
-          <main>{children}</main>
-          <Footer />
+          <MobileMenuProvider>
+            <Navbar />
+            <Suspense fallback={null}>
+              <Analytics />
+            </Suspense>
+            <main>{children}</main>
+            <Footer />
+          </MobileMenuProvider>
         </ThemeProvider>
       </body>
     </html>
