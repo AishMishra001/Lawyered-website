@@ -301,7 +301,7 @@ function LotsInfrastructure() {
         <p className="relative z-10 text-black dark:text-white w-full mx-auto px-4 md:px-26 pb-12 text-sm md:text-base max-w-7xl">
           LOTS247 is not just a legal solution; it is a mission-critical, technology-driven new SaaS
           (Service-as-a-Software) designed to eliminate roadside legal issues in real time. It ensures that vehicle owners
-          and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS
+          and businesses never suffer financial, operational, or psychological distress due to legal entanglements. LOTS247
           is a painkiller solution—an indispensable safety net for every vehicle on Indian roads.
         </p>
         <h2 className="text-xl md:text-2xl font-semibold text-center mb-8 md:mb-16 px-4">
