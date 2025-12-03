@@ -312,7 +312,7 @@ function ContactFormSection() {
       try {
           // Submit directly to the webhook service from the browser
           // This bypasses server-side origin restrictions
-          const response = await fetch('https://automate.indiaaccelerator.co/webhook/b688bd42-a402-45ed-874a-a816601bcad3', {
+          const response = await fetch('https://automate.indiaaccelerator.live/webhook/b688bd42-a402-45ed-874a-a816601bcad3', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',

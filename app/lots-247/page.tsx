@@ -810,7 +810,7 @@ function LotsForm() {
 
     try {
       const origin = typeof window !== 'undefined' ? window.location.origin : ''
-      const response = await fetch('https://automate.indiaaccelerator.co/webhook/5da90f77-0b4d-4695-904b-1583dc1a6323', {
+      const response = await fetch('https://automate.indiaaccelerator.live/webhook/5da90f77-0b4d-4695-904b-1583dc1a6323', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
